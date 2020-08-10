@@ -1,0 +1,38 @@
+{
+  "name": "padlocal-client-ts",
+  "version": "1.0.0",
+  "description": "Padlocal ts client",
+  "main": "index.js",
+  "scripts": {
+    "gen-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:. --grpc_out=grpc_js:. --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --plugin=protoc-gen-ts=node_modules/.bin/protoc-gen-ts --ts_out=generate_package_definition:. src/proto/padlocal.proto",
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/padlocal/padlocal-client-ts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/padlocal/padlocal-client-ts/issues"
+  },
+  "homepage": "https://github.com/padlocal/padlocal-client-ts#readme",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.1.3",
+    "@types/google-protobuf": "^3.7.2",
+    "@types/node": "^14.0.27",
+    "axios": "^0.19.2",
+    "crypto-random-string": "^3.2.0",
+    "google-protobuf": "^3.12.4",
+    "grpc-tools": "^1.9.1",
+    "verror": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.9",
+    "@types/verror": "^1.10.4",
+    "jest": "^26.3.0",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
+  }
+}

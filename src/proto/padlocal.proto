@@ -1,0 +1,729 @@
+syntax = "proto3";
+package padlocal;
+option java_package = "com.webot.padlocal.proto";
+option java_multiple_files = true;
+
+service PadLocal {
+    rpc action (stream ActionMessage) returns (stream ActionMessage) {}
+}
+
+message ActionMessageHeader {
+    int32 seq = 1;
+    int32 ack = 2;
+}
+
+message ActionMessage {
+    ActionMessageHeader header = 1;
+    oneof payload {
+        WeChatRequest wechatRequest = 2;
+        WeChatResponse wechatResponse = 3;
+        LongLinkUnpackRequest longLinkUnpackRequest = 4;
+        LongLinkUnpackResponse longLinkUnpackResponse = 5;
+        LoginRequest loginRequest = 6;
+        LoginUpdateEvent loginUpdateEvent = 7;
+        LoginResponse loginResponse = 8;
+        LogoutRequest logoutRequest = 9;
+        LogoutResponse logoutResponse = 10;
+        LongLinkHeartBeatRequest longLinkHeartBeatRequest = 11;
+        LongLinkHeartBeatResponse longLinkHeartBeatResponse = 12;
+        SendTextMessageRequest sendTextMessageRequest = 13;
+        SendTextMessageResponse sendTextMessageResponse = 14;
+        SendImageMessageRequest sendImageMessageRequest = 15;
+        SendImageMessageResponse sendImageMessageResponse = 16;
+        SendAppMessageRequest sendAppMessageRequest = 17;
+        SendAppMessageResponse sendAppMessageResponse = 18;
+        AcceptUserRequest acceptUserRequest = 19;
+        AcceptUserResponse acceptUserResponse = 20;
+        AddContactRequest addContactRequest = 21;
+        AddContactResponse addContactResponse = 22;
+        DeleteContactRequest deleteContactRequest = 23;
+        DeleteContactResponse deleteContactResponse = 24;
+        GetContactRequest getContactRequest = 25;
+        GetContactResponse getContactResponse = 26;
+        GetContactQRCodeRequest getContactQRCodeRequest = 27;
+        GetContactQRCodeResponse getContactQRCodeResponse = 28;
+        SearchContactRequest searchContactRequest = 29;
+        SearchContactResponse searchContactResponse = 30;
+        CreateChatRoomRequest createChatRoomRequest = 31;
+        CreateChatRoomResponse createChatRoomResponse = 32;
+        GetChatRoomMembersRequest getChatRoomMembersRequest = 33;
+        GetChatRoomMembersResponse getChatRoomMembersResponse = 34;
+        GetChatRoomQrCodeRequest getChatRoomQrCodeRequest = 35;
+        GetChatRoomQrCodeResponse getChatRoomQrCodeResponse = 36;
+        GetChatRoomMemberRequest getChatRoomMemberRequest = 37;
+        GetChatRoomMemberResponse getChatRoomMemberResponse = 38;
+        SetChatRoomAnnouncementRequest setChatRoomAnnouncementRequest = 39;
+        SetChatRoomAnnouncementResponse setChatRoomAnnouncementResponse = 40;
+        AddChatRoomMemberRequest addChatRoomMemberRequest = 41;
+        AddChatRoomMemberResponse addChatRoomMemberResponse = 42;
+        InviteChatRoomMemberRequest inviteChatRoomMemberRequest = 43;
+        InviteChatRoomMemberResponse inviteChatRoomMemberResponse = 44;
+        DeleteChatRoomMemberRequest deleteChatRoomMemberRequest = 45;
+        DeleteChatRoomMemberResponse deleteChatRoomMemberResponse = 46;
+        SetChatRoomNameRequest setChatRoomNameRequest = 47;
+        SetChatRoomNameResponse setChatRoomNameResponse = 48;
+        SnsSendMomentRequest snsSendMomentRequest = 49;
+        SnsSendMomentResponse snsSendMomentResponse = 50;
+        SnsGetUserPageRequest snsGetUserPageRequest = 51;
+        SnsGetUserPageResponse snsGetUserPageResponse = 52;
+        SnsSendCommentRequest snsSendCommentRequest = 53;
+        SnsSendCommentResponse snsSendCommentResponse = 54;
+        SnsUploadImageRequest snsUploadImageRequest = 55;
+        SnsUploadImageResponse snsUploadImageResponse = 56;
+        SnsGetTimelineRequest snsGetTimelineRequest = 57;
+        SnsGetTimelineResponse snsGetTimelineResponse = 58;
+        SnsGetMomentRequest snsGetMomentRequest = 59;
+        SnsGetMomentResponse snsGetMomentResponse = 60;
+        SnsLikeMomentRequest snsLikeMomentRequest = 61;
+        SnsLikeMomentResponse snsLikeMomentResponse = 62;
+        SnsUnlikeMomentRequest snsUnlikeMomentRequest = 63;
+        SnsUnlikeMomentResponse snsUnlikeMomentResponse = 64;
+        SnsRemoveMomentCommentRequest snsRemoveMomentCommentRequest = 65;
+        SnsRemoveMomentCommentResponse snsRemoveMomentCommentResponse = 66;
+        SnsMakeMomentPrivateRequest snsMakeMomentPrivateRequest = 67;
+        SnsMakeMomentPrivateResponse snsMakeMomentPrivateResponse = 68;
+        SnsMakeMomentPublicRequest snsMakeMomentPublicRequest = 69;
+        SnsMakeMomentPublicResponse snsMakeMomentPublicResponse = 70;
+        SnsRemoveMomentRequest snsRemoveMomentRequest = 71;
+        SnsRemoveMomentResponse snsRemoveMomentResponse = 72;
+        AddLabelRequest addLabelRequest = 73;
+        AddLabelResponse addLabelResponse = 74;
+        RemoveLabelRequest removeLabelRequest = 75;
+        RemoveLabelResponse removeLabelResponse = 76;
+        GetLabelListRequest getLabelListRequest = 77;
+        GetLabelListResponse getLabelListResponse = 78;
+        SetContactLabelRequest setContactLabelRequest = 79;
+        SetContactLabelResponse setContactLabelResponse = 80;
+        SystemEventRequest systemEventRequest = 81;
+        SystemEventResponse systemEventResponse = 82;
+        SyncRequest syncRequest = 83;
+        SyncResponse syncResponse = 84;
+        GetMessageImageRequest getMessageImageRequest =85;
+        GetMessageImageResponse getMessageImageResponse = 86;
+        SyncContactRequest syncContactRequest = 87;
+        SyncContactResponse syncContactResponse = 88;
+        SyncEvent syncEvent = 89;
+        GetMessageVoiceRequest getMessageVoiceRequest = 90;
+        GetMessageVoiceResponse getMessageVoiceResponse = 91;
+        GetMessageVideoThumbRequest getMessageVideoThumbRequest = 92;
+        GetMessageVideoThumbResponse getMessageVideoThumbResponse = 93;
+        GetMessageVideoRequest getMessageVideoRequest = 94;
+        GetMessageVideoResponse getMessageVideoResponse = 95;
+        GetMessageFileRequest getMessageFileRequest = 96;
+        GetMessageFileResponse getMessageFileResponse = 97;
+        ForwardMessageRequest forwardMessageRequest = 98;
+        ForwardMessageResponse forwardMessageResponse = 99;
+    }
+}
+
+enum WeChatRequestChannel {
+    SHORT = 0;
+    LONG = 1;
+    SOCKET = 3;
+    CDN = 4;
+}
+
+message WeChatRequest {
+    WeChatRequestChannel channel = 1;
+    bytes payload = 2;
+    Host host = 3;
+    string path = 4;
+    int64 seq = 5;
+    int64 socketResponseDataLen = 6;
+    CdnRequest cdnRequest = 7;
+}
+
+message WeChatResponse {
+    bytes payload = 2;
+}
+
+message LongLinkUnpackRequest {
+    bytes streamData = 1;
+}
+
+message LongLinkUnpackResponse {
+    repeated LongLinkPacket packet = 1;
+    int64 streamDataConsumedLen = 2;
+}
+
+message LongLinkPacket {
+    oneof type {
+        LongLinkPacketNormal normal = 1;
+        LongLinkPacketPush push = 2;
+    }
+}
+
+message LongLinkPacketNormal {
+    int64 seq = 1;
+    bytes payload = 2;
+}
+
+enum LongLinkPacketPushType {
+    NEW_MESSAGE = 0;
+}
+
+message LongLinkPacketPush {
+    LongLinkPacketPushType type = 1;
+}
+
+enum LoginPolicy{
+    DEFAULT = 0;
+}
+
+message LoginRequest {
+    LoginPolicy policy = 1;
+}
+
+message LoginResponse {
+}
+
+enum LoginStatus {
+    START = 0;
+    ONE_CLICK_EVENT = 1;
+    QRCODE_EVENT = 2;
+    AUTH_SUCCESS = 3;
+    SYNC = 4;
+}
+
+message LoginUpdateEvent {
+    LoginStatus status = 1;
+    oneof payload {
+        LoginType loginType = 2;
+        QRCodeEvent qrCodeEvent = 3;
+        AuthInfo authInfo = 4;
+        SyncEvent syncEvent = 5;
+    }
+}
+
+enum LoginType {
+    QRLogin = 0;
+    AutoLogin = 1;
+    OneClickLogin = 2;
+}
+
+enum QRCodeStatus {
+    NEW = 0;
+    SCANNED = 1;
+    CONFIRMED = 2;
+    CANCELLED = 3;
+    EXPIRED = 4;
+    UNKNOWN_ERROR = 5;
+}
+
+message QRCodeEvent {
+    QRCodeStatus status = 1;
+    bytes image = 2;
+    uint32 expireAt = 3;
+    Contact contact = 4;
+}
+
+message AuthInfo {
+    Contact selfContact = 1;
+    Host longLinkHost = 2;
+}
+
+message LogoutRequest {
+
+}
+
+message LogoutResponse {
+
+}
+
+message LongLinkHeartBeatRequest {
+    int64 heartBeatSeq = 1;
+}
+
+message LongLinkHeartBeatResponse{
+
+}
+
+message SendTextMessageRequest {
+    string toUserName = 1;
+    string content = 2;
+    repeated string at = 3;
+}
+
+message SendTextMessageResponse {
+    string msgId = 1;
+}
+
+message SendImageMessageRequest {
+    string toUserName = 1;
+    bytes image = 3;
+}
+
+message SendImageMessageResponse {
+    string msgId = 1;
+}
+
+message SendAppMessageRequest {
+    string toUserName = 1;
+    oneof payload {
+        AppMessageLink link = 2;
+        AppMessageMiniProgram miniProgram = 3;
+    }
+}
+
+message AppMessageLink {
+    string title = 1;
+    string description = 2;
+    string url = 3;
+    bytes thumbImage = 4;
+    string thumbURL = 5;
+}
+
+message AppMessageMiniProgram {
+    string title = 1;
+    string description = 2;
+    string url = 3;
+    string mpAppUserName = 4;
+    string mpAppName = 5;
+    string mpAppId = 6;
+    string mpAppIconURL = 7;
+    string mpAppPath = 8;
+    bytes thumbImage = 9;
+}
+
+message SendAppMessageResponse {
+    string msgId = 1;
+}
+
+message AcceptUserRequest {
+    string stranger = 1;
+    string ticket = 2;
+}
+
+message AcceptUserResponse {
+}
+
+enum AddContactScene {
+    MOBILE_PHONE = 0;
+    WECHAT_ID = 1;
+    QQ_ID = 2;
+    CHATROOM = 3;
+    CONTACT_QR = 4;
+    CONTACT_CARD = 5;
+}
+
+message AddContactRequest {
+    string stranger = 1;
+    string ticket = 2;
+    AddContactScene scene = 3;
+    string content = 4;
+}
+
+message AddContactResponse {
+}
+
+message DeleteContactRequest {
+    string userName = 1;
+}
+
+message DeleteContactResponse {
+}
+
+message GetContactRequest {
+    string userName = 1;
+}
+
+message GetContactResponse {
+    Contact contact = 1;
+}
+
+message GetContactQRCodeRequest {
+    string userName = 1;
+    int32 style = 2;
+}
+
+message GetContactQRCodeResponse {
+    bytes qrcode = 1;
+    string description = 6;
+}
+
+message SearchContactRequest {
+    string userName = 1;
+}
+
+message SearchContactResponse {
+    Contact contact = 1;
+    string antispamTicket = 30;
+}
+
+message CreateChatRoomRequest {
+    repeated string userNames = 1;
+}
+
+message CreateChatRoomResponse {
+    string roomId = 1;
+    string topic = 2;
+    string avatar = 3;
+}
+
+message GetChatRoomMembersRequest {
+    string roomId = 1;
+}
+
+message GetChatRoomMembersResponse {
+    repeated ChatRoomMember member = 1;
+}
+
+message ChatRoomMember {
+    string userName = 1;
+    string nickName = 2;
+    string displayName = 3;
+    string avatar = 4;
+    string inviterUserName = 5;
+}
+
+message GetChatRoomQrCodeRequest {
+    string roomId = 1;
+}
+
+message GetChatRoomQrCodeResponse {
+    bytes qrcode = 1;
+    string description = 6;
+}
+
+message GetChatRoomMemberRequest {
+    string roomId = 1;
+    string userName = 2;
+}
+
+message GetChatRoomMemberResponse {
+    Contact contact = 1;
+}
+
+message SetChatRoomAnnouncementRequest {
+    string roomId = 1;
+    string announcement = 2;
+}
+
+message SetChatRoomAnnouncementResponse {
+}
+
+message AddChatRoomMemberRequest {
+    string roomId = 1;
+    string userName = 2;
+}
+
+message AddChatRoomMemberResponse {
+}
+
+message InviteChatRoomMemberRequest{
+    string roomId = 1;
+    string userName = 2;
+}
+
+message InviteChatRoomMemberResponse {
+}
+
+message DeleteChatRoomMemberRequest {
+    string roomId = 1;
+    string userName = 2;
+}
+
+message DeleteChatRoomMemberResponse {
+}
+
+message SetChatRoomNameRequest {
+    string roomId = 1;
+    string name = 2;
+}
+
+message SetChatRoomNameResponse {
+}
+
+message SnsSendMomentRequest {
+    string payloadXML = 1;
+}
+
+message SnsSendMomentResponse  {
+    Moment moment = 1;
+}
+
+message SnsGetUserPageRequest {
+    string userName = 1;
+    int64 maxId = 2;
+}
+
+message SnsGetUserPageResponse {
+    repeated Moment moment = 1;
+    string tips = 2;
+}
+
+message SnsSendCommentRequest {
+    string userName = 1;
+    string momentId = 2;
+    string text = 3;
+}
+
+message SnsSendCommentResponse {
+    Moment moment = 1;
+}
+
+message SnsUploadImageRequest {
+    bytes image = 1;
+}
+
+message SnsUploadImageResponse {
+    int64 id = 1;
+    string url = 2;
+    string thumbUrl = 3;
+}
+
+message SnsGetTimelineRequest {
+    int64 maxId = 1;
+}
+
+message SnsGetTimelineResponse {
+    repeated Moment moment = 1;
+}
+
+message SnsGetMomentRequest {
+    string momentId = 1;
+}
+
+message SnsGetMomentResponse {
+    Moment moment = 1;
+}
+
+message SnsLikeMomentRequest {
+    string userName = 1;
+    string momentId = 2;
+}
+
+message SnsLikeMomentResponse {
+    Moment moment = 1;
+}
+
+message SnsUnlikeMomentRequest {
+    string momentId = 1;
+}
+
+message SnsUnlikeMomentResponse {
+}
+
+message SnsRemoveMomentCommentRequest {
+    string momentId = 1;
+    string commentId = 2;
+}
+
+message SnsRemoveMomentCommentResponse {
+}
+
+message SnsMakeMomentPrivateRequest {
+    string momentId = 1;
+}
+
+message SnsMakeMomentPrivateResponse {
+}
+
+message SnsMakeMomentPublicRequest {
+    string momentId = 1;
+}
+
+message SnsMakeMomentPublicResponse {
+}
+
+message SnsRemoveMomentRequest {
+    string momentId = 1;
+}
+
+message SnsRemoveMomentResponse {
+}
+
+message AddLabelRequest {
+    string label = 1;
+}
+
+message AddLabelResponse {
+    int64 labelId = 1;
+}
+
+message RemoveLabelRequest {
+    int64 labelId = 1;
+}
+
+message RemoveLabelResponse {
+}
+
+message GetLabelListRequest {
+}
+
+message GetLabelListResponse {
+    repeated Label label = 1;
+}
+
+message Label {
+    string name = 1;
+    int32 id = 2;
+}
+
+message SetContactLabelRequest {
+    string userName = 1;
+    repeated int64 labelId = 2;
+}
+
+message SetContactLabelResponse {
+}
+
+message SyncEvent {
+    repeated Contact contact = 1;
+    repeated Message message = 2;
+}
+
+message Contact {
+    string userName = 1;
+    string nickName = 2;
+    string avatar = 3;
+    int32 gender = 4;
+    string signature = 5;
+    string alias = 6;
+    string label = 7;
+    string remark = 8;
+    string city = 9;
+    string province = 10;
+    string country = 11;
+    int32 contactAddScene = 12;
+    bool stranger = 13;
+
+    string chatRoomOwnerUserName = 100;
+    int32 chatRoomMaxCount = 101;
+    repeated ChatRoomMember chatRoomMember = 102;
+}
+
+message Message {
+    string id = 1;
+    int32 type = 2;
+    int32 createTime = 3;
+    string fromUserName = 4;
+    string toUserName = 5;
+    string content = 6;
+    string pushContent = 7;
+    bytes binaryPayload = 8;
+    repeated string at = 9;
+}
+
+message Host {
+    string host = 1;
+    int32 port = 2;
+}
+
+message Moment {
+    string id = 1;
+    string userName = 2;
+    string nickName = 3;
+    int32 createTime = 4;
+    string content = 5;
+    bool isRichText = 6;
+    repeated MomentComment like = 7;
+    repeated MomentComment comment = 8;
+    repeated MomentComment with = 9;
+}
+
+message MomentComment {
+    string id = 1;
+    int32 createTime = 2;
+    string userName = 3;
+    string nickName = 4;
+    string content = 5;
+    bool isRichText = 6;
+    string replyCommentId = 7;
+    string replyUserName = 8;
+}
+
+enum SystemEventType {
+    DID_REFRESH_TOKEN = 0;
+    DID_KICKOUT = 1;
+}
+
+message SystemKickOutEvent {
+    int32 errorCode = 1;
+    string errorMessage = 2;
+}
+
+message SystemEventRequest {
+    SystemEventType type = 1;
+    oneof payload {
+        SystemKickOutEvent kickOutEvent = 2;
+    }
+}
+
+message SystemEventResponse {
+}
+
+message SyncRequest {
+}
+
+message SyncResponse {
+    SyncEvent payload = 1;
+}
+
+message GetMessageImageRequest {
+    Message message = 1;
+    ImageType imageType = 2;
+}
+
+enum ImageType {
+    NORMAL = 0;
+    HD = 1;
+}
+
+message GetMessageImageResponse {
+    CdnRequest cdnRequest = 1;
+    ImageType imageType = 2;
+}
+
+message CdnRequest {
+    Host host = 1;
+    bytes payload = 2;
+    bytes unpackAesKey = 3;
+}
+
+message SyncContactRequest {
+}
+
+message SyncContactResponse {
+}
+
+message GetMessageVoiceRequest {
+    Message message = 1;
+}
+
+message GetMessageVoiceResponse {
+    bytes voice = 1;
+}
+
+message GetMessageVideoThumbRequest {
+    Message message = 1;
+}
+
+message GetMessageVideoThumbResponse {
+    CdnRequest cdnRequest = 1;
+}
+
+message GetMessageVideoRequest {
+    Message message = 1;
+}
+
+message GetMessageVideoResponse {
+    CdnRequest cdnRequest = 1;
+}
+
+message GetMessageFileRequest {
+    Message message = 1;
+}
+
+message GetMessageFileResponse {
+    CdnRequest cdnRequest = 1;
+}
+
+message ForwardMessageRequest {
+    string toUserName = 1;
+    Message message = 2;
+}
+
+message ForwardMessageResponse {
+    string msgId = 1;
+}
