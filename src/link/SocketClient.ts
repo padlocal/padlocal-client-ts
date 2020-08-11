@@ -1,7 +1,7 @@
 import { Socket } from "net";
 import { RetryStrategy } from "../utils/RetryStrategy";
 import { Bytes, ByteUtils } from "../utils/ByteUtils";
-import { logging } from "../utils/logging";
+import { log } from "../utils/log";
 import VError from "verror";
 
 export class SocketClient {
@@ -35,7 +35,7 @@ export class SocketClient {
 
             const delay = this.retryStrategy.nextRetryDelay();
 
-            logging.info(`[tid:${this.traceId}] socket #${this.retryStrategy.retryCount} retry send, after delay: ${delay}ms, addr:\"${this.host}:${this.port}\" data:${ByteUtils.bytesToHexString(data)}`);
+            log.info(`[tid:${this.traceId}] socket #${this.retryStrategy.retryCount} retry send, after delay: ${delay}ms, addr:\"${this.host}:${this.port}\" data:${ByteUtils.bytesToHexString(data)}`);
 
             return new Promise(async (resolve, reject) => {
                 setTimeout(() => {
@@ -64,7 +64,7 @@ export class SocketClient {
 
     private async _sendImpl(sendData: Bytes): Promise<void> {
         if (this._socket) {
-            logging.warn("can not send again while socket is working");
+            log.warn("can not send again while socket is working");
             return;
         }
 
@@ -72,7 +72,7 @@ export class SocketClient {
             const onSocketFinish = (error?: Error) => {
                 if (error) {
                     this._callback?.onError?.(error);
-                    logging.warn(`socket on error: ${error}`);
+                    log.warn(`socket on error: ${error}`);
 
                     reject(error);
                 }

@@ -1,7 +1,7 @@
 import { RetryStrategy } from "../utils/RetryStrategy";
 import { PromiseCallback } from "../utils/PromiseUtils";
 import { PadLocalClient } from "../PadLocalClient";
-import { logging } from "../utils/logging";
+import { log } from "../utils/log";
 import { EventEmitter } from "events";
 import { Socket } from "net";
 import { ByteUtils, Bytes } from "../utils/ByteUtils";
@@ -63,7 +63,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
             return;
         }
 
-        logging.debug("longlink shutdown");
+        log.debug("longlink shutdown");
 
         this._clearReconnectTimer();
         this._connectRetryStrategy.reset();
@@ -99,7 +99,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
     async send(seq: number, data: Bytes): Promise<Bytes> {
         await this.makeSureConnected();
 
-        logging.debug(`long link send: ${ByteUtils.bytesToHexString(data)}`);
+        log.debug(`long link send: ${ByteUtils.bytesToHexString(data)}`);
 
         return new Promise((resolve, reject) => {
             this._socket!.write(data, (error) => {
@@ -133,7 +133,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
             if (this._heartBeatRetryStrategy.canRetry()) {
                 const delay = this._heartBeatRetryStrategy.nextRetryDelay();
                 this._resetHeartBeatTimer(true, delay);
-                logging.debug(`retry send heart beat after:${delay}ms`);
+                log.debug(`retry send heart beat after:${delay}ms`);
             }
             else {
                 this._onSocketError(new WeChatLongLinkProxy.IOError("send heart beat failed after max retries"));
@@ -185,7 +185,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
             return;
         }
 
-        logging.debug("longlink startHeartbeat");
+        log.debug("longlink startHeartbeat");
 
         this._heartBeatSeq = 0;
 
@@ -198,7 +198,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
             return;
         }
 
-        logging.debug("longlink stopHeartbeat");
+        log.debug("longlink stopHeartbeat");
 
         this._heartBeatSeq = 0;
         this._resetHeartBeatTimer(false);
@@ -267,7 +267,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
             return;
         }
 
-        logging.debug("close connection on error", error);
+        log.debug("close connection on error", error);
 
         this._resetLongLink(error);
         this._updateStatus(WeChatLongLinkProxy.Status.ERROR);
@@ -278,12 +278,12 @@ export class WeChatLongLinkProxy extends EventEmitter {
     private _tryReconnect(): void {
         // already reconnecting 
         if (this._reconnectDelayTimer) {
-            logging.debug("dup reconnect, forbid");
+            log.debug("dup reconnect, forbid");
             return;
         }
 
         if (!this._connectRetryStrategy.canRetry()) {
-            logging.debug("reconnect policy failed");
+            log.debug("reconnect policy failed");
             // 重试失败，关闭
             this.shutdown();
             return;
@@ -291,7 +291,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
         const delay = this._connectRetryStrategy.nextRetryDelay();
 
-        logging.info(`longlink reconnect [${this._connectRetryStrategy.retryCount}] after delay:${delay}ms`);
+        log.info(`longlink reconnect [${this._connectRetryStrategy.retryCount}] after delay:${delay}ms`);
 
         this._reconnectDelayTimer = setTimeout(() => {
             this._clearReconnectTimer();
@@ -308,7 +308,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
             this._socketPromise = new Promise((resolve, reject) => {
                 const startDate = new Date();
 
-                logging.debug(`longlink start connect: ${this._host}:${this._port}`);
+                log.debug(`longlink start connect: ${this._host}:${this._port}`);
 
                 const socket = new Socket();
                 socket.setTimeout(WeChatLongLinkProxy.SOCKET_TIMEOUT)
@@ -317,7 +317,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
                 // node socket doesn't support connecet timeout natively, so implement our own version.
                 const connectTimeout = setTimeout(() => {
-                    logging.debug(`longlink socket[${this._host}:${this._port}] connect timeout`);
+                    log.debug(`longlink socket[${this._host}:${this._port}] connect timeout`);
 
                     const error = new WeChatLongLinkProxy.IOError("longlink socket connect timeout");
                     this._onSocketError(error);
@@ -331,7 +331,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
                     port: this._port!,
                 }, () => {
                     const endDate = new Date();
-                    logging.debug(`longlink connect success, cost ${endDate.getTime() - startDate.getTime()}ms`);
+                    log.debug(`longlink connect success, cost ${endDate.getTime() - startDate.getTime()}ms`);
 
                     clearTimeout(connectTimeout);
 
@@ -365,14 +365,14 @@ export class WeChatLongLinkProxy extends EventEmitter {
             });
         }
         else {
-            logging.warn("longlink duplicated connect");
+            log.warn("longlink duplicated connect");
 
             await this._socketPromise;
         }
     }
 
     private async _processSocketData(data: Bytes): Promise<void> {
-        logging.debug(`long link receive data: ${ByteUtils.bytesToHexString(data)}`);
+        log.debug(`long link receive data: ${ByteUtils.bytesToHexString(data)}`);
 
         this._socketDataBuffer = ByteUtils.joinBytes(this._socketDataBuffer, data);
 

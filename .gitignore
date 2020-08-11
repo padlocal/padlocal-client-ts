@@ -65,3 +65,6 @@ typings/
 /*.png
 /*.html
 /*.memory-card.json
+
+# node-config
+/config/local*

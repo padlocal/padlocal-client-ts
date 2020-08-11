@@ -1,4 +1,4 @@
-export namespace logging {
+export namespace log {
     export enum LogLevel {
         DEBUG = 0,
         INFO,

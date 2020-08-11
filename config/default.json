@@ -1,0 +1,7 @@
+{
+    "padLocal": {
+        "host": "127.0.0.1",
+        "port": 8888,
+        "token": "YOUR_PADLOCAL_TOKEN"
+    }
+}

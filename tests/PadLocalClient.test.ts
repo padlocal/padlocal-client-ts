@@ -1,9 +1,13 @@
 import { PadLocalClient } from "../src/PadLocalClient";
 import { Utils } from "../src/utils/Utils";
 import { LoginPolicy, LoginType, QRCodeEvent, SyncEvent } from "../src/proto/padlocal_pb";
+import config from "config";
 
 test('login', async function () {
-    const padLocalClient = new PadLocalClient("127.0.0.1", 8980, "TOKEN");
+    const host: string = config.get("padLocal.host");
+    const port: number = config.get("padLocal.port");
+    const token: string = config.get("padLocal.token");
+    const padLocalClient = new PadLocalClient(host, port, token);
 
     await padLocalClient.api.login(LoginPolicy.DEFAULT, {
         onLoginStart: (loginType: LoginType) => {
@@ -24,7 +28,7 @@ test('login', async function () {
             }
 
             for (const message of syncEvent.getMessageList()) {
-                console.log(`login on sync contact: ${Utils.stringifyPB(message)}`);
+                console.log(`login on sync message: ${Utils.stringifyPB(message)}`);
             }
         }
     });

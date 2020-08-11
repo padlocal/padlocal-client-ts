@@ -1,4 +1,4 @@
-import { logging } from '../utils/logging';
+import { log } from '../utils/log';
 import { RetryStrategy } from '../utils/RetryStrategy';
 import { Bytes, ByteUtils } from '../utils/ByteUtils';
 import http from 'http';
@@ -36,7 +36,7 @@ export class WeChatShortLinkProxy {
 
             const delay = this.retryStrategy.nextRetryDelay();
 
-            logging.warn(`[tid:${this.traceId}] short link #${this.retryStrategy.retryCount} retry request, after delay: ${delay}ms, path: ${path} data: ${ByteUtils.bytesToHexString(data)}`);
+            log.warn(`[tid:${this.traceId}] short link #${this.retryStrategy.retryCount} retry request, after delay: ${delay}ms, path: ${path} data: ${ByteUtils.bytesToHexString(data)}`);
 
             return new Promise((resolve, reject) => {
                 setTimeout(async () => {
@@ -53,7 +53,7 @@ export class WeChatShortLinkProxy {
     }
 
     private async _sendImpl(path: string, data: Bytes): Promise<Bytes> {
-        logging.debug(`[tid:${this.traceId}] short link send, ${this.host}:${this.port}${path}, request: ${ByteUtils.bytesToHexString(data)}`);
+        log.debug(`[tid:${this.traceId}] short link send, ${this.host}:${this.port}${path}, request: ${ByteUtils.bytesToHexString(data)}`);
 
         return new Promise((resolve, reject) => {
             let responseBuffer = ByteUtils.newBytes();
@@ -83,7 +83,7 @@ export class WeChatShortLinkProxy {
                     });
 
                     res.on('end', () => {
-                        logging.debug(`[tid:${this.traceId}] short link receive, response: ${ByteUtils.bytesToHexString(responseBuffer)}`);
+                        log.debug(`[tid:${this.traceId}] short link receive, response: ${ByteUtils.bytesToHexString(responseBuffer)}`);
 
                         resolve(responseBuffer);
                     });

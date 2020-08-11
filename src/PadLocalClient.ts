@@ -5,7 +5,7 @@ import { GrpcClient } from "./GrpcClient";
 import { Host, Contact, SystemEventRequest, SystemEventType, ActionMessage, Message } from "./proto/padlocal_pb";
 import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
-import { logging } from "./utils/logging";
+import { log } from "./utils/log";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
 
@@ -43,7 +43,7 @@ export class PadLocalClient extends EventEmitter {
                 this._longLinkProxy.onHeartBeatResult(true);
             }
             catch (e) {
-                logging.error(`error to send longlink heartbeat: ${e}`);
+                log.error(`error to send longlink heartbeat: ${e}`);
                 this._longLinkProxy.onHeartBeatResult(false);
             }
         })
@@ -52,7 +52,7 @@ export class PadLocalClient extends EventEmitter {
             try {
                 const syncEvent = await this.api.sync();
 
-                logging.debug(`on push notification, contact count:${syncEvent.getContactList().length}, message count:${syncEvent.getMessageList().length}`);
+                log.debug(`on push notification, contact count:${syncEvent.getContactList().length}, message count:${syncEvent.getMessageList().length}`);
 
                 if (syncEvent.getContactList().length > 0) {
                     this._postEvent(PadLocalClient.Event.OnPushContactEvent, {
@@ -65,7 +65,7 @@ export class PadLocalClient extends EventEmitter {
                     })
                 }
             } catch (e) {
-                logging.error(`error while syncing onpush: ${e}`);
+                log.error(`error while syncing onpush: ${e}`);
             }
         });
     }
@@ -127,8 +127,8 @@ export class PadLocalClient extends EventEmitter {
         this.emit(eventName, payload);
     }
 
-    static setLogLevel(logLevel: logging.LogLevel): void {
-        logging.setLogLevel(logLevel);
+    static setLogLevel(logLevel: log.LogLevel): void {
+        log.setLogLevel(logLevel);
     }
 }
 

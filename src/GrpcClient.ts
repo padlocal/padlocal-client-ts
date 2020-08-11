@@ -4,18 +4,17 @@ import { Constant } from "./utils/Constant";
 import { IPadLocalClient } from "./proto/padlocal_grpc_pb";
 import { ActionMessage, ActionMessageHeader, SystemEventRequest, WeChatRequest, WeChatResponse, WeChatRequestChannel, SystemEventResponse } from "./proto/padlocal_pb";
 import cryptoRandomString from "crypto-random-string";
-import { Status } from "@grpc/grpc-js/build/src/constants";
 import { Message } from "google-protobuf";
 import { ActionMessageUtils } from "./utils/ActionMessageUtils";
-import { logging } from "./utils/logging";
+import { log } from "./utils/log";
 import { PromiseCallback } from "./utils/PromiseUtils";
 import { Bytes } from "./utils/ByteUtils";
-import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { WeChatShortLinkProxy } from "./link/WeChatShortLinkProxy";
 import { WeChatSocketProxy } from "./link/WeChatSocketProxy";
 import { WeChatCdnProxy } from "./link/WeChatCdnProxy";
 import VError from "verror";
 import { Utils } from "./utils/Utils";
+import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 
 export type OnMessageCallback = (actionMessage: ActionMessage) => void;
 export type OnSystemEventCallback = (systempEventRequest: SystemEventRequest) => void;
@@ -117,7 +116,7 @@ export class GrpcClient extends PadLocalClientPlugin {
 
         let payload = ActionMessageUtils.getPayload(serverMessage);
 
-        logging.debug(`[tid:${this.traceId}] receive event from server, seq:${seq} ack:${ack}, type:${serverMessage.getPayloadCase()}, payload:${Utils.stringifyPB(payload)}`);
+        log.debug(`[tid:${this.traceId}] receive event from server, seq:${seq} ack:${ack}, type:${serverMessage.getPayloadCase()}, payload:${Utils.stringifyPB(payload)}`);
 
         // server response, execute on stream executor thread directly
         if (ack) {
@@ -181,7 +180,7 @@ export class GrpcClient extends PadLocalClientPlugin {
         actionMessage.setHeader(actionMessageHeader);
         ActionMessageUtils.setPayload(actionMessage, payload);
 
-        logging.debug(`tid:[${this.traceId}] send event to server, seq:${seq}, ack:${ack}, type: ${actionMessage.getPayloadCase()}, payload: ${Utils.stringifyPB(payload)}`);
+        log.debug(`tid:[${this.traceId}] send event to server, seq:${seq}, ack:${ack}, type: ${actionMessage.getPayloadCase()}, payload: ${Utils.stringifyPB(payload)}`);
 
         this._grpcStream.write(actionMessage);
     }

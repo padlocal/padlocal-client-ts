@@ -1,7 +1,7 @@
 import { Bytes, ByteUtils } from "../utils/ByteUtils";
 import { CdnRequest } from "../proto/padlocal_pb";
 import { CdnUnPacker } from "./CdnUnpacker";
-import { logging } from "../utils/logging";
+import { log } from "../utils/log";
 import { SocketClient } from "../link/SocketClient";
 
 async function _sendCdnRequest(cdnRequest: CdnRequest, traceId: string): Promise<CdnUnPacker> {
@@ -10,7 +10,7 @@ async function _sendCdnRequest(cdnRequest: CdnRequest, traceId: string): Promise
     const cdnUnPacker = new CdnUnPacker(ByteUtils.fromBytes(cdnRequest.getUnpackaeskey()));
 
     const startDate = new Date();
-    logging.debug(`[tid:${traceId}] send cdn request, host:\"${cdnRequest.getHost()!.getHost()}:${cdnRequest.getHost()!.getPort()}\" payload: ${ByteUtils.bytesToHexString(ByteUtils.fromBytes(cdnRequest.getPayload()))}`);
+    log.debug(`[tid:${traceId}] send cdn request, host:\"${cdnRequest.getHost()!.getHost()}:${cdnRequest.getHost()!.getPort()}\" payload: ${ByteUtils.bytesToHexString(ByteUtils.fromBytes(cdnRequest.getPayload()))}`);
 
     const socketClient = new SocketClient(host.getHost(), host.getPort(), traceId, {
         onConnect: () => {
@@ -26,7 +26,7 @@ async function _sendCdnRequest(cdnRequest: CdnRequest, traceId: string): Promise
 
     const responseEndDate = new Date();
 
-    logging.debug(`[tid:${traceId}] [${responseEndDate.getTime() - startDate.getTime()}ms] received cdn response: ${cdnUnPacker.toString()}`);
+    log.debug(`[tid:${traceId}] [${responseEndDate.getTime() - startDate.getTime()}ms] received cdn response: ${cdnUnPacker.toString()}`);
 
     return cdnUnPacker;
 }
@@ -41,7 +41,7 @@ export namespace CdnUtils {
 
         const endDate = new Date();
 
-        logging.debug(`[tid:${traceId}] decrypt out data len: ${ret.length}[${endDate.getTime() - startDate.getTime()}ms]`);
+        log.debug(`[tid:${traceId}] decrypt out data len: ${ret.length}[${endDate.getTime() - startDate.getTime()}ms]`);
 
         return ret;
     }
