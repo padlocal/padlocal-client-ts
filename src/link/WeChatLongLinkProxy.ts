@@ -68,9 +68,10 @@ export class WeChatLongLinkProxy extends EventEmitter {
         this._clearReconnectTimer();
         this._connectRetryStrategy.reset();
 
-        this._resetLongLink();
-
+        // call before _resetLongLink, forbid future socket close or error event to trigger reconnect
         this._updateStatus(WeChatLongLinkProxy.Status.STOP);
+
+        this._resetLongLink();
 
         if (clearHost) {
             this._host = undefined;
@@ -349,6 +350,9 @@ export class WeChatLongLinkProxy extends EventEmitter {
                 });
 
                 socket.on("close", (hadError) => {
+                    // in case connectTimeout is still valid
+                    clearTimeout(connectTimeout);
+                    
                     this._onSocketError(new WeChatLongLinkProxy.IOError("socket is closed"));
                 });
 

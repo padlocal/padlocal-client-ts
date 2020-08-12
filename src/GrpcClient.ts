@@ -23,14 +23,14 @@ export class GrpcClient extends PadLocalClientPlugin {
     private static readonly DEFAULT_REQUEST_TIMEOUT = 60 * 1000;
 
     private _status: GrpcClient.Status;
-    public readonly traceId: string;
     private _seqId: number = 0;
     private readonly _requestTimeout: number;
     private _grpcStream: ClientDuplexStream<ActionMessage, ActionMessage>;
     private _pendingCallbacks: Map<number, PromiseCallback> = new Map();
 
-    public onMessageCallback?: OnMessageCallback;
-    public onSystemEventCallback?: OnSystemEventCallback;
+    readonly traceId: string;
+    onMessageCallback?: OnMessageCallback;
+    onSystemEventCallback?: OnSystemEventCallback;
 
     constructor(client: PadLocalClient, stub: IPadLocalClient, callCredentials: CallCredentials, options?: Partial<GrpcClient.Options>) {
         super(client);
@@ -105,7 +105,7 @@ export class GrpcClient extends PadLocalClientPlugin {
         }
     }
 
-    public subReply<T extends Message>(originalMessage: ActionMessage, replay: T): void {
+    subReply<T extends Message>(originalMessage: ActionMessage, replay: T): void {
         const ack = originalMessage.getHeader()?.getSeq();
         this._sendMessage(replay, undefined, ack);
     }
@@ -240,7 +240,7 @@ export class GrpcClient extends PadLocalClientPlugin {
         return (new WeChatResponse()).setPayload(responseData);
     }
 
-    public error(e: Error): void {
+    error(e: Error): void {
         if (this._status != GrpcClient.Status.OK) {
             return;
         }
@@ -254,7 +254,7 @@ export class GrpcClient extends PadLocalClientPlugin {
         this._grpcStream.cancel();
     }
 
-    public complete(): void {
+    complete(): void {
         if (this._status != GrpcClient.Status.OK) {
             return;
         }

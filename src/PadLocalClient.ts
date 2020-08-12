@@ -88,7 +88,7 @@ export class PadLocalClient extends EventEmitter {
         ret.onSystemEventCallback = (systemEventRequest: SystemEventRequest) => {
             const systemEventType = systemEventRequest.getType();
             if (systemEventType == SystemEventType.DID_KICKOUT) {
-                this.reset();
+                this._reset();
 
                 this._postEvent(PadLocalClient.Event.KickOutEvent, {
                     errorCode: systemEventRequest.getKickoutevent()!.getErrorcode(),
@@ -104,7 +104,7 @@ export class PadLocalClient extends EventEmitter {
         return ret;
     }
 
-    public async grpcRequest<REQ extends GrpcMessage, RES extends GrpcMessage>(request: REQ, options?: Partial<GrpcClient.Options>): Promise<RES> {
+    async grpcRequest<REQ extends GrpcMessage, RES extends GrpcMessage>(request: REQ, options?: Partial<GrpcClient.Options>): Promise<RES> {
         const grpcClient = this.createGrpcClient(options);
         return await grpcClient.request(request);
     }
@@ -118,17 +118,17 @@ export class PadLocalClient extends EventEmitter {
         return this._longLinkProxy;
     }
 
-    public reset(): void {
+    public shutdown() {
+        this._reset();
+    }
+
+    private _reset(): void {
         this.selfContact = undefined;
         this._longLinkProxy.shutdown(true);
     }
 
     private _postEvent(eventName: PadLocalClient.Event, payload: PadLocalClient.KickOutEvent | PadLocalClient.OnPushNewMessageEvent | PadLocalClient.OnPushContactEvent) {
         this.emit(eventName, payload);
-    }
-
-    static setLogLevel(logLevel: log.LogLevel): void {
-        log.setLogLevel(logLevel);
     }
 }
 

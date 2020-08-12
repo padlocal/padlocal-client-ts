@@ -2,6 +2,34 @@
     "padLocal": {
         "host": "127.0.0.1",
         "port": 8888,
-        "token": "YOUR_PADLOCAL_TOKEN"
+        "token": "PADLOCAL_TOKEN"
+    },
+
+    "test": {
+        "send": {
+            "toUserName": "xxx",
+            "toChatRoom": "xxx@chatroom",
+            "atUserNameList": ["xxx", "xxx"],
+            "imageFilePath": "ABSOLUTION_FILE_PATH",
+            "miniProgramThumbFilePath": "ABSOLUTION_FILE_PATH"
+        },
+        "contact": {
+            "accept": {
+                "stranger": "v3_xxx@stranger",
+                "ticket": "v4_xxx@stranger"
+            },
+            "userName": "xxx",
+            "search": "WECHAT_ID_NOT_USER_NAME",
+            "qrImageOutFilePath": "ABSOLUTION_FILE_PATH"
+        },
+
+        "room": {
+            "id": "xxx@chatroom",
+            "create": {
+                "memberUserNameList": ["xxx", "xxx"]
+            },
+            "qrImageOutFilePath": "ABSOLUTION_FILE_PATH",
+            "modifyMember": "xxx"
+        }
     }
 }

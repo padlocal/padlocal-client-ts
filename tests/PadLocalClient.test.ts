@@ -1,38 +1,50 @@
+import { TestUtils } from "./TestUtils";
 import { PadLocalClient } from "../src/PadLocalClient";
 import { Utils } from "../src/utils/Utils";
-import { LoginPolicy, LoginType, QRCodeEvent, SyncEvent } from "../src/proto/padlocal_pb";
-import config from "config";
+import { ByteUtils } from "../src/utils/ByteUtils";
 
-test('login', async function () {
-    const host: string = config.get("padLocal.host");
-    const port: number = config.get("padLocal.port");
-    const token: string = config.get("padLocal.token");
-    const padLocalClient = new PadLocalClient(host, port, token);
+test("login", async function () {
+  const client = await TestUtils.prepareSignedOnClient();
 
-    await padLocalClient.api.login(LoginPolicy.DEFAULT, {
-        onLoginStart: (loginType: LoginType) => {
-            console.log(`start login with type: ${loginType}`);
-        },
+  expect(client.selfContact).not.toBeNull();
+  expect(client.isOnline).toBeTruthy();
 
-        onOneClickEvent: (oneClickEvent: QRCodeEvent) => {
-            console.log(`on one click event: ${Utils.stringifyPB(oneClickEvent)}`);
-        },
+  return new Promise(() => {});
 
-        onQrCodeEvent: (qrCodeEvent: QRCodeEvent) => {
-            console.log(`on qr code event: ${Utils.stringifyPB(qrCodeEvent)}`);
-        },
+  client.shutdown();
+}, 600000);
 
-        onSync: (syncEvent: SyncEvent) => {
-            for (const contact of syncEvent.getContactList()) {
-                console.log(`login on sync contact: ${Utils.stringifyPB(contact)}`);
-            }
-
-            for (const message of syncEvent.getMessageList()) {
-                console.log(`login on sync message: ${Utils.stringifyPB(message)}`);
-            }
+test(
+  "receive push",
+  async () => {
+    const client = await TestUtils.prepareSignedOnClient();
+    client.on(
+      PadLocalClient.Event.OnPushNewMessageEvent,
+      (event: PadLocalClient.OnPushNewMessageEvent) => {
+        console.log("on message:");
+        for (const message of event.messageList) {
+          // console.log(
+          //   ByteUtils.bytesToHexString(
+          //     ByteUtils.fromBytes(message.serializeBinary())
+          //   )
+          // );
+          console.log(Utils.stringifyPB(message));
         }
-    });
+      }
+    );
 
-    expect(padLocalClient.selfContact).not.toBeNull();
+    client.on(
+      PadLocalClient.Event.OnPushContactEvent,
+      (event: PadLocalClient.OnPushContactEvent) => {
+        console.log("on contact");
 
-}, 60000);
+        for (const contact of event.contactList) {
+          console.log(Utils.stringifyPB(contact));
+        }
+      }
+    );
+
+    return new Promise(() => {});
+  },
+  Math.pow(2, 20)
+);

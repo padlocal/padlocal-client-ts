@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Jest Current File",
             "program": "${workspaceFolder}/node_modules/.bin/jest",
-            "args": ["${relativeFile}"],
+            "args": ["--detectOpenHandles", "${relativeFile}"],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "windows": {

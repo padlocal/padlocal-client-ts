@@ -68,3 +68,6 @@ typings/
 
 # node-config
 /config/local*
+
+# Webstorm
+.idea

@@ -142,8 +142,8 @@ export class CdnUnPacker {
 
 export namespace CdnUnPacker {
     export class UnpackError extends VError {
-        public constructor(message: string);
-        public constructor(message: string, cause?: Error) {
+        constructor(message: string);
+        constructor(message: string, cause?: Error) {
             super(message, cause);
         }
     }
