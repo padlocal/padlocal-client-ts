@@ -1,9 +1,9 @@
 import { PadLocalClient } from "./PadLocalClient";
 
 export abstract class PadLocalClientPlugin {
-    protected client: PadLocalClient;
+  protected client: PadLocalClient;
 
-    constructor(client: PadLocalClient) {
-        this.client = client;
-    }
+  constructor(client: PadLocalClient) {
+    this.client = client;
+  }
 }

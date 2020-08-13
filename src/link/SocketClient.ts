@@ -14,17 +14,9 @@ export class SocketClient {
   readonly host: string;
   readonly port: number;
   readonly traceId: string;
-  readonly retryStrategy = RetryStrategy.getStrategy(
-    RetryStrategy.Rule.FAST,
-    5
-  ); // retry almost 1 min
+  readonly retryStrategy = RetryStrategy.getStrategy(RetryStrategy.Rule.FAST, 5); // retry almost 1 min
 
-  constructor(
-    host: string,
-    port: number,
-    traceId: string,
-    callback: Partial<SocketClient.Callback>
-  ) {
+  constructor(host: string, port: number, traceId: string, callback: Partial<SocketClient.Callback>) {
     this.host = host;
     this.port = port;
     this.traceId = traceId;
@@ -36,22 +28,18 @@ export class SocketClient {
       await this._sendImpl(data);
     } catch (error) {
       if (!this.retryStrategy.canRetry()) {
-        const des = `[tid:${this.traceId}] Fail to send socket to:\"${
-          this.host
-        }:${this.port}\", data:${ByteUtils.bytesToHexString(
-          data
-        )}, after max retry:${this.retryStrategy.retryCount}`;
+        const des = `[tid:${this.traceId}] Fail to send socket to:\"${this.host}:${
+          this.port
+        }\", data:${ByteUtils.bytesToHexString(data)}, after max retry:${this.retryStrategy.retryCount}`;
         throw new SocketClient.IOError(error, des);
       }
 
       const delay = this.retryStrategy.nextRetryDelay();
 
       log.info(
-        `[tid:${this.traceId}] socket #${
-          this.retryStrategy.retryCount
-        } retry send, after delay: ${delay}ms, addr:\"${this.host}:${
-          this.port
-        }\" data:${ByteUtils.bytesToHexString(data)}`
+        `[tid:${this.traceId}] socket #${this.retryStrategy.retryCount} retry send, after delay: ${delay}ms, addr:\"${
+          this.host
+        }:${this.port}\" data:${ByteUtils.bytesToHexString(data)}`
       );
 
       return new Promise(async (resolve, reject) => {
@@ -139,9 +127,7 @@ export class SocketClient {
       });
 
       socket.on("timeout", () => {
-        onSocketFinish(
-          new SocketClient.IOError("socket is read-write timeout")
-        );
+        onSocketFinish(new SocketClient.IOError("socket is read-write timeout"));
       });
 
       socket.on("error", (error: Error) => {
@@ -154,10 +140,14 @@ export class SocketClient {
 export namespace SocketClient {
   export interface Callback {
     onConnect(): void;
+
     // return true, all data are received, be able to close the socket
     onReceive(data: Bytes): boolean;
+
     onClose(): void;
+
     onError(error: Error): void;
+
     onCancel(): void;
   }
 

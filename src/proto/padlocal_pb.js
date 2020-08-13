@@ -174,7 +174,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.padlocal.ActionMessage = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.ActionMessage.oneofGroups_);
+  jspb.Message.initialize(this, opt_data, 0, 500, null, proto.padlocal.ActionMessage.oneofGroups_);
 };
 goog.inherits(proto.padlocal.ActionMessage, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -2747,111 +2747,111 @@ proto.padlocal.ActionMessageHeader.prototype.setAck = function(value) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.padlocal.ActionMessage.oneofGroups_ = [[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99]];
+proto.padlocal.ActionMessage.oneofGroups_ = [[10,11,12,13,14,15,16,17,100,101,102,200,201,202,203,204,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,400,401,402,403,404,405,406,407,408,409,410,411,412,413,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,600,601,602,603,604,605,606,607,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723]];
 
 /**
  * @enum {number}
  */
 proto.padlocal.ActionMessage.PayloadCase = {
   PAYLOAD_NOT_SET: 0,
-  WECHATREQUEST: 2,
-  WECHATRESPONSE: 3,
-  LONGLINKUNPACKREQUEST: 4,
-  LONGLINKUNPACKRESPONSE: 5,
-  LOGINREQUEST: 6,
-  LOGINUPDATEEVENT: 7,
-  LOGINRESPONSE: 8,
-  LOGOUTREQUEST: 9,
-  LOGOUTRESPONSE: 10,
-  LONGLINKHEARTBEATREQUEST: 11,
-  LONGLINKHEARTBEATRESPONSE: 12,
-  SENDTEXTMESSAGEREQUEST: 13,
-  SENDTEXTMESSAGERESPONSE: 14,
-  SENDIMAGEMESSAGEREQUEST: 15,
-  SENDIMAGEMESSAGERESPONSE: 16,
-  SENDAPPMESSAGEREQUEST: 17,
-  SENDAPPMESSAGERESPONSE: 18,
-  ACCEPTUSERREQUEST: 19,
-  ACCEPTUSERRESPONSE: 20,
-  ADDCONTACTREQUEST: 21,
-  ADDCONTACTRESPONSE: 22,
-  DELETECONTACTREQUEST: 23,
-  DELETECONTACTRESPONSE: 24,
-  GETCONTACTREQUEST: 25,
-  GETCONTACTRESPONSE: 26,
-  GETCONTACTQRCODEREQUEST: 27,
-  GETCONTACTQRCODERESPONSE: 28,
-  SEARCHCONTACTREQUEST: 29,
-  SEARCHCONTACTRESPONSE: 30,
-  CREATECHATROOMREQUEST: 31,
-  CREATECHATROOMRESPONSE: 32,
-  GETCHATROOMMEMBERSREQUEST: 33,
-  GETCHATROOMMEMBERSRESPONSE: 34,
-  GETCHATROOMQRCODEREQUEST: 35,
-  GETCHATROOMQRCODERESPONSE: 36,
-  GETCHATROOMMEMBERREQUEST: 37,
-  GETCHATROOMMEMBERRESPONSE: 38,
-  SETCHATROOMANNOUNCEMENTREQUEST: 39,
-  SETCHATROOMANNOUNCEMENTRESPONSE: 40,
-  ADDCHATROOMMEMBERREQUEST: 41,
-  ADDCHATROOMMEMBERRESPONSE: 42,
-  INVITECHATROOMMEMBERREQUEST: 43,
-  INVITECHATROOMMEMBERRESPONSE: 44,
-  DELETECHATROOMMEMBERREQUEST: 45,
-  DELETECHATROOMMEMBERRESPONSE: 46,
-  SETCHATROOMNAMEREQUEST: 47,
-  SETCHATROOMNAMERESPONSE: 48,
-  SNSSENDMOMENTREQUEST: 49,
-  SNSSENDMOMENTRESPONSE: 50,
-  SNSGETUSERPAGEREQUEST: 51,
-  SNSGETUSERPAGERESPONSE: 52,
-  SNSSENDCOMMENTREQUEST: 53,
-  SNSSENDCOMMENTRESPONSE: 54,
-  SNSUPLOADIMAGEREQUEST: 55,
-  SNSUPLOADIMAGERESPONSE: 56,
-  SNSGETTIMELINEREQUEST: 57,
-  SNSGETTIMELINERESPONSE: 58,
-  SNSGETMOMENTREQUEST: 59,
-  SNSGETMOMENTRESPONSE: 60,
-  SNSLIKEMOMENTREQUEST: 61,
-  SNSLIKEMOMENTRESPONSE: 62,
-  SNSUNLIKEMOMENTREQUEST: 63,
-  SNSUNLIKEMOMENTRESPONSE: 64,
-  SNSREMOVEMOMENTCOMMENTREQUEST: 65,
-  SNSREMOVEMOMENTCOMMENTRESPONSE: 66,
-  SNSMAKEMOMENTPRIVATEREQUEST: 67,
-  SNSMAKEMOMENTPRIVATERESPONSE: 68,
-  SNSMAKEMOMENTPUBLICREQUEST: 69,
-  SNSMAKEMOMENTPUBLICRESPONSE: 70,
-  SNSREMOVEMOMENTREQUEST: 71,
-  SNSREMOVEMOMENTRESPONSE: 72,
-  ADDLABELREQUEST: 73,
-  ADDLABELRESPONSE: 74,
-  REMOVELABELREQUEST: 75,
-  REMOVELABELRESPONSE: 76,
-  GETLABELLISTREQUEST: 77,
-  GETLABELLISTRESPONSE: 78,
-  SETCONTACTLABELREQUEST: 79,
-  SETCONTACTLABELRESPONSE: 80,
-  SYSTEMEVENTREQUEST: 81,
-  SYSTEMEVENTRESPONSE: 82,
-  SYNCREQUEST: 83,
-  SYNCRESPONSE: 84,
-  GETMESSAGEIMAGEREQUEST: 85,
-  GETMESSAGEIMAGERESPONSE: 86,
-  SYNCCONTACTREQUEST: 87,
-  SYNCCONTACTRESPONSE: 88,
-  SYNCEVENT: 89,
-  GETMESSAGEVOICEREQUEST: 90,
-  GETMESSAGEVOICERESPONSE: 91,
-  GETMESSAGEVIDEOTHUMBREQUEST: 92,
-  GETMESSAGEVIDEOTHUMBRESPONSE: 93,
-  GETMESSAGEVIDEOREQUEST: 94,
-  GETMESSAGEVIDEORESPONSE: 95,
-  GETMESSAGEFILEREQUEST: 96,
-  GETMESSAGEFILERESPONSE: 97,
-  FORWARDMESSAGEREQUEST: 98,
-  FORWARDMESSAGERESPONSE: 99
+  WECHATREQUEST: 10,
+  WECHATRESPONSE: 11,
+  SYSTEMEVENTREQUEST: 12,
+  SYSTEMEVENTRESPONSE: 13,
+  LONGLINKUNPACKREQUEST: 14,
+  LONGLINKUNPACKRESPONSE: 15,
+  LONGLINKHEARTBEATREQUEST: 16,
+  LONGLINKHEARTBEATRESPONSE: 17,
+  SYNCREQUEST: 100,
+  SYNCRESPONSE: 101,
+  SYNCEVENT: 102,
+  LOGINREQUEST: 200,
+  LOGINUPDATEEVENT: 201,
+  LOGINRESPONSE: 202,
+  LOGOUTREQUEST: 203,
+  LOGOUTRESPONSE: 204,
+  SENDTEXTMESSAGEREQUEST: 300,
+  SENDTEXTMESSAGERESPONSE: 301,
+  SENDIMAGEMESSAGEREQUEST: 302,
+  SENDIMAGEMESSAGERESPONSE: 303,
+  SENDAPPMESSAGEREQUEST: 304,
+  SENDAPPMESSAGERESPONSE: 305,
+  GETMESSAGEIMAGEREQUEST: 306,
+  GETMESSAGEIMAGERESPONSE: 307,
+  GETMESSAGEVOICEREQUEST: 308,
+  GETMESSAGEVOICERESPONSE: 309,
+  GETMESSAGEVIDEOTHUMBREQUEST: 310,
+  GETMESSAGEVIDEOTHUMBRESPONSE: 311,
+  GETMESSAGEVIDEOREQUEST: 312,
+  GETMESSAGEVIDEORESPONSE: 313,
+  GETMESSAGEFILEREQUEST: 314,
+  GETMESSAGEFILERESPONSE: 315,
+  FORWARDMESSAGEREQUEST: 316,
+  FORWARDMESSAGERESPONSE: 317,
+  SYNCCONTACTREQUEST: 400,
+  SYNCCONTACTRESPONSE: 401,
+  ACCEPTUSERREQUEST: 402,
+  ACCEPTUSERRESPONSE: 403,
+  ADDCONTACTREQUEST: 404,
+  ADDCONTACTRESPONSE: 405,
+  DELETECONTACTREQUEST: 406,
+  DELETECONTACTRESPONSE: 407,
+  GETCONTACTREQUEST: 408,
+  GETCONTACTRESPONSE: 409,
+  GETCONTACTQRCODEREQUEST: 410,
+  GETCONTACTQRCODERESPONSE: 411,
+  SEARCHCONTACTREQUEST: 412,
+  SEARCHCONTACTRESPONSE: 413,
+  CREATECHATROOMREQUEST: 500,
+  CREATECHATROOMRESPONSE: 501,
+  GETCHATROOMMEMBERSREQUEST: 502,
+  GETCHATROOMMEMBERSRESPONSE: 503,
+  GETCHATROOMQRCODEREQUEST: 504,
+  GETCHATROOMQRCODERESPONSE: 505,
+  GETCHATROOMMEMBERREQUEST: 506,
+  GETCHATROOMMEMBERRESPONSE: 507,
+  SETCHATROOMANNOUNCEMENTREQUEST: 508,
+  SETCHATROOMANNOUNCEMENTRESPONSE: 509,
+  ADDCHATROOMMEMBERREQUEST: 510,
+  ADDCHATROOMMEMBERRESPONSE: 511,
+  INVITECHATROOMMEMBERREQUEST: 512,
+  INVITECHATROOMMEMBERRESPONSE: 513,
+  DELETECHATROOMMEMBERREQUEST: 514,
+  DELETECHATROOMMEMBERRESPONSE: 515,
+  SETCHATROOMNAMEREQUEST: 516,
+  SETCHATROOMNAMERESPONSE: 517,
+  ADDLABELREQUEST: 600,
+  ADDLABELRESPONSE: 601,
+  REMOVELABELREQUEST: 602,
+  REMOVELABELRESPONSE: 603,
+  GETLABELLISTREQUEST: 604,
+  GETLABELLISTRESPONSE: 605,
+  SETCONTACTLABELREQUEST: 606,
+  SETCONTACTLABELRESPONSE: 607,
+  SNSSENDMOMENTREQUEST: 700,
+  SNSSENDMOMENTRESPONSE: 701,
+  SNSGETUSERPAGEREQUEST: 702,
+  SNSGETUSERPAGERESPONSE: 703,
+  SNSSENDCOMMENTREQUEST: 704,
+  SNSSENDCOMMENTRESPONSE: 705,
+  SNSUPLOADIMAGEREQUEST: 706,
+  SNSUPLOADIMAGERESPONSE: 707,
+  SNSGETTIMELINEREQUEST: 708,
+  SNSGETTIMELINERESPONSE: 709,
+  SNSGETMOMENTREQUEST: 710,
+  SNSGETMOMENTRESPONSE: 711,
+  SNSLIKEMOMENTREQUEST: 712,
+  SNSLIKEMOMENTRESPONSE: 713,
+  SNSUNLIKEMOMENTREQUEST: 714,
+  SNSUNLIKEMOMENTRESPONSE: 715,
+  SNSREMOVEMOMENTCOMMENTREQUEST: 716,
+  SNSREMOVEMOMENTCOMMENTRESPONSE: 717,
+  SNSMAKEMOMENTPRIVATEREQUEST: 718,
+  SNSMAKEMOMENTPRIVATERESPONSE: 719,
+  SNSMAKEMOMENTPUBLICREQUEST: 720,
+  SNSMAKEMOMENTPUBLICRESPONSE: 721,
+  SNSREMOVEMOMENTREQUEST: 722,
+  SNSREMOVEMOMENTRESPONSE: 723
 };
 
 /**
@@ -2895,21 +2895,40 @@ proto.padlocal.ActionMessage.toObject = function(includeInstance, msg) {
     header: (f = msg.getHeader()) && proto.padlocal.ActionMessageHeader.toObject(includeInstance, f),
     wechatrequest: (f = msg.getWechatrequest()) && proto.padlocal.WeChatRequest.toObject(includeInstance, f),
     wechatresponse: (f = msg.getWechatresponse()) && proto.padlocal.WeChatResponse.toObject(includeInstance, f),
+    systemeventrequest: (f = msg.getSystemeventrequest()) && proto.padlocal.SystemEventRequest.toObject(includeInstance, f),
+    systemeventresponse: (f = msg.getSystemeventresponse()) && proto.padlocal.SystemEventResponse.toObject(includeInstance, f),
     longlinkunpackrequest: (f = msg.getLonglinkunpackrequest()) && proto.padlocal.LongLinkUnpackRequest.toObject(includeInstance, f),
     longlinkunpackresponse: (f = msg.getLonglinkunpackresponse()) && proto.padlocal.LongLinkUnpackResponse.toObject(includeInstance, f),
+    longlinkheartbeatrequest: (f = msg.getLonglinkheartbeatrequest()) && proto.padlocal.LongLinkHeartBeatRequest.toObject(includeInstance, f),
+    longlinkheartbeatresponse: (f = msg.getLonglinkheartbeatresponse()) && proto.padlocal.LongLinkHeartBeatResponse.toObject(includeInstance, f),
+    syncrequest: (f = msg.getSyncrequest()) && proto.padlocal.SyncRequest.toObject(includeInstance, f),
+    syncresponse: (f = msg.getSyncresponse()) && proto.padlocal.SyncResponse.toObject(includeInstance, f),
+    syncevent: (f = msg.getSyncevent()) && proto.padlocal.SyncEvent.toObject(includeInstance, f),
     loginrequest: (f = msg.getLoginrequest()) && proto.padlocal.LoginRequest.toObject(includeInstance, f),
     loginupdateevent: (f = msg.getLoginupdateevent()) && proto.padlocal.LoginUpdateEvent.toObject(includeInstance, f),
     loginresponse: (f = msg.getLoginresponse()) && proto.padlocal.LoginResponse.toObject(includeInstance, f),
     logoutrequest: (f = msg.getLogoutrequest()) && proto.padlocal.LogoutRequest.toObject(includeInstance, f),
     logoutresponse: (f = msg.getLogoutresponse()) && proto.padlocal.LogoutResponse.toObject(includeInstance, f),
-    longlinkheartbeatrequest: (f = msg.getLonglinkheartbeatrequest()) && proto.padlocal.LongLinkHeartBeatRequest.toObject(includeInstance, f),
-    longlinkheartbeatresponse: (f = msg.getLonglinkheartbeatresponse()) && proto.padlocal.LongLinkHeartBeatResponse.toObject(includeInstance, f),
     sendtextmessagerequest: (f = msg.getSendtextmessagerequest()) && proto.padlocal.SendTextMessageRequest.toObject(includeInstance, f),
     sendtextmessageresponse: (f = msg.getSendtextmessageresponse()) && proto.padlocal.SendTextMessageResponse.toObject(includeInstance, f),
     sendimagemessagerequest: (f = msg.getSendimagemessagerequest()) && proto.padlocal.SendImageMessageRequest.toObject(includeInstance, f),
     sendimagemessageresponse: (f = msg.getSendimagemessageresponse()) && proto.padlocal.SendImageMessageResponse.toObject(includeInstance, f),
     sendappmessagerequest: (f = msg.getSendappmessagerequest()) && proto.padlocal.SendAppMessageRequest.toObject(includeInstance, f),
     sendappmessageresponse: (f = msg.getSendappmessageresponse()) && proto.padlocal.SendAppMessageResponse.toObject(includeInstance, f),
+    getmessageimagerequest: (f = msg.getGetmessageimagerequest()) && proto.padlocal.GetMessageImageRequest.toObject(includeInstance, f),
+    getmessageimageresponse: (f = msg.getGetmessageimageresponse()) && proto.padlocal.GetMessageImageResponse.toObject(includeInstance, f),
+    getmessagevoicerequest: (f = msg.getGetmessagevoicerequest()) && proto.padlocal.GetMessageVoiceRequest.toObject(includeInstance, f),
+    getmessagevoiceresponse: (f = msg.getGetmessagevoiceresponse()) && proto.padlocal.GetMessageVoiceResponse.toObject(includeInstance, f),
+    getmessagevideothumbrequest: (f = msg.getGetmessagevideothumbrequest()) && proto.padlocal.GetMessageVideoThumbRequest.toObject(includeInstance, f),
+    getmessagevideothumbresponse: (f = msg.getGetmessagevideothumbresponse()) && proto.padlocal.GetMessageVideoThumbResponse.toObject(includeInstance, f),
+    getmessagevideorequest: (f = msg.getGetmessagevideorequest()) && proto.padlocal.GetMessageVideoRequest.toObject(includeInstance, f),
+    getmessagevideoresponse: (f = msg.getGetmessagevideoresponse()) && proto.padlocal.GetMessageVideoResponse.toObject(includeInstance, f),
+    getmessagefilerequest: (f = msg.getGetmessagefilerequest()) && proto.padlocal.GetMessageFileRequest.toObject(includeInstance, f),
+    getmessagefileresponse: (f = msg.getGetmessagefileresponse()) && proto.padlocal.GetMessageFileResponse.toObject(includeInstance, f),
+    forwardmessagerequest: (f = msg.getForwardmessagerequest()) && proto.padlocal.ForwardMessageRequest.toObject(includeInstance, f),
+    forwardmessageresponse: (f = msg.getForwardmessageresponse()) && proto.padlocal.ForwardMessageResponse.toObject(includeInstance, f),
+    synccontactrequest: (f = msg.getSynccontactrequest()) && proto.padlocal.SyncContactRequest.toObject(includeInstance, f),
+    synccontactresponse: (f = msg.getSynccontactresponse()) && proto.padlocal.SyncContactResponse.toObject(includeInstance, f),
     acceptuserrequest: (f = msg.getAcceptuserrequest()) && proto.padlocal.AcceptUserRequest.toObject(includeInstance, f),
     acceptuserresponse: (f = msg.getAcceptuserresponse()) && proto.padlocal.AcceptUserResponse.toObject(includeInstance, f),
     addcontactrequest: (f = msg.getAddcontactrequest()) && proto.padlocal.AddContactRequest.toObject(includeInstance, f),
@@ -2940,6 +2959,14 @@ proto.padlocal.ActionMessage.toObject = function(includeInstance, msg) {
     deletechatroommemberresponse: (f = msg.getDeletechatroommemberresponse()) && proto.padlocal.DeleteChatRoomMemberResponse.toObject(includeInstance, f),
     setchatroomnamerequest: (f = msg.getSetchatroomnamerequest()) && proto.padlocal.SetChatRoomNameRequest.toObject(includeInstance, f),
     setchatroomnameresponse: (f = msg.getSetchatroomnameresponse()) && proto.padlocal.SetChatRoomNameResponse.toObject(includeInstance, f),
+    addlabelrequest: (f = msg.getAddlabelrequest()) && proto.padlocal.AddLabelRequest.toObject(includeInstance, f),
+    addlabelresponse: (f = msg.getAddlabelresponse()) && proto.padlocal.AddLabelResponse.toObject(includeInstance, f),
+    removelabelrequest: (f = msg.getRemovelabelrequest()) && proto.padlocal.RemoveLabelRequest.toObject(includeInstance, f),
+    removelabelresponse: (f = msg.getRemovelabelresponse()) && proto.padlocal.RemoveLabelResponse.toObject(includeInstance, f),
+    getlabellistrequest: (f = msg.getGetlabellistrequest()) && proto.padlocal.GetLabelListRequest.toObject(includeInstance, f),
+    getlabellistresponse: (f = msg.getGetlabellistresponse()) && proto.padlocal.GetLabelListResponse.toObject(includeInstance, f),
+    setcontactlabelrequest: (f = msg.getSetcontactlabelrequest()) && proto.padlocal.SetContactLabelRequest.toObject(includeInstance, f),
+    setcontactlabelresponse: (f = msg.getSetcontactlabelresponse()) && proto.padlocal.SetContactLabelResponse.toObject(includeInstance, f),
     snssendmomentrequest: (f = msg.getSnssendmomentrequest()) && proto.padlocal.SnsSendMomentRequest.toObject(includeInstance, f),
     snssendmomentresponse: (f = msg.getSnssendmomentresponse()) && proto.padlocal.SnsSendMomentResponse.toObject(includeInstance, f),
     snsgetuserpagerequest: (f = msg.getSnsgetuserpagerequest()) && proto.padlocal.SnsGetUserPageRequest.toObject(includeInstance, f),
@@ -2963,34 +2990,7 @@ proto.padlocal.ActionMessage.toObject = function(includeInstance, msg) {
     snsmakemomentpublicrequest: (f = msg.getSnsmakemomentpublicrequest()) && proto.padlocal.SnsMakeMomentPublicRequest.toObject(includeInstance, f),
     snsmakemomentpublicresponse: (f = msg.getSnsmakemomentpublicresponse()) && proto.padlocal.SnsMakeMomentPublicResponse.toObject(includeInstance, f),
     snsremovemomentrequest: (f = msg.getSnsremovemomentrequest()) && proto.padlocal.SnsRemoveMomentRequest.toObject(includeInstance, f),
-    snsremovemomentresponse: (f = msg.getSnsremovemomentresponse()) && proto.padlocal.SnsRemoveMomentResponse.toObject(includeInstance, f),
-    addlabelrequest: (f = msg.getAddlabelrequest()) && proto.padlocal.AddLabelRequest.toObject(includeInstance, f),
-    addlabelresponse: (f = msg.getAddlabelresponse()) && proto.padlocal.AddLabelResponse.toObject(includeInstance, f),
-    removelabelrequest: (f = msg.getRemovelabelrequest()) && proto.padlocal.RemoveLabelRequest.toObject(includeInstance, f),
-    removelabelresponse: (f = msg.getRemovelabelresponse()) && proto.padlocal.RemoveLabelResponse.toObject(includeInstance, f),
-    getlabellistrequest: (f = msg.getGetlabellistrequest()) && proto.padlocal.GetLabelListRequest.toObject(includeInstance, f),
-    getlabellistresponse: (f = msg.getGetlabellistresponse()) && proto.padlocal.GetLabelListResponse.toObject(includeInstance, f),
-    setcontactlabelrequest: (f = msg.getSetcontactlabelrequest()) && proto.padlocal.SetContactLabelRequest.toObject(includeInstance, f),
-    setcontactlabelresponse: (f = msg.getSetcontactlabelresponse()) && proto.padlocal.SetContactLabelResponse.toObject(includeInstance, f),
-    systemeventrequest: (f = msg.getSystemeventrequest()) && proto.padlocal.SystemEventRequest.toObject(includeInstance, f),
-    systemeventresponse: (f = msg.getSystemeventresponse()) && proto.padlocal.SystemEventResponse.toObject(includeInstance, f),
-    syncrequest: (f = msg.getSyncrequest()) && proto.padlocal.SyncRequest.toObject(includeInstance, f),
-    syncresponse: (f = msg.getSyncresponse()) && proto.padlocal.SyncResponse.toObject(includeInstance, f),
-    getmessageimagerequest: (f = msg.getGetmessageimagerequest()) && proto.padlocal.GetMessageImageRequest.toObject(includeInstance, f),
-    getmessageimageresponse: (f = msg.getGetmessageimageresponse()) && proto.padlocal.GetMessageImageResponse.toObject(includeInstance, f),
-    synccontactrequest: (f = msg.getSynccontactrequest()) && proto.padlocal.SyncContactRequest.toObject(includeInstance, f),
-    synccontactresponse: (f = msg.getSynccontactresponse()) && proto.padlocal.SyncContactResponse.toObject(includeInstance, f),
-    syncevent: (f = msg.getSyncevent()) && proto.padlocal.SyncEvent.toObject(includeInstance, f),
-    getmessagevoicerequest: (f = msg.getGetmessagevoicerequest()) && proto.padlocal.GetMessageVoiceRequest.toObject(includeInstance, f),
-    getmessagevoiceresponse: (f = msg.getGetmessagevoiceresponse()) && proto.padlocal.GetMessageVoiceResponse.toObject(includeInstance, f),
-    getmessagevideothumbrequest: (f = msg.getGetmessagevideothumbrequest()) && proto.padlocal.GetMessageVideoThumbRequest.toObject(includeInstance, f),
-    getmessagevideothumbresponse: (f = msg.getGetmessagevideothumbresponse()) && proto.padlocal.GetMessageVideoThumbResponse.toObject(includeInstance, f),
-    getmessagevideorequest: (f = msg.getGetmessagevideorequest()) && proto.padlocal.GetMessageVideoRequest.toObject(includeInstance, f),
-    getmessagevideoresponse: (f = msg.getGetmessagevideoresponse()) && proto.padlocal.GetMessageVideoResponse.toObject(includeInstance, f),
-    getmessagefilerequest: (f = msg.getGetmessagefilerequest()) && proto.padlocal.GetMessageFileRequest.toObject(includeInstance, f),
-    getmessagefileresponse: (f = msg.getGetmessagefileresponse()) && proto.padlocal.GetMessageFileResponse.toObject(includeInstance, f),
-    forwardmessagerequest: (f = msg.getForwardmessagerequest()) && proto.padlocal.ForwardMessageRequest.toObject(includeInstance, f),
-    forwardmessageresponse: (f = msg.getForwardmessageresponse()) && proto.padlocal.ForwardMessageResponse.toObject(includeInstance, f)
+    snsremovemomentresponse: (f = msg.getSnsremovemomentresponse()) && proto.padlocal.SnsRemoveMomentResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3032,495 +3032,495 @@ proto.padlocal.ActionMessage.deserializeBinaryFromReader = function(msg, reader)
       reader.readMessage(value,proto.padlocal.ActionMessageHeader.deserializeBinaryFromReader);
       msg.setHeader(value);
       break;
-    case 2:
+    case 10:
       var value = new proto.padlocal.WeChatRequest;
       reader.readMessage(value,proto.padlocal.WeChatRequest.deserializeBinaryFromReader);
       msg.setWechatrequest(value);
       break;
-    case 3:
+    case 11:
       var value = new proto.padlocal.WeChatResponse;
       reader.readMessage(value,proto.padlocal.WeChatResponse.deserializeBinaryFromReader);
       msg.setWechatresponse(value);
       break;
-    case 4:
-      var value = new proto.padlocal.LongLinkUnpackRequest;
-      reader.readMessage(value,proto.padlocal.LongLinkUnpackRequest.deserializeBinaryFromReader);
-      msg.setLonglinkunpackrequest(value);
-      break;
-    case 5:
-      var value = new proto.padlocal.LongLinkUnpackResponse;
-      reader.readMessage(value,proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader);
-      msg.setLonglinkunpackresponse(value);
-      break;
-    case 6:
-      var value = new proto.padlocal.LoginRequest;
-      reader.readMessage(value,proto.padlocal.LoginRequest.deserializeBinaryFromReader);
-      msg.setLoginrequest(value);
-      break;
-    case 7:
-      var value = new proto.padlocal.LoginUpdateEvent;
-      reader.readMessage(value,proto.padlocal.LoginUpdateEvent.deserializeBinaryFromReader);
-      msg.setLoginupdateevent(value);
-      break;
-    case 8:
-      var value = new proto.padlocal.LoginResponse;
-      reader.readMessage(value,proto.padlocal.LoginResponse.deserializeBinaryFromReader);
-      msg.setLoginresponse(value);
-      break;
-    case 9:
-      var value = new proto.padlocal.LogoutRequest;
-      reader.readMessage(value,proto.padlocal.LogoutRequest.deserializeBinaryFromReader);
-      msg.setLogoutrequest(value);
-      break;
-    case 10:
-      var value = new proto.padlocal.LogoutResponse;
-      reader.readMessage(value,proto.padlocal.LogoutResponse.deserializeBinaryFromReader);
-      msg.setLogoutresponse(value);
-      break;
-    case 11:
-      var value = new proto.padlocal.LongLinkHeartBeatRequest;
-      reader.readMessage(value,proto.padlocal.LongLinkHeartBeatRequest.deserializeBinaryFromReader);
-      msg.setLonglinkheartbeatrequest(value);
-      break;
     case 12:
-      var value = new proto.padlocal.LongLinkHeartBeatResponse;
-      reader.readMessage(value,proto.padlocal.LongLinkHeartBeatResponse.deserializeBinaryFromReader);
-      msg.setLonglinkheartbeatresponse(value);
-      break;
-    case 13:
-      var value = new proto.padlocal.SendTextMessageRequest;
-      reader.readMessage(value,proto.padlocal.SendTextMessageRequest.deserializeBinaryFromReader);
-      msg.setSendtextmessagerequest(value);
-      break;
-    case 14:
-      var value = new proto.padlocal.SendTextMessageResponse;
-      reader.readMessage(value,proto.padlocal.SendTextMessageResponse.deserializeBinaryFromReader);
-      msg.setSendtextmessageresponse(value);
-      break;
-    case 15:
-      var value = new proto.padlocal.SendImageMessageRequest;
-      reader.readMessage(value,proto.padlocal.SendImageMessageRequest.deserializeBinaryFromReader);
-      msg.setSendimagemessagerequest(value);
-      break;
-    case 16:
-      var value = new proto.padlocal.SendImageMessageResponse;
-      reader.readMessage(value,proto.padlocal.SendImageMessageResponse.deserializeBinaryFromReader);
-      msg.setSendimagemessageresponse(value);
-      break;
-    case 17:
-      var value = new proto.padlocal.SendAppMessageRequest;
-      reader.readMessage(value,proto.padlocal.SendAppMessageRequest.deserializeBinaryFromReader);
-      msg.setSendappmessagerequest(value);
-      break;
-    case 18:
-      var value = new proto.padlocal.SendAppMessageResponse;
-      reader.readMessage(value,proto.padlocal.SendAppMessageResponse.deserializeBinaryFromReader);
-      msg.setSendappmessageresponse(value);
-      break;
-    case 19:
-      var value = new proto.padlocal.AcceptUserRequest;
-      reader.readMessage(value,proto.padlocal.AcceptUserRequest.deserializeBinaryFromReader);
-      msg.setAcceptuserrequest(value);
-      break;
-    case 20:
-      var value = new proto.padlocal.AcceptUserResponse;
-      reader.readMessage(value,proto.padlocal.AcceptUserResponse.deserializeBinaryFromReader);
-      msg.setAcceptuserresponse(value);
-      break;
-    case 21:
-      var value = new proto.padlocal.AddContactRequest;
-      reader.readMessage(value,proto.padlocal.AddContactRequest.deserializeBinaryFromReader);
-      msg.setAddcontactrequest(value);
-      break;
-    case 22:
-      var value = new proto.padlocal.AddContactResponse;
-      reader.readMessage(value,proto.padlocal.AddContactResponse.deserializeBinaryFromReader);
-      msg.setAddcontactresponse(value);
-      break;
-    case 23:
-      var value = new proto.padlocal.DeleteContactRequest;
-      reader.readMessage(value,proto.padlocal.DeleteContactRequest.deserializeBinaryFromReader);
-      msg.setDeletecontactrequest(value);
-      break;
-    case 24:
-      var value = new proto.padlocal.DeleteContactResponse;
-      reader.readMessage(value,proto.padlocal.DeleteContactResponse.deserializeBinaryFromReader);
-      msg.setDeletecontactresponse(value);
-      break;
-    case 25:
-      var value = new proto.padlocal.GetContactRequest;
-      reader.readMessage(value,proto.padlocal.GetContactRequest.deserializeBinaryFromReader);
-      msg.setGetcontactrequest(value);
-      break;
-    case 26:
-      var value = new proto.padlocal.GetContactResponse;
-      reader.readMessage(value,proto.padlocal.GetContactResponse.deserializeBinaryFromReader);
-      msg.setGetcontactresponse(value);
-      break;
-    case 27:
-      var value = new proto.padlocal.GetContactQRCodeRequest;
-      reader.readMessage(value,proto.padlocal.GetContactQRCodeRequest.deserializeBinaryFromReader);
-      msg.setGetcontactqrcoderequest(value);
-      break;
-    case 28:
-      var value = new proto.padlocal.GetContactQRCodeResponse;
-      reader.readMessage(value,proto.padlocal.GetContactQRCodeResponse.deserializeBinaryFromReader);
-      msg.setGetcontactqrcoderesponse(value);
-      break;
-    case 29:
-      var value = new proto.padlocal.SearchContactRequest;
-      reader.readMessage(value,proto.padlocal.SearchContactRequest.deserializeBinaryFromReader);
-      msg.setSearchcontactrequest(value);
-      break;
-    case 30:
-      var value = new proto.padlocal.SearchContactResponse;
-      reader.readMessage(value,proto.padlocal.SearchContactResponse.deserializeBinaryFromReader);
-      msg.setSearchcontactresponse(value);
-      break;
-    case 31:
-      var value = new proto.padlocal.CreateChatRoomRequest;
-      reader.readMessage(value,proto.padlocal.CreateChatRoomRequest.deserializeBinaryFromReader);
-      msg.setCreatechatroomrequest(value);
-      break;
-    case 32:
-      var value = new proto.padlocal.CreateChatRoomResponse;
-      reader.readMessage(value,proto.padlocal.CreateChatRoomResponse.deserializeBinaryFromReader);
-      msg.setCreatechatroomresponse(value);
-      break;
-    case 33:
-      var value = new proto.padlocal.GetChatRoomMembersRequest;
-      reader.readMessage(value,proto.padlocal.GetChatRoomMembersRequest.deserializeBinaryFromReader);
-      msg.setGetchatroommembersrequest(value);
-      break;
-    case 34:
-      var value = new proto.padlocal.GetChatRoomMembersResponse;
-      reader.readMessage(value,proto.padlocal.GetChatRoomMembersResponse.deserializeBinaryFromReader);
-      msg.setGetchatroommembersresponse(value);
-      break;
-    case 35:
-      var value = new proto.padlocal.GetChatRoomQrCodeRequest;
-      reader.readMessage(value,proto.padlocal.GetChatRoomQrCodeRequest.deserializeBinaryFromReader);
-      msg.setGetchatroomqrcoderequest(value);
-      break;
-    case 36:
-      var value = new proto.padlocal.GetChatRoomQrCodeResponse;
-      reader.readMessage(value,proto.padlocal.GetChatRoomQrCodeResponse.deserializeBinaryFromReader);
-      msg.setGetchatroomqrcoderesponse(value);
-      break;
-    case 37:
-      var value = new proto.padlocal.GetChatRoomMemberRequest;
-      reader.readMessage(value,proto.padlocal.GetChatRoomMemberRequest.deserializeBinaryFromReader);
-      msg.setGetchatroommemberrequest(value);
-      break;
-    case 38:
-      var value = new proto.padlocal.GetChatRoomMemberResponse;
-      reader.readMessage(value,proto.padlocal.GetChatRoomMemberResponse.deserializeBinaryFromReader);
-      msg.setGetchatroommemberresponse(value);
-      break;
-    case 39:
-      var value = new proto.padlocal.SetChatRoomAnnouncementRequest;
-      reader.readMessage(value,proto.padlocal.SetChatRoomAnnouncementRequest.deserializeBinaryFromReader);
-      msg.setSetchatroomannouncementrequest(value);
-      break;
-    case 40:
-      var value = new proto.padlocal.SetChatRoomAnnouncementResponse;
-      reader.readMessage(value,proto.padlocal.SetChatRoomAnnouncementResponse.deserializeBinaryFromReader);
-      msg.setSetchatroomannouncementresponse(value);
-      break;
-    case 41:
-      var value = new proto.padlocal.AddChatRoomMemberRequest;
-      reader.readMessage(value,proto.padlocal.AddChatRoomMemberRequest.deserializeBinaryFromReader);
-      msg.setAddchatroommemberrequest(value);
-      break;
-    case 42:
-      var value = new proto.padlocal.AddChatRoomMemberResponse;
-      reader.readMessage(value,proto.padlocal.AddChatRoomMemberResponse.deserializeBinaryFromReader);
-      msg.setAddchatroommemberresponse(value);
-      break;
-    case 43:
-      var value = new proto.padlocal.InviteChatRoomMemberRequest;
-      reader.readMessage(value,proto.padlocal.InviteChatRoomMemberRequest.deserializeBinaryFromReader);
-      msg.setInvitechatroommemberrequest(value);
-      break;
-    case 44:
-      var value = new proto.padlocal.InviteChatRoomMemberResponse;
-      reader.readMessage(value,proto.padlocal.InviteChatRoomMemberResponse.deserializeBinaryFromReader);
-      msg.setInvitechatroommemberresponse(value);
-      break;
-    case 45:
-      var value = new proto.padlocal.DeleteChatRoomMemberRequest;
-      reader.readMessage(value,proto.padlocal.DeleteChatRoomMemberRequest.deserializeBinaryFromReader);
-      msg.setDeletechatroommemberrequest(value);
-      break;
-    case 46:
-      var value = new proto.padlocal.DeleteChatRoomMemberResponse;
-      reader.readMessage(value,proto.padlocal.DeleteChatRoomMemberResponse.deserializeBinaryFromReader);
-      msg.setDeletechatroommemberresponse(value);
-      break;
-    case 47:
-      var value = new proto.padlocal.SetChatRoomNameRequest;
-      reader.readMessage(value,proto.padlocal.SetChatRoomNameRequest.deserializeBinaryFromReader);
-      msg.setSetchatroomnamerequest(value);
-      break;
-    case 48:
-      var value = new proto.padlocal.SetChatRoomNameResponse;
-      reader.readMessage(value,proto.padlocal.SetChatRoomNameResponse.deserializeBinaryFromReader);
-      msg.setSetchatroomnameresponse(value);
-      break;
-    case 49:
-      var value = new proto.padlocal.SnsSendMomentRequest;
-      reader.readMessage(value,proto.padlocal.SnsSendMomentRequest.deserializeBinaryFromReader);
-      msg.setSnssendmomentrequest(value);
-      break;
-    case 50:
-      var value = new proto.padlocal.SnsSendMomentResponse;
-      reader.readMessage(value,proto.padlocal.SnsSendMomentResponse.deserializeBinaryFromReader);
-      msg.setSnssendmomentresponse(value);
-      break;
-    case 51:
-      var value = new proto.padlocal.SnsGetUserPageRequest;
-      reader.readMessage(value,proto.padlocal.SnsGetUserPageRequest.deserializeBinaryFromReader);
-      msg.setSnsgetuserpagerequest(value);
-      break;
-    case 52:
-      var value = new proto.padlocal.SnsGetUserPageResponse;
-      reader.readMessage(value,proto.padlocal.SnsGetUserPageResponse.deserializeBinaryFromReader);
-      msg.setSnsgetuserpageresponse(value);
-      break;
-    case 53:
-      var value = new proto.padlocal.SnsSendCommentRequest;
-      reader.readMessage(value,proto.padlocal.SnsSendCommentRequest.deserializeBinaryFromReader);
-      msg.setSnssendcommentrequest(value);
-      break;
-    case 54:
-      var value = new proto.padlocal.SnsSendCommentResponse;
-      reader.readMessage(value,proto.padlocal.SnsSendCommentResponse.deserializeBinaryFromReader);
-      msg.setSnssendcommentresponse(value);
-      break;
-    case 55:
-      var value = new proto.padlocal.SnsUploadImageRequest;
-      reader.readMessage(value,proto.padlocal.SnsUploadImageRequest.deserializeBinaryFromReader);
-      msg.setSnsuploadimagerequest(value);
-      break;
-    case 56:
-      var value = new proto.padlocal.SnsUploadImageResponse;
-      reader.readMessage(value,proto.padlocal.SnsUploadImageResponse.deserializeBinaryFromReader);
-      msg.setSnsuploadimageresponse(value);
-      break;
-    case 57:
-      var value = new proto.padlocal.SnsGetTimelineRequest;
-      reader.readMessage(value,proto.padlocal.SnsGetTimelineRequest.deserializeBinaryFromReader);
-      msg.setSnsgettimelinerequest(value);
-      break;
-    case 58:
-      var value = new proto.padlocal.SnsGetTimelineResponse;
-      reader.readMessage(value,proto.padlocal.SnsGetTimelineResponse.deserializeBinaryFromReader);
-      msg.setSnsgettimelineresponse(value);
-      break;
-    case 59:
-      var value = new proto.padlocal.SnsGetMomentRequest;
-      reader.readMessage(value,proto.padlocal.SnsGetMomentRequest.deserializeBinaryFromReader);
-      msg.setSnsgetmomentrequest(value);
-      break;
-    case 60:
-      var value = new proto.padlocal.SnsGetMomentResponse;
-      reader.readMessage(value,proto.padlocal.SnsGetMomentResponse.deserializeBinaryFromReader);
-      msg.setSnsgetmomentresponse(value);
-      break;
-    case 61:
-      var value = new proto.padlocal.SnsLikeMomentRequest;
-      reader.readMessage(value,proto.padlocal.SnsLikeMomentRequest.deserializeBinaryFromReader);
-      msg.setSnslikemomentrequest(value);
-      break;
-    case 62:
-      var value = new proto.padlocal.SnsLikeMomentResponse;
-      reader.readMessage(value,proto.padlocal.SnsLikeMomentResponse.deserializeBinaryFromReader);
-      msg.setSnslikemomentresponse(value);
-      break;
-    case 63:
-      var value = new proto.padlocal.SnsUnlikeMomentRequest;
-      reader.readMessage(value,proto.padlocal.SnsUnlikeMomentRequest.deserializeBinaryFromReader);
-      msg.setSnsunlikemomentrequest(value);
-      break;
-    case 64:
-      var value = new proto.padlocal.SnsUnlikeMomentResponse;
-      reader.readMessage(value,proto.padlocal.SnsUnlikeMomentResponse.deserializeBinaryFromReader);
-      msg.setSnsunlikemomentresponse(value);
-      break;
-    case 65:
-      var value = new proto.padlocal.SnsRemoveMomentCommentRequest;
-      reader.readMessage(value,proto.padlocal.SnsRemoveMomentCommentRequest.deserializeBinaryFromReader);
-      msg.setSnsremovemomentcommentrequest(value);
-      break;
-    case 66:
-      var value = new proto.padlocal.SnsRemoveMomentCommentResponse;
-      reader.readMessage(value,proto.padlocal.SnsRemoveMomentCommentResponse.deserializeBinaryFromReader);
-      msg.setSnsremovemomentcommentresponse(value);
-      break;
-    case 67:
-      var value = new proto.padlocal.SnsMakeMomentPrivateRequest;
-      reader.readMessage(value,proto.padlocal.SnsMakeMomentPrivateRequest.deserializeBinaryFromReader);
-      msg.setSnsmakemomentprivaterequest(value);
-      break;
-    case 68:
-      var value = new proto.padlocal.SnsMakeMomentPrivateResponse;
-      reader.readMessage(value,proto.padlocal.SnsMakeMomentPrivateResponse.deserializeBinaryFromReader);
-      msg.setSnsmakemomentprivateresponse(value);
-      break;
-    case 69:
-      var value = new proto.padlocal.SnsMakeMomentPublicRequest;
-      reader.readMessage(value,proto.padlocal.SnsMakeMomentPublicRequest.deserializeBinaryFromReader);
-      msg.setSnsmakemomentpublicrequest(value);
-      break;
-    case 70:
-      var value = new proto.padlocal.SnsMakeMomentPublicResponse;
-      reader.readMessage(value,proto.padlocal.SnsMakeMomentPublicResponse.deserializeBinaryFromReader);
-      msg.setSnsmakemomentpublicresponse(value);
-      break;
-    case 71:
-      var value = new proto.padlocal.SnsRemoveMomentRequest;
-      reader.readMessage(value,proto.padlocal.SnsRemoveMomentRequest.deserializeBinaryFromReader);
-      msg.setSnsremovemomentrequest(value);
-      break;
-    case 72:
-      var value = new proto.padlocal.SnsRemoveMomentResponse;
-      reader.readMessage(value,proto.padlocal.SnsRemoveMomentResponse.deserializeBinaryFromReader);
-      msg.setSnsremovemomentresponse(value);
-      break;
-    case 73:
-      var value = new proto.padlocal.AddLabelRequest;
-      reader.readMessage(value,proto.padlocal.AddLabelRequest.deserializeBinaryFromReader);
-      msg.setAddlabelrequest(value);
-      break;
-    case 74:
-      var value = new proto.padlocal.AddLabelResponse;
-      reader.readMessage(value,proto.padlocal.AddLabelResponse.deserializeBinaryFromReader);
-      msg.setAddlabelresponse(value);
-      break;
-    case 75:
-      var value = new proto.padlocal.RemoveLabelRequest;
-      reader.readMessage(value,proto.padlocal.RemoveLabelRequest.deserializeBinaryFromReader);
-      msg.setRemovelabelrequest(value);
-      break;
-    case 76:
-      var value = new proto.padlocal.RemoveLabelResponse;
-      reader.readMessage(value,proto.padlocal.RemoveLabelResponse.deserializeBinaryFromReader);
-      msg.setRemovelabelresponse(value);
-      break;
-    case 77:
-      var value = new proto.padlocal.GetLabelListRequest;
-      reader.readMessage(value,proto.padlocal.GetLabelListRequest.deserializeBinaryFromReader);
-      msg.setGetlabellistrequest(value);
-      break;
-    case 78:
-      var value = new proto.padlocal.GetLabelListResponse;
-      reader.readMessage(value,proto.padlocal.GetLabelListResponse.deserializeBinaryFromReader);
-      msg.setGetlabellistresponse(value);
-      break;
-    case 79:
-      var value = new proto.padlocal.SetContactLabelRequest;
-      reader.readMessage(value,proto.padlocal.SetContactLabelRequest.deserializeBinaryFromReader);
-      msg.setSetcontactlabelrequest(value);
-      break;
-    case 80:
-      var value = new proto.padlocal.SetContactLabelResponse;
-      reader.readMessage(value,proto.padlocal.SetContactLabelResponse.deserializeBinaryFromReader);
-      msg.setSetcontactlabelresponse(value);
-      break;
-    case 81:
       var value = new proto.padlocal.SystemEventRequest;
       reader.readMessage(value,proto.padlocal.SystemEventRequest.deserializeBinaryFromReader);
       msg.setSystemeventrequest(value);
       break;
-    case 82:
+    case 13:
       var value = new proto.padlocal.SystemEventResponse;
       reader.readMessage(value,proto.padlocal.SystemEventResponse.deserializeBinaryFromReader);
       msg.setSystemeventresponse(value);
       break;
-    case 83:
+    case 14:
+      var value = new proto.padlocal.LongLinkUnpackRequest;
+      reader.readMessage(value,proto.padlocal.LongLinkUnpackRequest.deserializeBinaryFromReader);
+      msg.setLonglinkunpackrequest(value);
+      break;
+    case 15:
+      var value = new proto.padlocal.LongLinkUnpackResponse;
+      reader.readMessage(value,proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader);
+      msg.setLonglinkunpackresponse(value);
+      break;
+    case 16:
+      var value = new proto.padlocal.LongLinkHeartBeatRequest;
+      reader.readMessage(value,proto.padlocal.LongLinkHeartBeatRequest.deserializeBinaryFromReader);
+      msg.setLonglinkheartbeatrequest(value);
+      break;
+    case 17:
+      var value = new proto.padlocal.LongLinkHeartBeatResponse;
+      reader.readMessage(value,proto.padlocal.LongLinkHeartBeatResponse.deserializeBinaryFromReader);
+      msg.setLonglinkheartbeatresponse(value);
+      break;
+    case 100:
       var value = new proto.padlocal.SyncRequest;
       reader.readMessage(value,proto.padlocal.SyncRequest.deserializeBinaryFromReader);
       msg.setSyncrequest(value);
       break;
-    case 84:
+    case 101:
       var value = new proto.padlocal.SyncResponse;
       reader.readMessage(value,proto.padlocal.SyncResponse.deserializeBinaryFromReader);
       msg.setSyncresponse(value);
       break;
-    case 85:
-      var value = new proto.padlocal.GetMessageImageRequest;
-      reader.readMessage(value,proto.padlocal.GetMessageImageRequest.deserializeBinaryFromReader);
-      msg.setGetmessageimagerequest(value);
-      break;
-    case 86:
-      var value = new proto.padlocal.GetMessageImageResponse;
-      reader.readMessage(value,proto.padlocal.GetMessageImageResponse.deserializeBinaryFromReader);
-      msg.setGetmessageimageresponse(value);
-      break;
-    case 87:
-      var value = new proto.padlocal.SyncContactRequest;
-      reader.readMessage(value,proto.padlocal.SyncContactRequest.deserializeBinaryFromReader);
-      msg.setSynccontactrequest(value);
-      break;
-    case 88:
-      var value = new proto.padlocal.SyncContactResponse;
-      reader.readMessage(value,proto.padlocal.SyncContactResponse.deserializeBinaryFromReader);
-      msg.setSynccontactresponse(value);
-      break;
-    case 89:
+    case 102:
       var value = new proto.padlocal.SyncEvent;
       reader.readMessage(value,proto.padlocal.SyncEvent.deserializeBinaryFromReader);
       msg.setSyncevent(value);
       break;
-    case 90:
+    case 200:
+      var value = new proto.padlocal.LoginRequest;
+      reader.readMessage(value,proto.padlocal.LoginRequest.deserializeBinaryFromReader);
+      msg.setLoginrequest(value);
+      break;
+    case 201:
+      var value = new proto.padlocal.LoginUpdateEvent;
+      reader.readMessage(value,proto.padlocal.LoginUpdateEvent.deserializeBinaryFromReader);
+      msg.setLoginupdateevent(value);
+      break;
+    case 202:
+      var value = new proto.padlocal.LoginResponse;
+      reader.readMessage(value,proto.padlocal.LoginResponse.deserializeBinaryFromReader);
+      msg.setLoginresponse(value);
+      break;
+    case 203:
+      var value = new proto.padlocal.LogoutRequest;
+      reader.readMessage(value,proto.padlocal.LogoutRequest.deserializeBinaryFromReader);
+      msg.setLogoutrequest(value);
+      break;
+    case 204:
+      var value = new proto.padlocal.LogoutResponse;
+      reader.readMessage(value,proto.padlocal.LogoutResponse.deserializeBinaryFromReader);
+      msg.setLogoutresponse(value);
+      break;
+    case 300:
+      var value = new proto.padlocal.SendTextMessageRequest;
+      reader.readMessage(value,proto.padlocal.SendTextMessageRequest.deserializeBinaryFromReader);
+      msg.setSendtextmessagerequest(value);
+      break;
+    case 301:
+      var value = new proto.padlocal.SendTextMessageResponse;
+      reader.readMessage(value,proto.padlocal.SendTextMessageResponse.deserializeBinaryFromReader);
+      msg.setSendtextmessageresponse(value);
+      break;
+    case 302:
+      var value = new proto.padlocal.SendImageMessageRequest;
+      reader.readMessage(value,proto.padlocal.SendImageMessageRequest.deserializeBinaryFromReader);
+      msg.setSendimagemessagerequest(value);
+      break;
+    case 303:
+      var value = new proto.padlocal.SendImageMessageResponse;
+      reader.readMessage(value,proto.padlocal.SendImageMessageResponse.deserializeBinaryFromReader);
+      msg.setSendimagemessageresponse(value);
+      break;
+    case 304:
+      var value = new proto.padlocal.SendAppMessageRequest;
+      reader.readMessage(value,proto.padlocal.SendAppMessageRequest.deserializeBinaryFromReader);
+      msg.setSendappmessagerequest(value);
+      break;
+    case 305:
+      var value = new proto.padlocal.SendAppMessageResponse;
+      reader.readMessage(value,proto.padlocal.SendAppMessageResponse.deserializeBinaryFromReader);
+      msg.setSendappmessageresponse(value);
+      break;
+    case 306:
+      var value = new proto.padlocal.GetMessageImageRequest;
+      reader.readMessage(value,proto.padlocal.GetMessageImageRequest.deserializeBinaryFromReader);
+      msg.setGetmessageimagerequest(value);
+      break;
+    case 307:
+      var value = new proto.padlocal.GetMessageImageResponse;
+      reader.readMessage(value,proto.padlocal.GetMessageImageResponse.deserializeBinaryFromReader);
+      msg.setGetmessageimageresponse(value);
+      break;
+    case 308:
       var value = new proto.padlocal.GetMessageVoiceRequest;
       reader.readMessage(value,proto.padlocal.GetMessageVoiceRequest.deserializeBinaryFromReader);
       msg.setGetmessagevoicerequest(value);
       break;
-    case 91:
+    case 309:
       var value = new proto.padlocal.GetMessageVoiceResponse;
       reader.readMessage(value,proto.padlocal.GetMessageVoiceResponse.deserializeBinaryFromReader);
       msg.setGetmessagevoiceresponse(value);
       break;
-    case 92:
+    case 310:
       var value = new proto.padlocal.GetMessageVideoThumbRequest;
       reader.readMessage(value,proto.padlocal.GetMessageVideoThumbRequest.deserializeBinaryFromReader);
       msg.setGetmessagevideothumbrequest(value);
       break;
-    case 93:
+    case 311:
       var value = new proto.padlocal.GetMessageVideoThumbResponse;
       reader.readMessage(value,proto.padlocal.GetMessageVideoThumbResponse.deserializeBinaryFromReader);
       msg.setGetmessagevideothumbresponse(value);
       break;
-    case 94:
+    case 312:
       var value = new proto.padlocal.GetMessageVideoRequest;
       reader.readMessage(value,proto.padlocal.GetMessageVideoRequest.deserializeBinaryFromReader);
       msg.setGetmessagevideorequest(value);
       break;
-    case 95:
+    case 313:
       var value = new proto.padlocal.GetMessageVideoResponse;
       reader.readMessage(value,proto.padlocal.GetMessageVideoResponse.deserializeBinaryFromReader);
       msg.setGetmessagevideoresponse(value);
       break;
-    case 96:
+    case 314:
       var value = new proto.padlocal.GetMessageFileRequest;
       reader.readMessage(value,proto.padlocal.GetMessageFileRequest.deserializeBinaryFromReader);
       msg.setGetmessagefilerequest(value);
       break;
-    case 97:
+    case 315:
       var value = new proto.padlocal.GetMessageFileResponse;
       reader.readMessage(value,proto.padlocal.GetMessageFileResponse.deserializeBinaryFromReader);
       msg.setGetmessagefileresponse(value);
       break;
-    case 98:
+    case 316:
       var value = new proto.padlocal.ForwardMessageRequest;
       reader.readMessage(value,proto.padlocal.ForwardMessageRequest.deserializeBinaryFromReader);
       msg.setForwardmessagerequest(value);
       break;
-    case 99:
+    case 317:
       var value = new proto.padlocal.ForwardMessageResponse;
       reader.readMessage(value,proto.padlocal.ForwardMessageResponse.deserializeBinaryFromReader);
       msg.setForwardmessageresponse(value);
+      break;
+    case 400:
+      var value = new proto.padlocal.SyncContactRequest;
+      reader.readMessage(value,proto.padlocal.SyncContactRequest.deserializeBinaryFromReader);
+      msg.setSynccontactrequest(value);
+      break;
+    case 401:
+      var value = new proto.padlocal.SyncContactResponse;
+      reader.readMessage(value,proto.padlocal.SyncContactResponse.deserializeBinaryFromReader);
+      msg.setSynccontactresponse(value);
+      break;
+    case 402:
+      var value = new proto.padlocal.AcceptUserRequest;
+      reader.readMessage(value,proto.padlocal.AcceptUserRequest.deserializeBinaryFromReader);
+      msg.setAcceptuserrequest(value);
+      break;
+    case 403:
+      var value = new proto.padlocal.AcceptUserResponse;
+      reader.readMessage(value,proto.padlocal.AcceptUserResponse.deserializeBinaryFromReader);
+      msg.setAcceptuserresponse(value);
+      break;
+    case 404:
+      var value = new proto.padlocal.AddContactRequest;
+      reader.readMessage(value,proto.padlocal.AddContactRequest.deserializeBinaryFromReader);
+      msg.setAddcontactrequest(value);
+      break;
+    case 405:
+      var value = new proto.padlocal.AddContactResponse;
+      reader.readMessage(value,proto.padlocal.AddContactResponse.deserializeBinaryFromReader);
+      msg.setAddcontactresponse(value);
+      break;
+    case 406:
+      var value = new proto.padlocal.DeleteContactRequest;
+      reader.readMessage(value,proto.padlocal.DeleteContactRequest.deserializeBinaryFromReader);
+      msg.setDeletecontactrequest(value);
+      break;
+    case 407:
+      var value = new proto.padlocal.DeleteContactResponse;
+      reader.readMessage(value,proto.padlocal.DeleteContactResponse.deserializeBinaryFromReader);
+      msg.setDeletecontactresponse(value);
+      break;
+    case 408:
+      var value = new proto.padlocal.GetContactRequest;
+      reader.readMessage(value,proto.padlocal.GetContactRequest.deserializeBinaryFromReader);
+      msg.setGetcontactrequest(value);
+      break;
+    case 409:
+      var value = new proto.padlocal.GetContactResponse;
+      reader.readMessage(value,proto.padlocal.GetContactResponse.deserializeBinaryFromReader);
+      msg.setGetcontactresponse(value);
+      break;
+    case 410:
+      var value = new proto.padlocal.GetContactQRCodeRequest;
+      reader.readMessage(value,proto.padlocal.GetContactQRCodeRequest.deserializeBinaryFromReader);
+      msg.setGetcontactqrcoderequest(value);
+      break;
+    case 411:
+      var value = new proto.padlocal.GetContactQRCodeResponse;
+      reader.readMessage(value,proto.padlocal.GetContactQRCodeResponse.deserializeBinaryFromReader);
+      msg.setGetcontactqrcoderesponse(value);
+      break;
+    case 412:
+      var value = new proto.padlocal.SearchContactRequest;
+      reader.readMessage(value,proto.padlocal.SearchContactRequest.deserializeBinaryFromReader);
+      msg.setSearchcontactrequest(value);
+      break;
+    case 413:
+      var value = new proto.padlocal.SearchContactResponse;
+      reader.readMessage(value,proto.padlocal.SearchContactResponse.deserializeBinaryFromReader);
+      msg.setSearchcontactresponse(value);
+      break;
+    case 500:
+      var value = new proto.padlocal.CreateChatRoomRequest;
+      reader.readMessage(value,proto.padlocal.CreateChatRoomRequest.deserializeBinaryFromReader);
+      msg.setCreatechatroomrequest(value);
+      break;
+    case 501:
+      var value = new proto.padlocal.CreateChatRoomResponse;
+      reader.readMessage(value,proto.padlocal.CreateChatRoomResponse.deserializeBinaryFromReader);
+      msg.setCreatechatroomresponse(value);
+      break;
+    case 502:
+      var value = new proto.padlocal.GetChatRoomMembersRequest;
+      reader.readMessage(value,proto.padlocal.GetChatRoomMembersRequest.deserializeBinaryFromReader);
+      msg.setGetchatroommembersrequest(value);
+      break;
+    case 503:
+      var value = new proto.padlocal.GetChatRoomMembersResponse;
+      reader.readMessage(value,proto.padlocal.GetChatRoomMembersResponse.deserializeBinaryFromReader);
+      msg.setGetchatroommembersresponse(value);
+      break;
+    case 504:
+      var value = new proto.padlocal.GetChatRoomQrCodeRequest;
+      reader.readMessage(value,proto.padlocal.GetChatRoomQrCodeRequest.deserializeBinaryFromReader);
+      msg.setGetchatroomqrcoderequest(value);
+      break;
+    case 505:
+      var value = new proto.padlocal.GetChatRoomQrCodeResponse;
+      reader.readMessage(value,proto.padlocal.GetChatRoomQrCodeResponse.deserializeBinaryFromReader);
+      msg.setGetchatroomqrcoderesponse(value);
+      break;
+    case 506:
+      var value = new proto.padlocal.GetChatRoomMemberRequest;
+      reader.readMessage(value,proto.padlocal.GetChatRoomMemberRequest.deserializeBinaryFromReader);
+      msg.setGetchatroommemberrequest(value);
+      break;
+    case 507:
+      var value = new proto.padlocal.GetChatRoomMemberResponse;
+      reader.readMessage(value,proto.padlocal.GetChatRoomMemberResponse.deserializeBinaryFromReader);
+      msg.setGetchatroommemberresponse(value);
+      break;
+    case 508:
+      var value = new proto.padlocal.SetChatRoomAnnouncementRequest;
+      reader.readMessage(value,proto.padlocal.SetChatRoomAnnouncementRequest.deserializeBinaryFromReader);
+      msg.setSetchatroomannouncementrequest(value);
+      break;
+    case 509:
+      var value = new proto.padlocal.SetChatRoomAnnouncementResponse;
+      reader.readMessage(value,proto.padlocal.SetChatRoomAnnouncementResponse.deserializeBinaryFromReader);
+      msg.setSetchatroomannouncementresponse(value);
+      break;
+    case 510:
+      var value = new proto.padlocal.AddChatRoomMemberRequest;
+      reader.readMessage(value,proto.padlocal.AddChatRoomMemberRequest.deserializeBinaryFromReader);
+      msg.setAddchatroommemberrequest(value);
+      break;
+    case 511:
+      var value = new proto.padlocal.AddChatRoomMemberResponse;
+      reader.readMessage(value,proto.padlocal.AddChatRoomMemberResponse.deserializeBinaryFromReader);
+      msg.setAddchatroommemberresponse(value);
+      break;
+    case 512:
+      var value = new proto.padlocal.InviteChatRoomMemberRequest;
+      reader.readMessage(value,proto.padlocal.InviteChatRoomMemberRequest.deserializeBinaryFromReader);
+      msg.setInvitechatroommemberrequest(value);
+      break;
+    case 513:
+      var value = new proto.padlocal.InviteChatRoomMemberResponse;
+      reader.readMessage(value,proto.padlocal.InviteChatRoomMemberResponse.deserializeBinaryFromReader);
+      msg.setInvitechatroommemberresponse(value);
+      break;
+    case 514:
+      var value = new proto.padlocal.DeleteChatRoomMemberRequest;
+      reader.readMessage(value,proto.padlocal.DeleteChatRoomMemberRequest.deserializeBinaryFromReader);
+      msg.setDeletechatroommemberrequest(value);
+      break;
+    case 515:
+      var value = new proto.padlocal.DeleteChatRoomMemberResponse;
+      reader.readMessage(value,proto.padlocal.DeleteChatRoomMemberResponse.deserializeBinaryFromReader);
+      msg.setDeletechatroommemberresponse(value);
+      break;
+    case 516:
+      var value = new proto.padlocal.SetChatRoomNameRequest;
+      reader.readMessage(value,proto.padlocal.SetChatRoomNameRequest.deserializeBinaryFromReader);
+      msg.setSetchatroomnamerequest(value);
+      break;
+    case 517:
+      var value = new proto.padlocal.SetChatRoomNameResponse;
+      reader.readMessage(value,proto.padlocal.SetChatRoomNameResponse.deserializeBinaryFromReader);
+      msg.setSetchatroomnameresponse(value);
+      break;
+    case 600:
+      var value = new proto.padlocal.AddLabelRequest;
+      reader.readMessage(value,proto.padlocal.AddLabelRequest.deserializeBinaryFromReader);
+      msg.setAddlabelrequest(value);
+      break;
+    case 601:
+      var value = new proto.padlocal.AddLabelResponse;
+      reader.readMessage(value,proto.padlocal.AddLabelResponse.deserializeBinaryFromReader);
+      msg.setAddlabelresponse(value);
+      break;
+    case 602:
+      var value = new proto.padlocal.RemoveLabelRequest;
+      reader.readMessage(value,proto.padlocal.RemoveLabelRequest.deserializeBinaryFromReader);
+      msg.setRemovelabelrequest(value);
+      break;
+    case 603:
+      var value = new proto.padlocal.RemoveLabelResponse;
+      reader.readMessage(value,proto.padlocal.RemoveLabelResponse.deserializeBinaryFromReader);
+      msg.setRemovelabelresponse(value);
+      break;
+    case 604:
+      var value = new proto.padlocal.GetLabelListRequest;
+      reader.readMessage(value,proto.padlocal.GetLabelListRequest.deserializeBinaryFromReader);
+      msg.setGetlabellistrequest(value);
+      break;
+    case 605:
+      var value = new proto.padlocal.GetLabelListResponse;
+      reader.readMessage(value,proto.padlocal.GetLabelListResponse.deserializeBinaryFromReader);
+      msg.setGetlabellistresponse(value);
+      break;
+    case 606:
+      var value = new proto.padlocal.SetContactLabelRequest;
+      reader.readMessage(value,proto.padlocal.SetContactLabelRequest.deserializeBinaryFromReader);
+      msg.setSetcontactlabelrequest(value);
+      break;
+    case 607:
+      var value = new proto.padlocal.SetContactLabelResponse;
+      reader.readMessage(value,proto.padlocal.SetContactLabelResponse.deserializeBinaryFromReader);
+      msg.setSetcontactlabelresponse(value);
+      break;
+    case 700:
+      var value = new proto.padlocal.SnsSendMomentRequest;
+      reader.readMessage(value,proto.padlocal.SnsSendMomentRequest.deserializeBinaryFromReader);
+      msg.setSnssendmomentrequest(value);
+      break;
+    case 701:
+      var value = new proto.padlocal.SnsSendMomentResponse;
+      reader.readMessage(value,proto.padlocal.SnsSendMomentResponse.deserializeBinaryFromReader);
+      msg.setSnssendmomentresponse(value);
+      break;
+    case 702:
+      var value = new proto.padlocal.SnsGetUserPageRequest;
+      reader.readMessage(value,proto.padlocal.SnsGetUserPageRequest.deserializeBinaryFromReader);
+      msg.setSnsgetuserpagerequest(value);
+      break;
+    case 703:
+      var value = new proto.padlocal.SnsGetUserPageResponse;
+      reader.readMessage(value,proto.padlocal.SnsGetUserPageResponse.deserializeBinaryFromReader);
+      msg.setSnsgetuserpageresponse(value);
+      break;
+    case 704:
+      var value = new proto.padlocal.SnsSendCommentRequest;
+      reader.readMessage(value,proto.padlocal.SnsSendCommentRequest.deserializeBinaryFromReader);
+      msg.setSnssendcommentrequest(value);
+      break;
+    case 705:
+      var value = new proto.padlocal.SnsSendCommentResponse;
+      reader.readMessage(value,proto.padlocal.SnsSendCommentResponse.deserializeBinaryFromReader);
+      msg.setSnssendcommentresponse(value);
+      break;
+    case 706:
+      var value = new proto.padlocal.SnsUploadImageRequest;
+      reader.readMessage(value,proto.padlocal.SnsUploadImageRequest.deserializeBinaryFromReader);
+      msg.setSnsuploadimagerequest(value);
+      break;
+    case 707:
+      var value = new proto.padlocal.SnsUploadImageResponse;
+      reader.readMessage(value,proto.padlocal.SnsUploadImageResponse.deserializeBinaryFromReader);
+      msg.setSnsuploadimageresponse(value);
+      break;
+    case 708:
+      var value = new proto.padlocal.SnsGetTimelineRequest;
+      reader.readMessage(value,proto.padlocal.SnsGetTimelineRequest.deserializeBinaryFromReader);
+      msg.setSnsgettimelinerequest(value);
+      break;
+    case 709:
+      var value = new proto.padlocal.SnsGetTimelineResponse;
+      reader.readMessage(value,proto.padlocal.SnsGetTimelineResponse.deserializeBinaryFromReader);
+      msg.setSnsgettimelineresponse(value);
+      break;
+    case 710:
+      var value = new proto.padlocal.SnsGetMomentRequest;
+      reader.readMessage(value,proto.padlocal.SnsGetMomentRequest.deserializeBinaryFromReader);
+      msg.setSnsgetmomentrequest(value);
+      break;
+    case 711:
+      var value = new proto.padlocal.SnsGetMomentResponse;
+      reader.readMessage(value,proto.padlocal.SnsGetMomentResponse.deserializeBinaryFromReader);
+      msg.setSnsgetmomentresponse(value);
+      break;
+    case 712:
+      var value = new proto.padlocal.SnsLikeMomentRequest;
+      reader.readMessage(value,proto.padlocal.SnsLikeMomentRequest.deserializeBinaryFromReader);
+      msg.setSnslikemomentrequest(value);
+      break;
+    case 713:
+      var value = new proto.padlocal.SnsLikeMomentResponse;
+      reader.readMessage(value,proto.padlocal.SnsLikeMomentResponse.deserializeBinaryFromReader);
+      msg.setSnslikemomentresponse(value);
+      break;
+    case 714:
+      var value = new proto.padlocal.SnsUnlikeMomentRequest;
+      reader.readMessage(value,proto.padlocal.SnsUnlikeMomentRequest.deserializeBinaryFromReader);
+      msg.setSnsunlikemomentrequest(value);
+      break;
+    case 715:
+      var value = new proto.padlocal.SnsUnlikeMomentResponse;
+      reader.readMessage(value,proto.padlocal.SnsUnlikeMomentResponse.deserializeBinaryFromReader);
+      msg.setSnsunlikemomentresponse(value);
+      break;
+    case 716:
+      var value = new proto.padlocal.SnsRemoveMomentCommentRequest;
+      reader.readMessage(value,proto.padlocal.SnsRemoveMomentCommentRequest.deserializeBinaryFromReader);
+      msg.setSnsremovemomentcommentrequest(value);
+      break;
+    case 717:
+      var value = new proto.padlocal.SnsRemoveMomentCommentResponse;
+      reader.readMessage(value,proto.padlocal.SnsRemoveMomentCommentResponse.deserializeBinaryFromReader);
+      msg.setSnsremovemomentcommentresponse(value);
+      break;
+    case 718:
+      var value = new proto.padlocal.SnsMakeMomentPrivateRequest;
+      reader.readMessage(value,proto.padlocal.SnsMakeMomentPrivateRequest.deserializeBinaryFromReader);
+      msg.setSnsmakemomentprivaterequest(value);
+      break;
+    case 719:
+      var value = new proto.padlocal.SnsMakeMomentPrivateResponse;
+      reader.readMessage(value,proto.padlocal.SnsMakeMomentPrivateResponse.deserializeBinaryFromReader);
+      msg.setSnsmakemomentprivateresponse(value);
+      break;
+    case 720:
+      var value = new proto.padlocal.SnsMakeMomentPublicRequest;
+      reader.readMessage(value,proto.padlocal.SnsMakeMomentPublicRequest.deserializeBinaryFromReader);
+      msg.setSnsmakemomentpublicrequest(value);
+      break;
+    case 721:
+      var value = new proto.padlocal.SnsMakeMomentPublicResponse;
+      reader.readMessage(value,proto.padlocal.SnsMakeMomentPublicResponse.deserializeBinaryFromReader);
+      msg.setSnsmakemomentpublicresponse(value);
+      break;
+    case 722:
+      var value = new proto.padlocal.SnsRemoveMomentRequest;
+      reader.readMessage(value,proto.padlocal.SnsRemoveMomentRequest.deserializeBinaryFromReader);
+      msg.setSnsremovemomentrequest(value);
+      break;
+    case 723:
+      var value = new proto.padlocal.SnsRemoveMomentResponse;
+      reader.readMessage(value,proto.padlocal.SnsRemoveMomentResponse.deserializeBinaryFromReader);
+      msg.setSnsremovemomentresponse(value);
       break;
     default:
       reader.skipField();
@@ -3562,7 +3562,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getWechatrequest();
   if (f != null) {
     writer.writeMessage(
-      2,
+      10,
       f,
       proto.padlocal.WeChatRequest.serializeBinaryToWriter
     );
@@ -3570,631 +3570,15 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getWechatresponse();
   if (f != null) {
     writer.writeMessage(
-      3,
-      f,
-      proto.padlocal.WeChatResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkunpackrequest();
-  if (f != null) {
-    writer.writeMessage(
-      4,
-      f,
-      proto.padlocal.LongLinkUnpackRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkunpackresponse();
-  if (f != null) {
-    writer.writeMessage(
-      5,
-      f,
-      proto.padlocal.LongLinkUnpackResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getLoginrequest();
-  if (f != null) {
-    writer.writeMessage(
-      6,
-      f,
-      proto.padlocal.LoginRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getLoginupdateevent();
-  if (f != null) {
-    writer.writeMessage(
-      7,
-      f,
-      proto.padlocal.LoginUpdateEvent.serializeBinaryToWriter
-    );
-  }
-  f = message.getLoginresponse();
-  if (f != null) {
-    writer.writeMessage(
-      8,
-      f,
-      proto.padlocal.LoginResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getLogoutrequest();
-  if (f != null) {
-    writer.writeMessage(
-      9,
-      f,
-      proto.padlocal.LogoutRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getLogoutresponse();
-  if (f != null) {
-    writer.writeMessage(
-      10,
-      f,
-      proto.padlocal.LogoutResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkheartbeatrequest();
-  if (f != null) {
-    writer.writeMessage(
       11,
       f,
-      proto.padlocal.LongLinkHeartBeatRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkheartbeatresponse();
-  if (f != null) {
-    writer.writeMessage(
-      12,
-      f,
-      proto.padlocal.LongLinkHeartBeatResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSendtextmessagerequest();
-  if (f != null) {
-    writer.writeMessage(
-      13,
-      f,
-      proto.padlocal.SendTextMessageRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSendtextmessageresponse();
-  if (f != null) {
-    writer.writeMessage(
-      14,
-      f,
-      proto.padlocal.SendTextMessageResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSendimagemessagerequest();
-  if (f != null) {
-    writer.writeMessage(
-      15,
-      f,
-      proto.padlocal.SendImageMessageRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSendimagemessageresponse();
-  if (f != null) {
-    writer.writeMessage(
-      16,
-      f,
-      proto.padlocal.SendImageMessageResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSendappmessagerequest();
-  if (f != null) {
-    writer.writeMessage(
-      17,
-      f,
-      proto.padlocal.SendAppMessageRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSendappmessageresponse();
-  if (f != null) {
-    writer.writeMessage(
-      18,
-      f,
-      proto.padlocal.SendAppMessageResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getAcceptuserrequest();
-  if (f != null) {
-    writer.writeMessage(
-      19,
-      f,
-      proto.padlocal.AcceptUserRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getAcceptuserresponse();
-  if (f != null) {
-    writer.writeMessage(
-      20,
-      f,
-      proto.padlocal.AcceptUserResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getAddcontactrequest();
-  if (f != null) {
-    writer.writeMessage(
-      21,
-      f,
-      proto.padlocal.AddContactRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getAddcontactresponse();
-  if (f != null) {
-    writer.writeMessage(
-      22,
-      f,
-      proto.padlocal.AddContactResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getDeletecontactrequest();
-  if (f != null) {
-    writer.writeMessage(
-      23,
-      f,
-      proto.padlocal.DeleteContactRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getDeletecontactresponse();
-  if (f != null) {
-    writer.writeMessage(
-      24,
-      f,
-      proto.padlocal.DeleteContactResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetcontactrequest();
-  if (f != null) {
-    writer.writeMessage(
-      25,
-      f,
-      proto.padlocal.GetContactRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetcontactresponse();
-  if (f != null) {
-    writer.writeMessage(
-      26,
-      f,
-      proto.padlocal.GetContactResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetcontactqrcoderequest();
-  if (f != null) {
-    writer.writeMessage(
-      27,
-      f,
-      proto.padlocal.GetContactQRCodeRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetcontactqrcoderesponse();
-  if (f != null) {
-    writer.writeMessage(
-      28,
-      f,
-      proto.padlocal.GetContactQRCodeResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSearchcontactrequest();
-  if (f != null) {
-    writer.writeMessage(
-      29,
-      f,
-      proto.padlocal.SearchContactRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSearchcontactresponse();
-  if (f != null) {
-    writer.writeMessage(
-      30,
-      f,
-      proto.padlocal.SearchContactResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getCreatechatroomrequest();
-  if (f != null) {
-    writer.writeMessage(
-      31,
-      f,
-      proto.padlocal.CreateChatRoomRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getCreatechatroomresponse();
-  if (f != null) {
-    writer.writeMessage(
-      32,
-      f,
-      proto.padlocal.CreateChatRoomResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetchatroommembersrequest();
-  if (f != null) {
-    writer.writeMessage(
-      33,
-      f,
-      proto.padlocal.GetChatRoomMembersRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetchatroommembersresponse();
-  if (f != null) {
-    writer.writeMessage(
-      34,
-      f,
-      proto.padlocal.GetChatRoomMembersResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetchatroomqrcoderequest();
-  if (f != null) {
-    writer.writeMessage(
-      35,
-      f,
-      proto.padlocal.GetChatRoomQrCodeRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetchatroomqrcoderesponse();
-  if (f != null) {
-    writer.writeMessage(
-      36,
-      f,
-      proto.padlocal.GetChatRoomQrCodeResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetchatroommemberrequest();
-  if (f != null) {
-    writer.writeMessage(
-      37,
-      f,
-      proto.padlocal.GetChatRoomMemberRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetchatroommemberresponse();
-  if (f != null) {
-    writer.writeMessage(
-      38,
-      f,
-      proto.padlocal.GetChatRoomMemberResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSetchatroomannouncementrequest();
-  if (f != null) {
-    writer.writeMessage(
-      39,
-      f,
-      proto.padlocal.SetChatRoomAnnouncementRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSetchatroomannouncementresponse();
-  if (f != null) {
-    writer.writeMessage(
-      40,
-      f,
-      proto.padlocal.SetChatRoomAnnouncementResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getAddchatroommemberrequest();
-  if (f != null) {
-    writer.writeMessage(
-      41,
-      f,
-      proto.padlocal.AddChatRoomMemberRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getAddchatroommemberresponse();
-  if (f != null) {
-    writer.writeMessage(
-      42,
-      f,
-      proto.padlocal.AddChatRoomMemberResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getInvitechatroommemberrequest();
-  if (f != null) {
-    writer.writeMessage(
-      43,
-      f,
-      proto.padlocal.InviteChatRoomMemberRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getInvitechatroommemberresponse();
-  if (f != null) {
-    writer.writeMessage(
-      44,
-      f,
-      proto.padlocal.InviteChatRoomMemberResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getDeletechatroommemberrequest();
-  if (f != null) {
-    writer.writeMessage(
-      45,
-      f,
-      proto.padlocal.DeleteChatRoomMemberRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getDeletechatroommemberresponse();
-  if (f != null) {
-    writer.writeMessage(
-      46,
-      f,
-      proto.padlocal.DeleteChatRoomMemberResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSetchatroomnamerequest();
-  if (f != null) {
-    writer.writeMessage(
-      47,
-      f,
-      proto.padlocal.SetChatRoomNameRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSetchatroomnameresponse();
-  if (f != null) {
-    writer.writeMessage(
-      48,
-      f,
-      proto.padlocal.SetChatRoomNameResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnssendmomentrequest();
-  if (f != null) {
-    writer.writeMessage(
-      49,
-      f,
-      proto.padlocal.SnsSendMomentRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnssendmomentresponse();
-  if (f != null) {
-    writer.writeMessage(
-      50,
-      f,
-      proto.padlocal.SnsSendMomentResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsgetuserpagerequest();
-  if (f != null) {
-    writer.writeMessage(
-      51,
-      f,
-      proto.padlocal.SnsGetUserPageRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsgetuserpageresponse();
-  if (f != null) {
-    writer.writeMessage(
-      52,
-      f,
-      proto.padlocal.SnsGetUserPageResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnssendcommentrequest();
-  if (f != null) {
-    writer.writeMessage(
-      53,
-      f,
-      proto.padlocal.SnsSendCommentRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnssendcommentresponse();
-  if (f != null) {
-    writer.writeMessage(
-      54,
-      f,
-      proto.padlocal.SnsSendCommentResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsuploadimagerequest();
-  if (f != null) {
-    writer.writeMessage(
-      55,
-      f,
-      proto.padlocal.SnsUploadImageRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsuploadimageresponse();
-  if (f != null) {
-    writer.writeMessage(
-      56,
-      f,
-      proto.padlocal.SnsUploadImageResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsgettimelinerequest();
-  if (f != null) {
-    writer.writeMessage(
-      57,
-      f,
-      proto.padlocal.SnsGetTimelineRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsgettimelineresponse();
-  if (f != null) {
-    writer.writeMessage(
-      58,
-      f,
-      proto.padlocal.SnsGetTimelineResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsgetmomentrequest();
-  if (f != null) {
-    writer.writeMessage(
-      59,
-      f,
-      proto.padlocal.SnsGetMomentRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsgetmomentresponse();
-  if (f != null) {
-    writer.writeMessage(
-      60,
-      f,
-      proto.padlocal.SnsGetMomentResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnslikemomentrequest();
-  if (f != null) {
-    writer.writeMessage(
-      61,
-      f,
-      proto.padlocal.SnsLikeMomentRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnslikemomentresponse();
-  if (f != null) {
-    writer.writeMessage(
-      62,
-      f,
-      proto.padlocal.SnsLikeMomentResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsunlikemomentrequest();
-  if (f != null) {
-    writer.writeMessage(
-      63,
-      f,
-      proto.padlocal.SnsUnlikeMomentRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsunlikemomentresponse();
-  if (f != null) {
-    writer.writeMessage(
-      64,
-      f,
-      proto.padlocal.SnsUnlikeMomentResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsremovemomentcommentrequest();
-  if (f != null) {
-    writer.writeMessage(
-      65,
-      f,
-      proto.padlocal.SnsRemoveMomentCommentRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsremovemomentcommentresponse();
-  if (f != null) {
-    writer.writeMessage(
-      66,
-      f,
-      proto.padlocal.SnsRemoveMomentCommentResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsmakemomentprivaterequest();
-  if (f != null) {
-    writer.writeMessage(
-      67,
-      f,
-      proto.padlocal.SnsMakeMomentPrivateRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsmakemomentprivateresponse();
-  if (f != null) {
-    writer.writeMessage(
-      68,
-      f,
-      proto.padlocal.SnsMakeMomentPrivateResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsmakemomentpublicrequest();
-  if (f != null) {
-    writer.writeMessage(
-      69,
-      f,
-      proto.padlocal.SnsMakeMomentPublicRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsmakemomentpublicresponse();
-  if (f != null) {
-    writer.writeMessage(
-      70,
-      f,
-      proto.padlocal.SnsMakeMomentPublicResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsremovemomentrequest();
-  if (f != null) {
-    writer.writeMessage(
-      71,
-      f,
-      proto.padlocal.SnsRemoveMomentRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSnsremovemomentresponse();
-  if (f != null) {
-    writer.writeMessage(
-      72,
-      f,
-      proto.padlocal.SnsRemoveMomentResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getAddlabelrequest();
-  if (f != null) {
-    writer.writeMessage(
-      73,
-      f,
-      proto.padlocal.AddLabelRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getAddlabelresponse();
-  if (f != null) {
-    writer.writeMessage(
-      74,
-      f,
-      proto.padlocal.AddLabelResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getRemovelabelrequest();
-  if (f != null) {
-    writer.writeMessage(
-      75,
-      f,
-      proto.padlocal.RemoveLabelRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getRemovelabelresponse();
-  if (f != null) {
-    writer.writeMessage(
-      76,
-      f,
-      proto.padlocal.RemoveLabelResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetlabellistrequest();
-  if (f != null) {
-    writer.writeMessage(
-      77,
-      f,
-      proto.padlocal.GetLabelListRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getGetlabellistresponse();
-  if (f != null) {
-    writer.writeMessage(
-      78,
-      f,
-      proto.padlocal.GetLabelListResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSetcontactlabelrequest();
-  if (f != null) {
-    writer.writeMessage(
-      79,
-      f,
-      proto.padlocal.SetContactLabelRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSetcontactlabelresponse();
-  if (f != null) {
-    writer.writeMessage(
-      80,
-      f,
-      proto.padlocal.SetContactLabelResponse.serializeBinaryToWriter
+      proto.padlocal.WeChatResponse.serializeBinaryToWriter
     );
   }
   f = message.getSystemeventrequest();
   if (f != null) {
     writer.writeMessage(
-      81,
+      12,
       f,
       proto.padlocal.SystemEventRequest.serializeBinaryToWriter
     );
@@ -4202,15 +3586,47 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getSystemeventresponse();
   if (f != null) {
     writer.writeMessage(
-      82,
+      13,
       f,
       proto.padlocal.SystemEventResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkunpackrequest();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      proto.padlocal.LongLinkUnpackRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkunpackresponse();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      proto.padlocal.LongLinkUnpackResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkheartbeatrequest();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      proto.padlocal.LongLinkHeartBeatRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkheartbeatresponse();
+  if (f != null) {
+    writer.writeMessage(
+      17,
+      f,
+      proto.padlocal.LongLinkHeartBeatResponse.serializeBinaryToWriter
     );
   }
   f = message.getSyncrequest();
   if (f != null) {
     writer.writeMessage(
-      83,
+      100,
       f,
       proto.padlocal.SyncRequest.serializeBinaryToWriter
     );
@@ -4218,15 +3634,111 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getSyncresponse();
   if (f != null) {
     writer.writeMessage(
-      84,
+      101,
       f,
       proto.padlocal.SyncResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSyncevent();
+  if (f != null) {
+    writer.writeMessage(
+      102,
+      f,
+      proto.padlocal.SyncEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getLoginrequest();
+  if (f != null) {
+    writer.writeMessage(
+      200,
+      f,
+      proto.padlocal.LoginRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getLoginupdateevent();
+  if (f != null) {
+    writer.writeMessage(
+      201,
+      f,
+      proto.padlocal.LoginUpdateEvent.serializeBinaryToWriter
+    );
+  }
+  f = message.getLoginresponse();
+  if (f != null) {
+    writer.writeMessage(
+      202,
+      f,
+      proto.padlocal.LoginResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLogoutrequest();
+  if (f != null) {
+    writer.writeMessage(
+      203,
+      f,
+      proto.padlocal.LogoutRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getLogoutresponse();
+  if (f != null) {
+    writer.writeMessage(
+      204,
+      f,
+      proto.padlocal.LogoutResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSendtextmessagerequest();
+  if (f != null) {
+    writer.writeMessage(
+      300,
+      f,
+      proto.padlocal.SendTextMessageRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSendtextmessageresponse();
+  if (f != null) {
+    writer.writeMessage(
+      301,
+      f,
+      proto.padlocal.SendTextMessageResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSendimagemessagerequest();
+  if (f != null) {
+    writer.writeMessage(
+      302,
+      f,
+      proto.padlocal.SendImageMessageRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSendimagemessageresponse();
+  if (f != null) {
+    writer.writeMessage(
+      303,
+      f,
+      proto.padlocal.SendImageMessageResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSendappmessagerequest();
+  if (f != null) {
+    writer.writeMessage(
+      304,
+      f,
+      proto.padlocal.SendAppMessageRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSendappmessageresponse();
+  if (f != null) {
+    writer.writeMessage(
+      305,
+      f,
+      proto.padlocal.SendAppMessageResponse.serializeBinaryToWriter
     );
   }
   f = message.getGetmessageimagerequest();
   if (f != null) {
     writer.writeMessage(
-      85,
+      306,
       f,
       proto.padlocal.GetMessageImageRequest.serializeBinaryToWriter
     );
@@ -4234,39 +3746,15 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getGetmessageimageresponse();
   if (f != null) {
     writer.writeMessage(
-      86,
+      307,
       f,
       proto.padlocal.GetMessageImageResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSynccontactrequest();
-  if (f != null) {
-    writer.writeMessage(
-      87,
-      f,
-      proto.padlocal.SyncContactRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSynccontactresponse();
-  if (f != null) {
-    writer.writeMessage(
-      88,
-      f,
-      proto.padlocal.SyncContactResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSyncevent();
-  if (f != null) {
-    writer.writeMessage(
-      89,
-      f,
-      proto.padlocal.SyncEvent.serializeBinaryToWriter
     );
   }
   f = message.getGetmessagevoicerequest();
   if (f != null) {
     writer.writeMessage(
-      90,
+      308,
       f,
       proto.padlocal.GetMessageVoiceRequest.serializeBinaryToWriter
     );
@@ -4274,7 +3762,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getGetmessagevoiceresponse();
   if (f != null) {
     writer.writeMessage(
-      91,
+      309,
       f,
       proto.padlocal.GetMessageVoiceResponse.serializeBinaryToWriter
     );
@@ -4282,7 +3770,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getGetmessagevideothumbrequest();
   if (f != null) {
     writer.writeMessage(
-      92,
+      310,
       f,
       proto.padlocal.GetMessageVideoThumbRequest.serializeBinaryToWriter
     );
@@ -4290,7 +3778,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getGetmessagevideothumbresponse();
   if (f != null) {
     writer.writeMessage(
-      93,
+      311,
       f,
       proto.padlocal.GetMessageVideoThumbResponse.serializeBinaryToWriter
     );
@@ -4298,7 +3786,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getGetmessagevideorequest();
   if (f != null) {
     writer.writeMessage(
-      94,
+      312,
       f,
       proto.padlocal.GetMessageVideoRequest.serializeBinaryToWriter
     );
@@ -4306,7 +3794,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getGetmessagevideoresponse();
   if (f != null) {
     writer.writeMessage(
-      95,
+      313,
       f,
       proto.padlocal.GetMessageVideoResponse.serializeBinaryToWriter
     );
@@ -4314,7 +3802,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getGetmessagefilerequest();
   if (f != null) {
     writer.writeMessage(
-      96,
+      314,
       f,
       proto.padlocal.GetMessageFileRequest.serializeBinaryToWriter
     );
@@ -4322,7 +3810,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getGetmessagefileresponse();
   if (f != null) {
     writer.writeMessage(
-      97,
+      315,
       f,
       proto.padlocal.GetMessageFileResponse.serializeBinaryToWriter
     );
@@ -4330,7 +3818,7 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getForwardmessagerequest();
   if (f != null) {
     writer.writeMessage(
-      98,
+      316,
       f,
       proto.padlocal.ForwardMessageRequest.serializeBinaryToWriter
     );
@@ -4338,9 +3826,521 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getForwardmessageresponse();
   if (f != null) {
     writer.writeMessage(
-      99,
+      317,
       f,
       proto.padlocal.ForwardMessageResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSynccontactrequest();
+  if (f != null) {
+    writer.writeMessage(
+      400,
+      f,
+      proto.padlocal.SyncContactRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSynccontactresponse();
+  if (f != null) {
+    writer.writeMessage(
+      401,
+      f,
+      proto.padlocal.SyncContactResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getAcceptuserrequest();
+  if (f != null) {
+    writer.writeMessage(
+      402,
+      f,
+      proto.padlocal.AcceptUserRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAcceptuserresponse();
+  if (f != null) {
+    writer.writeMessage(
+      403,
+      f,
+      proto.padlocal.AcceptUserResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getAddcontactrequest();
+  if (f != null) {
+    writer.writeMessage(
+      404,
+      f,
+      proto.padlocal.AddContactRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAddcontactresponse();
+  if (f != null) {
+    writer.writeMessage(
+      405,
+      f,
+      proto.padlocal.AddContactResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getDeletecontactrequest();
+  if (f != null) {
+    writer.writeMessage(
+      406,
+      f,
+      proto.padlocal.DeleteContactRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getDeletecontactresponse();
+  if (f != null) {
+    writer.writeMessage(
+      407,
+      f,
+      proto.padlocal.DeleteContactResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetcontactrequest();
+  if (f != null) {
+    writer.writeMessage(
+      408,
+      f,
+      proto.padlocal.GetContactRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetcontactresponse();
+  if (f != null) {
+    writer.writeMessage(
+      409,
+      f,
+      proto.padlocal.GetContactResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetcontactqrcoderequest();
+  if (f != null) {
+    writer.writeMessage(
+      410,
+      f,
+      proto.padlocal.GetContactQRCodeRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetcontactqrcoderesponse();
+  if (f != null) {
+    writer.writeMessage(
+      411,
+      f,
+      proto.padlocal.GetContactQRCodeResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSearchcontactrequest();
+  if (f != null) {
+    writer.writeMessage(
+      412,
+      f,
+      proto.padlocal.SearchContactRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSearchcontactresponse();
+  if (f != null) {
+    writer.writeMessage(
+      413,
+      f,
+      proto.padlocal.SearchContactResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreatechatroomrequest();
+  if (f != null) {
+    writer.writeMessage(
+      500,
+      f,
+      proto.padlocal.CreateChatRoomRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreatechatroomresponse();
+  if (f != null) {
+    writer.writeMessage(
+      501,
+      f,
+      proto.padlocal.CreateChatRoomResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetchatroommembersrequest();
+  if (f != null) {
+    writer.writeMessage(
+      502,
+      f,
+      proto.padlocal.GetChatRoomMembersRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetchatroommembersresponse();
+  if (f != null) {
+    writer.writeMessage(
+      503,
+      f,
+      proto.padlocal.GetChatRoomMembersResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetchatroomqrcoderequest();
+  if (f != null) {
+    writer.writeMessage(
+      504,
+      f,
+      proto.padlocal.GetChatRoomQrCodeRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetchatroomqrcoderesponse();
+  if (f != null) {
+    writer.writeMessage(
+      505,
+      f,
+      proto.padlocal.GetChatRoomQrCodeResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetchatroommemberrequest();
+  if (f != null) {
+    writer.writeMessage(
+      506,
+      f,
+      proto.padlocal.GetChatRoomMemberRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetchatroommemberresponse();
+  if (f != null) {
+    writer.writeMessage(
+      507,
+      f,
+      proto.padlocal.GetChatRoomMemberResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSetchatroomannouncementrequest();
+  if (f != null) {
+    writer.writeMessage(
+      508,
+      f,
+      proto.padlocal.SetChatRoomAnnouncementRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSetchatroomannouncementresponse();
+  if (f != null) {
+    writer.writeMessage(
+      509,
+      f,
+      proto.padlocal.SetChatRoomAnnouncementResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getAddchatroommemberrequest();
+  if (f != null) {
+    writer.writeMessage(
+      510,
+      f,
+      proto.padlocal.AddChatRoomMemberRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAddchatroommemberresponse();
+  if (f != null) {
+    writer.writeMessage(
+      511,
+      f,
+      proto.padlocal.AddChatRoomMemberResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getInvitechatroommemberrequest();
+  if (f != null) {
+    writer.writeMessage(
+      512,
+      f,
+      proto.padlocal.InviteChatRoomMemberRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getInvitechatroommemberresponse();
+  if (f != null) {
+    writer.writeMessage(
+      513,
+      f,
+      proto.padlocal.InviteChatRoomMemberResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getDeletechatroommemberrequest();
+  if (f != null) {
+    writer.writeMessage(
+      514,
+      f,
+      proto.padlocal.DeleteChatRoomMemberRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getDeletechatroommemberresponse();
+  if (f != null) {
+    writer.writeMessage(
+      515,
+      f,
+      proto.padlocal.DeleteChatRoomMemberResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSetchatroomnamerequest();
+  if (f != null) {
+    writer.writeMessage(
+      516,
+      f,
+      proto.padlocal.SetChatRoomNameRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSetchatroomnameresponse();
+  if (f != null) {
+    writer.writeMessage(
+      517,
+      f,
+      proto.padlocal.SetChatRoomNameResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getAddlabelrequest();
+  if (f != null) {
+    writer.writeMessage(
+      600,
+      f,
+      proto.padlocal.AddLabelRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAddlabelresponse();
+  if (f != null) {
+    writer.writeMessage(
+      601,
+      f,
+      proto.padlocal.AddLabelResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getRemovelabelrequest();
+  if (f != null) {
+    writer.writeMessage(
+      602,
+      f,
+      proto.padlocal.RemoveLabelRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getRemovelabelresponse();
+  if (f != null) {
+    writer.writeMessage(
+      603,
+      f,
+      proto.padlocal.RemoveLabelResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetlabellistrequest();
+  if (f != null) {
+    writer.writeMessage(
+      604,
+      f,
+      proto.padlocal.GetLabelListRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getGetlabellistresponse();
+  if (f != null) {
+    writer.writeMessage(
+      605,
+      f,
+      proto.padlocal.GetLabelListResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSetcontactlabelrequest();
+  if (f != null) {
+    writer.writeMessage(
+      606,
+      f,
+      proto.padlocal.SetContactLabelRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSetcontactlabelresponse();
+  if (f != null) {
+    writer.writeMessage(
+      607,
+      f,
+      proto.padlocal.SetContactLabelResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnssendmomentrequest();
+  if (f != null) {
+    writer.writeMessage(
+      700,
+      f,
+      proto.padlocal.SnsSendMomentRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnssendmomentresponse();
+  if (f != null) {
+    writer.writeMessage(
+      701,
+      f,
+      proto.padlocal.SnsSendMomentResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsgetuserpagerequest();
+  if (f != null) {
+    writer.writeMessage(
+      702,
+      f,
+      proto.padlocal.SnsGetUserPageRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsgetuserpageresponse();
+  if (f != null) {
+    writer.writeMessage(
+      703,
+      f,
+      proto.padlocal.SnsGetUserPageResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnssendcommentrequest();
+  if (f != null) {
+    writer.writeMessage(
+      704,
+      f,
+      proto.padlocal.SnsSendCommentRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnssendcommentresponse();
+  if (f != null) {
+    writer.writeMessage(
+      705,
+      f,
+      proto.padlocal.SnsSendCommentResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsuploadimagerequest();
+  if (f != null) {
+    writer.writeMessage(
+      706,
+      f,
+      proto.padlocal.SnsUploadImageRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsuploadimageresponse();
+  if (f != null) {
+    writer.writeMessage(
+      707,
+      f,
+      proto.padlocal.SnsUploadImageResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsgettimelinerequest();
+  if (f != null) {
+    writer.writeMessage(
+      708,
+      f,
+      proto.padlocal.SnsGetTimelineRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsgettimelineresponse();
+  if (f != null) {
+    writer.writeMessage(
+      709,
+      f,
+      proto.padlocal.SnsGetTimelineResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsgetmomentrequest();
+  if (f != null) {
+    writer.writeMessage(
+      710,
+      f,
+      proto.padlocal.SnsGetMomentRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsgetmomentresponse();
+  if (f != null) {
+    writer.writeMessage(
+      711,
+      f,
+      proto.padlocal.SnsGetMomentResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnslikemomentrequest();
+  if (f != null) {
+    writer.writeMessage(
+      712,
+      f,
+      proto.padlocal.SnsLikeMomentRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnslikemomentresponse();
+  if (f != null) {
+    writer.writeMessage(
+      713,
+      f,
+      proto.padlocal.SnsLikeMomentResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsunlikemomentrequest();
+  if (f != null) {
+    writer.writeMessage(
+      714,
+      f,
+      proto.padlocal.SnsUnlikeMomentRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsunlikemomentresponse();
+  if (f != null) {
+    writer.writeMessage(
+      715,
+      f,
+      proto.padlocal.SnsUnlikeMomentResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsremovemomentcommentrequest();
+  if (f != null) {
+    writer.writeMessage(
+      716,
+      f,
+      proto.padlocal.SnsRemoveMomentCommentRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsremovemomentcommentresponse();
+  if (f != null) {
+    writer.writeMessage(
+      717,
+      f,
+      proto.padlocal.SnsRemoveMomentCommentResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsmakemomentprivaterequest();
+  if (f != null) {
+    writer.writeMessage(
+      718,
+      f,
+      proto.padlocal.SnsMakeMomentPrivateRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsmakemomentprivateresponse();
+  if (f != null) {
+    writer.writeMessage(
+      719,
+      f,
+      proto.padlocal.SnsMakeMomentPrivateResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsmakemomentpublicrequest();
+  if (f != null) {
+    writer.writeMessage(
+      720,
+      f,
+      proto.padlocal.SnsMakeMomentPublicRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsmakemomentpublicresponse();
+  if (f != null) {
+    writer.writeMessage(
+      721,
+      f,
+      proto.padlocal.SnsMakeMomentPublicResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsremovemomentrequest();
+  if (f != null) {
+    writer.writeMessage(
+      722,
+      f,
+      proto.padlocal.SnsRemoveMomentRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSnsremovemomentresponse();
+  if (f != null) {
+    writer.writeMessage(
+      723,
+      f,
+      proto.padlocal.SnsRemoveMomentResponse.serializeBinaryToWriter
     );
   }
 };
@@ -4384,12 +4384,12 @@ proto.padlocal.ActionMessage.prototype.hasHeader = function() {
 
 
 /**
- * optional WeChatRequest wechatRequest = 2;
+ * optional WeChatRequest wechatRequest = 10;
  * @return {?proto.padlocal.WeChatRequest}
  */
 proto.padlocal.ActionMessage.prototype.getWechatrequest = function() {
   return /** @type{?proto.padlocal.WeChatRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatRequest, 2));
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatRequest, 10));
 };
 
 
@@ -4398,7 +4398,7 @@ proto.padlocal.ActionMessage.prototype.getWechatrequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setWechatrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -4416,17 +4416,17 @@ proto.padlocal.ActionMessage.prototype.clearWechatrequest = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasWechatrequest = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional WeChatResponse wechatResponse = 3;
+ * optional WeChatResponse wechatResponse = 11;
  * @return {?proto.padlocal.WeChatResponse}
  */
 proto.padlocal.ActionMessage.prototype.getWechatresponse = function() {
   return /** @type{?proto.padlocal.WeChatResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatResponse, 3));
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatResponse, 11));
 };
 
 
@@ -4435,7 +4435,7 @@ proto.padlocal.ActionMessage.prototype.getWechatresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setWechatresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 11, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -4453,2866 +4453,17 @@ proto.padlocal.ActionMessage.prototype.clearWechatresponse = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasWechatresponse = function() {
-  return jspb.Message.getField(this, 3) != null;
-};
-
-
-/**
- * optional LongLinkUnpackRequest longLinkUnpackRequest = 4;
- * @return {?proto.padlocal.LongLinkUnpackRequest}
- */
-proto.padlocal.ActionMessage.prototype.getLonglinkunpackrequest = function() {
-  return /** @type{?proto.padlocal.LongLinkUnpackRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkUnpackRequest, 4));
-};
-
-
-/**
- * @param {?proto.padlocal.LongLinkUnpackRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLonglinkunpackrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 4, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLonglinkunpackrequest = function() {
-  return this.setLonglinkunpackrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLonglinkunpackrequest = function() {
-  return jspb.Message.getField(this, 4) != null;
-};
-
-
-/**
- * optional LongLinkUnpackResponse longLinkUnpackResponse = 5;
- * @return {?proto.padlocal.LongLinkUnpackResponse}
- */
-proto.padlocal.ActionMessage.prototype.getLonglinkunpackresponse = function() {
-  return /** @type{?proto.padlocal.LongLinkUnpackResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkUnpackResponse, 5));
-};
-
-
-/**
- * @param {?proto.padlocal.LongLinkUnpackResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLonglinkunpackresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 5, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLonglinkunpackresponse = function() {
-  return this.setLonglinkunpackresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLonglinkunpackresponse = function() {
-  return jspb.Message.getField(this, 5) != null;
-};
-
-
-/**
- * optional LoginRequest loginRequest = 6;
- * @return {?proto.padlocal.LoginRequest}
- */
-proto.padlocal.ActionMessage.prototype.getLoginrequest = function() {
-  return /** @type{?proto.padlocal.LoginRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LoginRequest, 6));
-};
-
-
-/**
- * @param {?proto.padlocal.LoginRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLoginrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 6, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLoginrequest = function() {
-  return this.setLoginrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLoginrequest = function() {
-  return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional LoginUpdateEvent loginUpdateEvent = 7;
- * @return {?proto.padlocal.LoginUpdateEvent}
- */
-proto.padlocal.ActionMessage.prototype.getLoginupdateevent = function() {
-  return /** @type{?proto.padlocal.LoginUpdateEvent} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LoginUpdateEvent, 7));
-};
-
-
-/**
- * @param {?proto.padlocal.LoginUpdateEvent|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLoginupdateevent = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 7, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLoginupdateevent = function() {
-  return this.setLoginupdateevent(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLoginupdateevent = function() {
-  return jspb.Message.getField(this, 7) != null;
-};
-
-
-/**
- * optional LoginResponse loginResponse = 8;
- * @return {?proto.padlocal.LoginResponse}
- */
-proto.padlocal.ActionMessage.prototype.getLoginresponse = function() {
-  return /** @type{?proto.padlocal.LoginResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LoginResponse, 8));
-};
-
-
-/**
- * @param {?proto.padlocal.LoginResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLoginresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 8, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLoginresponse = function() {
-  return this.setLoginresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLoginresponse = function() {
-  return jspb.Message.getField(this, 8) != null;
-};
-
-
-/**
- * optional LogoutRequest logoutRequest = 9;
- * @return {?proto.padlocal.LogoutRequest}
- */
-proto.padlocal.ActionMessage.prototype.getLogoutrequest = function() {
-  return /** @type{?proto.padlocal.LogoutRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LogoutRequest, 9));
-};
-
-
-/**
- * @param {?proto.padlocal.LogoutRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLogoutrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 9, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLogoutrequest = function() {
-  return this.setLogoutrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLogoutrequest = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * optional LogoutResponse logoutResponse = 10;
- * @return {?proto.padlocal.LogoutResponse}
- */
-proto.padlocal.ActionMessage.prototype.getLogoutresponse = function() {
-  return /** @type{?proto.padlocal.LogoutResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LogoutResponse, 10));
-};
-
-
-/**
- * @param {?proto.padlocal.LogoutResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLogoutresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLogoutresponse = function() {
-  return this.setLogoutresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLogoutresponse = function() {
-  return jspb.Message.getField(this, 10) != null;
-};
-
-
-/**
- * optional LongLinkHeartBeatRequest longLinkHeartBeatRequest = 11;
- * @return {?proto.padlocal.LongLinkHeartBeatRequest}
- */
-proto.padlocal.ActionMessage.prototype.getLonglinkheartbeatrequest = function() {
-  return /** @type{?proto.padlocal.LongLinkHeartBeatRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkHeartBeatRequest, 11));
-};
-
-
-/**
- * @param {?proto.padlocal.LongLinkHeartBeatRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLonglinkheartbeatrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 11, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLonglinkheartbeatrequest = function() {
-  return this.setLonglinkheartbeatrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLonglinkheartbeatrequest = function() {
   return jspb.Message.getField(this, 11) != null;
 };
 
 
 /**
- * optional LongLinkHeartBeatResponse longLinkHeartBeatResponse = 12;
- * @return {?proto.padlocal.LongLinkHeartBeatResponse}
- */
-proto.padlocal.ActionMessage.prototype.getLonglinkheartbeatresponse = function() {
-  return /** @type{?proto.padlocal.LongLinkHeartBeatResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkHeartBeatResponse, 12));
-};
-
-
-/**
- * @param {?proto.padlocal.LongLinkHeartBeatResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLonglinkheartbeatresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 12, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLonglinkheartbeatresponse = function() {
-  return this.setLonglinkheartbeatresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLonglinkheartbeatresponse = function() {
-  return jspb.Message.getField(this, 12) != null;
-};
-
-
-/**
- * optional SendTextMessageRequest sendTextMessageRequest = 13;
- * @return {?proto.padlocal.SendTextMessageRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSendtextmessagerequest = function() {
-  return /** @type{?proto.padlocal.SendTextMessageRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SendTextMessageRequest, 13));
-};
-
-
-/**
- * @param {?proto.padlocal.SendTextMessageRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSendtextmessagerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 13, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSendtextmessagerequest = function() {
-  return this.setSendtextmessagerequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSendtextmessagerequest = function() {
-  return jspb.Message.getField(this, 13) != null;
-};
-
-
-/**
- * optional SendTextMessageResponse sendTextMessageResponse = 14;
- * @return {?proto.padlocal.SendTextMessageResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSendtextmessageresponse = function() {
-  return /** @type{?proto.padlocal.SendTextMessageResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SendTextMessageResponse, 14));
-};
-
-
-/**
- * @param {?proto.padlocal.SendTextMessageResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSendtextmessageresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 14, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSendtextmessageresponse = function() {
-  return this.setSendtextmessageresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSendtextmessageresponse = function() {
-  return jspb.Message.getField(this, 14) != null;
-};
-
-
-/**
- * optional SendImageMessageRequest sendImageMessageRequest = 15;
- * @return {?proto.padlocal.SendImageMessageRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSendimagemessagerequest = function() {
-  return /** @type{?proto.padlocal.SendImageMessageRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SendImageMessageRequest, 15));
-};
-
-
-/**
- * @param {?proto.padlocal.SendImageMessageRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSendimagemessagerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 15, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSendimagemessagerequest = function() {
-  return this.setSendimagemessagerequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSendimagemessagerequest = function() {
-  return jspb.Message.getField(this, 15) != null;
-};
-
-
-/**
- * optional SendImageMessageResponse sendImageMessageResponse = 16;
- * @return {?proto.padlocal.SendImageMessageResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSendimagemessageresponse = function() {
-  return /** @type{?proto.padlocal.SendImageMessageResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SendImageMessageResponse, 16));
-};
-
-
-/**
- * @param {?proto.padlocal.SendImageMessageResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSendimagemessageresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 16, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSendimagemessageresponse = function() {
-  return this.setSendimagemessageresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSendimagemessageresponse = function() {
-  return jspb.Message.getField(this, 16) != null;
-};
-
-
-/**
- * optional SendAppMessageRequest sendAppMessageRequest = 17;
- * @return {?proto.padlocal.SendAppMessageRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSendappmessagerequest = function() {
-  return /** @type{?proto.padlocal.SendAppMessageRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SendAppMessageRequest, 17));
-};
-
-
-/**
- * @param {?proto.padlocal.SendAppMessageRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSendappmessagerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 17, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSendappmessagerequest = function() {
-  return this.setSendappmessagerequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSendappmessagerequest = function() {
-  return jspb.Message.getField(this, 17) != null;
-};
-
-
-/**
- * optional SendAppMessageResponse sendAppMessageResponse = 18;
- * @return {?proto.padlocal.SendAppMessageResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSendappmessageresponse = function() {
-  return /** @type{?proto.padlocal.SendAppMessageResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SendAppMessageResponse, 18));
-};
-
-
-/**
- * @param {?proto.padlocal.SendAppMessageResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSendappmessageresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 18, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSendappmessageresponse = function() {
-  return this.setSendappmessageresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSendappmessageresponse = function() {
-  return jspb.Message.getField(this, 18) != null;
-};
-
-
-/**
- * optional AcceptUserRequest acceptUserRequest = 19;
- * @return {?proto.padlocal.AcceptUserRequest}
- */
-proto.padlocal.ActionMessage.prototype.getAcceptuserrequest = function() {
-  return /** @type{?proto.padlocal.AcceptUserRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.AcceptUserRequest, 19));
-};
-
-
-/**
- * @param {?proto.padlocal.AcceptUserRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setAcceptuserrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 19, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearAcceptuserrequest = function() {
-  return this.setAcceptuserrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasAcceptuserrequest = function() {
-  return jspb.Message.getField(this, 19) != null;
-};
-
-
-/**
- * optional AcceptUserResponse acceptUserResponse = 20;
- * @return {?proto.padlocal.AcceptUserResponse}
- */
-proto.padlocal.ActionMessage.prototype.getAcceptuserresponse = function() {
-  return /** @type{?proto.padlocal.AcceptUserResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.AcceptUserResponse, 20));
-};
-
-
-/**
- * @param {?proto.padlocal.AcceptUserResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setAcceptuserresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 20, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearAcceptuserresponse = function() {
-  return this.setAcceptuserresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasAcceptuserresponse = function() {
-  return jspb.Message.getField(this, 20) != null;
-};
-
-
-/**
- * optional AddContactRequest addContactRequest = 21;
- * @return {?proto.padlocal.AddContactRequest}
- */
-proto.padlocal.ActionMessage.prototype.getAddcontactrequest = function() {
-  return /** @type{?proto.padlocal.AddContactRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.AddContactRequest, 21));
-};
-
-
-/**
- * @param {?proto.padlocal.AddContactRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setAddcontactrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 21, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearAddcontactrequest = function() {
-  return this.setAddcontactrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasAddcontactrequest = function() {
-  return jspb.Message.getField(this, 21) != null;
-};
-
-
-/**
- * optional AddContactResponse addContactResponse = 22;
- * @return {?proto.padlocal.AddContactResponse}
- */
-proto.padlocal.ActionMessage.prototype.getAddcontactresponse = function() {
-  return /** @type{?proto.padlocal.AddContactResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.AddContactResponse, 22));
-};
-
-
-/**
- * @param {?proto.padlocal.AddContactResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setAddcontactresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 22, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearAddcontactresponse = function() {
-  return this.setAddcontactresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasAddcontactresponse = function() {
-  return jspb.Message.getField(this, 22) != null;
-};
-
-
-/**
- * optional DeleteContactRequest deleteContactRequest = 23;
- * @return {?proto.padlocal.DeleteContactRequest}
- */
-proto.padlocal.ActionMessage.prototype.getDeletecontactrequest = function() {
-  return /** @type{?proto.padlocal.DeleteContactRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.DeleteContactRequest, 23));
-};
-
-
-/**
- * @param {?proto.padlocal.DeleteContactRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setDeletecontactrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 23, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearDeletecontactrequest = function() {
-  return this.setDeletecontactrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasDeletecontactrequest = function() {
-  return jspb.Message.getField(this, 23) != null;
-};
-
-
-/**
- * optional DeleteContactResponse deleteContactResponse = 24;
- * @return {?proto.padlocal.DeleteContactResponse}
- */
-proto.padlocal.ActionMessage.prototype.getDeletecontactresponse = function() {
-  return /** @type{?proto.padlocal.DeleteContactResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.DeleteContactResponse, 24));
-};
-
-
-/**
- * @param {?proto.padlocal.DeleteContactResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setDeletecontactresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 24, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearDeletecontactresponse = function() {
-  return this.setDeletecontactresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasDeletecontactresponse = function() {
-  return jspb.Message.getField(this, 24) != null;
-};
-
-
-/**
- * optional GetContactRequest getContactRequest = 25;
- * @return {?proto.padlocal.GetContactRequest}
- */
-proto.padlocal.ActionMessage.prototype.getGetcontactrequest = function() {
-  return /** @type{?proto.padlocal.GetContactRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetContactRequest, 25));
-};
-
-
-/**
- * @param {?proto.padlocal.GetContactRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetcontactrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 25, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetcontactrequest = function() {
-  return this.setGetcontactrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetcontactrequest = function() {
-  return jspb.Message.getField(this, 25) != null;
-};
-
-
-/**
- * optional GetContactResponse getContactResponse = 26;
- * @return {?proto.padlocal.GetContactResponse}
- */
-proto.padlocal.ActionMessage.prototype.getGetcontactresponse = function() {
-  return /** @type{?proto.padlocal.GetContactResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetContactResponse, 26));
-};
-
-
-/**
- * @param {?proto.padlocal.GetContactResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetcontactresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 26, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetcontactresponse = function() {
-  return this.setGetcontactresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetcontactresponse = function() {
-  return jspb.Message.getField(this, 26) != null;
-};
-
-
-/**
- * optional GetContactQRCodeRequest getContactQRCodeRequest = 27;
- * @return {?proto.padlocal.GetContactQRCodeRequest}
- */
-proto.padlocal.ActionMessage.prototype.getGetcontactqrcoderequest = function() {
-  return /** @type{?proto.padlocal.GetContactQRCodeRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetContactQRCodeRequest, 27));
-};
-
-
-/**
- * @param {?proto.padlocal.GetContactQRCodeRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetcontactqrcoderequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 27, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetcontactqrcoderequest = function() {
-  return this.setGetcontactqrcoderequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetcontactqrcoderequest = function() {
-  return jspb.Message.getField(this, 27) != null;
-};
-
-
-/**
- * optional GetContactQRCodeResponse getContactQRCodeResponse = 28;
- * @return {?proto.padlocal.GetContactQRCodeResponse}
- */
-proto.padlocal.ActionMessage.prototype.getGetcontactqrcoderesponse = function() {
-  return /** @type{?proto.padlocal.GetContactQRCodeResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetContactQRCodeResponse, 28));
-};
-
-
-/**
- * @param {?proto.padlocal.GetContactQRCodeResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetcontactqrcoderesponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 28, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetcontactqrcoderesponse = function() {
-  return this.setGetcontactqrcoderesponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetcontactqrcoderesponse = function() {
-  return jspb.Message.getField(this, 28) != null;
-};
-
-
-/**
- * optional SearchContactRequest searchContactRequest = 29;
- * @return {?proto.padlocal.SearchContactRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSearchcontactrequest = function() {
-  return /** @type{?proto.padlocal.SearchContactRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SearchContactRequest, 29));
-};
-
-
-/**
- * @param {?proto.padlocal.SearchContactRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSearchcontactrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 29, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSearchcontactrequest = function() {
-  return this.setSearchcontactrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSearchcontactrequest = function() {
-  return jspb.Message.getField(this, 29) != null;
-};
-
-
-/**
- * optional SearchContactResponse searchContactResponse = 30;
- * @return {?proto.padlocal.SearchContactResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSearchcontactresponse = function() {
-  return /** @type{?proto.padlocal.SearchContactResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SearchContactResponse, 30));
-};
-
-
-/**
- * @param {?proto.padlocal.SearchContactResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSearchcontactresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 30, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSearchcontactresponse = function() {
-  return this.setSearchcontactresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSearchcontactresponse = function() {
-  return jspb.Message.getField(this, 30) != null;
-};
-
-
-/**
- * optional CreateChatRoomRequest createChatRoomRequest = 31;
- * @return {?proto.padlocal.CreateChatRoomRequest}
- */
-proto.padlocal.ActionMessage.prototype.getCreatechatroomrequest = function() {
-  return /** @type{?proto.padlocal.CreateChatRoomRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.CreateChatRoomRequest, 31));
-};
-
-
-/**
- * @param {?proto.padlocal.CreateChatRoomRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setCreatechatroomrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 31, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearCreatechatroomrequest = function() {
-  return this.setCreatechatroomrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasCreatechatroomrequest = function() {
-  return jspb.Message.getField(this, 31) != null;
-};
-
-
-/**
- * optional CreateChatRoomResponse createChatRoomResponse = 32;
- * @return {?proto.padlocal.CreateChatRoomResponse}
- */
-proto.padlocal.ActionMessage.prototype.getCreatechatroomresponse = function() {
-  return /** @type{?proto.padlocal.CreateChatRoomResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.CreateChatRoomResponse, 32));
-};
-
-
-/**
- * @param {?proto.padlocal.CreateChatRoomResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setCreatechatroomresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 32, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearCreatechatroomresponse = function() {
-  return this.setCreatechatroomresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasCreatechatroomresponse = function() {
-  return jspb.Message.getField(this, 32) != null;
-};
-
-
-/**
- * optional GetChatRoomMembersRequest getChatRoomMembersRequest = 33;
- * @return {?proto.padlocal.GetChatRoomMembersRequest}
- */
-proto.padlocal.ActionMessage.prototype.getGetchatroommembersrequest = function() {
-  return /** @type{?proto.padlocal.GetChatRoomMembersRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomMembersRequest, 33));
-};
-
-
-/**
- * @param {?proto.padlocal.GetChatRoomMembersRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetchatroommembersrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 33, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetchatroommembersrequest = function() {
-  return this.setGetchatroommembersrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetchatroommembersrequest = function() {
-  return jspb.Message.getField(this, 33) != null;
-};
-
-
-/**
- * optional GetChatRoomMembersResponse getChatRoomMembersResponse = 34;
- * @return {?proto.padlocal.GetChatRoomMembersResponse}
- */
-proto.padlocal.ActionMessage.prototype.getGetchatroommembersresponse = function() {
-  return /** @type{?proto.padlocal.GetChatRoomMembersResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomMembersResponse, 34));
-};
-
-
-/**
- * @param {?proto.padlocal.GetChatRoomMembersResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetchatroommembersresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 34, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetchatroommembersresponse = function() {
-  return this.setGetchatroommembersresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetchatroommembersresponse = function() {
-  return jspb.Message.getField(this, 34) != null;
-};
-
-
-/**
- * optional GetChatRoomQrCodeRequest getChatRoomQrCodeRequest = 35;
- * @return {?proto.padlocal.GetChatRoomQrCodeRequest}
- */
-proto.padlocal.ActionMessage.prototype.getGetchatroomqrcoderequest = function() {
-  return /** @type{?proto.padlocal.GetChatRoomQrCodeRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomQrCodeRequest, 35));
-};
-
-
-/**
- * @param {?proto.padlocal.GetChatRoomQrCodeRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetchatroomqrcoderequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 35, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetchatroomqrcoderequest = function() {
-  return this.setGetchatroomqrcoderequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetchatroomqrcoderequest = function() {
-  return jspb.Message.getField(this, 35) != null;
-};
-
-
-/**
- * optional GetChatRoomQrCodeResponse getChatRoomQrCodeResponse = 36;
- * @return {?proto.padlocal.GetChatRoomQrCodeResponse}
- */
-proto.padlocal.ActionMessage.prototype.getGetchatroomqrcoderesponse = function() {
-  return /** @type{?proto.padlocal.GetChatRoomQrCodeResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomQrCodeResponse, 36));
-};
-
-
-/**
- * @param {?proto.padlocal.GetChatRoomQrCodeResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetchatroomqrcoderesponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 36, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetchatroomqrcoderesponse = function() {
-  return this.setGetchatroomqrcoderesponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetchatroomqrcoderesponse = function() {
-  return jspb.Message.getField(this, 36) != null;
-};
-
-
-/**
- * optional GetChatRoomMemberRequest getChatRoomMemberRequest = 37;
- * @return {?proto.padlocal.GetChatRoomMemberRequest}
- */
-proto.padlocal.ActionMessage.prototype.getGetchatroommemberrequest = function() {
-  return /** @type{?proto.padlocal.GetChatRoomMemberRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomMemberRequest, 37));
-};
-
-
-/**
- * @param {?proto.padlocal.GetChatRoomMemberRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetchatroommemberrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 37, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetchatroommemberrequest = function() {
-  return this.setGetchatroommemberrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetchatroommemberrequest = function() {
-  return jspb.Message.getField(this, 37) != null;
-};
-
-
-/**
- * optional GetChatRoomMemberResponse getChatRoomMemberResponse = 38;
- * @return {?proto.padlocal.GetChatRoomMemberResponse}
- */
-proto.padlocal.ActionMessage.prototype.getGetchatroommemberresponse = function() {
-  return /** @type{?proto.padlocal.GetChatRoomMemberResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomMemberResponse, 38));
-};
-
-
-/**
- * @param {?proto.padlocal.GetChatRoomMemberResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetchatroommemberresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 38, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetchatroommemberresponse = function() {
-  return this.setGetchatroommemberresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetchatroommemberresponse = function() {
-  return jspb.Message.getField(this, 38) != null;
-};
-
-
-/**
- * optional SetChatRoomAnnouncementRequest setChatRoomAnnouncementRequest = 39;
- * @return {?proto.padlocal.SetChatRoomAnnouncementRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSetchatroomannouncementrequest = function() {
-  return /** @type{?proto.padlocal.SetChatRoomAnnouncementRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SetChatRoomAnnouncementRequest, 39));
-};
-
-
-/**
- * @param {?proto.padlocal.SetChatRoomAnnouncementRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSetchatroomannouncementrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 39, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSetchatroomannouncementrequest = function() {
-  return this.setSetchatroomannouncementrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSetchatroomannouncementrequest = function() {
-  return jspb.Message.getField(this, 39) != null;
-};
-
-
-/**
- * optional SetChatRoomAnnouncementResponse setChatRoomAnnouncementResponse = 40;
- * @return {?proto.padlocal.SetChatRoomAnnouncementResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSetchatroomannouncementresponse = function() {
-  return /** @type{?proto.padlocal.SetChatRoomAnnouncementResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SetChatRoomAnnouncementResponse, 40));
-};
-
-
-/**
- * @param {?proto.padlocal.SetChatRoomAnnouncementResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSetchatroomannouncementresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 40, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSetchatroomannouncementresponse = function() {
-  return this.setSetchatroomannouncementresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSetchatroomannouncementresponse = function() {
-  return jspb.Message.getField(this, 40) != null;
-};
-
-
-/**
- * optional AddChatRoomMemberRequest addChatRoomMemberRequest = 41;
- * @return {?proto.padlocal.AddChatRoomMemberRequest}
- */
-proto.padlocal.ActionMessage.prototype.getAddchatroommemberrequest = function() {
-  return /** @type{?proto.padlocal.AddChatRoomMemberRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.AddChatRoomMemberRequest, 41));
-};
-
-
-/**
- * @param {?proto.padlocal.AddChatRoomMemberRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setAddchatroommemberrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 41, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearAddchatroommemberrequest = function() {
-  return this.setAddchatroommemberrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasAddchatroommemberrequest = function() {
-  return jspb.Message.getField(this, 41) != null;
-};
-
-
-/**
- * optional AddChatRoomMemberResponse addChatRoomMemberResponse = 42;
- * @return {?proto.padlocal.AddChatRoomMemberResponse}
- */
-proto.padlocal.ActionMessage.prototype.getAddchatroommemberresponse = function() {
-  return /** @type{?proto.padlocal.AddChatRoomMemberResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.AddChatRoomMemberResponse, 42));
-};
-
-
-/**
- * @param {?proto.padlocal.AddChatRoomMemberResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setAddchatroommemberresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 42, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearAddchatroommemberresponse = function() {
-  return this.setAddchatroommemberresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasAddchatroommemberresponse = function() {
-  return jspb.Message.getField(this, 42) != null;
-};
-
-
-/**
- * optional InviteChatRoomMemberRequest inviteChatRoomMemberRequest = 43;
- * @return {?proto.padlocal.InviteChatRoomMemberRequest}
- */
-proto.padlocal.ActionMessage.prototype.getInvitechatroommemberrequest = function() {
-  return /** @type{?proto.padlocal.InviteChatRoomMemberRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.InviteChatRoomMemberRequest, 43));
-};
-
-
-/**
- * @param {?proto.padlocal.InviteChatRoomMemberRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setInvitechatroommemberrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 43, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearInvitechatroommemberrequest = function() {
-  return this.setInvitechatroommemberrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasInvitechatroommemberrequest = function() {
-  return jspb.Message.getField(this, 43) != null;
-};
-
-
-/**
- * optional InviteChatRoomMemberResponse inviteChatRoomMemberResponse = 44;
- * @return {?proto.padlocal.InviteChatRoomMemberResponse}
- */
-proto.padlocal.ActionMessage.prototype.getInvitechatroommemberresponse = function() {
-  return /** @type{?proto.padlocal.InviteChatRoomMemberResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.InviteChatRoomMemberResponse, 44));
-};
-
-
-/**
- * @param {?proto.padlocal.InviteChatRoomMemberResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setInvitechatroommemberresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 44, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearInvitechatroommemberresponse = function() {
-  return this.setInvitechatroommemberresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasInvitechatroommemberresponse = function() {
-  return jspb.Message.getField(this, 44) != null;
-};
-
-
-/**
- * optional DeleteChatRoomMemberRequest deleteChatRoomMemberRequest = 45;
- * @return {?proto.padlocal.DeleteChatRoomMemberRequest}
- */
-proto.padlocal.ActionMessage.prototype.getDeletechatroommemberrequest = function() {
-  return /** @type{?proto.padlocal.DeleteChatRoomMemberRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.DeleteChatRoomMemberRequest, 45));
-};
-
-
-/**
- * @param {?proto.padlocal.DeleteChatRoomMemberRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setDeletechatroommemberrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 45, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearDeletechatroommemberrequest = function() {
-  return this.setDeletechatroommemberrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasDeletechatroommemberrequest = function() {
-  return jspb.Message.getField(this, 45) != null;
-};
-
-
-/**
- * optional DeleteChatRoomMemberResponse deleteChatRoomMemberResponse = 46;
- * @return {?proto.padlocal.DeleteChatRoomMemberResponse}
- */
-proto.padlocal.ActionMessage.prototype.getDeletechatroommemberresponse = function() {
-  return /** @type{?proto.padlocal.DeleteChatRoomMemberResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.DeleteChatRoomMemberResponse, 46));
-};
-
-
-/**
- * @param {?proto.padlocal.DeleteChatRoomMemberResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setDeletechatroommemberresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 46, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearDeletechatroommemberresponse = function() {
-  return this.setDeletechatroommemberresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasDeletechatroommemberresponse = function() {
-  return jspb.Message.getField(this, 46) != null;
-};
-
-
-/**
- * optional SetChatRoomNameRequest setChatRoomNameRequest = 47;
- * @return {?proto.padlocal.SetChatRoomNameRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSetchatroomnamerequest = function() {
-  return /** @type{?proto.padlocal.SetChatRoomNameRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SetChatRoomNameRequest, 47));
-};
-
-
-/**
- * @param {?proto.padlocal.SetChatRoomNameRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSetchatroomnamerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 47, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSetchatroomnamerequest = function() {
-  return this.setSetchatroomnamerequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSetchatroomnamerequest = function() {
-  return jspb.Message.getField(this, 47) != null;
-};
-
-
-/**
- * optional SetChatRoomNameResponse setChatRoomNameResponse = 48;
- * @return {?proto.padlocal.SetChatRoomNameResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSetchatroomnameresponse = function() {
-  return /** @type{?proto.padlocal.SetChatRoomNameResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SetChatRoomNameResponse, 48));
-};
-
-
-/**
- * @param {?proto.padlocal.SetChatRoomNameResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSetchatroomnameresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 48, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSetchatroomnameresponse = function() {
-  return this.setSetchatroomnameresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSetchatroomnameresponse = function() {
-  return jspb.Message.getField(this, 48) != null;
-};
-
-
-/**
- * optional SnsSendMomentRequest snsSendMomentRequest = 49;
- * @return {?proto.padlocal.SnsSendMomentRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnssendmomentrequest = function() {
-  return /** @type{?proto.padlocal.SnsSendMomentRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsSendMomentRequest, 49));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsSendMomentRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnssendmomentrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 49, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnssendmomentrequest = function() {
-  return this.setSnssendmomentrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnssendmomentrequest = function() {
-  return jspb.Message.getField(this, 49) != null;
-};
-
-
-/**
- * optional SnsSendMomentResponse snsSendMomentResponse = 50;
- * @return {?proto.padlocal.SnsSendMomentResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnssendmomentresponse = function() {
-  return /** @type{?proto.padlocal.SnsSendMomentResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsSendMomentResponse, 50));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsSendMomentResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnssendmomentresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 50, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnssendmomentresponse = function() {
-  return this.setSnssendmomentresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnssendmomentresponse = function() {
-  return jspb.Message.getField(this, 50) != null;
-};
-
-
-/**
- * optional SnsGetUserPageRequest snsGetUserPageRequest = 51;
- * @return {?proto.padlocal.SnsGetUserPageRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsgetuserpagerequest = function() {
-  return /** @type{?proto.padlocal.SnsGetUserPageRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetUserPageRequest, 51));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsGetUserPageRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsgetuserpagerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 51, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsgetuserpagerequest = function() {
-  return this.setSnsgetuserpagerequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsgetuserpagerequest = function() {
-  return jspb.Message.getField(this, 51) != null;
-};
-
-
-/**
- * optional SnsGetUserPageResponse snsGetUserPageResponse = 52;
- * @return {?proto.padlocal.SnsGetUserPageResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsgetuserpageresponse = function() {
-  return /** @type{?proto.padlocal.SnsGetUserPageResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetUserPageResponse, 52));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsGetUserPageResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsgetuserpageresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 52, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsgetuserpageresponse = function() {
-  return this.setSnsgetuserpageresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsgetuserpageresponse = function() {
-  return jspb.Message.getField(this, 52) != null;
-};
-
-
-/**
- * optional SnsSendCommentRequest snsSendCommentRequest = 53;
- * @return {?proto.padlocal.SnsSendCommentRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnssendcommentrequest = function() {
-  return /** @type{?proto.padlocal.SnsSendCommentRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsSendCommentRequest, 53));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsSendCommentRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnssendcommentrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 53, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnssendcommentrequest = function() {
-  return this.setSnssendcommentrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnssendcommentrequest = function() {
-  return jspb.Message.getField(this, 53) != null;
-};
-
-
-/**
- * optional SnsSendCommentResponse snsSendCommentResponse = 54;
- * @return {?proto.padlocal.SnsSendCommentResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnssendcommentresponse = function() {
-  return /** @type{?proto.padlocal.SnsSendCommentResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsSendCommentResponse, 54));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsSendCommentResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnssendcommentresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 54, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnssendcommentresponse = function() {
-  return this.setSnssendcommentresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnssendcommentresponse = function() {
-  return jspb.Message.getField(this, 54) != null;
-};
-
-
-/**
- * optional SnsUploadImageRequest snsUploadImageRequest = 55;
- * @return {?proto.padlocal.SnsUploadImageRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsuploadimagerequest = function() {
-  return /** @type{?proto.padlocal.SnsUploadImageRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsUploadImageRequest, 55));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsUploadImageRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsuploadimagerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 55, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsuploadimagerequest = function() {
-  return this.setSnsuploadimagerequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsuploadimagerequest = function() {
-  return jspb.Message.getField(this, 55) != null;
-};
-
-
-/**
- * optional SnsUploadImageResponse snsUploadImageResponse = 56;
- * @return {?proto.padlocal.SnsUploadImageResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsuploadimageresponse = function() {
-  return /** @type{?proto.padlocal.SnsUploadImageResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsUploadImageResponse, 56));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsUploadImageResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsuploadimageresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 56, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsuploadimageresponse = function() {
-  return this.setSnsuploadimageresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsuploadimageresponse = function() {
-  return jspb.Message.getField(this, 56) != null;
-};
-
-
-/**
- * optional SnsGetTimelineRequest snsGetTimelineRequest = 57;
- * @return {?proto.padlocal.SnsGetTimelineRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsgettimelinerequest = function() {
-  return /** @type{?proto.padlocal.SnsGetTimelineRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetTimelineRequest, 57));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsGetTimelineRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsgettimelinerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 57, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsgettimelinerequest = function() {
-  return this.setSnsgettimelinerequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsgettimelinerequest = function() {
-  return jspb.Message.getField(this, 57) != null;
-};
-
-
-/**
- * optional SnsGetTimelineResponse snsGetTimelineResponse = 58;
- * @return {?proto.padlocal.SnsGetTimelineResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsgettimelineresponse = function() {
-  return /** @type{?proto.padlocal.SnsGetTimelineResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetTimelineResponse, 58));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsGetTimelineResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsgettimelineresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 58, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsgettimelineresponse = function() {
-  return this.setSnsgettimelineresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsgettimelineresponse = function() {
-  return jspb.Message.getField(this, 58) != null;
-};
-
-
-/**
- * optional SnsGetMomentRequest snsGetMomentRequest = 59;
- * @return {?proto.padlocal.SnsGetMomentRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsgetmomentrequest = function() {
-  return /** @type{?proto.padlocal.SnsGetMomentRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetMomentRequest, 59));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsGetMomentRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsgetmomentrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 59, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsgetmomentrequest = function() {
-  return this.setSnsgetmomentrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsgetmomentrequest = function() {
-  return jspb.Message.getField(this, 59) != null;
-};
-
-
-/**
- * optional SnsGetMomentResponse snsGetMomentResponse = 60;
- * @return {?proto.padlocal.SnsGetMomentResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsgetmomentresponse = function() {
-  return /** @type{?proto.padlocal.SnsGetMomentResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetMomentResponse, 60));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsGetMomentResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsgetmomentresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 60, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsgetmomentresponse = function() {
-  return this.setSnsgetmomentresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsgetmomentresponse = function() {
-  return jspb.Message.getField(this, 60) != null;
-};
-
-
-/**
- * optional SnsLikeMomentRequest snsLikeMomentRequest = 61;
- * @return {?proto.padlocal.SnsLikeMomentRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnslikemomentrequest = function() {
-  return /** @type{?proto.padlocal.SnsLikeMomentRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsLikeMomentRequest, 61));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsLikeMomentRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnslikemomentrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 61, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnslikemomentrequest = function() {
-  return this.setSnslikemomentrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnslikemomentrequest = function() {
-  return jspb.Message.getField(this, 61) != null;
-};
-
-
-/**
- * optional SnsLikeMomentResponse snsLikeMomentResponse = 62;
- * @return {?proto.padlocal.SnsLikeMomentResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnslikemomentresponse = function() {
-  return /** @type{?proto.padlocal.SnsLikeMomentResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsLikeMomentResponse, 62));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsLikeMomentResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnslikemomentresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 62, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnslikemomentresponse = function() {
-  return this.setSnslikemomentresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnslikemomentresponse = function() {
-  return jspb.Message.getField(this, 62) != null;
-};
-
-
-/**
- * optional SnsUnlikeMomentRequest snsUnlikeMomentRequest = 63;
- * @return {?proto.padlocal.SnsUnlikeMomentRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsunlikemomentrequest = function() {
-  return /** @type{?proto.padlocal.SnsUnlikeMomentRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsUnlikeMomentRequest, 63));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsUnlikeMomentRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsunlikemomentrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 63, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsunlikemomentrequest = function() {
-  return this.setSnsunlikemomentrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsunlikemomentrequest = function() {
-  return jspb.Message.getField(this, 63) != null;
-};
-
-
-/**
- * optional SnsUnlikeMomentResponse snsUnlikeMomentResponse = 64;
- * @return {?proto.padlocal.SnsUnlikeMomentResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsunlikemomentresponse = function() {
-  return /** @type{?proto.padlocal.SnsUnlikeMomentResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsUnlikeMomentResponse, 64));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsUnlikeMomentResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsunlikemomentresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 64, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsunlikemomentresponse = function() {
-  return this.setSnsunlikemomentresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsunlikemomentresponse = function() {
-  return jspb.Message.getField(this, 64) != null;
-};
-
-
-/**
- * optional SnsRemoveMomentCommentRequest snsRemoveMomentCommentRequest = 65;
- * @return {?proto.padlocal.SnsRemoveMomentCommentRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsremovemomentcommentrequest = function() {
-  return /** @type{?proto.padlocal.SnsRemoveMomentCommentRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsRemoveMomentCommentRequest, 65));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsRemoveMomentCommentRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsremovemomentcommentrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 65, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsremovemomentcommentrequest = function() {
-  return this.setSnsremovemomentcommentrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsremovemomentcommentrequest = function() {
-  return jspb.Message.getField(this, 65) != null;
-};
-
-
-/**
- * optional SnsRemoveMomentCommentResponse snsRemoveMomentCommentResponse = 66;
- * @return {?proto.padlocal.SnsRemoveMomentCommentResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsremovemomentcommentresponse = function() {
-  return /** @type{?proto.padlocal.SnsRemoveMomentCommentResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsRemoveMomentCommentResponse, 66));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsRemoveMomentCommentResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsremovemomentcommentresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 66, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsremovemomentcommentresponse = function() {
-  return this.setSnsremovemomentcommentresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsremovemomentcommentresponse = function() {
-  return jspb.Message.getField(this, 66) != null;
-};
-
-
-/**
- * optional SnsMakeMomentPrivateRequest snsMakeMomentPrivateRequest = 67;
- * @return {?proto.padlocal.SnsMakeMomentPrivateRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsmakemomentprivaterequest = function() {
-  return /** @type{?proto.padlocal.SnsMakeMomentPrivateRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsMakeMomentPrivateRequest, 67));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsMakeMomentPrivateRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsmakemomentprivaterequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 67, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsmakemomentprivaterequest = function() {
-  return this.setSnsmakemomentprivaterequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsmakemomentprivaterequest = function() {
-  return jspb.Message.getField(this, 67) != null;
-};
-
-
-/**
- * optional SnsMakeMomentPrivateResponse snsMakeMomentPrivateResponse = 68;
- * @return {?proto.padlocal.SnsMakeMomentPrivateResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsmakemomentprivateresponse = function() {
-  return /** @type{?proto.padlocal.SnsMakeMomentPrivateResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsMakeMomentPrivateResponse, 68));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsMakeMomentPrivateResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsmakemomentprivateresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 68, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsmakemomentprivateresponse = function() {
-  return this.setSnsmakemomentprivateresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsmakemomentprivateresponse = function() {
-  return jspb.Message.getField(this, 68) != null;
-};
-
-
-/**
- * optional SnsMakeMomentPublicRequest snsMakeMomentPublicRequest = 69;
- * @return {?proto.padlocal.SnsMakeMomentPublicRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsmakemomentpublicrequest = function() {
-  return /** @type{?proto.padlocal.SnsMakeMomentPublicRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsMakeMomentPublicRequest, 69));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsMakeMomentPublicRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsmakemomentpublicrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 69, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsmakemomentpublicrequest = function() {
-  return this.setSnsmakemomentpublicrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsmakemomentpublicrequest = function() {
-  return jspb.Message.getField(this, 69) != null;
-};
-
-
-/**
- * optional SnsMakeMomentPublicResponse snsMakeMomentPublicResponse = 70;
- * @return {?proto.padlocal.SnsMakeMomentPublicResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsmakemomentpublicresponse = function() {
-  return /** @type{?proto.padlocal.SnsMakeMomentPublicResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsMakeMomentPublicResponse, 70));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsMakeMomentPublicResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsmakemomentpublicresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 70, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsmakemomentpublicresponse = function() {
-  return this.setSnsmakemomentpublicresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsmakemomentpublicresponse = function() {
-  return jspb.Message.getField(this, 70) != null;
-};
-
-
-/**
- * optional SnsRemoveMomentRequest snsRemoveMomentRequest = 71;
- * @return {?proto.padlocal.SnsRemoveMomentRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSnsremovemomentrequest = function() {
-  return /** @type{?proto.padlocal.SnsRemoveMomentRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsRemoveMomentRequest, 71));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsRemoveMomentRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsremovemomentrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 71, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsremovemomentrequest = function() {
-  return this.setSnsremovemomentrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsremovemomentrequest = function() {
-  return jspb.Message.getField(this, 71) != null;
-};
-
-
-/**
- * optional SnsRemoveMomentResponse snsRemoveMomentResponse = 72;
- * @return {?proto.padlocal.SnsRemoveMomentResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSnsremovemomentresponse = function() {
-  return /** @type{?proto.padlocal.SnsRemoveMomentResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SnsRemoveMomentResponse, 72));
-};
-
-
-/**
- * @param {?proto.padlocal.SnsRemoveMomentResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSnsremovemomentresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 72, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSnsremovemomentresponse = function() {
-  return this.setSnsremovemomentresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSnsremovemomentresponse = function() {
-  return jspb.Message.getField(this, 72) != null;
-};
-
-
-/**
- * optional AddLabelRequest addLabelRequest = 73;
- * @return {?proto.padlocal.AddLabelRequest}
- */
-proto.padlocal.ActionMessage.prototype.getAddlabelrequest = function() {
-  return /** @type{?proto.padlocal.AddLabelRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.AddLabelRequest, 73));
-};
-
-
-/**
- * @param {?proto.padlocal.AddLabelRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setAddlabelrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 73, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearAddlabelrequest = function() {
-  return this.setAddlabelrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasAddlabelrequest = function() {
-  return jspb.Message.getField(this, 73) != null;
-};
-
-
-/**
- * optional AddLabelResponse addLabelResponse = 74;
- * @return {?proto.padlocal.AddLabelResponse}
- */
-proto.padlocal.ActionMessage.prototype.getAddlabelresponse = function() {
-  return /** @type{?proto.padlocal.AddLabelResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.AddLabelResponse, 74));
-};
-
-
-/**
- * @param {?proto.padlocal.AddLabelResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setAddlabelresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 74, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearAddlabelresponse = function() {
-  return this.setAddlabelresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasAddlabelresponse = function() {
-  return jspb.Message.getField(this, 74) != null;
-};
-
-
-/**
- * optional RemoveLabelRequest removeLabelRequest = 75;
- * @return {?proto.padlocal.RemoveLabelRequest}
- */
-proto.padlocal.ActionMessage.prototype.getRemovelabelrequest = function() {
-  return /** @type{?proto.padlocal.RemoveLabelRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.RemoveLabelRequest, 75));
-};
-
-
-/**
- * @param {?proto.padlocal.RemoveLabelRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setRemovelabelrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 75, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearRemovelabelrequest = function() {
-  return this.setRemovelabelrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasRemovelabelrequest = function() {
-  return jspb.Message.getField(this, 75) != null;
-};
-
-
-/**
- * optional RemoveLabelResponse removeLabelResponse = 76;
- * @return {?proto.padlocal.RemoveLabelResponse}
- */
-proto.padlocal.ActionMessage.prototype.getRemovelabelresponse = function() {
-  return /** @type{?proto.padlocal.RemoveLabelResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.RemoveLabelResponse, 76));
-};
-
-
-/**
- * @param {?proto.padlocal.RemoveLabelResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setRemovelabelresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 76, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearRemovelabelresponse = function() {
-  return this.setRemovelabelresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasRemovelabelresponse = function() {
-  return jspb.Message.getField(this, 76) != null;
-};
-
-
-/**
- * optional GetLabelListRequest getLabelListRequest = 77;
- * @return {?proto.padlocal.GetLabelListRequest}
- */
-proto.padlocal.ActionMessage.prototype.getGetlabellistrequest = function() {
-  return /** @type{?proto.padlocal.GetLabelListRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetLabelListRequest, 77));
-};
-
-
-/**
- * @param {?proto.padlocal.GetLabelListRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetlabellistrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 77, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetlabellistrequest = function() {
-  return this.setGetlabellistrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetlabellistrequest = function() {
-  return jspb.Message.getField(this, 77) != null;
-};
-
-
-/**
- * optional GetLabelListResponse getLabelListResponse = 78;
- * @return {?proto.padlocal.GetLabelListResponse}
- */
-proto.padlocal.ActionMessage.prototype.getGetlabellistresponse = function() {
-  return /** @type{?proto.padlocal.GetLabelListResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetLabelListResponse, 78));
-};
-
-
-/**
- * @param {?proto.padlocal.GetLabelListResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetlabellistresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 78, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetlabellistresponse = function() {
-  return this.setGetlabellistresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetlabellistresponse = function() {
-  return jspb.Message.getField(this, 78) != null;
-};
-
-
-/**
- * optional SetContactLabelRequest setContactLabelRequest = 79;
- * @return {?proto.padlocal.SetContactLabelRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSetcontactlabelrequest = function() {
-  return /** @type{?proto.padlocal.SetContactLabelRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SetContactLabelRequest, 79));
-};
-
-
-/**
- * @param {?proto.padlocal.SetContactLabelRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSetcontactlabelrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 79, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSetcontactlabelrequest = function() {
-  return this.setSetcontactlabelrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSetcontactlabelrequest = function() {
-  return jspb.Message.getField(this, 79) != null;
-};
-
-
-/**
- * optional SetContactLabelResponse setContactLabelResponse = 80;
- * @return {?proto.padlocal.SetContactLabelResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSetcontactlabelresponse = function() {
-  return /** @type{?proto.padlocal.SetContactLabelResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SetContactLabelResponse, 80));
-};
-
-
-/**
- * @param {?proto.padlocal.SetContactLabelResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSetcontactlabelresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 80, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSetcontactlabelresponse = function() {
-  return this.setSetcontactlabelresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSetcontactlabelresponse = function() {
-  return jspb.Message.getField(this, 80) != null;
-};
-
-
-/**
- * optional SystemEventRequest systemEventRequest = 81;
+ * optional SystemEventRequest systemEventRequest = 12;
  * @return {?proto.padlocal.SystemEventRequest}
  */
 proto.padlocal.ActionMessage.prototype.getSystemeventrequest = function() {
   return /** @type{?proto.padlocal.SystemEventRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SystemEventRequest, 81));
+    jspb.Message.getWrapperField(this, proto.padlocal.SystemEventRequest, 12));
 };
 
 
@@ -7321,7 +4472,7 @@ proto.padlocal.ActionMessage.prototype.getSystemeventrequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setSystemeventrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 81, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 12, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7339,17 +4490,17 @@ proto.padlocal.ActionMessage.prototype.clearSystemeventrequest = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasSystemeventrequest = function() {
-  return jspb.Message.getField(this, 81) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
 /**
- * optional SystemEventResponse systemEventResponse = 82;
+ * optional SystemEventResponse systemEventResponse = 13;
  * @return {?proto.padlocal.SystemEventResponse}
  */
 proto.padlocal.ActionMessage.prototype.getSystemeventresponse = function() {
   return /** @type{?proto.padlocal.SystemEventResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SystemEventResponse, 82));
+    jspb.Message.getWrapperField(this, proto.padlocal.SystemEventResponse, 13));
 };
 
 
@@ -7358,7 +4509,7 @@ proto.padlocal.ActionMessage.prototype.getSystemeventresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setSystemeventresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 82, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 13, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7376,17 +4527,165 @@ proto.padlocal.ActionMessage.prototype.clearSystemeventresponse = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasSystemeventresponse = function() {
-  return jspb.Message.getField(this, 82) != null;
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
 /**
- * optional SyncRequest syncRequest = 83;
+ * optional LongLinkUnpackRequest longLinkUnpackRequest = 14;
+ * @return {?proto.padlocal.LongLinkUnpackRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkunpackrequest = function() {
+  return /** @type{?proto.padlocal.LongLinkUnpackRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkUnpackRequest, 14));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkUnpackRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkunpackrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 14, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkunpackrequest = function() {
+  return this.setLonglinkunpackrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkunpackrequest = function() {
+  return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * optional LongLinkUnpackResponse longLinkUnpackResponse = 15;
+ * @return {?proto.padlocal.LongLinkUnpackResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkunpackresponse = function() {
+  return /** @type{?proto.padlocal.LongLinkUnpackResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkUnpackResponse, 15));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkUnpackResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkunpackresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 15, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkunpackresponse = function() {
+  return this.setLonglinkunpackresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkunpackresponse = function() {
+  return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional LongLinkHeartBeatRequest longLinkHeartBeatRequest = 16;
+ * @return {?proto.padlocal.LongLinkHeartBeatRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkheartbeatrequest = function() {
+  return /** @type{?proto.padlocal.LongLinkHeartBeatRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkHeartBeatRequest, 16));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkHeartBeatRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkheartbeatrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 16, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkheartbeatrequest = function() {
+  return this.setLonglinkheartbeatrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkheartbeatrequest = function() {
+  return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional LongLinkHeartBeatResponse longLinkHeartBeatResponse = 17;
+ * @return {?proto.padlocal.LongLinkHeartBeatResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkheartbeatresponse = function() {
+  return /** @type{?proto.padlocal.LongLinkHeartBeatResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkHeartBeatResponse, 17));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkHeartBeatResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkheartbeatresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 17, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkheartbeatresponse = function() {
+  return this.setLonglinkheartbeatresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkheartbeatresponse = function() {
+  return jspb.Message.getField(this, 17) != null;
+};
+
+
+/**
+ * optional SyncRequest syncRequest = 100;
  * @return {?proto.padlocal.SyncRequest}
  */
 proto.padlocal.ActionMessage.prototype.getSyncrequest = function() {
   return /** @type{?proto.padlocal.SyncRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SyncRequest, 83));
+    jspb.Message.getWrapperField(this, proto.padlocal.SyncRequest, 100));
 };
 
 
@@ -7395,7 +4694,7 @@ proto.padlocal.ActionMessage.prototype.getSyncrequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setSyncrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 83, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 100, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7413,17 +4712,17 @@ proto.padlocal.ActionMessage.prototype.clearSyncrequest = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasSyncrequest = function() {
-  return jspb.Message.getField(this, 83) != null;
+  return jspb.Message.getField(this, 100) != null;
 };
 
 
 /**
- * optional SyncResponse syncResponse = 84;
+ * optional SyncResponse syncResponse = 101;
  * @return {?proto.padlocal.SyncResponse}
  */
 proto.padlocal.ActionMessage.prototype.getSyncresponse = function() {
   return /** @type{?proto.padlocal.SyncResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SyncResponse, 84));
+    jspb.Message.getWrapperField(this, proto.padlocal.SyncResponse, 101));
 };
 
 
@@ -7432,7 +4731,7 @@ proto.padlocal.ActionMessage.prototype.getSyncresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setSyncresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 84, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 101, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7450,165 +4749,17 @@ proto.padlocal.ActionMessage.prototype.clearSyncresponse = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasSyncresponse = function() {
-  return jspb.Message.getField(this, 84) != null;
+  return jspb.Message.getField(this, 101) != null;
 };
 
 
 /**
- * optional GetMessageImageRequest getMessageImageRequest = 85;
- * @return {?proto.padlocal.GetMessageImageRequest}
- */
-proto.padlocal.ActionMessage.prototype.getGetmessageimagerequest = function() {
-  return /** @type{?proto.padlocal.GetMessageImageRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageImageRequest, 85));
-};
-
-
-/**
- * @param {?proto.padlocal.GetMessageImageRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetmessageimagerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 85, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetmessageimagerequest = function() {
-  return this.setGetmessageimagerequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetmessageimagerequest = function() {
-  return jspb.Message.getField(this, 85) != null;
-};
-
-
-/**
- * optional GetMessageImageResponse getMessageImageResponse = 86;
- * @return {?proto.padlocal.GetMessageImageResponse}
- */
-proto.padlocal.ActionMessage.prototype.getGetmessageimageresponse = function() {
-  return /** @type{?proto.padlocal.GetMessageImageResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageImageResponse, 86));
-};
-
-
-/**
- * @param {?proto.padlocal.GetMessageImageResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setGetmessageimageresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 86, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearGetmessageimageresponse = function() {
-  return this.setGetmessageimageresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasGetmessageimageresponse = function() {
-  return jspb.Message.getField(this, 86) != null;
-};
-
-
-/**
- * optional SyncContactRequest syncContactRequest = 87;
- * @return {?proto.padlocal.SyncContactRequest}
- */
-proto.padlocal.ActionMessage.prototype.getSynccontactrequest = function() {
-  return /** @type{?proto.padlocal.SyncContactRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SyncContactRequest, 87));
-};
-
-
-/**
- * @param {?proto.padlocal.SyncContactRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSynccontactrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 87, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSynccontactrequest = function() {
-  return this.setSynccontactrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSynccontactrequest = function() {
-  return jspb.Message.getField(this, 87) != null;
-};
-
-
-/**
- * optional SyncContactResponse syncContactResponse = 88;
- * @return {?proto.padlocal.SyncContactResponse}
- */
-proto.padlocal.ActionMessage.prototype.getSynccontactresponse = function() {
-  return /** @type{?proto.padlocal.SyncContactResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SyncContactResponse, 88));
-};
-
-
-/**
- * @param {?proto.padlocal.SyncContactResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setSynccontactresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 88, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearSynccontactresponse = function() {
-  return this.setSynccontactresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasSynccontactresponse = function() {
-  return jspb.Message.getField(this, 88) != null;
-};
-
-
-/**
- * optional SyncEvent syncEvent = 89;
+ * optional SyncEvent syncEvent = 102;
  * @return {?proto.padlocal.SyncEvent}
  */
 proto.padlocal.ActionMessage.prototype.getSyncevent = function() {
   return /** @type{?proto.padlocal.SyncEvent} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SyncEvent, 89));
+    jspb.Message.getWrapperField(this, proto.padlocal.SyncEvent, 102));
 };
 
 
@@ -7617,7 +4768,7 @@ proto.padlocal.ActionMessage.prototype.getSyncevent = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setSyncevent = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 89, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 102, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7635,17 +4786,498 @@ proto.padlocal.ActionMessage.prototype.clearSyncevent = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasSyncevent = function() {
-  return jspb.Message.getField(this, 89) != null;
+  return jspb.Message.getField(this, 102) != null;
 };
 
 
 /**
- * optional GetMessageVoiceRequest getMessageVoiceRequest = 90;
+ * optional LoginRequest loginRequest = 200;
+ * @return {?proto.padlocal.LoginRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getLoginrequest = function() {
+  return /** @type{?proto.padlocal.LoginRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LoginRequest, 200));
+};
+
+
+/**
+ * @param {?proto.padlocal.LoginRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLoginrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 200, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLoginrequest = function() {
+  return this.setLoginrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLoginrequest = function() {
+  return jspb.Message.getField(this, 200) != null;
+};
+
+
+/**
+ * optional LoginUpdateEvent loginUpdateEvent = 201;
+ * @return {?proto.padlocal.LoginUpdateEvent}
+ */
+proto.padlocal.ActionMessage.prototype.getLoginupdateevent = function() {
+  return /** @type{?proto.padlocal.LoginUpdateEvent} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LoginUpdateEvent, 201));
+};
+
+
+/**
+ * @param {?proto.padlocal.LoginUpdateEvent|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLoginupdateevent = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 201, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLoginupdateevent = function() {
+  return this.setLoginupdateevent(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLoginupdateevent = function() {
+  return jspb.Message.getField(this, 201) != null;
+};
+
+
+/**
+ * optional LoginResponse loginResponse = 202;
+ * @return {?proto.padlocal.LoginResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getLoginresponse = function() {
+  return /** @type{?proto.padlocal.LoginResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LoginResponse, 202));
+};
+
+
+/**
+ * @param {?proto.padlocal.LoginResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLoginresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 202, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLoginresponse = function() {
+  return this.setLoginresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLoginresponse = function() {
+  return jspb.Message.getField(this, 202) != null;
+};
+
+
+/**
+ * optional LogoutRequest logoutRequest = 203;
+ * @return {?proto.padlocal.LogoutRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getLogoutrequest = function() {
+  return /** @type{?proto.padlocal.LogoutRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LogoutRequest, 203));
+};
+
+
+/**
+ * @param {?proto.padlocal.LogoutRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLogoutrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 203, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLogoutrequest = function() {
+  return this.setLogoutrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLogoutrequest = function() {
+  return jspb.Message.getField(this, 203) != null;
+};
+
+
+/**
+ * optional LogoutResponse logoutResponse = 204;
+ * @return {?proto.padlocal.LogoutResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getLogoutresponse = function() {
+  return /** @type{?proto.padlocal.LogoutResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LogoutResponse, 204));
+};
+
+
+/**
+ * @param {?proto.padlocal.LogoutResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLogoutresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 204, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLogoutresponse = function() {
+  return this.setLogoutresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLogoutresponse = function() {
+  return jspb.Message.getField(this, 204) != null;
+};
+
+
+/**
+ * optional SendTextMessageRequest sendTextMessageRequest = 300;
+ * @return {?proto.padlocal.SendTextMessageRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSendtextmessagerequest = function() {
+  return /** @type{?proto.padlocal.SendTextMessageRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SendTextMessageRequest, 300));
+};
+
+
+/**
+ * @param {?proto.padlocal.SendTextMessageRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSendtextmessagerequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 300, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSendtextmessagerequest = function() {
+  return this.setSendtextmessagerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSendtextmessagerequest = function() {
+  return jspb.Message.getField(this, 300) != null;
+};
+
+
+/**
+ * optional SendTextMessageResponse sendTextMessageResponse = 301;
+ * @return {?proto.padlocal.SendTextMessageResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSendtextmessageresponse = function() {
+  return /** @type{?proto.padlocal.SendTextMessageResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SendTextMessageResponse, 301));
+};
+
+
+/**
+ * @param {?proto.padlocal.SendTextMessageResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSendtextmessageresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 301, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSendtextmessageresponse = function() {
+  return this.setSendtextmessageresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSendtextmessageresponse = function() {
+  return jspb.Message.getField(this, 301) != null;
+};
+
+
+/**
+ * optional SendImageMessageRequest sendImageMessageRequest = 302;
+ * @return {?proto.padlocal.SendImageMessageRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSendimagemessagerequest = function() {
+  return /** @type{?proto.padlocal.SendImageMessageRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SendImageMessageRequest, 302));
+};
+
+
+/**
+ * @param {?proto.padlocal.SendImageMessageRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSendimagemessagerequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 302, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSendimagemessagerequest = function() {
+  return this.setSendimagemessagerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSendimagemessagerequest = function() {
+  return jspb.Message.getField(this, 302) != null;
+};
+
+
+/**
+ * optional SendImageMessageResponse sendImageMessageResponse = 303;
+ * @return {?proto.padlocal.SendImageMessageResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSendimagemessageresponse = function() {
+  return /** @type{?proto.padlocal.SendImageMessageResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SendImageMessageResponse, 303));
+};
+
+
+/**
+ * @param {?proto.padlocal.SendImageMessageResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSendimagemessageresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 303, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSendimagemessageresponse = function() {
+  return this.setSendimagemessageresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSendimagemessageresponse = function() {
+  return jspb.Message.getField(this, 303) != null;
+};
+
+
+/**
+ * optional SendAppMessageRequest sendAppMessageRequest = 304;
+ * @return {?proto.padlocal.SendAppMessageRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSendappmessagerequest = function() {
+  return /** @type{?proto.padlocal.SendAppMessageRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SendAppMessageRequest, 304));
+};
+
+
+/**
+ * @param {?proto.padlocal.SendAppMessageRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSendappmessagerequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 304, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSendappmessagerequest = function() {
+  return this.setSendappmessagerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSendappmessagerequest = function() {
+  return jspb.Message.getField(this, 304) != null;
+};
+
+
+/**
+ * optional SendAppMessageResponse sendAppMessageResponse = 305;
+ * @return {?proto.padlocal.SendAppMessageResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSendappmessageresponse = function() {
+  return /** @type{?proto.padlocal.SendAppMessageResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SendAppMessageResponse, 305));
+};
+
+
+/**
+ * @param {?proto.padlocal.SendAppMessageResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSendappmessageresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 305, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSendappmessageresponse = function() {
+  return this.setSendappmessageresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSendappmessageresponse = function() {
+  return jspb.Message.getField(this, 305) != null;
+};
+
+
+/**
+ * optional GetMessageImageRequest getMessageImageRequest = 306;
+ * @return {?proto.padlocal.GetMessageImageRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getGetmessageimagerequest = function() {
+  return /** @type{?proto.padlocal.GetMessageImageRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageImageRequest, 306));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetMessageImageRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetmessageimagerequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 306, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetmessageimagerequest = function() {
+  return this.setGetmessageimagerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetmessageimagerequest = function() {
+  return jspb.Message.getField(this, 306) != null;
+};
+
+
+/**
+ * optional GetMessageImageResponse getMessageImageResponse = 307;
+ * @return {?proto.padlocal.GetMessageImageResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getGetmessageimageresponse = function() {
+  return /** @type{?proto.padlocal.GetMessageImageResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageImageResponse, 307));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetMessageImageResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetmessageimageresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 307, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetmessageimageresponse = function() {
+  return this.setGetmessageimageresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetmessageimageresponse = function() {
+  return jspb.Message.getField(this, 307) != null;
+};
+
+
+/**
+ * optional GetMessageVoiceRequest getMessageVoiceRequest = 308;
  * @return {?proto.padlocal.GetMessageVoiceRequest}
  */
 proto.padlocal.ActionMessage.prototype.getGetmessagevoicerequest = function() {
   return /** @type{?proto.padlocal.GetMessageVoiceRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVoiceRequest, 90));
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVoiceRequest, 308));
 };
 
 
@@ -7654,7 +5286,7 @@ proto.padlocal.ActionMessage.prototype.getGetmessagevoicerequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setGetmessagevoicerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 90, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 308, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7672,17 +5304,17 @@ proto.padlocal.ActionMessage.prototype.clearGetmessagevoicerequest = function() 
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasGetmessagevoicerequest = function() {
-  return jspb.Message.getField(this, 90) != null;
+  return jspb.Message.getField(this, 308) != null;
 };
 
 
 /**
- * optional GetMessageVoiceResponse getMessageVoiceResponse = 91;
+ * optional GetMessageVoiceResponse getMessageVoiceResponse = 309;
  * @return {?proto.padlocal.GetMessageVoiceResponse}
  */
 proto.padlocal.ActionMessage.prototype.getGetmessagevoiceresponse = function() {
   return /** @type{?proto.padlocal.GetMessageVoiceResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVoiceResponse, 91));
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVoiceResponse, 309));
 };
 
 
@@ -7691,7 +5323,7 @@ proto.padlocal.ActionMessage.prototype.getGetmessagevoiceresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setGetmessagevoiceresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 91, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 309, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7709,17 +5341,17 @@ proto.padlocal.ActionMessage.prototype.clearGetmessagevoiceresponse = function()
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasGetmessagevoiceresponse = function() {
-  return jspb.Message.getField(this, 91) != null;
+  return jspb.Message.getField(this, 309) != null;
 };
 
 
 /**
- * optional GetMessageVideoThumbRequest getMessageVideoThumbRequest = 92;
+ * optional GetMessageVideoThumbRequest getMessageVideoThumbRequest = 310;
  * @return {?proto.padlocal.GetMessageVideoThumbRequest}
  */
 proto.padlocal.ActionMessage.prototype.getGetmessagevideothumbrequest = function() {
   return /** @type{?proto.padlocal.GetMessageVideoThumbRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVideoThumbRequest, 92));
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVideoThumbRequest, 310));
 };
 
 
@@ -7728,7 +5360,7 @@ proto.padlocal.ActionMessage.prototype.getGetmessagevideothumbrequest = function
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setGetmessagevideothumbrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 92, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 310, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7746,17 +5378,17 @@ proto.padlocal.ActionMessage.prototype.clearGetmessagevideothumbrequest = functi
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasGetmessagevideothumbrequest = function() {
-  return jspb.Message.getField(this, 92) != null;
+  return jspb.Message.getField(this, 310) != null;
 };
 
 
 /**
- * optional GetMessageVideoThumbResponse getMessageVideoThumbResponse = 93;
+ * optional GetMessageVideoThumbResponse getMessageVideoThumbResponse = 311;
  * @return {?proto.padlocal.GetMessageVideoThumbResponse}
  */
 proto.padlocal.ActionMessage.prototype.getGetmessagevideothumbresponse = function() {
   return /** @type{?proto.padlocal.GetMessageVideoThumbResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVideoThumbResponse, 93));
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVideoThumbResponse, 311));
 };
 
 
@@ -7765,7 +5397,7 @@ proto.padlocal.ActionMessage.prototype.getGetmessagevideothumbresponse = functio
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setGetmessagevideothumbresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 93, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 311, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7783,17 +5415,17 @@ proto.padlocal.ActionMessage.prototype.clearGetmessagevideothumbresponse = funct
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasGetmessagevideothumbresponse = function() {
-  return jspb.Message.getField(this, 93) != null;
+  return jspb.Message.getField(this, 311) != null;
 };
 
 
 /**
- * optional GetMessageVideoRequest getMessageVideoRequest = 94;
+ * optional GetMessageVideoRequest getMessageVideoRequest = 312;
  * @return {?proto.padlocal.GetMessageVideoRequest}
  */
 proto.padlocal.ActionMessage.prototype.getGetmessagevideorequest = function() {
   return /** @type{?proto.padlocal.GetMessageVideoRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVideoRequest, 94));
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVideoRequest, 312));
 };
 
 
@@ -7802,7 +5434,7 @@ proto.padlocal.ActionMessage.prototype.getGetmessagevideorequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setGetmessagevideorequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 94, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 312, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7820,17 +5452,17 @@ proto.padlocal.ActionMessage.prototype.clearGetmessagevideorequest = function() 
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasGetmessagevideorequest = function() {
-  return jspb.Message.getField(this, 94) != null;
+  return jspb.Message.getField(this, 312) != null;
 };
 
 
 /**
- * optional GetMessageVideoResponse getMessageVideoResponse = 95;
+ * optional GetMessageVideoResponse getMessageVideoResponse = 313;
  * @return {?proto.padlocal.GetMessageVideoResponse}
  */
 proto.padlocal.ActionMessage.prototype.getGetmessagevideoresponse = function() {
   return /** @type{?proto.padlocal.GetMessageVideoResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVideoResponse, 95));
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageVideoResponse, 313));
 };
 
 
@@ -7839,7 +5471,7 @@ proto.padlocal.ActionMessage.prototype.getGetmessagevideoresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setGetmessagevideoresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 95, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 313, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7857,17 +5489,17 @@ proto.padlocal.ActionMessage.prototype.clearGetmessagevideoresponse = function()
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasGetmessagevideoresponse = function() {
-  return jspb.Message.getField(this, 95) != null;
+  return jspb.Message.getField(this, 313) != null;
 };
 
 
 /**
- * optional GetMessageFileRequest getMessageFileRequest = 96;
+ * optional GetMessageFileRequest getMessageFileRequest = 314;
  * @return {?proto.padlocal.GetMessageFileRequest}
  */
 proto.padlocal.ActionMessage.prototype.getGetmessagefilerequest = function() {
   return /** @type{?proto.padlocal.GetMessageFileRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageFileRequest, 96));
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageFileRequest, 314));
 };
 
 
@@ -7876,7 +5508,7 @@ proto.padlocal.ActionMessage.prototype.getGetmessagefilerequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setGetmessagefilerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 96, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 314, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7894,17 +5526,17 @@ proto.padlocal.ActionMessage.prototype.clearGetmessagefilerequest = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasGetmessagefilerequest = function() {
-  return jspb.Message.getField(this, 96) != null;
+  return jspb.Message.getField(this, 314) != null;
 };
 
 
 /**
- * optional GetMessageFileResponse getMessageFileResponse = 97;
+ * optional GetMessageFileResponse getMessageFileResponse = 315;
  * @return {?proto.padlocal.GetMessageFileResponse}
  */
 proto.padlocal.ActionMessage.prototype.getGetmessagefileresponse = function() {
   return /** @type{?proto.padlocal.GetMessageFileResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageFileResponse, 97));
+    jspb.Message.getWrapperField(this, proto.padlocal.GetMessageFileResponse, 315));
 };
 
 
@@ -7913,7 +5545,7 @@ proto.padlocal.ActionMessage.prototype.getGetmessagefileresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setGetmessagefileresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 97, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 315, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7931,17 +5563,17 @@ proto.padlocal.ActionMessage.prototype.clearGetmessagefileresponse = function() 
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasGetmessagefileresponse = function() {
-  return jspb.Message.getField(this, 97) != null;
+  return jspb.Message.getField(this, 315) != null;
 };
 
 
 /**
- * optional ForwardMessageRequest forwardMessageRequest = 98;
+ * optional ForwardMessageRequest forwardMessageRequest = 316;
  * @return {?proto.padlocal.ForwardMessageRequest}
  */
 proto.padlocal.ActionMessage.prototype.getForwardmessagerequest = function() {
   return /** @type{?proto.padlocal.ForwardMessageRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.ForwardMessageRequest, 98));
+    jspb.Message.getWrapperField(this, proto.padlocal.ForwardMessageRequest, 316));
 };
 
 
@@ -7950,7 +5582,7 @@ proto.padlocal.ActionMessage.prototype.getForwardmessagerequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setForwardmessagerequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 98, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 316, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -7968,17 +5600,17 @@ proto.padlocal.ActionMessage.prototype.clearForwardmessagerequest = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasForwardmessagerequest = function() {
-  return jspb.Message.getField(this, 98) != null;
+  return jspb.Message.getField(this, 316) != null;
 };
 
 
 /**
- * optional ForwardMessageResponse forwardMessageResponse = 99;
+ * optional ForwardMessageResponse forwardMessageResponse = 317;
  * @return {?proto.padlocal.ForwardMessageResponse}
  */
 proto.padlocal.ActionMessage.prototype.getForwardmessageresponse = function() {
   return /** @type{?proto.padlocal.ForwardMessageResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.ForwardMessageResponse, 99));
+    jspb.Message.getWrapperField(this, proto.padlocal.ForwardMessageResponse, 317));
 };
 
 
@@ -7987,7 +5619,7 @@ proto.padlocal.ActionMessage.prototype.getForwardmessageresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setForwardmessageresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 99, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 317, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -8005,7 +5637,2375 @@ proto.padlocal.ActionMessage.prototype.clearForwardmessageresponse = function() 
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasForwardmessageresponse = function() {
-  return jspb.Message.getField(this, 99) != null;
+  return jspb.Message.getField(this, 317) != null;
+};
+
+
+/**
+ * optional SyncContactRequest syncContactRequest = 400;
+ * @return {?proto.padlocal.SyncContactRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSynccontactrequest = function() {
+  return /** @type{?proto.padlocal.SyncContactRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SyncContactRequest, 400));
+};
+
+
+/**
+ * @param {?proto.padlocal.SyncContactRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSynccontactrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 400, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSynccontactrequest = function() {
+  return this.setSynccontactrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSynccontactrequest = function() {
+  return jspb.Message.getField(this, 400) != null;
+};
+
+
+/**
+ * optional SyncContactResponse syncContactResponse = 401;
+ * @return {?proto.padlocal.SyncContactResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSynccontactresponse = function() {
+  return /** @type{?proto.padlocal.SyncContactResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SyncContactResponse, 401));
+};
+
+
+/**
+ * @param {?proto.padlocal.SyncContactResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSynccontactresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 401, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSynccontactresponse = function() {
+  return this.setSynccontactresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSynccontactresponse = function() {
+  return jspb.Message.getField(this, 401) != null;
+};
+
+
+/**
+ * optional AcceptUserRequest acceptUserRequest = 402;
+ * @return {?proto.padlocal.AcceptUserRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getAcceptuserrequest = function() {
+  return /** @type{?proto.padlocal.AcceptUserRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.AcceptUserRequest, 402));
+};
+
+
+/**
+ * @param {?proto.padlocal.AcceptUserRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setAcceptuserrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 402, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearAcceptuserrequest = function() {
+  return this.setAcceptuserrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasAcceptuserrequest = function() {
+  return jspb.Message.getField(this, 402) != null;
+};
+
+
+/**
+ * optional AcceptUserResponse acceptUserResponse = 403;
+ * @return {?proto.padlocal.AcceptUserResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getAcceptuserresponse = function() {
+  return /** @type{?proto.padlocal.AcceptUserResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.AcceptUserResponse, 403));
+};
+
+
+/**
+ * @param {?proto.padlocal.AcceptUserResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setAcceptuserresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 403, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearAcceptuserresponse = function() {
+  return this.setAcceptuserresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasAcceptuserresponse = function() {
+  return jspb.Message.getField(this, 403) != null;
+};
+
+
+/**
+ * optional AddContactRequest addContactRequest = 404;
+ * @return {?proto.padlocal.AddContactRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getAddcontactrequest = function() {
+  return /** @type{?proto.padlocal.AddContactRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.AddContactRequest, 404));
+};
+
+
+/**
+ * @param {?proto.padlocal.AddContactRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setAddcontactrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 404, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearAddcontactrequest = function() {
+  return this.setAddcontactrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasAddcontactrequest = function() {
+  return jspb.Message.getField(this, 404) != null;
+};
+
+
+/**
+ * optional AddContactResponse addContactResponse = 405;
+ * @return {?proto.padlocal.AddContactResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getAddcontactresponse = function() {
+  return /** @type{?proto.padlocal.AddContactResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.AddContactResponse, 405));
+};
+
+
+/**
+ * @param {?proto.padlocal.AddContactResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setAddcontactresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 405, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearAddcontactresponse = function() {
+  return this.setAddcontactresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasAddcontactresponse = function() {
+  return jspb.Message.getField(this, 405) != null;
+};
+
+
+/**
+ * optional DeleteContactRequest deleteContactRequest = 406;
+ * @return {?proto.padlocal.DeleteContactRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getDeletecontactrequest = function() {
+  return /** @type{?proto.padlocal.DeleteContactRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.DeleteContactRequest, 406));
+};
+
+
+/**
+ * @param {?proto.padlocal.DeleteContactRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setDeletecontactrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 406, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearDeletecontactrequest = function() {
+  return this.setDeletecontactrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasDeletecontactrequest = function() {
+  return jspb.Message.getField(this, 406) != null;
+};
+
+
+/**
+ * optional DeleteContactResponse deleteContactResponse = 407;
+ * @return {?proto.padlocal.DeleteContactResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getDeletecontactresponse = function() {
+  return /** @type{?proto.padlocal.DeleteContactResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.DeleteContactResponse, 407));
+};
+
+
+/**
+ * @param {?proto.padlocal.DeleteContactResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setDeletecontactresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 407, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearDeletecontactresponse = function() {
+  return this.setDeletecontactresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasDeletecontactresponse = function() {
+  return jspb.Message.getField(this, 407) != null;
+};
+
+
+/**
+ * optional GetContactRequest getContactRequest = 408;
+ * @return {?proto.padlocal.GetContactRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getGetcontactrequest = function() {
+  return /** @type{?proto.padlocal.GetContactRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetContactRequest, 408));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetContactRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetcontactrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 408, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetcontactrequest = function() {
+  return this.setGetcontactrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetcontactrequest = function() {
+  return jspb.Message.getField(this, 408) != null;
+};
+
+
+/**
+ * optional GetContactResponse getContactResponse = 409;
+ * @return {?proto.padlocal.GetContactResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getGetcontactresponse = function() {
+  return /** @type{?proto.padlocal.GetContactResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetContactResponse, 409));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetContactResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetcontactresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 409, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetcontactresponse = function() {
+  return this.setGetcontactresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetcontactresponse = function() {
+  return jspb.Message.getField(this, 409) != null;
+};
+
+
+/**
+ * optional GetContactQRCodeRequest getContactQRCodeRequest = 410;
+ * @return {?proto.padlocal.GetContactQRCodeRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getGetcontactqrcoderequest = function() {
+  return /** @type{?proto.padlocal.GetContactQRCodeRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetContactQRCodeRequest, 410));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetContactQRCodeRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetcontactqrcoderequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 410, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetcontactqrcoderequest = function() {
+  return this.setGetcontactqrcoderequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetcontactqrcoderequest = function() {
+  return jspb.Message.getField(this, 410) != null;
+};
+
+
+/**
+ * optional GetContactQRCodeResponse getContactQRCodeResponse = 411;
+ * @return {?proto.padlocal.GetContactQRCodeResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getGetcontactqrcoderesponse = function() {
+  return /** @type{?proto.padlocal.GetContactQRCodeResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetContactQRCodeResponse, 411));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetContactQRCodeResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetcontactqrcoderesponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 411, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetcontactqrcoderesponse = function() {
+  return this.setGetcontactqrcoderesponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetcontactqrcoderesponse = function() {
+  return jspb.Message.getField(this, 411) != null;
+};
+
+
+/**
+ * optional SearchContactRequest searchContactRequest = 412;
+ * @return {?proto.padlocal.SearchContactRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSearchcontactrequest = function() {
+  return /** @type{?proto.padlocal.SearchContactRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SearchContactRequest, 412));
+};
+
+
+/**
+ * @param {?proto.padlocal.SearchContactRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSearchcontactrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 412, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSearchcontactrequest = function() {
+  return this.setSearchcontactrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSearchcontactrequest = function() {
+  return jspb.Message.getField(this, 412) != null;
+};
+
+
+/**
+ * optional SearchContactResponse searchContactResponse = 413;
+ * @return {?proto.padlocal.SearchContactResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSearchcontactresponse = function() {
+  return /** @type{?proto.padlocal.SearchContactResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SearchContactResponse, 413));
+};
+
+
+/**
+ * @param {?proto.padlocal.SearchContactResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSearchcontactresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 413, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSearchcontactresponse = function() {
+  return this.setSearchcontactresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSearchcontactresponse = function() {
+  return jspb.Message.getField(this, 413) != null;
+};
+
+
+/**
+ * optional CreateChatRoomRequest createChatRoomRequest = 500;
+ * @return {?proto.padlocal.CreateChatRoomRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getCreatechatroomrequest = function() {
+  return /** @type{?proto.padlocal.CreateChatRoomRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.CreateChatRoomRequest, 500));
+};
+
+
+/**
+ * @param {?proto.padlocal.CreateChatRoomRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setCreatechatroomrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 500, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearCreatechatroomrequest = function() {
+  return this.setCreatechatroomrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasCreatechatroomrequest = function() {
+  return jspb.Message.getField(this, 500) != null;
+};
+
+
+/**
+ * optional CreateChatRoomResponse createChatRoomResponse = 501;
+ * @return {?proto.padlocal.CreateChatRoomResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getCreatechatroomresponse = function() {
+  return /** @type{?proto.padlocal.CreateChatRoomResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.CreateChatRoomResponse, 501));
+};
+
+
+/**
+ * @param {?proto.padlocal.CreateChatRoomResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setCreatechatroomresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 501, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearCreatechatroomresponse = function() {
+  return this.setCreatechatroomresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasCreatechatroomresponse = function() {
+  return jspb.Message.getField(this, 501) != null;
+};
+
+
+/**
+ * optional GetChatRoomMembersRequest getChatRoomMembersRequest = 502;
+ * @return {?proto.padlocal.GetChatRoomMembersRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getGetchatroommembersrequest = function() {
+  return /** @type{?proto.padlocal.GetChatRoomMembersRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomMembersRequest, 502));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetChatRoomMembersRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetchatroommembersrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 502, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetchatroommembersrequest = function() {
+  return this.setGetchatroommembersrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetchatroommembersrequest = function() {
+  return jspb.Message.getField(this, 502) != null;
+};
+
+
+/**
+ * optional GetChatRoomMembersResponse getChatRoomMembersResponse = 503;
+ * @return {?proto.padlocal.GetChatRoomMembersResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getGetchatroommembersresponse = function() {
+  return /** @type{?proto.padlocal.GetChatRoomMembersResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomMembersResponse, 503));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetChatRoomMembersResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetchatroommembersresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 503, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetchatroommembersresponse = function() {
+  return this.setGetchatroommembersresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetchatroommembersresponse = function() {
+  return jspb.Message.getField(this, 503) != null;
+};
+
+
+/**
+ * optional GetChatRoomQrCodeRequest getChatRoomQrCodeRequest = 504;
+ * @return {?proto.padlocal.GetChatRoomQrCodeRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getGetchatroomqrcoderequest = function() {
+  return /** @type{?proto.padlocal.GetChatRoomQrCodeRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomQrCodeRequest, 504));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetChatRoomQrCodeRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetchatroomqrcoderequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 504, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetchatroomqrcoderequest = function() {
+  return this.setGetchatroomqrcoderequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetchatroomqrcoderequest = function() {
+  return jspb.Message.getField(this, 504) != null;
+};
+
+
+/**
+ * optional GetChatRoomQrCodeResponse getChatRoomQrCodeResponse = 505;
+ * @return {?proto.padlocal.GetChatRoomQrCodeResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getGetchatroomqrcoderesponse = function() {
+  return /** @type{?proto.padlocal.GetChatRoomQrCodeResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomQrCodeResponse, 505));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetChatRoomQrCodeResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetchatroomqrcoderesponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 505, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetchatroomqrcoderesponse = function() {
+  return this.setGetchatroomqrcoderesponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetchatroomqrcoderesponse = function() {
+  return jspb.Message.getField(this, 505) != null;
+};
+
+
+/**
+ * optional GetChatRoomMemberRequest getChatRoomMemberRequest = 506;
+ * @return {?proto.padlocal.GetChatRoomMemberRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getGetchatroommemberrequest = function() {
+  return /** @type{?proto.padlocal.GetChatRoomMemberRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomMemberRequest, 506));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetChatRoomMemberRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetchatroommemberrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 506, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetchatroommemberrequest = function() {
+  return this.setGetchatroommemberrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetchatroommemberrequest = function() {
+  return jspb.Message.getField(this, 506) != null;
+};
+
+
+/**
+ * optional GetChatRoomMemberResponse getChatRoomMemberResponse = 507;
+ * @return {?proto.padlocal.GetChatRoomMemberResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getGetchatroommemberresponse = function() {
+  return /** @type{?proto.padlocal.GetChatRoomMemberResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetChatRoomMemberResponse, 507));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetChatRoomMemberResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetchatroommemberresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 507, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetchatroommemberresponse = function() {
+  return this.setGetchatroommemberresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetchatroommemberresponse = function() {
+  return jspb.Message.getField(this, 507) != null;
+};
+
+
+/**
+ * optional SetChatRoomAnnouncementRequest setChatRoomAnnouncementRequest = 508;
+ * @return {?proto.padlocal.SetChatRoomAnnouncementRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSetchatroomannouncementrequest = function() {
+  return /** @type{?proto.padlocal.SetChatRoomAnnouncementRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SetChatRoomAnnouncementRequest, 508));
+};
+
+
+/**
+ * @param {?proto.padlocal.SetChatRoomAnnouncementRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSetchatroomannouncementrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 508, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSetchatroomannouncementrequest = function() {
+  return this.setSetchatroomannouncementrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSetchatroomannouncementrequest = function() {
+  return jspb.Message.getField(this, 508) != null;
+};
+
+
+/**
+ * optional SetChatRoomAnnouncementResponse setChatRoomAnnouncementResponse = 509;
+ * @return {?proto.padlocal.SetChatRoomAnnouncementResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSetchatroomannouncementresponse = function() {
+  return /** @type{?proto.padlocal.SetChatRoomAnnouncementResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SetChatRoomAnnouncementResponse, 509));
+};
+
+
+/**
+ * @param {?proto.padlocal.SetChatRoomAnnouncementResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSetchatroomannouncementresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 509, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSetchatroomannouncementresponse = function() {
+  return this.setSetchatroomannouncementresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSetchatroomannouncementresponse = function() {
+  return jspb.Message.getField(this, 509) != null;
+};
+
+
+/**
+ * optional AddChatRoomMemberRequest addChatRoomMemberRequest = 510;
+ * @return {?proto.padlocal.AddChatRoomMemberRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getAddchatroommemberrequest = function() {
+  return /** @type{?proto.padlocal.AddChatRoomMemberRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.AddChatRoomMemberRequest, 510));
+};
+
+
+/**
+ * @param {?proto.padlocal.AddChatRoomMemberRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setAddchatroommemberrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 510, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearAddchatroommemberrequest = function() {
+  return this.setAddchatroommemberrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasAddchatroommemberrequest = function() {
+  return jspb.Message.getField(this, 510) != null;
+};
+
+
+/**
+ * optional AddChatRoomMemberResponse addChatRoomMemberResponse = 511;
+ * @return {?proto.padlocal.AddChatRoomMemberResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getAddchatroommemberresponse = function() {
+  return /** @type{?proto.padlocal.AddChatRoomMemberResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.AddChatRoomMemberResponse, 511));
+};
+
+
+/**
+ * @param {?proto.padlocal.AddChatRoomMemberResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setAddchatroommemberresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 511, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearAddchatroommemberresponse = function() {
+  return this.setAddchatroommemberresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasAddchatroommemberresponse = function() {
+  return jspb.Message.getField(this, 511) != null;
+};
+
+
+/**
+ * optional InviteChatRoomMemberRequest inviteChatRoomMemberRequest = 512;
+ * @return {?proto.padlocal.InviteChatRoomMemberRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getInvitechatroommemberrequest = function() {
+  return /** @type{?proto.padlocal.InviteChatRoomMemberRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.InviteChatRoomMemberRequest, 512));
+};
+
+
+/**
+ * @param {?proto.padlocal.InviteChatRoomMemberRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setInvitechatroommemberrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 512, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearInvitechatroommemberrequest = function() {
+  return this.setInvitechatroommemberrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasInvitechatroommemberrequest = function() {
+  return jspb.Message.getField(this, 512) != null;
+};
+
+
+/**
+ * optional InviteChatRoomMemberResponse inviteChatRoomMemberResponse = 513;
+ * @return {?proto.padlocal.InviteChatRoomMemberResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getInvitechatroommemberresponse = function() {
+  return /** @type{?proto.padlocal.InviteChatRoomMemberResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.InviteChatRoomMemberResponse, 513));
+};
+
+
+/**
+ * @param {?proto.padlocal.InviteChatRoomMemberResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setInvitechatroommemberresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 513, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearInvitechatroommemberresponse = function() {
+  return this.setInvitechatroommemberresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasInvitechatroommemberresponse = function() {
+  return jspb.Message.getField(this, 513) != null;
+};
+
+
+/**
+ * optional DeleteChatRoomMemberRequest deleteChatRoomMemberRequest = 514;
+ * @return {?proto.padlocal.DeleteChatRoomMemberRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getDeletechatroommemberrequest = function() {
+  return /** @type{?proto.padlocal.DeleteChatRoomMemberRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.DeleteChatRoomMemberRequest, 514));
+};
+
+
+/**
+ * @param {?proto.padlocal.DeleteChatRoomMemberRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setDeletechatroommemberrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 514, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearDeletechatroommemberrequest = function() {
+  return this.setDeletechatroommemberrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasDeletechatroommemberrequest = function() {
+  return jspb.Message.getField(this, 514) != null;
+};
+
+
+/**
+ * optional DeleteChatRoomMemberResponse deleteChatRoomMemberResponse = 515;
+ * @return {?proto.padlocal.DeleteChatRoomMemberResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getDeletechatroommemberresponse = function() {
+  return /** @type{?proto.padlocal.DeleteChatRoomMemberResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.DeleteChatRoomMemberResponse, 515));
+};
+
+
+/**
+ * @param {?proto.padlocal.DeleteChatRoomMemberResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setDeletechatroommemberresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 515, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearDeletechatroommemberresponse = function() {
+  return this.setDeletechatroommemberresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasDeletechatroommemberresponse = function() {
+  return jspb.Message.getField(this, 515) != null;
+};
+
+
+/**
+ * optional SetChatRoomNameRequest setChatRoomNameRequest = 516;
+ * @return {?proto.padlocal.SetChatRoomNameRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSetchatroomnamerequest = function() {
+  return /** @type{?proto.padlocal.SetChatRoomNameRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SetChatRoomNameRequest, 516));
+};
+
+
+/**
+ * @param {?proto.padlocal.SetChatRoomNameRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSetchatroomnamerequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 516, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSetchatroomnamerequest = function() {
+  return this.setSetchatroomnamerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSetchatroomnamerequest = function() {
+  return jspb.Message.getField(this, 516) != null;
+};
+
+
+/**
+ * optional SetChatRoomNameResponse setChatRoomNameResponse = 517;
+ * @return {?proto.padlocal.SetChatRoomNameResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSetchatroomnameresponse = function() {
+  return /** @type{?proto.padlocal.SetChatRoomNameResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SetChatRoomNameResponse, 517));
+};
+
+
+/**
+ * @param {?proto.padlocal.SetChatRoomNameResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSetchatroomnameresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 517, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSetchatroomnameresponse = function() {
+  return this.setSetchatroomnameresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSetchatroomnameresponse = function() {
+  return jspb.Message.getField(this, 517) != null;
+};
+
+
+/**
+ * optional AddLabelRequest addLabelRequest = 600;
+ * @return {?proto.padlocal.AddLabelRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getAddlabelrequest = function() {
+  return /** @type{?proto.padlocal.AddLabelRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.AddLabelRequest, 600));
+};
+
+
+/**
+ * @param {?proto.padlocal.AddLabelRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setAddlabelrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 600, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearAddlabelrequest = function() {
+  return this.setAddlabelrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasAddlabelrequest = function() {
+  return jspb.Message.getField(this, 600) != null;
+};
+
+
+/**
+ * optional AddLabelResponse addLabelResponse = 601;
+ * @return {?proto.padlocal.AddLabelResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getAddlabelresponse = function() {
+  return /** @type{?proto.padlocal.AddLabelResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.AddLabelResponse, 601));
+};
+
+
+/**
+ * @param {?proto.padlocal.AddLabelResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setAddlabelresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 601, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearAddlabelresponse = function() {
+  return this.setAddlabelresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasAddlabelresponse = function() {
+  return jspb.Message.getField(this, 601) != null;
+};
+
+
+/**
+ * optional RemoveLabelRequest removeLabelRequest = 602;
+ * @return {?proto.padlocal.RemoveLabelRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getRemovelabelrequest = function() {
+  return /** @type{?proto.padlocal.RemoveLabelRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.RemoveLabelRequest, 602));
+};
+
+
+/**
+ * @param {?proto.padlocal.RemoveLabelRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setRemovelabelrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 602, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearRemovelabelrequest = function() {
+  return this.setRemovelabelrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasRemovelabelrequest = function() {
+  return jspb.Message.getField(this, 602) != null;
+};
+
+
+/**
+ * optional RemoveLabelResponse removeLabelResponse = 603;
+ * @return {?proto.padlocal.RemoveLabelResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getRemovelabelresponse = function() {
+  return /** @type{?proto.padlocal.RemoveLabelResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.RemoveLabelResponse, 603));
+};
+
+
+/**
+ * @param {?proto.padlocal.RemoveLabelResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setRemovelabelresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 603, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearRemovelabelresponse = function() {
+  return this.setRemovelabelresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasRemovelabelresponse = function() {
+  return jspb.Message.getField(this, 603) != null;
+};
+
+
+/**
+ * optional GetLabelListRequest getLabelListRequest = 604;
+ * @return {?proto.padlocal.GetLabelListRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getGetlabellistrequest = function() {
+  return /** @type{?proto.padlocal.GetLabelListRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetLabelListRequest, 604));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetLabelListRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetlabellistrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 604, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetlabellistrequest = function() {
+  return this.setGetlabellistrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetlabellistrequest = function() {
+  return jspb.Message.getField(this, 604) != null;
+};
+
+
+/**
+ * optional GetLabelListResponse getLabelListResponse = 605;
+ * @return {?proto.padlocal.GetLabelListResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getGetlabellistresponse = function() {
+  return /** @type{?proto.padlocal.GetLabelListResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.GetLabelListResponse, 605));
+};
+
+
+/**
+ * @param {?proto.padlocal.GetLabelListResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setGetlabellistresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 605, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearGetlabellistresponse = function() {
+  return this.setGetlabellistresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasGetlabellistresponse = function() {
+  return jspb.Message.getField(this, 605) != null;
+};
+
+
+/**
+ * optional SetContactLabelRequest setContactLabelRequest = 606;
+ * @return {?proto.padlocal.SetContactLabelRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSetcontactlabelrequest = function() {
+  return /** @type{?proto.padlocal.SetContactLabelRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SetContactLabelRequest, 606));
+};
+
+
+/**
+ * @param {?proto.padlocal.SetContactLabelRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSetcontactlabelrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 606, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSetcontactlabelrequest = function() {
+  return this.setSetcontactlabelrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSetcontactlabelrequest = function() {
+  return jspb.Message.getField(this, 606) != null;
+};
+
+
+/**
+ * optional SetContactLabelResponse setContactLabelResponse = 607;
+ * @return {?proto.padlocal.SetContactLabelResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSetcontactlabelresponse = function() {
+  return /** @type{?proto.padlocal.SetContactLabelResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SetContactLabelResponse, 607));
+};
+
+
+/**
+ * @param {?proto.padlocal.SetContactLabelResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSetcontactlabelresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 607, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSetcontactlabelresponse = function() {
+  return this.setSetcontactlabelresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSetcontactlabelresponse = function() {
+  return jspb.Message.getField(this, 607) != null;
+};
+
+
+/**
+ * optional SnsSendMomentRequest snsSendMomentRequest = 700;
+ * @return {?proto.padlocal.SnsSendMomentRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnssendmomentrequest = function() {
+  return /** @type{?proto.padlocal.SnsSendMomentRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsSendMomentRequest, 700));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsSendMomentRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnssendmomentrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 700, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnssendmomentrequest = function() {
+  return this.setSnssendmomentrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnssendmomentrequest = function() {
+  return jspb.Message.getField(this, 700) != null;
+};
+
+
+/**
+ * optional SnsSendMomentResponse snsSendMomentResponse = 701;
+ * @return {?proto.padlocal.SnsSendMomentResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnssendmomentresponse = function() {
+  return /** @type{?proto.padlocal.SnsSendMomentResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsSendMomentResponse, 701));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsSendMomentResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnssendmomentresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 701, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnssendmomentresponse = function() {
+  return this.setSnssendmomentresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnssendmomentresponse = function() {
+  return jspb.Message.getField(this, 701) != null;
+};
+
+
+/**
+ * optional SnsGetUserPageRequest snsGetUserPageRequest = 702;
+ * @return {?proto.padlocal.SnsGetUserPageRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsgetuserpagerequest = function() {
+  return /** @type{?proto.padlocal.SnsGetUserPageRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetUserPageRequest, 702));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsGetUserPageRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsgetuserpagerequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 702, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsgetuserpagerequest = function() {
+  return this.setSnsgetuserpagerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsgetuserpagerequest = function() {
+  return jspb.Message.getField(this, 702) != null;
+};
+
+
+/**
+ * optional SnsGetUserPageResponse snsGetUserPageResponse = 703;
+ * @return {?proto.padlocal.SnsGetUserPageResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsgetuserpageresponse = function() {
+  return /** @type{?proto.padlocal.SnsGetUserPageResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetUserPageResponse, 703));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsGetUserPageResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsgetuserpageresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 703, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsgetuserpageresponse = function() {
+  return this.setSnsgetuserpageresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsgetuserpageresponse = function() {
+  return jspb.Message.getField(this, 703) != null;
+};
+
+
+/**
+ * optional SnsSendCommentRequest snsSendCommentRequest = 704;
+ * @return {?proto.padlocal.SnsSendCommentRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnssendcommentrequest = function() {
+  return /** @type{?proto.padlocal.SnsSendCommentRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsSendCommentRequest, 704));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsSendCommentRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnssendcommentrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 704, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnssendcommentrequest = function() {
+  return this.setSnssendcommentrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnssendcommentrequest = function() {
+  return jspb.Message.getField(this, 704) != null;
+};
+
+
+/**
+ * optional SnsSendCommentResponse snsSendCommentResponse = 705;
+ * @return {?proto.padlocal.SnsSendCommentResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnssendcommentresponse = function() {
+  return /** @type{?proto.padlocal.SnsSendCommentResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsSendCommentResponse, 705));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsSendCommentResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnssendcommentresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 705, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnssendcommentresponse = function() {
+  return this.setSnssendcommentresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnssendcommentresponse = function() {
+  return jspb.Message.getField(this, 705) != null;
+};
+
+
+/**
+ * optional SnsUploadImageRequest snsUploadImageRequest = 706;
+ * @return {?proto.padlocal.SnsUploadImageRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsuploadimagerequest = function() {
+  return /** @type{?proto.padlocal.SnsUploadImageRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsUploadImageRequest, 706));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsUploadImageRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsuploadimagerequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 706, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsuploadimagerequest = function() {
+  return this.setSnsuploadimagerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsuploadimagerequest = function() {
+  return jspb.Message.getField(this, 706) != null;
+};
+
+
+/**
+ * optional SnsUploadImageResponse snsUploadImageResponse = 707;
+ * @return {?proto.padlocal.SnsUploadImageResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsuploadimageresponse = function() {
+  return /** @type{?proto.padlocal.SnsUploadImageResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsUploadImageResponse, 707));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsUploadImageResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsuploadimageresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 707, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsuploadimageresponse = function() {
+  return this.setSnsuploadimageresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsuploadimageresponse = function() {
+  return jspb.Message.getField(this, 707) != null;
+};
+
+
+/**
+ * optional SnsGetTimelineRequest snsGetTimelineRequest = 708;
+ * @return {?proto.padlocal.SnsGetTimelineRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsgettimelinerequest = function() {
+  return /** @type{?proto.padlocal.SnsGetTimelineRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetTimelineRequest, 708));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsGetTimelineRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsgettimelinerequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 708, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsgettimelinerequest = function() {
+  return this.setSnsgettimelinerequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsgettimelinerequest = function() {
+  return jspb.Message.getField(this, 708) != null;
+};
+
+
+/**
+ * optional SnsGetTimelineResponse snsGetTimelineResponse = 709;
+ * @return {?proto.padlocal.SnsGetTimelineResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsgettimelineresponse = function() {
+  return /** @type{?proto.padlocal.SnsGetTimelineResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetTimelineResponse, 709));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsGetTimelineResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsgettimelineresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 709, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsgettimelineresponse = function() {
+  return this.setSnsgettimelineresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsgettimelineresponse = function() {
+  return jspb.Message.getField(this, 709) != null;
+};
+
+
+/**
+ * optional SnsGetMomentRequest snsGetMomentRequest = 710;
+ * @return {?proto.padlocal.SnsGetMomentRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsgetmomentrequest = function() {
+  return /** @type{?proto.padlocal.SnsGetMomentRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetMomentRequest, 710));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsGetMomentRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsgetmomentrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 710, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsgetmomentrequest = function() {
+  return this.setSnsgetmomentrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsgetmomentrequest = function() {
+  return jspb.Message.getField(this, 710) != null;
+};
+
+
+/**
+ * optional SnsGetMomentResponse snsGetMomentResponse = 711;
+ * @return {?proto.padlocal.SnsGetMomentResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsgetmomentresponse = function() {
+  return /** @type{?proto.padlocal.SnsGetMomentResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsGetMomentResponse, 711));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsGetMomentResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsgetmomentresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 711, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsgetmomentresponse = function() {
+  return this.setSnsgetmomentresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsgetmomentresponse = function() {
+  return jspb.Message.getField(this, 711) != null;
+};
+
+
+/**
+ * optional SnsLikeMomentRequest snsLikeMomentRequest = 712;
+ * @return {?proto.padlocal.SnsLikeMomentRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnslikemomentrequest = function() {
+  return /** @type{?proto.padlocal.SnsLikeMomentRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsLikeMomentRequest, 712));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsLikeMomentRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnslikemomentrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 712, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnslikemomentrequest = function() {
+  return this.setSnslikemomentrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnslikemomentrequest = function() {
+  return jspb.Message.getField(this, 712) != null;
+};
+
+
+/**
+ * optional SnsLikeMomentResponse snsLikeMomentResponse = 713;
+ * @return {?proto.padlocal.SnsLikeMomentResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnslikemomentresponse = function() {
+  return /** @type{?proto.padlocal.SnsLikeMomentResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsLikeMomentResponse, 713));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsLikeMomentResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnslikemomentresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 713, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnslikemomentresponse = function() {
+  return this.setSnslikemomentresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnslikemomentresponse = function() {
+  return jspb.Message.getField(this, 713) != null;
+};
+
+
+/**
+ * optional SnsUnlikeMomentRequest snsUnlikeMomentRequest = 714;
+ * @return {?proto.padlocal.SnsUnlikeMomentRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsunlikemomentrequest = function() {
+  return /** @type{?proto.padlocal.SnsUnlikeMomentRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsUnlikeMomentRequest, 714));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsUnlikeMomentRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsunlikemomentrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 714, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsunlikemomentrequest = function() {
+  return this.setSnsunlikemomentrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsunlikemomentrequest = function() {
+  return jspb.Message.getField(this, 714) != null;
+};
+
+
+/**
+ * optional SnsUnlikeMomentResponse snsUnlikeMomentResponse = 715;
+ * @return {?proto.padlocal.SnsUnlikeMomentResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsunlikemomentresponse = function() {
+  return /** @type{?proto.padlocal.SnsUnlikeMomentResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsUnlikeMomentResponse, 715));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsUnlikeMomentResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsunlikemomentresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 715, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsunlikemomentresponse = function() {
+  return this.setSnsunlikemomentresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsunlikemomentresponse = function() {
+  return jspb.Message.getField(this, 715) != null;
+};
+
+
+/**
+ * optional SnsRemoveMomentCommentRequest snsRemoveMomentCommentRequest = 716;
+ * @return {?proto.padlocal.SnsRemoveMomentCommentRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsremovemomentcommentrequest = function() {
+  return /** @type{?proto.padlocal.SnsRemoveMomentCommentRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsRemoveMomentCommentRequest, 716));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsRemoveMomentCommentRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsremovemomentcommentrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 716, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsremovemomentcommentrequest = function() {
+  return this.setSnsremovemomentcommentrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsremovemomentcommentrequest = function() {
+  return jspb.Message.getField(this, 716) != null;
+};
+
+
+/**
+ * optional SnsRemoveMomentCommentResponse snsRemoveMomentCommentResponse = 717;
+ * @return {?proto.padlocal.SnsRemoveMomentCommentResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsremovemomentcommentresponse = function() {
+  return /** @type{?proto.padlocal.SnsRemoveMomentCommentResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsRemoveMomentCommentResponse, 717));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsRemoveMomentCommentResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsremovemomentcommentresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 717, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsremovemomentcommentresponse = function() {
+  return this.setSnsremovemomentcommentresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsremovemomentcommentresponse = function() {
+  return jspb.Message.getField(this, 717) != null;
+};
+
+
+/**
+ * optional SnsMakeMomentPrivateRequest snsMakeMomentPrivateRequest = 718;
+ * @return {?proto.padlocal.SnsMakeMomentPrivateRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsmakemomentprivaterequest = function() {
+  return /** @type{?proto.padlocal.SnsMakeMomentPrivateRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsMakeMomentPrivateRequest, 718));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsMakeMomentPrivateRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsmakemomentprivaterequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 718, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsmakemomentprivaterequest = function() {
+  return this.setSnsmakemomentprivaterequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsmakemomentprivaterequest = function() {
+  return jspb.Message.getField(this, 718) != null;
+};
+
+
+/**
+ * optional SnsMakeMomentPrivateResponse snsMakeMomentPrivateResponse = 719;
+ * @return {?proto.padlocal.SnsMakeMomentPrivateResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsmakemomentprivateresponse = function() {
+  return /** @type{?proto.padlocal.SnsMakeMomentPrivateResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsMakeMomentPrivateResponse, 719));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsMakeMomentPrivateResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsmakemomentprivateresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 719, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsmakemomentprivateresponse = function() {
+  return this.setSnsmakemomentprivateresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsmakemomentprivateresponse = function() {
+  return jspb.Message.getField(this, 719) != null;
+};
+
+
+/**
+ * optional SnsMakeMomentPublicRequest snsMakeMomentPublicRequest = 720;
+ * @return {?proto.padlocal.SnsMakeMomentPublicRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsmakemomentpublicrequest = function() {
+  return /** @type{?proto.padlocal.SnsMakeMomentPublicRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsMakeMomentPublicRequest, 720));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsMakeMomentPublicRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsmakemomentpublicrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 720, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsmakemomentpublicrequest = function() {
+  return this.setSnsmakemomentpublicrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsmakemomentpublicrequest = function() {
+  return jspb.Message.getField(this, 720) != null;
+};
+
+
+/**
+ * optional SnsMakeMomentPublicResponse snsMakeMomentPublicResponse = 721;
+ * @return {?proto.padlocal.SnsMakeMomentPublicResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsmakemomentpublicresponse = function() {
+  return /** @type{?proto.padlocal.SnsMakeMomentPublicResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsMakeMomentPublicResponse, 721));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsMakeMomentPublicResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsmakemomentpublicresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 721, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsmakemomentpublicresponse = function() {
+  return this.setSnsmakemomentpublicresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsmakemomentpublicresponse = function() {
+  return jspb.Message.getField(this, 721) != null;
+};
+
+
+/**
+ * optional SnsRemoveMomentRequest snsRemoveMomentRequest = 722;
+ * @return {?proto.padlocal.SnsRemoveMomentRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsremovemomentrequest = function() {
+  return /** @type{?proto.padlocal.SnsRemoveMomentRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsRemoveMomentRequest, 722));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsRemoveMomentRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsremovemomentrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 722, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsremovemomentrequest = function() {
+  return this.setSnsremovemomentrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsremovemomentrequest = function() {
+  return jspb.Message.getField(this, 722) != null;
+};
+
+
+/**
+ * optional SnsRemoveMomentResponse snsRemoveMomentResponse = 723;
+ * @return {?proto.padlocal.SnsRemoveMomentResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getSnsremovemomentresponse = function() {
+  return /** @type{?proto.padlocal.SnsRemoveMomentResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SnsRemoveMomentResponse, 723));
+};
+
+
+/**
+ * @param {?proto.padlocal.SnsRemoveMomentResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setSnsremovemomentresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 723, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearSnsremovemomentresponse = function() {
+  return this.setSnsremovemomentresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasSnsremovemomentresponse = function() {
+  return jspb.Message.getField(this, 723) != null;
 };
 
 

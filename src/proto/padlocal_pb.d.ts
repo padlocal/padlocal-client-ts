@@ -51,6 +51,18 @@ export class ActionMessage extends jspb.Message {
     setWechatresponse(value?: WeChatResponse): ActionMessage;
 
 
+    hasSystemeventrequest(): boolean;
+    clearSystemeventrequest(): void;
+    getSystemeventrequest(): SystemEventRequest | undefined;
+    setSystemeventrequest(value?: SystemEventRequest): ActionMessage;
+
+
+    hasSystemeventresponse(): boolean;
+    clearSystemeventresponse(): void;
+    getSystemeventresponse(): SystemEventResponse | undefined;
+    setSystemeventresponse(value?: SystemEventResponse): ActionMessage;
+
+
     hasLonglinkunpackrequest(): boolean;
     clearLonglinkunpackrequest(): void;
     getLonglinkunpackrequest(): LongLinkUnpackRequest | undefined;
@@ -61,6 +73,36 @@ export class ActionMessage extends jspb.Message {
     clearLonglinkunpackresponse(): void;
     getLonglinkunpackresponse(): LongLinkUnpackResponse | undefined;
     setLonglinkunpackresponse(value?: LongLinkUnpackResponse): ActionMessage;
+
+
+    hasLonglinkheartbeatrequest(): boolean;
+    clearLonglinkheartbeatrequest(): void;
+    getLonglinkheartbeatrequest(): LongLinkHeartBeatRequest | undefined;
+    setLonglinkheartbeatrequest(value?: LongLinkHeartBeatRequest): ActionMessage;
+
+
+    hasLonglinkheartbeatresponse(): boolean;
+    clearLonglinkheartbeatresponse(): void;
+    getLonglinkheartbeatresponse(): LongLinkHeartBeatResponse | undefined;
+    setLonglinkheartbeatresponse(value?: LongLinkHeartBeatResponse): ActionMessage;
+
+
+    hasSyncrequest(): boolean;
+    clearSyncrequest(): void;
+    getSyncrequest(): SyncRequest | undefined;
+    setSyncrequest(value?: SyncRequest): ActionMessage;
+
+
+    hasSyncresponse(): boolean;
+    clearSyncresponse(): void;
+    getSyncresponse(): SyncResponse | undefined;
+    setSyncresponse(value?: SyncResponse): ActionMessage;
+
+
+    hasSyncevent(): boolean;
+    clearSyncevent(): void;
+    getSyncevent(): SyncEvent | undefined;
+    setSyncevent(value?: SyncEvent): ActionMessage;
 
 
     hasLoginrequest(): boolean;
@@ -91,18 +133,6 @@ export class ActionMessage extends jspb.Message {
     clearLogoutresponse(): void;
     getLogoutresponse(): LogoutResponse | undefined;
     setLogoutresponse(value?: LogoutResponse): ActionMessage;
-
-
-    hasLonglinkheartbeatrequest(): boolean;
-    clearLonglinkheartbeatrequest(): void;
-    getLonglinkheartbeatrequest(): LongLinkHeartBeatRequest | undefined;
-    setLonglinkheartbeatrequest(value?: LongLinkHeartBeatRequest): ActionMessage;
-
-
-    hasLonglinkheartbeatresponse(): boolean;
-    clearLonglinkheartbeatresponse(): void;
-    getLonglinkheartbeatresponse(): LongLinkHeartBeatResponse | undefined;
-    setLonglinkheartbeatresponse(value?: LongLinkHeartBeatResponse): ActionMessage;
 
 
     hasSendtextmessagerequest(): boolean;
@@ -139,6 +169,90 @@ export class ActionMessage extends jspb.Message {
     clearSendappmessageresponse(): void;
     getSendappmessageresponse(): SendAppMessageResponse | undefined;
     setSendappmessageresponse(value?: SendAppMessageResponse): ActionMessage;
+
+
+    hasGetmessageimagerequest(): boolean;
+    clearGetmessageimagerequest(): void;
+    getGetmessageimagerequest(): GetMessageImageRequest | undefined;
+    setGetmessageimagerequest(value?: GetMessageImageRequest): ActionMessage;
+
+
+    hasGetmessageimageresponse(): boolean;
+    clearGetmessageimageresponse(): void;
+    getGetmessageimageresponse(): GetMessageImageResponse | undefined;
+    setGetmessageimageresponse(value?: GetMessageImageResponse): ActionMessage;
+
+
+    hasGetmessagevoicerequest(): boolean;
+    clearGetmessagevoicerequest(): void;
+    getGetmessagevoicerequest(): GetMessageVoiceRequest | undefined;
+    setGetmessagevoicerequest(value?: GetMessageVoiceRequest): ActionMessage;
+
+
+    hasGetmessagevoiceresponse(): boolean;
+    clearGetmessagevoiceresponse(): void;
+    getGetmessagevoiceresponse(): GetMessageVoiceResponse | undefined;
+    setGetmessagevoiceresponse(value?: GetMessageVoiceResponse): ActionMessage;
+
+
+    hasGetmessagevideothumbrequest(): boolean;
+    clearGetmessagevideothumbrequest(): void;
+    getGetmessagevideothumbrequest(): GetMessageVideoThumbRequest | undefined;
+    setGetmessagevideothumbrequest(value?: GetMessageVideoThumbRequest): ActionMessage;
+
+
+    hasGetmessagevideothumbresponse(): boolean;
+    clearGetmessagevideothumbresponse(): void;
+    getGetmessagevideothumbresponse(): GetMessageVideoThumbResponse | undefined;
+    setGetmessagevideothumbresponse(value?: GetMessageVideoThumbResponse): ActionMessage;
+
+
+    hasGetmessagevideorequest(): boolean;
+    clearGetmessagevideorequest(): void;
+    getGetmessagevideorequest(): GetMessageVideoRequest | undefined;
+    setGetmessagevideorequest(value?: GetMessageVideoRequest): ActionMessage;
+
+
+    hasGetmessagevideoresponse(): boolean;
+    clearGetmessagevideoresponse(): void;
+    getGetmessagevideoresponse(): GetMessageVideoResponse | undefined;
+    setGetmessagevideoresponse(value?: GetMessageVideoResponse): ActionMessage;
+
+
+    hasGetmessagefilerequest(): boolean;
+    clearGetmessagefilerequest(): void;
+    getGetmessagefilerequest(): GetMessageFileRequest | undefined;
+    setGetmessagefilerequest(value?: GetMessageFileRequest): ActionMessage;
+
+
+    hasGetmessagefileresponse(): boolean;
+    clearGetmessagefileresponse(): void;
+    getGetmessagefileresponse(): GetMessageFileResponse | undefined;
+    setGetmessagefileresponse(value?: GetMessageFileResponse): ActionMessage;
+
+
+    hasForwardmessagerequest(): boolean;
+    clearForwardmessagerequest(): void;
+    getForwardmessagerequest(): ForwardMessageRequest | undefined;
+    setForwardmessagerequest(value?: ForwardMessageRequest): ActionMessage;
+
+
+    hasForwardmessageresponse(): boolean;
+    clearForwardmessageresponse(): void;
+    getForwardmessageresponse(): ForwardMessageResponse | undefined;
+    setForwardmessageresponse(value?: ForwardMessageResponse): ActionMessage;
+
+
+    hasSynccontactrequest(): boolean;
+    clearSynccontactrequest(): void;
+    getSynccontactrequest(): SyncContactRequest | undefined;
+    setSynccontactrequest(value?: SyncContactRequest): ActionMessage;
+
+
+    hasSynccontactresponse(): boolean;
+    clearSynccontactresponse(): void;
+    getSynccontactresponse(): SyncContactResponse | undefined;
+    setSynccontactresponse(value?: SyncContactResponse): ActionMessage;
 
 
     hasAcceptuserrequest(): boolean;
@@ -321,6 +435,54 @@ export class ActionMessage extends jspb.Message {
     setSetchatroomnameresponse(value?: SetChatRoomNameResponse): ActionMessage;
 
 
+    hasAddlabelrequest(): boolean;
+    clearAddlabelrequest(): void;
+    getAddlabelrequest(): AddLabelRequest | undefined;
+    setAddlabelrequest(value?: AddLabelRequest): ActionMessage;
+
+
+    hasAddlabelresponse(): boolean;
+    clearAddlabelresponse(): void;
+    getAddlabelresponse(): AddLabelResponse | undefined;
+    setAddlabelresponse(value?: AddLabelResponse): ActionMessage;
+
+
+    hasRemovelabelrequest(): boolean;
+    clearRemovelabelrequest(): void;
+    getRemovelabelrequest(): RemoveLabelRequest | undefined;
+    setRemovelabelrequest(value?: RemoveLabelRequest): ActionMessage;
+
+
+    hasRemovelabelresponse(): boolean;
+    clearRemovelabelresponse(): void;
+    getRemovelabelresponse(): RemoveLabelResponse | undefined;
+    setRemovelabelresponse(value?: RemoveLabelResponse): ActionMessage;
+
+
+    hasGetlabellistrequest(): boolean;
+    clearGetlabellistrequest(): void;
+    getGetlabellistrequest(): GetLabelListRequest | undefined;
+    setGetlabellistrequest(value?: GetLabelListRequest): ActionMessage;
+
+
+    hasGetlabellistresponse(): boolean;
+    clearGetlabellistresponse(): void;
+    getGetlabellistresponse(): GetLabelListResponse | undefined;
+    setGetlabellistresponse(value?: GetLabelListResponse): ActionMessage;
+
+
+    hasSetcontactlabelrequest(): boolean;
+    clearSetcontactlabelrequest(): void;
+    getSetcontactlabelrequest(): SetContactLabelRequest | undefined;
+    setSetcontactlabelrequest(value?: SetContactLabelRequest): ActionMessage;
+
+
+    hasSetcontactlabelresponse(): boolean;
+    clearSetcontactlabelresponse(): void;
+    getSetcontactlabelresponse(): SetContactLabelResponse | undefined;
+    setSetcontactlabelresponse(value?: SetContactLabelResponse): ActionMessage;
+
+
     hasSnssendmomentrequest(): boolean;
     clearSnssendmomentrequest(): void;
     getSnssendmomentrequest(): SnsSendMomentRequest | undefined;
@@ -465,168 +627,6 @@ export class ActionMessage extends jspb.Message {
     setSnsremovemomentresponse(value?: SnsRemoveMomentResponse): ActionMessage;
 
 
-    hasAddlabelrequest(): boolean;
-    clearAddlabelrequest(): void;
-    getAddlabelrequest(): AddLabelRequest | undefined;
-    setAddlabelrequest(value?: AddLabelRequest): ActionMessage;
-
-
-    hasAddlabelresponse(): boolean;
-    clearAddlabelresponse(): void;
-    getAddlabelresponse(): AddLabelResponse | undefined;
-    setAddlabelresponse(value?: AddLabelResponse): ActionMessage;
-
-
-    hasRemovelabelrequest(): boolean;
-    clearRemovelabelrequest(): void;
-    getRemovelabelrequest(): RemoveLabelRequest | undefined;
-    setRemovelabelrequest(value?: RemoveLabelRequest): ActionMessage;
-
-
-    hasRemovelabelresponse(): boolean;
-    clearRemovelabelresponse(): void;
-    getRemovelabelresponse(): RemoveLabelResponse | undefined;
-    setRemovelabelresponse(value?: RemoveLabelResponse): ActionMessage;
-
-
-    hasGetlabellistrequest(): boolean;
-    clearGetlabellistrequest(): void;
-    getGetlabellistrequest(): GetLabelListRequest | undefined;
-    setGetlabellistrequest(value?: GetLabelListRequest): ActionMessage;
-
-
-    hasGetlabellistresponse(): boolean;
-    clearGetlabellistresponse(): void;
-    getGetlabellistresponse(): GetLabelListResponse | undefined;
-    setGetlabellistresponse(value?: GetLabelListResponse): ActionMessage;
-
-
-    hasSetcontactlabelrequest(): boolean;
-    clearSetcontactlabelrequest(): void;
-    getSetcontactlabelrequest(): SetContactLabelRequest | undefined;
-    setSetcontactlabelrequest(value?: SetContactLabelRequest): ActionMessage;
-
-
-    hasSetcontactlabelresponse(): boolean;
-    clearSetcontactlabelresponse(): void;
-    getSetcontactlabelresponse(): SetContactLabelResponse | undefined;
-    setSetcontactlabelresponse(value?: SetContactLabelResponse): ActionMessage;
-
-
-    hasSystemeventrequest(): boolean;
-    clearSystemeventrequest(): void;
-    getSystemeventrequest(): SystemEventRequest | undefined;
-    setSystemeventrequest(value?: SystemEventRequest): ActionMessage;
-
-
-    hasSystemeventresponse(): boolean;
-    clearSystemeventresponse(): void;
-    getSystemeventresponse(): SystemEventResponse | undefined;
-    setSystemeventresponse(value?: SystemEventResponse): ActionMessage;
-
-
-    hasSyncrequest(): boolean;
-    clearSyncrequest(): void;
-    getSyncrequest(): SyncRequest | undefined;
-    setSyncrequest(value?: SyncRequest): ActionMessage;
-
-
-    hasSyncresponse(): boolean;
-    clearSyncresponse(): void;
-    getSyncresponse(): SyncResponse | undefined;
-    setSyncresponse(value?: SyncResponse): ActionMessage;
-
-
-    hasGetmessageimagerequest(): boolean;
-    clearGetmessageimagerequest(): void;
-    getGetmessageimagerequest(): GetMessageImageRequest | undefined;
-    setGetmessageimagerequest(value?: GetMessageImageRequest): ActionMessage;
-
-
-    hasGetmessageimageresponse(): boolean;
-    clearGetmessageimageresponse(): void;
-    getGetmessageimageresponse(): GetMessageImageResponse | undefined;
-    setGetmessageimageresponse(value?: GetMessageImageResponse): ActionMessage;
-
-
-    hasSynccontactrequest(): boolean;
-    clearSynccontactrequest(): void;
-    getSynccontactrequest(): SyncContactRequest | undefined;
-    setSynccontactrequest(value?: SyncContactRequest): ActionMessage;
-
-
-    hasSynccontactresponse(): boolean;
-    clearSynccontactresponse(): void;
-    getSynccontactresponse(): SyncContactResponse | undefined;
-    setSynccontactresponse(value?: SyncContactResponse): ActionMessage;
-
-
-    hasSyncevent(): boolean;
-    clearSyncevent(): void;
-    getSyncevent(): SyncEvent | undefined;
-    setSyncevent(value?: SyncEvent): ActionMessage;
-
-
-    hasGetmessagevoicerequest(): boolean;
-    clearGetmessagevoicerequest(): void;
-    getGetmessagevoicerequest(): GetMessageVoiceRequest | undefined;
-    setGetmessagevoicerequest(value?: GetMessageVoiceRequest): ActionMessage;
-
-
-    hasGetmessagevoiceresponse(): boolean;
-    clearGetmessagevoiceresponse(): void;
-    getGetmessagevoiceresponse(): GetMessageVoiceResponse | undefined;
-    setGetmessagevoiceresponse(value?: GetMessageVoiceResponse): ActionMessage;
-
-
-    hasGetmessagevideothumbrequest(): boolean;
-    clearGetmessagevideothumbrequest(): void;
-    getGetmessagevideothumbrequest(): GetMessageVideoThumbRequest | undefined;
-    setGetmessagevideothumbrequest(value?: GetMessageVideoThumbRequest): ActionMessage;
-
-
-    hasGetmessagevideothumbresponse(): boolean;
-    clearGetmessagevideothumbresponse(): void;
-    getGetmessagevideothumbresponse(): GetMessageVideoThumbResponse | undefined;
-    setGetmessagevideothumbresponse(value?: GetMessageVideoThumbResponse): ActionMessage;
-
-
-    hasGetmessagevideorequest(): boolean;
-    clearGetmessagevideorequest(): void;
-    getGetmessagevideorequest(): GetMessageVideoRequest | undefined;
-    setGetmessagevideorequest(value?: GetMessageVideoRequest): ActionMessage;
-
-
-    hasGetmessagevideoresponse(): boolean;
-    clearGetmessagevideoresponse(): void;
-    getGetmessagevideoresponse(): GetMessageVideoResponse | undefined;
-    setGetmessagevideoresponse(value?: GetMessageVideoResponse): ActionMessage;
-
-
-    hasGetmessagefilerequest(): boolean;
-    clearGetmessagefilerequest(): void;
-    getGetmessagefilerequest(): GetMessageFileRequest | undefined;
-    setGetmessagefilerequest(value?: GetMessageFileRequest): ActionMessage;
-
-
-    hasGetmessagefileresponse(): boolean;
-    clearGetmessagefileresponse(): void;
-    getGetmessagefileresponse(): GetMessageFileResponse | undefined;
-    setGetmessagefileresponse(value?: GetMessageFileResponse): ActionMessage;
-
-
-    hasForwardmessagerequest(): boolean;
-    clearForwardmessagerequest(): void;
-    getForwardmessagerequest(): ForwardMessageRequest | undefined;
-    setForwardmessagerequest(value?: ForwardMessageRequest): ActionMessage;
-
-
-    hasForwardmessageresponse(): boolean;
-    clearForwardmessageresponse(): void;
-    getForwardmessageresponse(): ForwardMessageResponse | undefined;
-    setForwardmessageresponse(value?: ForwardMessageResponse): ActionMessage;
-
-
     getPayloadCase(): ActionMessage.PayloadCase;
 
     serializeBinary(): Uint8Array;
@@ -644,21 +644,40 @@ export namespace ActionMessage {
         header?: ActionMessageHeader.AsObject,
         wechatrequest?: WeChatRequest.AsObject,
         wechatresponse?: WeChatResponse.AsObject,
+        systemeventrequest?: SystemEventRequest.AsObject,
+        systemeventresponse?: SystemEventResponse.AsObject,
         longlinkunpackrequest?: LongLinkUnpackRequest.AsObject,
         longlinkunpackresponse?: LongLinkUnpackResponse.AsObject,
+        longlinkheartbeatrequest?: LongLinkHeartBeatRequest.AsObject,
+        longlinkheartbeatresponse?: LongLinkHeartBeatResponse.AsObject,
+        syncrequest?: SyncRequest.AsObject,
+        syncresponse?: SyncResponse.AsObject,
+        syncevent?: SyncEvent.AsObject,
         loginrequest?: LoginRequest.AsObject,
         loginupdateevent?: LoginUpdateEvent.AsObject,
         loginresponse?: LoginResponse.AsObject,
         logoutrequest?: LogoutRequest.AsObject,
         logoutresponse?: LogoutResponse.AsObject,
-        longlinkheartbeatrequest?: LongLinkHeartBeatRequest.AsObject,
-        longlinkheartbeatresponse?: LongLinkHeartBeatResponse.AsObject,
         sendtextmessagerequest?: SendTextMessageRequest.AsObject,
         sendtextmessageresponse?: SendTextMessageResponse.AsObject,
         sendimagemessagerequest?: SendImageMessageRequest.AsObject,
         sendimagemessageresponse?: SendImageMessageResponse.AsObject,
         sendappmessagerequest?: SendAppMessageRequest.AsObject,
         sendappmessageresponse?: SendAppMessageResponse.AsObject,
+        getmessageimagerequest?: GetMessageImageRequest.AsObject,
+        getmessageimageresponse?: GetMessageImageResponse.AsObject,
+        getmessagevoicerequest?: GetMessageVoiceRequest.AsObject,
+        getmessagevoiceresponse?: GetMessageVoiceResponse.AsObject,
+        getmessagevideothumbrequest?: GetMessageVideoThumbRequest.AsObject,
+        getmessagevideothumbresponse?: GetMessageVideoThumbResponse.AsObject,
+        getmessagevideorequest?: GetMessageVideoRequest.AsObject,
+        getmessagevideoresponse?: GetMessageVideoResponse.AsObject,
+        getmessagefilerequest?: GetMessageFileRequest.AsObject,
+        getmessagefileresponse?: GetMessageFileResponse.AsObject,
+        forwardmessagerequest?: ForwardMessageRequest.AsObject,
+        forwardmessageresponse?: ForwardMessageResponse.AsObject,
+        synccontactrequest?: SyncContactRequest.AsObject,
+        synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
         acceptuserresponse?: AcceptUserResponse.AsObject,
         addcontactrequest?: AddContactRequest.AsObject,
@@ -689,6 +708,14 @@ export namespace ActionMessage {
         deletechatroommemberresponse?: DeleteChatRoomMemberResponse.AsObject,
         setchatroomnamerequest?: SetChatRoomNameRequest.AsObject,
         setchatroomnameresponse?: SetChatRoomNameResponse.AsObject,
+        addlabelrequest?: AddLabelRequest.AsObject,
+        addlabelresponse?: AddLabelResponse.AsObject,
+        removelabelrequest?: RemoveLabelRequest.AsObject,
+        removelabelresponse?: RemoveLabelResponse.AsObject,
+        getlabellistrequest?: GetLabelListRequest.AsObject,
+        getlabellistresponse?: GetLabelListResponse.AsObject,
+        setcontactlabelrequest?: SetContactLabelRequest.AsObject,
+        setcontactlabelresponse?: SetContactLabelResponse.AsObject,
         snssendmomentrequest?: SnsSendMomentRequest.AsObject,
         snssendmomentresponse?: SnsSendMomentResponse.AsObject,
         snsgetuserpagerequest?: SnsGetUserPageRequest.AsObject,
@@ -713,233 +740,206 @@ export namespace ActionMessage {
         snsmakemomentpublicresponse?: SnsMakeMomentPublicResponse.AsObject,
         snsremovemomentrequest?: SnsRemoveMomentRequest.AsObject,
         snsremovemomentresponse?: SnsRemoveMomentResponse.AsObject,
-        addlabelrequest?: AddLabelRequest.AsObject,
-        addlabelresponse?: AddLabelResponse.AsObject,
-        removelabelrequest?: RemoveLabelRequest.AsObject,
-        removelabelresponse?: RemoveLabelResponse.AsObject,
-        getlabellistrequest?: GetLabelListRequest.AsObject,
-        getlabellistresponse?: GetLabelListResponse.AsObject,
-        setcontactlabelrequest?: SetContactLabelRequest.AsObject,
-        setcontactlabelresponse?: SetContactLabelResponse.AsObject,
-        systemeventrequest?: SystemEventRequest.AsObject,
-        systemeventresponse?: SystemEventResponse.AsObject,
-        syncrequest?: SyncRequest.AsObject,
-        syncresponse?: SyncResponse.AsObject,
-        getmessageimagerequest?: GetMessageImageRequest.AsObject,
-        getmessageimageresponse?: GetMessageImageResponse.AsObject,
-        synccontactrequest?: SyncContactRequest.AsObject,
-        synccontactresponse?: SyncContactResponse.AsObject,
-        syncevent?: SyncEvent.AsObject,
-        getmessagevoicerequest?: GetMessageVoiceRequest.AsObject,
-        getmessagevoiceresponse?: GetMessageVoiceResponse.AsObject,
-        getmessagevideothumbrequest?: GetMessageVideoThumbRequest.AsObject,
-        getmessagevideothumbresponse?: GetMessageVideoThumbResponse.AsObject,
-        getmessagevideorequest?: GetMessageVideoRequest.AsObject,
-        getmessagevideoresponse?: GetMessageVideoResponse.AsObject,
-        getmessagefilerequest?: GetMessageFileRequest.AsObject,
-        getmessagefileresponse?: GetMessageFileResponse.AsObject,
-        forwardmessagerequest?: ForwardMessageRequest.AsObject,
-        forwardmessageresponse?: ForwardMessageResponse.AsObject,
     }
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
     
-    WECHATREQUEST = 2,
+    WECHATREQUEST = 10,
 
-    WECHATRESPONSE = 3,
+    WECHATRESPONSE = 11,
 
-    LONGLINKUNPACKREQUEST = 4,
+    SYSTEMEVENTREQUEST = 12,
 
-    LONGLINKUNPACKRESPONSE = 5,
+    SYSTEMEVENTRESPONSE = 13,
 
-    LOGINREQUEST = 6,
+    LONGLINKUNPACKREQUEST = 14,
 
-    LOGINUPDATEEVENT = 7,
+    LONGLINKUNPACKRESPONSE = 15,
 
-    LOGINRESPONSE = 8,
+    LONGLINKHEARTBEATREQUEST = 16,
 
-    LOGOUTREQUEST = 9,
+    LONGLINKHEARTBEATRESPONSE = 17,
 
-    LOGOUTRESPONSE = 10,
+    SYNCREQUEST = 100,
 
-    LONGLINKHEARTBEATREQUEST = 11,
+    SYNCRESPONSE = 101,
 
-    LONGLINKHEARTBEATRESPONSE = 12,
+    SYNCEVENT = 102,
 
-    SENDTEXTMESSAGEREQUEST = 13,
+    LOGINREQUEST = 200,
 
-    SENDTEXTMESSAGERESPONSE = 14,
+    LOGINUPDATEEVENT = 201,
 
-    SENDIMAGEMESSAGEREQUEST = 15,
+    LOGINRESPONSE = 202,
 
-    SENDIMAGEMESSAGERESPONSE = 16,
+    LOGOUTREQUEST = 203,
 
-    SENDAPPMESSAGEREQUEST = 17,
+    LOGOUTRESPONSE = 204,
 
-    SENDAPPMESSAGERESPONSE = 18,
+    SENDTEXTMESSAGEREQUEST = 300,
 
-    ACCEPTUSERREQUEST = 19,
+    SENDTEXTMESSAGERESPONSE = 301,
 
-    ACCEPTUSERRESPONSE = 20,
+    SENDIMAGEMESSAGEREQUEST = 302,
 
-    ADDCONTACTREQUEST = 21,
+    SENDIMAGEMESSAGERESPONSE = 303,
 
-    ADDCONTACTRESPONSE = 22,
+    SENDAPPMESSAGEREQUEST = 304,
 
-    DELETECONTACTREQUEST = 23,
+    SENDAPPMESSAGERESPONSE = 305,
 
-    DELETECONTACTRESPONSE = 24,
+    GETMESSAGEIMAGEREQUEST = 306,
 
-    GETCONTACTREQUEST = 25,
+    GETMESSAGEIMAGERESPONSE = 307,
 
-    GETCONTACTRESPONSE = 26,
+    GETMESSAGEVOICEREQUEST = 308,
 
-    GETCONTACTQRCODEREQUEST = 27,
+    GETMESSAGEVOICERESPONSE = 309,
 
-    GETCONTACTQRCODERESPONSE = 28,
+    GETMESSAGEVIDEOTHUMBREQUEST = 310,
 
-    SEARCHCONTACTREQUEST = 29,
+    GETMESSAGEVIDEOTHUMBRESPONSE = 311,
 
-    SEARCHCONTACTRESPONSE = 30,
+    GETMESSAGEVIDEOREQUEST = 312,
 
-    CREATECHATROOMREQUEST = 31,
+    GETMESSAGEVIDEORESPONSE = 313,
 
-    CREATECHATROOMRESPONSE = 32,
+    GETMESSAGEFILEREQUEST = 314,
 
-    GETCHATROOMMEMBERSREQUEST = 33,
+    GETMESSAGEFILERESPONSE = 315,
 
-    GETCHATROOMMEMBERSRESPONSE = 34,
+    FORWARDMESSAGEREQUEST = 316,
 
-    GETCHATROOMQRCODEREQUEST = 35,
+    FORWARDMESSAGERESPONSE = 317,
 
-    GETCHATROOMQRCODERESPONSE = 36,
+    SYNCCONTACTREQUEST = 400,
 
-    GETCHATROOMMEMBERREQUEST = 37,
+    SYNCCONTACTRESPONSE = 401,
 
-    GETCHATROOMMEMBERRESPONSE = 38,
+    ACCEPTUSERREQUEST = 402,
 
-    SETCHATROOMANNOUNCEMENTREQUEST = 39,
+    ACCEPTUSERRESPONSE = 403,
 
-    SETCHATROOMANNOUNCEMENTRESPONSE = 40,
+    ADDCONTACTREQUEST = 404,
 
-    ADDCHATROOMMEMBERREQUEST = 41,
+    ADDCONTACTRESPONSE = 405,
 
-    ADDCHATROOMMEMBERRESPONSE = 42,
+    DELETECONTACTREQUEST = 406,
 
-    INVITECHATROOMMEMBERREQUEST = 43,
+    DELETECONTACTRESPONSE = 407,
 
-    INVITECHATROOMMEMBERRESPONSE = 44,
+    GETCONTACTREQUEST = 408,
 
-    DELETECHATROOMMEMBERREQUEST = 45,
+    GETCONTACTRESPONSE = 409,
 
-    DELETECHATROOMMEMBERRESPONSE = 46,
+    GETCONTACTQRCODEREQUEST = 410,
 
-    SETCHATROOMNAMEREQUEST = 47,
+    GETCONTACTQRCODERESPONSE = 411,
 
-    SETCHATROOMNAMERESPONSE = 48,
+    SEARCHCONTACTREQUEST = 412,
 
-    SNSSENDMOMENTREQUEST = 49,
+    SEARCHCONTACTRESPONSE = 413,
 
-    SNSSENDMOMENTRESPONSE = 50,
+    CREATECHATROOMREQUEST = 500,
 
-    SNSGETUSERPAGEREQUEST = 51,
+    CREATECHATROOMRESPONSE = 501,
 
-    SNSGETUSERPAGERESPONSE = 52,
+    GETCHATROOMMEMBERSREQUEST = 502,
 
-    SNSSENDCOMMENTREQUEST = 53,
+    GETCHATROOMMEMBERSRESPONSE = 503,
 
-    SNSSENDCOMMENTRESPONSE = 54,
+    GETCHATROOMQRCODEREQUEST = 504,
 
-    SNSUPLOADIMAGEREQUEST = 55,
+    GETCHATROOMQRCODERESPONSE = 505,
 
-    SNSUPLOADIMAGERESPONSE = 56,
+    GETCHATROOMMEMBERREQUEST = 506,
 
-    SNSGETTIMELINEREQUEST = 57,
+    GETCHATROOMMEMBERRESPONSE = 507,
 
-    SNSGETTIMELINERESPONSE = 58,
+    SETCHATROOMANNOUNCEMENTREQUEST = 508,
 
-    SNSGETMOMENTREQUEST = 59,
+    SETCHATROOMANNOUNCEMENTRESPONSE = 509,
 
-    SNSGETMOMENTRESPONSE = 60,
+    ADDCHATROOMMEMBERREQUEST = 510,
 
-    SNSLIKEMOMENTREQUEST = 61,
+    ADDCHATROOMMEMBERRESPONSE = 511,
 
-    SNSLIKEMOMENTRESPONSE = 62,
+    INVITECHATROOMMEMBERREQUEST = 512,
 
-    SNSUNLIKEMOMENTREQUEST = 63,
+    INVITECHATROOMMEMBERRESPONSE = 513,
 
-    SNSUNLIKEMOMENTRESPONSE = 64,
+    DELETECHATROOMMEMBERREQUEST = 514,
 
-    SNSREMOVEMOMENTCOMMENTREQUEST = 65,
+    DELETECHATROOMMEMBERRESPONSE = 515,
 
-    SNSREMOVEMOMENTCOMMENTRESPONSE = 66,
+    SETCHATROOMNAMEREQUEST = 516,
 
-    SNSMAKEMOMENTPRIVATEREQUEST = 67,
+    SETCHATROOMNAMERESPONSE = 517,
 
-    SNSMAKEMOMENTPRIVATERESPONSE = 68,
+    ADDLABELREQUEST = 600,
 
-    SNSMAKEMOMENTPUBLICREQUEST = 69,
+    ADDLABELRESPONSE = 601,
 
-    SNSMAKEMOMENTPUBLICRESPONSE = 70,
+    REMOVELABELREQUEST = 602,
 
-    SNSREMOVEMOMENTREQUEST = 71,
+    REMOVELABELRESPONSE = 603,
 
-    SNSREMOVEMOMENTRESPONSE = 72,
+    GETLABELLISTREQUEST = 604,
 
-    ADDLABELREQUEST = 73,
+    GETLABELLISTRESPONSE = 605,
 
-    ADDLABELRESPONSE = 74,
+    SETCONTACTLABELREQUEST = 606,
 
-    REMOVELABELREQUEST = 75,
+    SETCONTACTLABELRESPONSE = 607,
 
-    REMOVELABELRESPONSE = 76,
+    SNSSENDMOMENTREQUEST = 700,
 
-    GETLABELLISTREQUEST = 77,
+    SNSSENDMOMENTRESPONSE = 701,
 
-    GETLABELLISTRESPONSE = 78,
+    SNSGETUSERPAGEREQUEST = 702,
 
-    SETCONTACTLABELREQUEST = 79,
+    SNSGETUSERPAGERESPONSE = 703,
 
-    SETCONTACTLABELRESPONSE = 80,
+    SNSSENDCOMMENTREQUEST = 704,
 
-    SYSTEMEVENTREQUEST = 81,
+    SNSSENDCOMMENTRESPONSE = 705,
 
-    SYSTEMEVENTRESPONSE = 82,
+    SNSUPLOADIMAGEREQUEST = 706,
 
-    SYNCREQUEST = 83,
+    SNSUPLOADIMAGERESPONSE = 707,
 
-    SYNCRESPONSE = 84,
+    SNSGETTIMELINEREQUEST = 708,
 
-    GETMESSAGEIMAGEREQUEST = 85,
+    SNSGETTIMELINERESPONSE = 709,
 
-    GETMESSAGEIMAGERESPONSE = 86,
+    SNSGETMOMENTREQUEST = 710,
 
-    SYNCCONTACTREQUEST = 87,
+    SNSGETMOMENTRESPONSE = 711,
 
-    SYNCCONTACTRESPONSE = 88,
+    SNSLIKEMOMENTREQUEST = 712,
 
-    SYNCEVENT = 89,
+    SNSLIKEMOMENTRESPONSE = 713,
 
-    GETMESSAGEVOICEREQUEST = 90,
+    SNSUNLIKEMOMENTREQUEST = 714,
 
-    GETMESSAGEVOICERESPONSE = 91,
+    SNSUNLIKEMOMENTRESPONSE = 715,
 
-    GETMESSAGEVIDEOTHUMBREQUEST = 92,
+    SNSREMOVEMOMENTCOMMENTREQUEST = 716,
 
-    GETMESSAGEVIDEOTHUMBRESPONSE = 93,
+    SNSREMOVEMOMENTCOMMENTRESPONSE = 717,
 
-    GETMESSAGEVIDEOREQUEST = 94,
+    SNSMAKEMOMENTPRIVATEREQUEST = 718,
 
-    GETMESSAGEVIDEORESPONSE = 95,
+    SNSMAKEMOMENTPRIVATERESPONSE = 719,
 
-    GETMESSAGEFILEREQUEST = 96,
+    SNSMAKEMOMENTPUBLICREQUEST = 720,
 
-    GETMESSAGEFILERESPONSE = 97,
+    SNSMAKEMOMENTPUBLICRESPONSE = 721,
 
-    FORWARDMESSAGEREQUEST = 98,
+    SNSREMOVEMOMENTREQUEST = 722,
 
-    FORWARDMESSAGERESPONSE = 99,
+    SNSREMOVEMOMENTRESPONSE = 723,
 
     }
 

@@ -3,12 +3,7 @@ import { PadLocalClient } from "../src/PadLocalClient";
 import { Utils } from "../src/utils/Utils";
 import config from "config";
 import * as fs from "fs";
-import {
-  AddContactScene,
-  AppMessageLink,
-  AppMessageMiniProgram,
-  Message,
-} from "../src/proto/padlocal_pb";
+import { AddContactScene, AppMessageLink, AppMessageMiniProgram, Message } from "../src/proto/padlocal_pb";
 import { ByteUtils } from "../src/utils/ByteUtils";
 
 let client: PadLocalClient;
@@ -17,9 +12,7 @@ const toUserName: string = config.get("test.send.toUserName");
 const toChatRoom: string = config.get("test.send.toChatRoom");
 const atUserList: Array<string> = config.get("test.send.atUserNameList");
 const sendImageFilePath: string = config.get("test.send.imageFilePath");
-const mpThumbFilePath: string = config.get(
-  "test.send.miniProgramThumbFilePath"
-);
+const mpThumbFilePath: string = config.get("test.send.miniProgramThumbFilePath");
 
 beforeAll(async () => {
   client = await TestUtils.prepareSignedOnClient();
@@ -86,11 +79,7 @@ describe("send", () => {
   test("send image message", async () => {
     const imageData: Buffer = fs.readFileSync(sendImageFilePath);
 
-    const msgId = await client.api.sendImageMessage(
-      Utils.genIdempotentId(),
-      toUserName,
-      imageData
-    );
+    const msgId = await client.api.sendImageMessage(Utils.genIdempotentId(), toUserName, imageData);
 
     console.log(`send image message to ${toUserName}, return msgId: ${msgId}`);
 
@@ -137,9 +126,7 @@ describe("send", () => {
         .setThumbimage(thumbImageData)
     );
 
-    console.log(
-      `send miniprogram message to ${toUserName}, return msg id: ${msgId}`
-    );
+    console.log(`send miniprogram message to ${toUserName}, return msg id: ${msgId}`);
 
     expect(msgId).toBeTruthy();
   });
@@ -151,15 +138,9 @@ describe("send", () => {
       )
     );
 
-    const msgId = await client.api.forwardMessage(
-      Utils.genIdempotentId(),
-      toChatRoom,
-      originalMessage
-    );
+    const msgId = await client.api.forwardMessage(Utils.genIdempotentId(), toChatRoom, originalMessage);
 
-    console.log(
-      `forward miniprogram message to ${toChatRoom}, return msg id: ${msgId}`
-    );
+    console.log(`forward miniprogram message to ${toChatRoom}, return msg id: ${msgId}`);
 
     expect(msgId).toBeTruthy();
   });
@@ -218,10 +199,7 @@ describe("contact", () => {
   });
 
   test("get self contact qr image", async () => {
-    const response = await client.api.getContactQRCode(
-      client.selfContact!.getUsername(),
-      2
-    );
+    const response = await client.api.getContactQRCode(client.selfContact!.getUsername(), 2);
 
     expect(response).toBeTruthy();
     expect(response.getQrcode()).toBeTruthy();
@@ -236,14 +214,9 @@ describe("chatroom", () => {
   const roomId: string = config.get("test.room.id");
 
   test("create room", async () => {
-    const memberUseNameList: Array<string> = config.get(
-      "test.room.create.memberUserNameList"
-    );
+    const memberUseNameList: Array<string> = config.get("test.room.create.memberUserNameList");
 
-    const res = await client.api.createChatRoom(
-      Utils.genIdempotentId(),
-      memberUseNameList
-    );
+    const res = await client.api.createChatRoom(Utils.genIdempotentId(), memberUseNameList);
 
     console.log(`create room success: ${Utils.stringifyPB(res)}`);
 
@@ -254,9 +227,7 @@ describe("chatroom", () => {
   test("get room member list", async () => {
     const memberList = await client.api.getChatRoomMembers(roomId);
 
-    console.log(
-      `get room: ${roomId}, memberList:${Utils.stringifyPB(memberList)}`
-    );
+    console.log(`get room: ${roomId}, memberList:${Utils.stringifyPB(memberList)}`);
 
     expect(memberList.length).toBeGreaterThan(0);
   });
@@ -265,11 +236,7 @@ describe("chatroom", () => {
     const userName = client.selfContact!.getUsername();
     const member = await client.api.getChatRoomMember(roomId, userName);
 
-    console.log(
-      `get room: ${roomId}, member:${userName} result: ${Utils.stringifyPB(
-        member
-      )}`
-    );
+    console.log(`get room: ${roomId}, member:${userName} result: ${Utils.stringifyPB(member)}`);
 
     expect(member.getUsername()).toEqual(userName);
   });
@@ -334,7 +301,7 @@ describe("label", () => {
     console.log(`get label list: ${Utils.stringifyPB(labelList)}`);
   });
 
-  describe("add and remove label", async () => {
+  describe("add and remove label", () => {
     let newLabelId: number;
 
     test("add label", async () => {
@@ -377,9 +344,7 @@ describe("label", () => {
       .filter((s) => s)
       .map((s) => parseInt(s));
 
-    const targetLabel = labelList.find(
-      (l) => oldLabelList.indexOf(l.getId()) === -1
-    );
+    const targetLabel = labelList.find((l) => oldLabelList.indexOf(l.getId()) === -1);
 
     const contactLabelList = oldLabelList.concat([targetLabel!.getId()]);
 
