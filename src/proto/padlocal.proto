@@ -98,28 +98,30 @@ message ActionMessage {
 
     SnsSendMomentRequest snsSendMomentRequest = 700;
     SnsSendMomentResponse snsSendMomentResponse = 701;
-    SnsGetUserPageRequest snsGetUserPageRequest = 702;
-    SnsGetUserPageResponse snsGetUserPageResponse = 703;
-    SnsSendCommentRequest snsSendCommentRequest = 704;
-    SnsSendCommentResponse snsSendCommentResponse = 705;
-    SnsUploadImageRequest snsUploadImageRequest = 706;
-    SnsUploadImageResponse snsUploadImageResponse = 707;
-    SnsGetTimelineRequest snsGetTimelineRequest = 708;
-    SnsGetTimelineResponse snsGetTimelineResponse = 709;
-    SnsGetMomentRequest snsGetMomentRequest = 710;
-    SnsGetMomentResponse snsGetMomentResponse = 711;
-    SnsLikeMomentRequest snsLikeMomentRequest = 712;
-    SnsLikeMomentResponse snsLikeMomentResponse = 713;
-    SnsUnlikeMomentRequest snsUnlikeMomentRequest = 714;
-    SnsUnlikeMomentResponse snsUnlikeMomentResponse = 715;
-    SnsRemoveMomentCommentRequest snsRemoveMomentCommentRequest = 716;
-    SnsRemoveMomentCommentResponse snsRemoveMomentCommentResponse = 717;
-    SnsMakeMomentPrivateRequest snsMakeMomentPrivateRequest = 718;
-    SnsMakeMomentPrivateResponse snsMakeMomentPrivateResponse = 719;
-    SnsMakeMomentPublicRequest snsMakeMomentPublicRequest = 720;
-    SnsMakeMomentPublicResponse snsMakeMomentPublicResponse = 721;
-    SnsRemoveMomentRequest snsRemoveMomentRequest = 722;
-    SnsRemoveMomentResponse snsRemoveMomentResponse = 723;
+    SnsForwardMomentRequest snsForwardMomentRequest = 702;
+    SnsForwardMomentResponse snsForwardMomentResponse = 703;
+    SnsGetUserPageRequest snsGetUserPageRequest = 704;
+    SnsGetUserPageResponse snsGetUserPageResponse = 705;
+    SnsGetTimelineRequest snsGetTimelineRequest = 706;
+    SnsGetTimelineResponse snsGetTimelineResponse = 707;
+    SnsGetMomentRequest snsGetMomentRequest = 708;
+    SnsGetMomentResponse snsGetMomentResponse = 709;
+    SnsSendCommentRequest snsSendCommentRequest = 710;
+    SnsSendCommentResponse snsSendCommentResponse = 711;
+    SnsUploadImageRequest snsUploadImageRequest = 712;
+    SnsUploadImageResponse snsUploadImageResponse = 713;
+    SnsLikeMomentRequest snsLikeMomentRequest = 714;
+    SnsLikeMomentResponse snsLikeMomentResponse = 715;
+    SnsUnlikeMomentRequest snsUnlikeMomentRequest = 716;
+    SnsUnlikeMomentResponse snsUnlikeMomentResponse = 717;
+    SnsRemoveMomentCommentRequest snsRemoveMomentCommentRequest = 718;
+    SnsRemoveMomentCommentResponse snsRemoveMomentCommentResponse = 719;
+    SnsMakeMomentPrivateRequest snsMakeMomentPrivateRequest = 720;
+    SnsMakeMomentPrivateResponse snsMakeMomentPrivateResponse = 721;
+    SnsMakeMomentPublicRequest snsMakeMomentPublicRequest = 722;
+    SnsMakeMomentPublicResponse snsMakeMomentPublicResponse = 723;
+    SnsRemoveMomentRequest snsRemoveMomentRequest = 724;
+    SnsRemoveMomentResponse snsRemoveMomentResponse = 725;
   }
 }
 
@@ -442,49 +444,102 @@ message SetChatRoomNameResponse {
 }
 
 message SnsSendMomentRequest {
-  string payloadXML = 1;
+  SnsSendMomentOptions options = 1;
+  oneof payload {
+    SnsSendMomentText text = 2;
+    SnsSendMomentImages images = 3;
+    SnsSendMomentUrl url = 4;
+  };
+}
+
+message SnsSendMomentText {
+  string text = 1;
+}
+
+message SnsSendMomentImages {
+  string text = 1;
+  repeated SnsImageUrl imageUrl = 2;
+}
+
+message SnsSendMomentUrl {
+  string text = 1;
+  string urlTitle = 2;
+  string url = 3;
+  SnsImageUrl imageUrl = 4;
 }
 
 message SnsSendMomentResponse  {
-  Moment moment = 1;
+  SnsMoment moment = 1;
+}
+
+message SnsImageUrl {
+  string md5 = 1;
+  string url = 2;
+  string thumbUrl = 3;
+  int64 height = 4;
+  int64 width = 5;
+  int64 totalSize = 6;
+}
+
+message SnsSendMomentOptions {
+  bool isPrivate = 1;
+  repeated string canSeeUserName = 2;
+  repeated string canNotSeeUserName = 3;
+  repeated string atUserName = 4;
+}
+
+message SnsForwardMomentRequest {
+  string momentContentXml = 1;
+  SnsSendMomentOptions options = 2;
+}
+
+message SnsForwardMomentResponse {
+  SnsMoment moment = 1;
 }
 
 message SnsGetUserPageRequest {
   string userName = 1;
-  int64 maxId = 2;
+  string maxId = 2;
 }
 
 message SnsGetUserPageResponse {
-  repeated Moment moment = 1;
+  repeated SnsMoment moment = 1;
   string tips = 2;
 }
 
 message SnsSendCommentRequest {
-  string userName = 1;
-  string momentId = 2;
-  string text = 3;
+  string momentId = 1;
+  string momentOwnerUserName = 2;
+  string commentText = 3;
+  SnsSendCommentReplyTo replyTo = 4;
+}
+
+message SnsSendCommentReplyTo {
+  string commentId = 1;
+  string commentUserName = 2;
+  string commentNickname = 3;
 }
 
 message SnsSendCommentResponse {
-  Moment moment = 1;
+  SnsMoment moment = 1;
 }
 
 message SnsUploadImageRequest {
   bytes image = 1;
+  string description = 2;
 }
 
 message SnsUploadImageResponse {
   int64 id = 1;
-  string url = 2;
-  string thumbUrl = 3;
+  SnsImageUrl url = 2;
 }
 
 message SnsGetTimelineRequest {
-  int64 maxId = 1;
+  string maxId = 1;
 }
 
 message SnsGetTimelineResponse {
-  repeated Moment moment = 1;
+  repeated SnsMoment moment = 1;
 }
 
 message SnsGetMomentRequest {
@@ -492,16 +547,16 @@ message SnsGetMomentRequest {
 }
 
 message SnsGetMomentResponse {
-  Moment moment = 1;
+  SnsMoment moment = 1;
 }
 
 message SnsLikeMomentRequest {
-  string userName = 1;
-  string momentId = 2;
+  string momentId = 1;
+  string momentOwnerUserName = 2;
 }
 
 message SnsLikeMomentResponse {
-  Moment moment = 1;
+  SnsMoment moment = 1;
 }
 
 message SnsUnlikeMomentRequest {
@@ -617,19 +672,19 @@ message Host {
   int32 port = 2;
 }
 
-message Moment {
+message SnsMoment {
   string id = 1;
   string userName = 2;
   string nickName = 3;
   int32 createTime = 4;
   string content = 5;
   bool isRichText = 6;
-  repeated MomentComment like = 7;
-  repeated MomentComment comment = 8;
-  repeated MomentComment with = 9;
+  repeated SnsMomentComment like = 7;
+  repeated SnsMomentComment comment = 8;
+  repeated SnsMomentComment with = 9;
 }
 
-message MomentComment {
+message SnsMomentComment {
   string id = 1;
   int32 createTime = 2;
   string userName = 3;

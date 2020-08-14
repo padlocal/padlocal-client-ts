@@ -50,7 +50,6 @@ import {
   Label,
   GetLabelListResponse,
   GetLabelListRequest,
-  Moment,
   SnsSendMomentResponse,
   SnsSendMomentRequest,
   SnsGetUserPageResponse,
@@ -88,6 +87,14 @@ import {
   GetMessageFileResponse,
   GetMessageFileRequest,
   SyncContactRequest,
+  SnsSendMomentText,
+  SnsSendMomentImages,
+  SnsSendMomentUrl,
+  SnsSendMomentOptions,
+  SnsMoment,
+  SnsForwardMomentRequest,
+  SnsForwardMomentResponse,
+  SnsSendCommentReplyTo,
 } from "./proto/padlocal_pb";
 import { Bytes, ByteUtils } from "./utils/ByteUtils";
 import { CdnUtils } from "./wechat/CdnUtils";
@@ -223,6 +230,81 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return response.getMsgid();
   }
 
+  async getMessageImage(m: Message, imageType: ImageType): Promise<PadLocalClientApi.GetMessageImageResult> {
+    if (m.getType() != 3) {
+      throw new PadLocalClientApi.ForbiddenError("message type is not image");
+    }
+
+    // make a copy, and make sure to clear embedded image data, to save bandwidth
+    // TODO: protobuf javascript doesn't support clear field ???
+    const message = Message.clone(m).setBinarypayload(ByteUtils.newBytes());
+
+    const grpcClient = this.client.createGrpcClient();
+    const response: GetMessageImageResponse = await grpcClient.request(
+      new GetMessageImageRequest().setMessage(message).setImagetype(imageType)
+    );
+
+    const imageData: Bytes = await CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+
+    return {
+      imageType: response.getImagetype(),
+      imageData: imageData,
+    };
+  }
+
+  async getMessageVoice(message: Message): Promise<Bytes> {
+    if (message.getType() != 34) {
+      throw new PadLocalClientApi.ForbiddenError("message type is not audio");
+    }
+
+    if (message.getBinarypayload().length > 0) {
+      throw new PadLocalClientApi.ForbiddenError("audio data is already embedded in message");
+    }
+
+    const response: GetMessageVoiceResponse = await this.client.grpcRequest(
+      new GetMessageVoiceRequest().setMessage(message)
+    );
+
+    return Buffer.from(response.getVoice());
+  }
+
+  async getMessageVideoThumb(message: Message): Promise<Bytes> {
+    if (message.getType() != 43) {
+      throw new PadLocalClientApi.ForbiddenError("message type is not video");
+    }
+
+    const grpcClient = this.client.createGrpcClient();
+    const response: GetMessageVideoThumbResponse = await grpcClient.request(
+      new GetMessageVideoThumbRequest().setMessage(message)
+    );
+
+    return await CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+  }
+
+  async getMessageVideo(message: Message): Promise<Bytes> {
+    if (message.getType() != 43) {
+      throw new PadLocalClientApi.ForbiddenError("message type is not video");
+    }
+
+    const grpcClient = this.client.createGrpcClient();
+    const response: GetMessageVideoResponse = await grpcClient.request(
+      new GetMessageVideoRequest().setMessage(message)
+    );
+
+    return CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+  }
+
+  async getMessageFile(message: Message): Promise<Bytes> {
+    if (message.getType() != 49) {
+      throw new PadLocalClientApi.ForbiddenError("message type is not file");
+    }
+
+    const grpcClient = this.client.createGrpcClient();
+    const response: GetMessageFileResponse = await grpcClient.request(new GetMessageFileRequest().setMessage(message));
+
+    return CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+  }
+
   async forwardMessage(idempotentId: string, toUserName: string, message: Message): Promise<string> {
     const response: ForwardMessageResponse = await this.client.grpcRequest(
       new ForwardMessageRequest().setTousername(toUserName).setMessage(message),
@@ -231,6 +313,26 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       }
     );
     return response.getMsgid();
+  }
+
+  /**
+   * sync contact is very costy, may be last for minutes, so use wiselly.
+   * @param callback
+   */
+  async syncContact(callback: PadLocalClientApi.SyncContactCallback): Promise<void> {
+    // 10 min timeout
+    const grpcClient = this.client.createGrpcClient({
+      requestTimeout: 10 * 60 * 1000,
+    });
+
+    grpcClient.onMessageCallback = (actionMessage: ActionMessage) => {
+      if (actionMessage.getPayloadCase() == ActionMessage.PayloadCase.SYNCEVENT) {
+        const syncEvent = actionMessage.getSyncevent()!;
+        callback.onSync(syncEvent.getContactList());
+      }
+    };
+
+    await grpcClient.request(new SyncContactRequest());
   }
 
   async acceptUser(stranger: string, ticket: string): Promise<void> {
@@ -329,69 +431,130 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   /**
-   *
-   * @param momentXML
-   * @param idempotentId: id used to forbidden idempotent problem caused by retry.
-   * @return
-   */
-  async snsSendMoment(idempotentId: string, momentXML: string): Promise<Moment> {
-    const response: SnsSendMomentResponse = await this.client.grpcRequest(
-      new SnsSendMomentRequest().setPayloadxml(momentXML),
-      {
-        idempotentId,
-      }
-    );
-    return response.getMoment()!;
-  }
-
-  async snsGetUserPage(userName: string, maxId: number): Promise<Array<Moment>> {
-    const response: SnsGetUserPageResponse = await this.client.grpcRequest(
-      new SnsGetUserPageRequest().setUsername(userName).setMaxid(maxId)
-    );
-    return response.getMomentList();
-  }
-
-  /**
-   *
-   * @param userName
-   * @param momentId
-   * @param text
-   * @param idempotentId: id used to forbidden idempotent problem caused by retry.
-   * @return
-   */
-  async snsSendComment(idempotentId: string, userName: string, momentId: string, text: string): Promise<Moment> {
-    const response: SnsSendCommentResponse = await this.client.grpcRequest(
-      new SnsSendCommentRequest().setUsername(userName).setMomentid(momentId).setText(text),
-      {
-        idempotentId,
-      }
-    );
-    return response.getMoment()!;
-  }
-
-  async snsUploadImage(image: Bytes): Promise<SnsUploadImageResponse> {
-    return await this.client.grpcRequest(new SnsUploadImageRequest().setImage(image));
-  }
-
-  /**
    * @param maxId: 0 for the first page
    * @return
    */
-  async snsGetTimeline(maxId: number): Promise<Array<Moment>> {
-    const response: SnsGetTimelineResponse = await this.client.grpcRequest(new SnsGetTimelineRequest().setMaxid(maxId));
+  async snsGetTimeline(maxId?: string): Promise<Array<SnsMoment>> {
+    const request = new SnsGetTimelineRequest();
+    if (maxId !== undefined) {
+      request.setMaxid(maxId);
+    }
+
+    const response: SnsGetTimelineResponse = await this.client.grpcRequest(request);
     return response.getMomentList();
   }
 
-  async snsGetMoment(momentId: string): Promise<Moment> {
+  async snsGetUserPage(userName: string, maxId?: string): Promise<Array<SnsMoment>> {
+    const request = new SnsGetUserPageRequest().setUsername(userName);
+
+    if (maxId !== undefined) {
+      request.setMaxid(maxId);
+    }
+
+    const response: SnsGetUserPageResponse = await this.client.grpcRequest(request);
+    return response.getMomentList();
+  }
+
+  async snsGetMoment(momentId: string): Promise<SnsMoment> {
     const response: SnsGetMomentResponse = await this.client.grpcRequest(
       new SnsGetMomentRequest().setMomentid(momentId)
     );
     return response.getMoment()!;
   }
 
-  async snsLikeMoment(momentId: string, toUserName: string): Promise<Moment> {
+  /**
+   *
+   * @param idempotentId: id used to forbidden idempotent problem caused by retry.
+   * @param payload
+   * @param options
+   * @return
+   */
+  async snsSendMoment(
+    idempotentId: string,
+    payload: SnsSendMomentText | SnsSendMomentImages | SnsSendMomentUrl,
+    options?: SnsSendMomentOptions
+  ): Promise<SnsMoment> {
+    const request = new SnsSendMomentRequest();
+    if (options) {
+      request.setOptions(options);
+    }
+
+    if (payload instanceof SnsSendMomentText) {
+      request.setText(payload);
+    } else if (payload instanceof SnsSendMomentImages) {
+      request.setImages(payload);
+    } else {
+      request.setUrl(payload);
+    }
+
+    const response: SnsSendMomentResponse = await this.client.grpcRequest(request, {
+      idempotentId,
+    });
+    return response.getMoment()!;
+  }
+
+  async snsForwardMoment(
+    idempotentId: string,
+    momentContentXml: string,
+    options?: SnsSendMomentOptions
+  ): Promise<SnsMoment> {
+    const request = new SnsForwardMomentRequest().setMomentcontentxml(momentContentXml);
+
+    if (options) {
+      request.setOptions(options);
+    }
+
+    const response: SnsForwardMomentResponse = await this.client.grpcRequest(request, {
+      idempotentId,
+    });
+
+    return response.getMoment()!;
+  }
+
+  /**
+   *
+   * @param momentId
+   * @param idempotentId: id used to forbidden idempotent problem caused by retry.
+   * @param momentOwnerUserName
+   * @param commentText
+   * @param replyTo
+   * @return
+   */
+  async snsSendComment(
+    idempotentId: string,
+    momentId: string,
+    momentOwnerUserName: string,
+    commentText: string,
+    replyTo?: SnsSendCommentReplyTo
+  ): Promise<SnsMoment> {
+    const request = new SnsSendCommentRequest()
+      .setMomentid(momentId)
+      .setMomentownerusername(momentOwnerUserName)
+      .setCommenttext(commentText);
+
+    if (replyTo) {
+      request.setReplyto(replyTo);
+    }
+
+    const response: SnsSendCommentResponse = await this.client.grpcRequest(request, {
+      idempotentId,
+    });
+    return response.getMoment()!;
+  }
+
+  async snsUploadImage(image: Bytes, description?: string): Promise<SnsUploadImageResponse> {
+    const request = new SnsUploadImageRequest().setImage(image);
+
+    if (description) {
+      request.setDescription(description);
+    }
+
+    return await this.client.grpcRequest(request);
+  }
+
+  async snsLikeMoment(momentId: string, momentOwnerUserName: string): Promise<SnsMoment> {
     const response: SnsLikeMomentResponse = await this.client.grpcRequest(
-      new SnsLikeMomentRequest().setMomentid(momentId).setUsername(toUserName)
+      new SnsLikeMomentRequest().setMomentid(momentId).setMomentownerusername(momentOwnerUserName)
     );
     return response.getMoment()!;
   }
@@ -414,101 +577,6 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
   async snsRemoveMoment(momentId: string): Promise<void> {
     await this.client.grpcRequest(new SnsRemoveMomentRequest().setMomentid(momentId));
-  }
-
-  async getMessageImage(m: Message, imageType: ImageType): Promise<PadLocalClientApi.GetMessageImageResult> {
-    if (m.getType() != 3) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not image");
-    }
-
-    // make a copy, and make sure to clear embedded image data, to save bandwidth
-    // TODO: protobuf javascript doesn't support clear field ???
-    const message = Message.clone(m).setBinarypayload(ByteUtils.newBytes());
-
-    const grpcClient = this.client.createGrpcClient();
-    const response: GetMessageImageResponse = await grpcClient.request(
-      new GetMessageImageRequest().setMessage(message).setImagetype(imageType)
-    );
-
-    const imageData: Bytes = await CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
-
-    return {
-      imageType: response.getImagetype(),
-      imageData: imageData,
-    };
-  }
-
-  async getMessageVoice(message: Message): Promise<Bytes> {
-    if (message.getType() != 34) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not audio");
-    }
-
-    if (message.getBinarypayload().length > 0) {
-      throw new PadLocalClientApi.ForbiddenError("audio data is already embedded in message");
-    }
-
-    const response: GetMessageVoiceResponse = await this.client.grpcRequest(
-      new GetMessageVoiceRequest().setMessage(message)
-    );
-
-    return Buffer.from(response.getVoice());
-  }
-
-  async getMessageVideoThumb(message: Message): Promise<Bytes> {
-    if (message.getType() != 43) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not video");
-    }
-
-    const grpcClient = this.client.createGrpcClient();
-    const response: GetMessageVideoThumbResponse = await grpcClient.request(
-      new GetMessageVideoThumbRequest().setMessage(message)
-    );
-
-    return await CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
-  }
-
-  async getMessageVideo(message: Message): Promise<Bytes> {
-    if (message.getType() != 43) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not video");
-    }
-
-    const grpcClient = this.client.createGrpcClient();
-    const response: GetMessageVideoResponse = await grpcClient.request(
-      new GetMessageVideoRequest().setMessage(message)
-    );
-
-    return CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
-  }
-
-  async getMessageFile(message: Message): Promise<Bytes> {
-    if (message.getType() != 49) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not file");
-    }
-
-    const grpcClient = this.client.createGrpcClient();
-    const response: GetMessageFileResponse = await grpcClient.request(new GetMessageFileRequest().setMessage(message));
-
-    return CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
-  }
-
-  /**
-   * sync contact is very costy, may be last for minutes, so use wiselly.
-   * @param callback
-   */
-  async syncContact(callback: PadLocalClientApi.SyncContactCallback): Promise<void> {
-    // 10 min timeout
-    const grpcClient = this.client.createGrpcClient({
-      requestTimeout: 10 * 60 * 1000,
-    });
-
-    grpcClient.onMessageCallback = (actionMessage: ActionMessage) => {
-      if (actionMessage.getPayloadCase() == ActionMessage.PayloadCase.SYNCEVENT) {
-        const syncEvent = actionMessage.getSyncevent()!;
-        callback.onSync(syncEvent.getContactList());
-      }
-    };
-
-    await grpcClient.request(new SyncContactRequest());
   }
 }
 

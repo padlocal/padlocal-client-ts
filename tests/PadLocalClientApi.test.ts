@@ -3,7 +3,19 @@ import { PadLocalClient } from "../src/PadLocalClient";
 import { Utils } from "../src/utils/Utils";
 import config from "config";
 import * as fs from "fs";
-import { AddContactScene, AppMessageLink, AppMessageMiniProgram, Message } from "../src/proto/padlocal_pb";
+import {
+  AddContactScene,
+  AppMessageLink,
+  AppMessageMiniProgram,
+  Message,
+  SnsForwardMomentRequest,
+  SnsImageUrl,
+  SnsSendCommentReplyTo,
+  SnsSendMomentImages,
+  SnsSendMomentOptions,
+  SnsSendMomentText,
+  SnsSendMomentUrl,
+} from "../src/proto/padlocal_pb";
 import { ByteUtils } from "../src/utils/ByteUtils";
 
 let client: PadLocalClient;
@@ -364,4 +376,269 @@ describe("label", () => {
   });
 });
 
-describe("sns", () => {});
+describe("sns", () => {
+  describe("sns get", () => {
+    test("get timeline", async () => {
+      const page0MomentList = await client.api.snsGetTimeline();
+      console.log(`get page 0 moments: ${Utils.stringifyPB(page0MomentList)}`);
+
+      if (page0MomentList.length == 0) {
+        return;
+      }
+
+      const page1MaxId = page0MomentList[page0MomentList.length - 1].getId();
+      const page1MomentList = await client.api.snsGetTimeline(page1MaxId);
+
+      console.log(`get page 1 moments: ${Utils.stringifyPB(page1MomentList)}`);
+    });
+
+    test("get user page", async () => {
+      const userName: string = config.get("test.sns.userName");
+
+      const page0MomentList = await client.api.snsGetUserPage(userName);
+      console.log(`get user page 0 moments: ${Utils.stringifyPB(page0MomentList)}`);
+
+      if (page0MomentList.length == 0) {
+        return;
+      }
+
+      const page1MaxId = page0MomentList[page0MomentList.length - 1].getId();
+      const page1MomentList = await client.api.snsGetUserPage(userName, page1MaxId);
+      console.log(`get user page 1 moments: ${Utils.stringifyPB(page1MomentList)}`);
+    });
+
+    test("get moment detail", async () => {
+      const momentId: string = config.get("test.sns.momentId");
+      const moment = await client.api.snsGetMoment(momentId);
+      console.log(`get moment detail: ${Utils.stringifyPB(moment)}`);
+    });
+  });
+
+  describe("sns send", () => {
+    const snsImageFilePathList: Array<string> = config.get("test.sns.imageFilePathList");
+
+    const uploadImages = async (
+      imageFilePathList: Array<string>,
+      description?: string
+    ): Promise<Array<SnsImageUrl>> => {
+      const ret: Array<SnsImageUrl> = [];
+
+      for (let i = 0; i < imageFilePathList.length; ++i) {
+        const imageData: Buffer = fs.readFileSync(imageFilePathList[i]);
+
+        let des = i === 0 ? description : undefined;
+        const imageUploadRes = await client.api.snsUploadImage(imageData, des);
+        console.log(`upload image response: ${Utils.stringifyPB(imageUploadRes)}`);
+
+        expect(imageUploadRes.getUrl()).toBeTruthy();
+
+        ret.push(imageUploadRes.getUrl()!);
+      }
+
+      return ret;
+    };
+
+    test("send public text moment", async () => {
+      const moment = await client.api.snsSendMoment(Utils.genIdempotentId(), new SnsSendMomentText().setText("1"));
+      console.log(`send text moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("send private text moment", async () => {
+      const moment = await client.api.snsSendMoment(
+        Utils.genIdempotentId(),
+        new SnsSendMomentText().setText("2"),
+        new SnsSendMomentOptions().setIsprivate(true)
+      );
+      console.log(`send text moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("send text with can see user", async () => {
+      const canSeeUserList: Array<string> = config.get("test.sns.canSeeUserList");
+      const moment = await client.api.snsSendMoment(
+        Utils.genIdempotentId(),
+        new SnsSendMomentText().setText("can"),
+        new SnsSendMomentOptions().setCanseeusernameList(canSeeUserList)
+      );
+      console.log(`send text moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("send text with can not see user", async () => {
+      const canNotSeeUserList: Array<string> = config.get("test.sns.canNotSessUserList");
+      const moment = await client.api.snsSendMoment(
+        Utils.genIdempotentId(),
+        new SnsSendMomentText().setText("can not"),
+        new SnsSendMomentOptions().setCannotseeusernameList(canNotSeeUserList)
+      );
+      console.log(`send text moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("send text with at user list", async () => {
+      const atUserList: Array<string> = config.get("test.sns.atUserList");
+      const moment = await client.api.snsSendMoment(
+        Utils.genIdempotentId(),
+        new SnsSendMomentText().setText("(｡ŏ_ŏ)"),
+        new SnsSendMomentOptions().setAtusernameList(atUserList)
+      );
+      console.log(`send text moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("send one image moment", async () => {
+      const description = "single image";
+      const imageUrlList: Array<SnsImageUrl> = await uploadImages([snsImageFilePathList[0]], description);
+      const moment = await client.api.snsSendMoment(
+        Utils.genIdempotentId(),
+        new SnsSendMomentImages().setText(description).setImageurlList(imageUrlList),
+        new SnsSendMomentOptions().setIsprivate(true)
+      );
+      console.log(`send text moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("send multiple images moment", async () => {
+      const description = "multiple images";
+      const imageUrlList: Array<SnsImageUrl> = await uploadImages(snsImageFilePathList, description);
+      const moment = await client.api.snsSendMoment(
+        Utils.genIdempotentId(),
+        new SnsSendMomentImages().setText(description).setImageurlList(imageUrlList),
+        new SnsSendMomentOptions().setIsprivate(true)
+      );
+      console.log(`send text moment: ${Utils.stringifyPB(moment)}`);
+    }, 60000);
+
+    test("send link", async () => {
+      const description = "this is link";
+
+      const imageUrlList: Array<SnsImageUrl> = await uploadImages([snsImageFilePathList[0]], description);
+
+      const moment = await client.api.snsSendMoment(
+        Utils.genIdempotentId(),
+        new SnsSendMomentUrl()
+          .setText(description)
+          .setUrl("https://www.baidu.com")
+          .setUrltitle("kangkang baidu")
+          .setImageurl(imageUrlList[0]),
+        new SnsSendMomentOptions().setIsprivate(true)
+      );
+
+      console.log(`send link moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("forward text moment", async () => {
+      const contentXml =
+        "<TimelineObject><id>0</id><username>wxid_j4ctnmp6zhh222</username><createTime>1589266687</createTime><contentDesc>Text private</contentDesc><contentDescShowType>0</contentDescShowType><contentDescScene>3</contentDescScene><private>1</private><sightFolded>0</sightFolded><showFlag>0</showFlag><appInfo><id/><version/><appName/><installUrl/><fromUrl/><isForceUpdate>0</isForceUpdate></appInfo><sourceUserName/><sourceNickName/><statisticsData/><statExtStr/><ContentObject><contentStyle>2</contentStyle><title/><description/><mediaList/></ContentObject></TimelineObject>";
+
+      const moment = await client.api.snsForwardMoment(
+        Utils.genIdempotentId(),
+        contentXml,
+        new SnsSendMomentOptions().setIsprivate(true)
+      );
+
+      console.log(`forward text moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("forward image moment", async () => {
+      const contentXml =
+        '<TimelineObject><id><![CDATA[13399847770986582162]]></id><username><![CDATA[wxid_kgeclct48zbz22]]></username><createTime><![CDATA[1597386332]]></createTime><contentDescShowType>0</contentDescShowType><contentDescScene>0</contentDescScene><private><![CDATA[0]]></private><contentDesc><![CDATA[⛅️发一组今晚食品类集合哦\\\\n你们要求返场的鸭血粉丝汤～蓝胖子必买的喔！口碑很好的成人奶粉🤟🏻 小龙虾重点推荐 国联的 虾品质很好 红咖喱很入味 🌴 九阳破壁机今晚200+]]></contentDesc><contentattr><![CDATA[0]]></contentattr><sourceUserName></sourceUserName><sourceNickName></sourceNickName><statisticsData></statisticsData><weappInfo><appUserName></appUserName><pagePath></pagePath><version><![CDATA[0]]></version><debugMode><![CDATA[0]]></debugMode><shareActionId></shareActionId><isGame><![CDATA[0]]></isGame><messageExtraData></messageExtraData><subType><![CDATA[0]]></subType></weappInfo><canvasInfoXml></canvasInfoXml><ContentObject><contentStyle><![CDATA[1]]></contentStyle><contentSubStyle><![CDATA[0]]></contentSubStyle><title></title><description></description><contentUrl></contentUrl><mediaList><media><id><![CDATA[13399847771215433854]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="b501b92a23ee6176b1e432b555b70881"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQVxco4hmJwh9jNWHzq81Lnjrl39USH03CzBd9v0fegI3h5B1bmY6Iwk/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQVxco4hmJwh9jNWHzq81Lnjrl39USH03CzBd9v0fegI3h5B1bmY6Iwk/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="168902.0" width="1080.0" height="1035.0"></size></media><media><id><![CDATA[13399847771257704569]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="7f70832cc39f405230a0f48cce8b69de"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQVxco4hmJwh9NRTKz0LjMXDcq8Z4ZzzVmhhoBBhOlputgEwQA29APok/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQVxco4hmJwh9NRTKz0LjMXDcq8Z4ZzzVmhhoBBhOlputgEwQA29APok/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="300878.0" width="1080.0" height="1370.0"></size></media><media><id><![CDATA[13399847771270418539]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="348a1daecbe0b6d48b1eed9e437c5097"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQe7D8oUOXIjMLqdv0Qfmu79mNvGJZJoCkoW8iad2Idpup82w2Pvb2D6M/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQe7D8oUOXIjMLqdv0Qfmu79mNvGJZJoCkoW8iad2Idpup82w2Pvb2D6M/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="255224.0" width="1080.0" height="1029.0"></size></media><media><id><![CDATA[13399847771286409344]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="34a76ee31a330af1e983a6208d0d695b"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQXZ4sicahg8BZWT2XtoxVQBNsvWaN0DlUrPD4zUJrKsRxFZ1Gw3Ij55o/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQXZ4sicahg8BZWT2XtoxVQBNsvWaN0DlUrPD4zUJrKsRxFZ1Gw3Ij55o/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="422527.0" width="1018.0" height="1297.0"></size></media><media><id><![CDATA[13399847771311116404]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="0cdfb2eb81bfd591d9d6c5dedef5e608"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQXZ4sicahg8BZgRd0T90HOpu2TyMynUZ87zzibByAOYMP5t2FsPG3Pqr4/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQXZ4sicahg8BZgRd0T90HOpu2TyMynUZ87zzibByAOYMP5t2FsPG3Pqr4/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="197178.0" width="1080.0" height="1028.0"></size></media><media><id><![CDATA[13399847771330515053]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="0265cc322f95026f05d133d6462fd80d"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQYkGYVtvyIj8Oia4XKdUb8eRrLoichKxHH0wCQJpAg6Q6XGzFPKSVZl00/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQYkGYVtvyIj8Oia4XKdUb8eRrLoichKxHH0wCQJpAg6Q6XGzFPKSVZl00/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="122336.0" width="1080.0" height="1028.0"></size></media><media><id><![CDATA[13399847771335037067]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="d1cb5dead2de95a77a5ba249885e0038"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQXqQ5AnosAJbJWgMDK9uZtYoVuSp4vTZBS0XoF6LacpPCiaO9PtsY1N8/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQXqQ5AnosAJbJWgMDK9uZtYoVuSp4vTZBS0XoF6LacpPCiaO9PtsY1N8/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="328754.0" width="1080.0" height="1031.0"></size></media><media><id><![CDATA[13399847771343753351]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="d170f6cf7f087005f4b12519b42cee94"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQaLyIJJW3zKP1lGGpw0IkjU5Q6AoG2AyvPKibIicDa9JYbCRCXAuDydWY/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQaLyIJJW3zKP1lGGpw0IkjU5Q6AoG2AyvPKibIicDa9JYbCRCXAuDydWY/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="161770.0" width="1080.0" height="1020.0"></size></media><media><id><![CDATA[13399847771360071821]]></id><type><![CDATA[2]]></type><title></title><description></description><private><![CDATA[0]]></private><url type="1" md5="d6bd6637030cdf2944dd5a6e24fb02f7"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQazmQMql8P4vMcZsM3KxplJia1iazPMj0SibNVSA6WGSh5DS3VeV0Gictd4/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/b2ONlmmVZRrGvzODsjCkQazmQMql8P4vMcZsM3KxplJia1iazPMj0SibNVSA6WGSh5DS3VeV0Gictd4/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size totalSize="350514.0" width="1080.0" height="1027.0"></size></media></mediaList></ContentObject><actionInfo><appMsg><mediaTagName></mediaTagName><messageExt></messageExt><messageAction></messageAction></appMsg></actionInfo><appInfo><id></id></appInfo><location poiClassifyId="" poiName="" poiAddress="" poiClassifyType="0" city=""></location><publicUserName></publicUserName><streamvideo><streamvideourl></streamvideourl><streamvideothumburl></streamvideothumburl><streamvideoweburl></streamvideoweburl></streamvideo></TimelineObject>';
+
+      const moment = await client.api.snsForwardMoment(
+        Utils.genIdempotentId(),
+        contentXml,
+        new SnsSendMomentOptions().setIsprivate(true)
+      );
+
+      console.log(`forward image moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("forward link moment", async () => {
+      const contentXml =
+        '<TimelineObject><id><![CDATA[13399877748720283773]]></id><username><![CDATA[wxid_nlhppil3i7qt22]]></username><createTime><![CDATA[1597389906]]></createTime><contentDescShowType>1</contentDescShowType><contentDescScene>4</contentDescScene><private><![CDATA[0]]></private><contentDesc><![CDATA[5年以前，我们买房子都希望大面积、低单价、不带学区，为的是搏增量的暴击；\n5年以后的今天，过去的逻辑并不能说是错的，但是我们发现原来市中心低总价、多房间、带学区的房子也是上佳之选。为什么会有这样的变化，\n今天我们这篇尝试着去分析，\n[握手]欢迎点赞转发。]]></contentDesc><contentattr><![CDATA[0]]></contentattr><sourceUserName/><sourceNickName><![CDATA[魔都财观]]></sourceNickName><statisticsData/><weappInfo><appUserName/><pagePath/><version><![CDATA[0]]></version><debugMode><![CDATA[0]]></debugMode><shareActionId/><isGame><![CDATA[0]]></isGame><messageExtraData/><subType><![CDATA[0]]></subType></weappInfo><canvasInfoXml/><ContentObject><contentStyle><![CDATA[3]]></contentStyle><contentSubStyle><![CDATA[0]]></contentSubStyle><title><![CDATA[上海楼市，正在悄悄变天]]></title><description><![CDATA[上海中环以外，一片混沌]]></description><contentUrl><![CDATA[http://mp.weixin.qq.com/s?__biz=MzIzNzQ2NzEzNA==&mid=2247493071&idx=1&sn=9409846366c9a7506b9ff3d74db8d803&chksm=e8ca815edfbd08482fbe2f500f1c7f280803b6b08b8b6d4e4a83a674ba34491c9bda00c8a194&mpshare=1&scene=2&srcid=0814rZdnkkryTMnPcankGHQL&sharer_sharetime=1597389899755&sharer_shareid=eb378bf4e54bc72e83142657ccabb700#rd]]></contentUrl><mediaList><media><id><![CDATA[13399877749062709353]]></id><type><![CDATA[2]]></type><title/><description/><private><![CDATA[0]]></private><url type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/JVDECnNjedEL1HZiaVdx8KGEflnLkic3AGq0Oruic8TsDnvExvNyeEDcNMxXxWXWMu0icsPOcTmlQ8A/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/JVDECnNjedEL1HZiaVdx8KGEflnLkic3AGq0Oruic8TsDnvExvNyeEDcNMxXxWXWMu0icsPOcTmlQ8A/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size height="149.0" totalSize="15503.0" width="150.0"/></media></mediaList><mmreadershare><itemshowtype>0</itemshowtype><ispaysubscribe>0</ispaysubscribe></mmreadershare></ContentObject><actionInfo><appMsg><mediaTagName/><messageExt/><messageAction/></appMsg></actionInfo><statExtStr/><appInfo><id/></appInfo><location city="" poiAddress="" poiClassifyId="" poiClassifyType="0" poiName=""/><publicUserName>gh_cc46da0ba054</publicUserName><streamvideo><streamvideourl/><streamvideothumburl/><streamvideoweburl/></streamvideo></TimelineObject>';
+
+      const moment = await client.api.snsForwardMoment(
+        Utils.genIdempotentId(),
+        contentXml,
+        new SnsSendMomentOptions().setIsprivate(true)
+      );
+
+      console.log(`forward link moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("forward moment with poi", async () => {
+      const contentXml =
+        '<TimelineObject><id><![CDATA[13399855508938035285]]></id><username><![CDATA[liupeng9950]]></username><createTime><![CDATA[1597387255]]></createTime><contentDescShowType>0</contentDescShowType><contentDescScene>0</contentDescScene><private><![CDATA[0]]></private><contentDesc><![CDATA[知一刑诉批改展示！\n用最笨的方式批改\n呵护每一个法律梦\n主观批改非常重要\n客观学生还未考试\n批改质量也是最高的时候！]]></contentDesc><contentattr><![CDATA[0]]></contentattr><sourceUserName/><sourceNickName/><statisticsData/><weappInfo><appUserName/><pagePath/><version><![CDATA[0]]></version><debugMode><![CDATA[0]]></debugMode><shareActionId/><isGame><![CDATA[0]]></isGame><messageExtraData/><subType><![CDATA[0]]></subType></weappInfo><canvasInfoXml/><location city="哈尔滨" country="中国" latitude="45.714916" longitude="126.60088" poiAddress="清华大街64号" poiAddressName="知一司考全封闭学院" poiClassifyId="qqmap_16845034816612029947" poiClassifyType="1" poiClickableStatus="0" poiName="哈尔滨 · 知一司考全封闭学院" poiScale="0"/><ContentObject><contentStyle><![CDATA[1]]></contentStyle><contentSubStyle><![CDATA[0]]></contentSubStyle><title/><description/><contentUrl/><mediaList><media><id><![CDATA[13399855509167804496]]></id><type><![CDATA[2]]></type><title/><description/><private><![CDATA[0]]></private><url md5="c3f56defb6ddb2770d958bb859c1a286" type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqhwvGGhIANZoh2Pb540H1wPYFRibASic2MrlT8fico9hKZYCd8GZcke3T0/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqhwvGGhIANZoh2Pb540H1wPYFRibASic2MrlT8fico9hKZYCd8GZcke3T0/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size height="1123.0" totalSize="105598.0" width="1080.0"/></media><media><id><![CDATA[13399855509188120629]]></id><type><![CDATA[2]]></type><title/><description/><private><![CDATA[0]]></private><url md5="54e3c815b7f371926007e7c6b73df611" type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqhwvGGhIANZogQ3156RW2iahvyCWlh5EIbAHvttVkcicHzaSuJo1yvXAE/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqhwvGGhIANZogQ3156RW2iahvyCWlh5EIbAHvttVkcicHzaSuJo1yvXAE/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size height="1080.0" totalSize="83671.0" width="1462.0"/></media><media><id><![CDATA[13399855509198409790]]></id><type><![CDATA[2]]></type><title/><description/><private><![CDATA[0]]></private><url md5="bf039508be49278dcbafa1ba1f55f4f4" type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqhwvGGhIANZoy5IfOzCLFiaEbZ77AHS560kBjT7kzJ8oIDicXSWnrKQy4/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqhwvGGhIANZoy5IfOzCLFiaEbZ77AHS560kBjT7kzJ8oIDicXSWnrKQy4/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size height="1080.0" totalSize="92553.0" width="1128.0"/></media><media><id><![CDATA[13399855509215318110]]></id><type><![CDATA[2]]></type><title/><description/><private><![CDATA[0]]></private><url md5="ffe87c28c0ea96bf07085316cd50072a" type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqhwvGGhIANZoBHsnvqLrUhp8W7wbFXZ8WH1Ud64iaCBicltdhcvTZXoeE/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqhwvGGhIANZoBHsnvqLrUhp8W7wbFXZ8WH1Ud64iaCBicltdhcvTZXoeE/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size height="1080.0" totalSize="127106.0" width="1433.0"/></media><media><id><![CDATA[13399855509227376696]]></id><type><![CDATA[2]]></type><title/><description/><private><![CDATA[0]]></private><url md5="7f3aeb4b3e0feeb081a8be1ba7e686d8" type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqlH0wbQwQiblibicMibHKN9g9D13YWVnGInXdJojBlUwJXyGDNFO4bJibMaI/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqlH0wbQwQiblibicMibHKN9g9D13YWVnGInXdJojBlUwJXyGDNFO4bJibMaI/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size height="1118.0" totalSize="104054.0" width="1080.0"/></media><media><id><![CDATA[13399855509248479316]]></id><type><![CDATA[2]]></type><title/><description/><private><![CDATA[0]]></private><url md5="82e709f27a8a74f700f2de0954800b21" type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqlH0wbQwQiblibtc2CB8WYjJh95iaA57FtVFaxuF7s4eKaTENXXhO7b9aU/0]]></url><thumb type="1"><![CDATA[http://shmmsns.qpic.cn/mmsns/HmVQlX9WkBsJF5RO4uVzqlH0wbQwQiblibtc2CB8WYjJh95iaA57FtVFaxuF7s4eKaTENXXhO7b9aU/150]]></thumb><videoDuration><![CDATA[0.0]]></videoDuration><size height="1080.0" totalSize="127887.0" width="1616.0"/></media></mediaList></ContentObject><actionInfo><appMsg><mediaTagName/><messageExt/><messageAction/></appMsg></actionInfo><appInfo><id/></appInfo><publicUserName/><streamvideo><streamvideourl/><streamvideothumburl/><streamvideoweburl/></streamvideo></TimelineObject>';
+
+      const canSeeUserList: Array<string> = config.get("test.sns.canSeeUserList");
+
+      const moment = await client.api.snsForwardMoment(
+        Utils.genIdempotentId(),
+        contentXml,
+        new SnsSendMomentOptions().setCanseeusernameList(canSeeUserList)
+      );
+
+      console.log(`forward moment with poi: ${Utils.stringifyPB(moment)}`);
+    });
+  });
+
+  describe("sns comment", () => {
+    const momentId: string = config.get("test.sns.comment.momentId");
+    const momentOwnerUserName: string = config.get("test.sns.comment.momentOwnerUserName");
+
+    test("send comment", async () => {
+      const moment = await client.api.snsSendComment(
+        Utils.genIdempotentId(),
+        momentId,
+        momentOwnerUserName,
+        `comment-${Date.now()}`
+      );
+      console.log(`send comment response: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("send comment reply", async () => {
+      const replyCommentId: string = config.get("test.sns.comment.reply.commentId");
+      const replyCommentUsername: string = config.get("test.sns.comment.reply.commentUserName");
+      const replyCommentNickName: string = config.get("test.sns.comment.reply.commentNickname");
+
+      const moment = await client.api.snsSendComment(
+        Utils.genIdempotentId(),
+        momentId,
+        momentOwnerUserName,
+        `reply-${Date.now()}`,
+        new SnsSendCommentReplyTo()
+          .setCommentid(replyCommentId)
+          .setCommentnickname(replyCommentNickName)
+          .setCommentusername(replyCommentUsername)
+      );
+      console.log(`send comment reply response: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("like", async () => {
+      const moment = await client.api.snsLikeMoment(momentId, momentOwnerUserName);
+      console.log(`like moment: ${Utils.stringifyPB(moment)}`);
+    });
+
+    test("unlike", async () => {
+      await client.api.snsUnlikeMoment(momentId);
+    });
+
+    test("remove moment comment", async () => {
+      const momentId: string = config.get("test.sns.removeMomentComment.momentId");
+      const commentId: string = config.get("test.sns.removeMomentComment.commentId");
+      await client.api.snsRemoveMomentComment(momentId, commentId);
+    });
+  });
+
+  describe("operations", () => {
+    test("make public", async () => {
+      const momentId: string = config.get("test.sns.makePublicPrivateCommentId");
+      await client.api.snsMakeMomentPublic(momentId);
+    });
+
+    test("make private", async () => {
+      const momentId: string = config.get("test.sns.makePublicPrivateCommentId");
+      await client.api.snsMakeMomentPrivate(momentId);
+    });
+
+    test("remove moment", async () => {
+      const momentId: string = config.get("test.sns.removeMomentId");
+      await client.api.snsRemoveMoment(momentId);
+    });
+  });
+});

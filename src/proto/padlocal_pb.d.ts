@@ -495,6 +495,18 @@ export class ActionMessage extends jspb.Message {
     setSnssendmomentresponse(value?: SnsSendMomentResponse): ActionMessage;
 
 
+    hasSnsforwardmomentrequest(): boolean;
+    clearSnsforwardmomentrequest(): void;
+    getSnsforwardmomentrequest(): SnsForwardMomentRequest | undefined;
+    setSnsforwardmomentrequest(value?: SnsForwardMomentRequest): ActionMessage;
+
+
+    hasSnsforwardmomentresponse(): boolean;
+    clearSnsforwardmomentresponse(): void;
+    getSnsforwardmomentresponse(): SnsForwardMomentResponse | undefined;
+    setSnsforwardmomentresponse(value?: SnsForwardMomentResponse): ActionMessage;
+
+
     hasSnsgetuserpagerequest(): boolean;
     clearSnsgetuserpagerequest(): void;
     getSnsgetuserpagerequest(): SnsGetUserPageRequest | undefined;
@@ -505,30 +517,6 @@ export class ActionMessage extends jspb.Message {
     clearSnsgetuserpageresponse(): void;
     getSnsgetuserpageresponse(): SnsGetUserPageResponse | undefined;
     setSnsgetuserpageresponse(value?: SnsGetUserPageResponse): ActionMessage;
-
-
-    hasSnssendcommentrequest(): boolean;
-    clearSnssendcommentrequest(): void;
-    getSnssendcommentrequest(): SnsSendCommentRequest | undefined;
-    setSnssendcommentrequest(value?: SnsSendCommentRequest): ActionMessage;
-
-
-    hasSnssendcommentresponse(): boolean;
-    clearSnssendcommentresponse(): void;
-    getSnssendcommentresponse(): SnsSendCommentResponse | undefined;
-    setSnssendcommentresponse(value?: SnsSendCommentResponse): ActionMessage;
-
-
-    hasSnsuploadimagerequest(): boolean;
-    clearSnsuploadimagerequest(): void;
-    getSnsuploadimagerequest(): SnsUploadImageRequest | undefined;
-    setSnsuploadimagerequest(value?: SnsUploadImageRequest): ActionMessage;
-
-
-    hasSnsuploadimageresponse(): boolean;
-    clearSnsuploadimageresponse(): void;
-    getSnsuploadimageresponse(): SnsUploadImageResponse | undefined;
-    setSnsuploadimageresponse(value?: SnsUploadImageResponse): ActionMessage;
 
 
     hasSnsgettimelinerequest(): boolean;
@@ -553,6 +541,30 @@ export class ActionMessage extends jspb.Message {
     clearSnsgetmomentresponse(): void;
     getSnsgetmomentresponse(): SnsGetMomentResponse | undefined;
     setSnsgetmomentresponse(value?: SnsGetMomentResponse): ActionMessage;
+
+
+    hasSnssendcommentrequest(): boolean;
+    clearSnssendcommentrequest(): void;
+    getSnssendcommentrequest(): SnsSendCommentRequest | undefined;
+    setSnssendcommentrequest(value?: SnsSendCommentRequest): ActionMessage;
+
+
+    hasSnssendcommentresponse(): boolean;
+    clearSnssendcommentresponse(): void;
+    getSnssendcommentresponse(): SnsSendCommentResponse | undefined;
+    setSnssendcommentresponse(value?: SnsSendCommentResponse): ActionMessage;
+
+
+    hasSnsuploadimagerequest(): boolean;
+    clearSnsuploadimagerequest(): void;
+    getSnsuploadimagerequest(): SnsUploadImageRequest | undefined;
+    setSnsuploadimagerequest(value?: SnsUploadImageRequest): ActionMessage;
+
+
+    hasSnsuploadimageresponse(): boolean;
+    clearSnsuploadimageresponse(): void;
+    getSnsuploadimageresponse(): SnsUploadImageResponse | undefined;
+    setSnsuploadimageresponse(value?: SnsUploadImageResponse): ActionMessage;
 
 
     hasSnslikemomentrequest(): boolean;
@@ -718,16 +730,18 @@ export namespace ActionMessage {
         setcontactlabelresponse?: SetContactLabelResponse.AsObject,
         snssendmomentrequest?: SnsSendMomentRequest.AsObject,
         snssendmomentresponse?: SnsSendMomentResponse.AsObject,
+        snsforwardmomentrequest?: SnsForwardMomentRequest.AsObject,
+        snsforwardmomentresponse?: SnsForwardMomentResponse.AsObject,
         snsgetuserpagerequest?: SnsGetUserPageRequest.AsObject,
         snsgetuserpageresponse?: SnsGetUserPageResponse.AsObject,
-        snssendcommentrequest?: SnsSendCommentRequest.AsObject,
-        snssendcommentresponse?: SnsSendCommentResponse.AsObject,
-        snsuploadimagerequest?: SnsUploadImageRequest.AsObject,
-        snsuploadimageresponse?: SnsUploadImageResponse.AsObject,
         snsgettimelinerequest?: SnsGetTimelineRequest.AsObject,
         snsgettimelineresponse?: SnsGetTimelineResponse.AsObject,
         snsgetmomentrequest?: SnsGetMomentRequest.AsObject,
         snsgetmomentresponse?: SnsGetMomentResponse.AsObject,
+        snssendcommentrequest?: SnsSendCommentRequest.AsObject,
+        snssendcommentresponse?: SnsSendCommentResponse.AsObject,
+        snsuploadimagerequest?: SnsUploadImageRequest.AsObject,
+        snsuploadimageresponse?: SnsUploadImageResponse.AsObject,
         snslikemomentrequest?: SnsLikeMomentRequest.AsObject,
         snslikemomentresponse?: SnsLikeMomentResponse.AsObject,
         snsunlikemomentrequest?: SnsUnlikeMomentRequest.AsObject,
@@ -897,49 +911,53 @@ export namespace ActionMessage {
 
     SNSSENDMOMENTRESPONSE = 701,
 
-    SNSGETUSERPAGEREQUEST = 702,
+    SNSFORWARDMOMENTREQUEST = 702,
 
-    SNSGETUSERPAGERESPONSE = 703,
+    SNSFORWARDMOMENTRESPONSE = 703,
 
-    SNSSENDCOMMENTREQUEST = 704,
+    SNSGETUSERPAGEREQUEST = 704,
 
-    SNSSENDCOMMENTRESPONSE = 705,
+    SNSGETUSERPAGERESPONSE = 705,
 
-    SNSUPLOADIMAGEREQUEST = 706,
+    SNSGETTIMELINEREQUEST = 706,
 
-    SNSUPLOADIMAGERESPONSE = 707,
+    SNSGETTIMELINERESPONSE = 707,
 
-    SNSGETTIMELINEREQUEST = 708,
+    SNSGETMOMENTREQUEST = 708,
 
-    SNSGETTIMELINERESPONSE = 709,
+    SNSGETMOMENTRESPONSE = 709,
 
-    SNSGETMOMENTREQUEST = 710,
+    SNSSENDCOMMENTREQUEST = 710,
 
-    SNSGETMOMENTRESPONSE = 711,
+    SNSSENDCOMMENTRESPONSE = 711,
 
-    SNSLIKEMOMENTREQUEST = 712,
+    SNSUPLOADIMAGEREQUEST = 712,
 
-    SNSLIKEMOMENTRESPONSE = 713,
+    SNSUPLOADIMAGERESPONSE = 713,
 
-    SNSUNLIKEMOMENTREQUEST = 714,
+    SNSLIKEMOMENTREQUEST = 714,
 
-    SNSUNLIKEMOMENTRESPONSE = 715,
+    SNSLIKEMOMENTRESPONSE = 715,
 
-    SNSREMOVEMOMENTCOMMENTREQUEST = 716,
+    SNSUNLIKEMOMENTREQUEST = 716,
 
-    SNSREMOVEMOMENTCOMMENTRESPONSE = 717,
+    SNSUNLIKEMOMENTRESPONSE = 717,
 
-    SNSMAKEMOMENTPRIVATEREQUEST = 718,
+    SNSREMOVEMOMENTCOMMENTREQUEST = 718,
 
-    SNSMAKEMOMENTPRIVATERESPONSE = 719,
+    SNSREMOVEMOMENTCOMMENTRESPONSE = 719,
 
-    SNSMAKEMOMENTPUBLICREQUEST = 720,
+    SNSMAKEMOMENTPRIVATEREQUEST = 720,
 
-    SNSMAKEMOMENTPUBLICRESPONSE = 721,
+    SNSMAKEMOMENTPRIVATERESPONSE = 721,
 
-    SNSREMOVEMOMENTREQUEST = 722,
+    SNSMAKEMOMENTPUBLICREQUEST = 722,
 
-    SNSREMOVEMOMENTRESPONSE = 723,
+    SNSMAKEMOMENTPUBLICRESPONSE = 723,
+
+    SNSREMOVEMOMENTREQUEST = 724,
+
+    SNSREMOVEMOMENTRESPONSE = 725,
 
     }
 
@@ -2385,9 +2403,32 @@ export namespace SetChatRoomNameResponse {
 }
 
 export class SnsSendMomentRequest extends jspb.Message { 
-    getPayloadxml(): string;
-    setPayloadxml(value: string): SnsSendMomentRequest;
 
+    hasOptions(): boolean;
+    clearOptions(): void;
+    getOptions(): SnsSendMomentOptions | undefined;
+    setOptions(value?: SnsSendMomentOptions): SnsSendMomentRequest;
+
+
+    hasText(): boolean;
+    clearText(): void;
+    getText(): SnsSendMomentText | undefined;
+    setText(value?: SnsSendMomentText): SnsSendMomentRequest;
+
+
+    hasImages(): boolean;
+    clearImages(): void;
+    getImages(): SnsSendMomentImages | undefined;
+    setImages(value?: SnsSendMomentImages): SnsSendMomentRequest;
+
+
+    hasUrl(): boolean;
+    clearUrl(): void;
+    getUrl(): SnsSendMomentUrl | undefined;
+    setUrl(value?: SnsSendMomentUrl): SnsSendMomentRequest;
+
+
+    getPayloadCase(): SnsSendMomentRequest.PayloadCase;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendMomentRequest.AsObject;
@@ -2401,7 +2442,106 @@ export class SnsSendMomentRequest extends jspb.Message {
 
 export namespace SnsSendMomentRequest {
     export type AsObject = {
-        payloadxml: string,
+        options?: SnsSendMomentOptions.AsObject,
+        text?: SnsSendMomentText.AsObject,
+        images?: SnsSendMomentImages.AsObject,
+        url?: SnsSendMomentUrl.AsObject,
+    }
+
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
+    
+    TEXT = 2,
+
+    IMAGES = 3,
+
+    URL = 4,
+
+    }
+
+}
+
+export class SnsSendMomentText extends jspb.Message { 
+    getText(): string;
+    setText(value: string): SnsSendMomentText;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SnsSendMomentText.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsSendMomentText): SnsSendMomentText.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SnsSendMomentText, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsSendMomentText;
+    static deserializeBinaryFromReader(message: SnsSendMomentText, reader: jspb.BinaryReader): SnsSendMomentText;
+}
+
+export namespace SnsSendMomentText {
+    export type AsObject = {
+        text: string,
+    }
+}
+
+export class SnsSendMomentImages extends jspb.Message { 
+    getText(): string;
+    setText(value: string): SnsSendMomentImages;
+
+    clearImageurlList(): void;
+    getImageurlList(): Array<SnsImageUrl>;
+    setImageurlList(value: Array<SnsImageUrl>): SnsSendMomentImages;
+    addImageurl(value?: SnsImageUrl, index?: number): SnsImageUrl;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SnsSendMomentImages.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsSendMomentImages): SnsSendMomentImages.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SnsSendMomentImages, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsSendMomentImages;
+    static deserializeBinaryFromReader(message: SnsSendMomentImages, reader: jspb.BinaryReader): SnsSendMomentImages;
+}
+
+export namespace SnsSendMomentImages {
+    export type AsObject = {
+        text: string,
+        imageurlList: Array<SnsImageUrl.AsObject>,
+    }
+}
+
+export class SnsSendMomentUrl extends jspb.Message { 
+    getText(): string;
+    setText(value: string): SnsSendMomentUrl;
+
+    getUrltitle(): string;
+    setUrltitle(value: string): SnsSendMomentUrl;
+
+    getUrl(): string;
+    setUrl(value: string): SnsSendMomentUrl;
+
+
+    hasImageurl(): boolean;
+    clearImageurl(): void;
+    getImageurl(): SnsImageUrl | undefined;
+    setImageurl(value?: SnsImageUrl): SnsSendMomentUrl;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SnsSendMomentUrl.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsSendMomentUrl): SnsSendMomentUrl.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SnsSendMomentUrl, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsSendMomentUrl;
+    static deserializeBinaryFromReader(message: SnsSendMomentUrl, reader: jspb.BinaryReader): SnsSendMomentUrl;
+}
+
+export namespace SnsSendMomentUrl {
+    export type AsObject = {
+        text: string,
+        urltitle: string,
+        url: string,
+        imageurl?: SnsImageUrl.AsObject,
     }
 }
 
@@ -2409,8 +2549,8 @@ export class SnsSendMomentResponse extends jspb.Message {
 
     hasMoment(): boolean;
     clearMoment(): void;
-    getMoment(): Moment | undefined;
-    setMoment(value?: Moment): SnsSendMomentResponse;
+    getMoment(): SnsMoment | undefined;
+    setMoment(value?: SnsMoment): SnsSendMomentResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -2425,7 +2565,139 @@ export class SnsSendMomentResponse extends jspb.Message {
 
 export namespace SnsSendMomentResponse {
     export type AsObject = {
-        moment?: Moment.AsObject,
+        moment?: SnsMoment.AsObject,
+    }
+}
+
+export class SnsImageUrl extends jspb.Message { 
+    getMd5(): string;
+    setMd5(value: string): SnsImageUrl;
+
+    getUrl(): string;
+    setUrl(value: string): SnsImageUrl;
+
+    getThumburl(): string;
+    setThumburl(value: string): SnsImageUrl;
+
+    getHeight(): number;
+    setHeight(value: number): SnsImageUrl;
+
+    getWidth(): number;
+    setWidth(value: number): SnsImageUrl;
+
+    getTotalsize(): number;
+    setTotalsize(value: number): SnsImageUrl;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SnsImageUrl.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsImageUrl): SnsImageUrl.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SnsImageUrl, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsImageUrl;
+    static deserializeBinaryFromReader(message: SnsImageUrl, reader: jspb.BinaryReader): SnsImageUrl;
+}
+
+export namespace SnsImageUrl {
+    export type AsObject = {
+        md5: string,
+        url: string,
+        thumburl: string,
+        height: number,
+        width: number,
+        totalsize: number,
+    }
+}
+
+export class SnsSendMomentOptions extends jspb.Message { 
+    getIsprivate(): boolean;
+    setIsprivate(value: boolean): SnsSendMomentOptions;
+
+    clearCanseeusernameList(): void;
+    getCanseeusernameList(): Array<string>;
+    setCanseeusernameList(value: Array<string>): SnsSendMomentOptions;
+    addCanseeusername(value: string, index?: number): string;
+
+    clearCannotseeusernameList(): void;
+    getCannotseeusernameList(): Array<string>;
+    setCannotseeusernameList(value: Array<string>): SnsSendMomentOptions;
+    addCannotseeusername(value: string, index?: number): string;
+
+    clearAtusernameList(): void;
+    getAtusernameList(): Array<string>;
+    setAtusernameList(value: Array<string>): SnsSendMomentOptions;
+    addAtusername(value: string, index?: number): string;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SnsSendMomentOptions.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsSendMomentOptions): SnsSendMomentOptions.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SnsSendMomentOptions, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsSendMomentOptions;
+    static deserializeBinaryFromReader(message: SnsSendMomentOptions, reader: jspb.BinaryReader): SnsSendMomentOptions;
+}
+
+export namespace SnsSendMomentOptions {
+    export type AsObject = {
+        isprivate: boolean,
+        canseeusernameList: Array<string>,
+        cannotseeusernameList: Array<string>,
+        atusernameList: Array<string>,
+    }
+}
+
+export class SnsForwardMomentRequest extends jspb.Message { 
+    getMomentcontentxml(): string;
+    setMomentcontentxml(value: string): SnsForwardMomentRequest;
+
+
+    hasOptions(): boolean;
+    clearOptions(): void;
+    getOptions(): SnsSendMomentOptions | undefined;
+    setOptions(value?: SnsSendMomentOptions): SnsForwardMomentRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SnsForwardMomentRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsForwardMomentRequest): SnsForwardMomentRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SnsForwardMomentRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsForwardMomentRequest;
+    static deserializeBinaryFromReader(message: SnsForwardMomentRequest, reader: jspb.BinaryReader): SnsForwardMomentRequest;
+}
+
+export namespace SnsForwardMomentRequest {
+    export type AsObject = {
+        momentcontentxml: string,
+        options?: SnsSendMomentOptions.AsObject,
+    }
+}
+
+export class SnsForwardMomentResponse extends jspb.Message { 
+
+    hasMoment(): boolean;
+    clearMoment(): void;
+    getMoment(): SnsMoment | undefined;
+    setMoment(value?: SnsMoment): SnsForwardMomentResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SnsForwardMomentResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsForwardMomentResponse): SnsForwardMomentResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SnsForwardMomentResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsForwardMomentResponse;
+    static deserializeBinaryFromReader(message: SnsForwardMomentResponse, reader: jspb.BinaryReader): SnsForwardMomentResponse;
+}
+
+export namespace SnsForwardMomentResponse {
+    export type AsObject = {
+        moment?: SnsMoment.AsObject,
     }
 }
 
@@ -2433,8 +2705,8 @@ export class SnsGetUserPageRequest extends jspb.Message {
     getUsername(): string;
     setUsername(value: string): SnsGetUserPageRequest;
 
-    getMaxid(): number;
-    setMaxid(value: number): SnsGetUserPageRequest;
+    getMaxid(): string;
+    setMaxid(value: string): SnsGetUserPageRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -2450,15 +2722,15 @@ export class SnsGetUserPageRequest extends jspb.Message {
 export namespace SnsGetUserPageRequest {
     export type AsObject = {
         username: string,
-        maxid: number,
+        maxid: string,
     }
 }
 
 export class SnsGetUserPageResponse extends jspb.Message { 
     clearMomentList(): void;
-    getMomentList(): Array<Moment>;
-    setMomentList(value: Array<Moment>): SnsGetUserPageResponse;
-    addMoment(value?: Moment, index?: number): Moment;
+    getMomentList(): Array<SnsMoment>;
+    setMomentList(value: Array<SnsMoment>): SnsGetUserPageResponse;
+    addMoment(value?: SnsMoment, index?: number): SnsMoment;
 
     getTips(): string;
     setTips(value: string): SnsGetUserPageResponse;
@@ -2476,20 +2748,26 @@ export class SnsGetUserPageResponse extends jspb.Message {
 
 export namespace SnsGetUserPageResponse {
     export type AsObject = {
-        momentList: Array<Moment.AsObject>,
+        momentList: Array<SnsMoment.AsObject>,
         tips: string,
     }
 }
 
 export class SnsSendCommentRequest extends jspb.Message { 
-    getUsername(): string;
-    setUsername(value: string): SnsSendCommentRequest;
-
     getMomentid(): string;
     setMomentid(value: string): SnsSendCommentRequest;
 
-    getText(): string;
-    setText(value: string): SnsSendCommentRequest;
+    getMomentownerusername(): string;
+    setMomentownerusername(value: string): SnsSendCommentRequest;
+
+    getCommenttext(): string;
+    setCommenttext(value: string): SnsSendCommentRequest;
+
+
+    hasReplyto(): boolean;
+    clearReplyto(): void;
+    getReplyto(): SnsSendCommentReplyTo | undefined;
+    setReplyto(value?: SnsSendCommentReplyTo): SnsSendCommentRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -2504,9 +2782,39 @@ export class SnsSendCommentRequest extends jspb.Message {
 
 export namespace SnsSendCommentRequest {
     export type AsObject = {
-        username: string,
         momentid: string,
-        text: string,
+        momentownerusername: string,
+        commenttext: string,
+        replyto?: SnsSendCommentReplyTo.AsObject,
+    }
+}
+
+export class SnsSendCommentReplyTo extends jspb.Message { 
+    getCommentid(): string;
+    setCommentid(value: string): SnsSendCommentReplyTo;
+
+    getCommentusername(): string;
+    setCommentusername(value: string): SnsSendCommentReplyTo;
+
+    getCommentnickname(): string;
+    setCommentnickname(value: string): SnsSendCommentReplyTo;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SnsSendCommentReplyTo.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsSendCommentReplyTo): SnsSendCommentReplyTo.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SnsSendCommentReplyTo, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsSendCommentReplyTo;
+    static deserializeBinaryFromReader(message: SnsSendCommentReplyTo, reader: jspb.BinaryReader): SnsSendCommentReplyTo;
+}
+
+export namespace SnsSendCommentReplyTo {
+    export type AsObject = {
+        commentid: string,
+        commentusername: string,
+        commentnickname: string,
     }
 }
 
@@ -2514,8 +2822,8 @@ export class SnsSendCommentResponse extends jspb.Message {
 
     hasMoment(): boolean;
     clearMoment(): void;
-    getMoment(): Moment | undefined;
-    setMoment(value?: Moment): SnsSendCommentResponse;
+    getMoment(): SnsMoment | undefined;
+    setMoment(value?: SnsMoment): SnsSendCommentResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -2530,7 +2838,7 @@ export class SnsSendCommentResponse extends jspb.Message {
 
 export namespace SnsSendCommentResponse {
     export type AsObject = {
-        moment?: Moment.AsObject,
+        moment?: SnsMoment.AsObject,
     }
 }
 
@@ -2539,6 +2847,9 @@ export class SnsUploadImageRequest extends jspb.Message {
     getImage_asU8(): Uint8Array;
     getImage_asB64(): string;
     setImage(value: Uint8Array | string): SnsUploadImageRequest;
+
+    getDescription(): string;
+    setDescription(value: string): SnsUploadImageRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -2554,6 +2865,7 @@ export class SnsUploadImageRequest extends jspb.Message {
 export namespace SnsUploadImageRequest {
     export type AsObject = {
         image: Uint8Array | string,
+        description: string,
     }
 }
 
@@ -2561,11 +2873,11 @@ export class SnsUploadImageResponse extends jspb.Message {
     getId(): number;
     setId(value: number): SnsUploadImageResponse;
 
-    getUrl(): string;
-    setUrl(value: string): SnsUploadImageResponse;
 
-    getThumburl(): string;
-    setThumburl(value: string): SnsUploadImageResponse;
+    hasUrl(): boolean;
+    clearUrl(): void;
+    getUrl(): SnsImageUrl | undefined;
+    setUrl(value?: SnsImageUrl): SnsUploadImageResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -2581,14 +2893,13 @@ export class SnsUploadImageResponse extends jspb.Message {
 export namespace SnsUploadImageResponse {
     export type AsObject = {
         id: number,
-        url: string,
-        thumburl: string,
+        url?: SnsImageUrl.AsObject,
     }
 }
 
 export class SnsGetTimelineRequest extends jspb.Message { 
-    getMaxid(): number;
-    setMaxid(value: number): SnsGetTimelineRequest;
+    getMaxid(): string;
+    setMaxid(value: string): SnsGetTimelineRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -2603,15 +2914,15 @@ export class SnsGetTimelineRequest extends jspb.Message {
 
 export namespace SnsGetTimelineRequest {
     export type AsObject = {
-        maxid: number,
+        maxid: string,
     }
 }
 
 export class SnsGetTimelineResponse extends jspb.Message { 
     clearMomentList(): void;
-    getMomentList(): Array<Moment>;
-    setMomentList(value: Array<Moment>): SnsGetTimelineResponse;
-    addMoment(value?: Moment, index?: number): Moment;
+    getMomentList(): Array<SnsMoment>;
+    setMomentList(value: Array<SnsMoment>): SnsGetTimelineResponse;
+    addMoment(value?: SnsMoment, index?: number): SnsMoment;
 
 
     serializeBinary(): Uint8Array;
@@ -2626,7 +2937,7 @@ export class SnsGetTimelineResponse extends jspb.Message {
 
 export namespace SnsGetTimelineResponse {
     export type AsObject = {
-        momentList: Array<Moment.AsObject>,
+        momentList: Array<SnsMoment.AsObject>,
     }
 }
 
@@ -2655,8 +2966,8 @@ export class SnsGetMomentResponse extends jspb.Message {
 
     hasMoment(): boolean;
     clearMoment(): void;
-    getMoment(): Moment | undefined;
-    setMoment(value?: Moment): SnsGetMomentResponse;
+    getMoment(): SnsMoment | undefined;
+    setMoment(value?: SnsMoment): SnsGetMomentResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -2671,16 +2982,16 @@ export class SnsGetMomentResponse extends jspb.Message {
 
 export namespace SnsGetMomentResponse {
     export type AsObject = {
-        moment?: Moment.AsObject,
+        moment?: SnsMoment.AsObject,
     }
 }
 
 export class SnsLikeMomentRequest extends jspb.Message { 
-    getUsername(): string;
-    setUsername(value: string): SnsLikeMomentRequest;
-
     getMomentid(): string;
     setMomentid(value: string): SnsLikeMomentRequest;
+
+    getMomentownerusername(): string;
+    setMomentownerusername(value: string): SnsLikeMomentRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -2695,8 +3006,8 @@ export class SnsLikeMomentRequest extends jspb.Message {
 
 export namespace SnsLikeMomentRequest {
     export type AsObject = {
-        username: string,
         momentid: string,
+        momentownerusername: string,
     }
 }
 
@@ -2704,8 +3015,8 @@ export class SnsLikeMomentResponse extends jspb.Message {
 
     hasMoment(): boolean;
     clearMoment(): void;
-    getMoment(): Moment | undefined;
-    setMoment(value?: Moment): SnsLikeMomentResponse;
+    getMoment(): SnsMoment | undefined;
+    setMoment(value?: SnsMoment): SnsLikeMomentResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -2720,7 +3031,7 @@ export class SnsLikeMomentResponse extends jspb.Message {
 
 export namespace SnsLikeMomentResponse {
     export type AsObject = {
-        moment?: Moment.AsObject,
+        moment?: SnsMoment.AsObject,
     }
 }
 
@@ -3301,52 +3612,52 @@ export namespace Host {
     }
 }
 
-export class Moment extends jspb.Message { 
+export class SnsMoment extends jspb.Message { 
     getId(): string;
-    setId(value: string): Moment;
+    setId(value: string): SnsMoment;
 
     getUsername(): string;
-    setUsername(value: string): Moment;
+    setUsername(value: string): SnsMoment;
 
     getNickname(): string;
-    setNickname(value: string): Moment;
+    setNickname(value: string): SnsMoment;
 
     getCreatetime(): number;
-    setCreatetime(value: number): Moment;
+    setCreatetime(value: number): SnsMoment;
 
     getContent(): string;
-    setContent(value: string): Moment;
+    setContent(value: string): SnsMoment;
 
     getIsrichtext(): boolean;
-    setIsrichtext(value: boolean): Moment;
+    setIsrichtext(value: boolean): SnsMoment;
 
     clearLikeList(): void;
-    getLikeList(): Array<MomentComment>;
-    setLikeList(value: Array<MomentComment>): Moment;
-    addLike(value?: MomentComment, index?: number): MomentComment;
+    getLikeList(): Array<SnsMomentComment>;
+    setLikeList(value: Array<SnsMomentComment>): SnsMoment;
+    addLike(value?: SnsMomentComment, index?: number): SnsMomentComment;
 
     clearCommentList(): void;
-    getCommentList(): Array<MomentComment>;
-    setCommentList(value: Array<MomentComment>): Moment;
-    addComment(value?: MomentComment, index?: number): MomentComment;
+    getCommentList(): Array<SnsMomentComment>;
+    setCommentList(value: Array<SnsMomentComment>): SnsMoment;
+    addComment(value?: SnsMomentComment, index?: number): SnsMomentComment;
 
     clearWithList(): void;
-    getWithList(): Array<MomentComment>;
-    setWithList(value: Array<MomentComment>): Moment;
-    addWith(value?: MomentComment, index?: number): MomentComment;
+    getWithList(): Array<SnsMomentComment>;
+    setWithList(value: Array<SnsMomentComment>): SnsMoment;
+    addWith(value?: SnsMomentComment, index?: number): SnsMomentComment;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Moment.AsObject;
-    static toObject(includeInstance: boolean, msg: Moment): Moment.AsObject;
+    toObject(includeInstance?: boolean): SnsMoment.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsMoment): SnsMoment.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: Moment, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Moment;
-    static deserializeBinaryFromReader(message: Moment, reader: jspb.BinaryReader): Moment;
+    static serializeBinaryToWriter(message: SnsMoment, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsMoment;
+    static deserializeBinaryFromReader(message: SnsMoment, reader: jspb.BinaryReader): SnsMoment;
 }
 
-export namespace Moment {
+export namespace SnsMoment {
     export type AsObject = {
         id: string,
         username: string,
@@ -3354,49 +3665,49 @@ export namespace Moment {
         createtime: number,
         content: string,
         isrichtext: boolean,
-        likeList: Array<MomentComment.AsObject>,
-        commentList: Array<MomentComment.AsObject>,
-        pb_withList: Array<MomentComment.AsObject>,
+        likeList: Array<SnsMomentComment.AsObject>,
+        commentList: Array<SnsMomentComment.AsObject>,
+        pb_withList: Array<SnsMomentComment.AsObject>,
     }
 }
 
-export class MomentComment extends jspb.Message { 
+export class SnsMomentComment extends jspb.Message { 
     getId(): string;
-    setId(value: string): MomentComment;
+    setId(value: string): SnsMomentComment;
 
     getCreatetime(): number;
-    setCreatetime(value: number): MomentComment;
+    setCreatetime(value: number): SnsMomentComment;
 
     getUsername(): string;
-    setUsername(value: string): MomentComment;
+    setUsername(value: string): SnsMomentComment;
 
     getNickname(): string;
-    setNickname(value: string): MomentComment;
+    setNickname(value: string): SnsMomentComment;
 
     getContent(): string;
-    setContent(value: string): MomentComment;
+    setContent(value: string): SnsMomentComment;
 
     getIsrichtext(): boolean;
-    setIsrichtext(value: boolean): MomentComment;
+    setIsrichtext(value: boolean): SnsMomentComment;
 
     getReplycommentid(): string;
-    setReplycommentid(value: string): MomentComment;
+    setReplycommentid(value: string): SnsMomentComment;
 
     getReplyusername(): string;
-    setReplyusername(value: string): MomentComment;
+    setReplyusername(value: string): SnsMomentComment;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): MomentComment.AsObject;
-    static toObject(includeInstance: boolean, msg: MomentComment): MomentComment.AsObject;
+    toObject(includeInstance?: boolean): SnsMomentComment.AsObject;
+    static toObject(includeInstance: boolean, msg: SnsMomentComment): SnsMomentComment.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: MomentComment, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): MomentComment;
-    static deserializeBinaryFromReader(message: MomentComment, reader: jspb.BinaryReader): MomentComment;
+    static serializeBinaryToWriter(message: SnsMomentComment, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SnsMomentComment;
+    static deserializeBinaryFromReader(message: SnsMomentComment, reader: jspb.BinaryReader): SnsMomentComment;
 }
 
-export namespace MomentComment {
+export namespace SnsMomentComment {
     export type AsObject = {
         id: string,
         createtime: number,
