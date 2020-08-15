@@ -18,31 +18,21 @@ test(
   "receive push",
   async () => {
     const client = await TestUtils.prepareSignedOnClient();
-    client.on(
-      PadLocalClient.Event.OnPushNewMessageEvent,
-      (event: PadLocalClient.OnPushNewMessageEvent) => {
-        console.log("on message:");
-        for (const message of event.messageList) {
-          // console.log(
-          //   ByteUtils.bytesToHexString(
-          //     ByteUtils.fromBytes(message.serializeBinary())
-          //   )
-          // );
-          console.log(Utils.stringifyPB(message));
-        }
+    client.on(PadLocalClient.Event.OnPushNewMessageEvent, (event: PadLocalClient.OnPushNewMessageEvent) => {
+      console.log("on message:");
+      for (const message of event.messageList) {
+        console.log(ByteUtils.bytesToHexString(ByteUtils.fromBytes(message.serializeBinary())));
+        console.log(Utils.stringifyPB(message));
       }
-    );
+    });
 
-    client.on(
-      PadLocalClient.Event.OnPushContactEvent,
-      (event: PadLocalClient.OnPushContactEvent) => {
-        console.log("on contact");
+    client.on(PadLocalClient.Event.OnPushContactEvent, (event: PadLocalClient.OnPushContactEvent) => {
+      console.log("on contact");
 
-        for (const contact of event.contactList) {
-          console.log(Utils.stringifyPB(contact));
-        }
+      for (const contact of event.contactList) {
+        console.log(Utils.stringifyPB(contact));
       }
-    );
+    });
 
     return new Promise(() => {});
   },

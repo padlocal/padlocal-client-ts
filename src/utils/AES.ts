@@ -3,13 +3,9 @@ import crypto from "crypto";
 
 export namespace AES {
   export function ebcDecrypt(key: Bytes, encryptedData: Bytes): Bytes {
-    let ret: Bytes;
-
-    const cipher = crypto.createCipheriv("aes-128-ecb", key, null);
+    const cipher = crypto.createDecipheriv("aes-128-ecb", key, "");
     cipher.setAutoPadding(true);
-    ret = cipher.update(encryptedData);
-    ret = ByteUtils.joinBytes(ret, cipher.final());
 
-    return ret;
+    return ByteUtils.joinBytes(cipher.update(encryptedData), cipher.final());
   }
 }

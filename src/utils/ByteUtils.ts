@@ -184,7 +184,7 @@ export namespace ByteUtils {
     }
 
     readBytes(length: number): Bytes {
-      const end = Math.max(this._buffer.length, this._cursor + length);
+      const end = Math.min(this._buffer.length, this._cursor + length);
       const ret = ByteUtils.subBytes(this._buffer, this._cursor, end);
       this._cursor = end;
       return ret;

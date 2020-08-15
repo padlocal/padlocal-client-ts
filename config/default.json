@@ -6,30 +6,65 @@
     },
 
     "test": {
-        "send": {
-            "toUserName": "xxx",
-            "toChatRoom": "xxx@chatroom",
-            "atUserNameList": ["xxx", "xxx"],
-            "imageFilePath": "ABSOLUTION_FILE_PATH",
-            "miniProgramThumbFilePath": "ABSOLUTION_FILE_PATH"
+        "message": {
+            "send": {
+                "toUserName": "",
+                "toChatRoom": "",
+                "atUserNameList": [""],
+                "imageFilePath": "",
+                "miniProgramThumbFilePath": ""
+            },
+            "payload": {
+                "outFileDir": "",
+                "normalImageMessage": "PROTOBUF_HEX",
+                "hdImageMessage": "PROTOBUF_HEX",
+                "videoMessage": "PROTOBUF_HEX",
+                "voiceMessage": "PROTOBUF_HEX",
+                "fileMessage": "PROTOBUF_HEX"
+            }
         },
+
         "contact": {
             "accept": {
                 "stranger": "v3_xxx@stranger",
                 "ticket": "v4_xxx@stranger"
             },
-            "userName": "xxx",
-            "search": "WECHAT_ID_NOT_USER_NAME",
-            "qrImageOutFilePath": "ABSOLUTION_FILE_PATH"
+            "userName": "",
+            "search": "",
+            "qrImageOutFilePath": ""
         },
 
         "room": {
             "id": "xxx@chatroom",
             "create": {
-                "memberUserNameList": ["xxx", "xxx"]
+                "memberUserNameList": [""]
             },
-            "qrImageOutFilePath": "ABSOLUTION_FILE_PATH",
-            "modifyMember": "xxx"
+            "qrImageOutFilePath": "",
+            "modifyMember": ""
+        },
+
+        "sns" : {
+            "momentId": "",
+            "userName": "",
+            "imageFilePathList": [""],
+            "canSeeUserList": ["", ""],
+            "canNotSessUserList": [""],
+            "atUserList": ["", ""],
+            "comment": {
+                "momentId": "",
+                "momentOwnerUserName": "",
+                "reply": {
+                    "commentId": "",
+                    "commentUserName": "",
+                    "commentNickname": ""
+                }
+            },
+            "removeMomentComment": {
+                "momentId": "",
+                "commentId": ""
+            },
+            "makePublicPrivateCommentId": "",
+            "removeMomentId": ""
         }
     }
 }

@@ -45,6 +45,10 @@ export class CdnUnPacker {
     }
 
     const body = this._unpackResponseBody(this._buffer);
+    if (body.retCode !== 0) {
+      throw new CdnUnPacker.UnpackError(`retcode is not zero: ${body.retCode}`);
+    }
+
     const encryptedFileData = body.fileData;
     return AES.ebcDecrypt(this._aesKey, encryptedFileData!);
   }
@@ -131,11 +135,19 @@ export class CdnUnPacker {
   }
 
   private _unpackInteger(data?: Bytes): number | undefined {
-    return (data && parseInt(data.toString())) || undefined;
+    if (data) {
+      return parseInt(data.toString());
+    } else {
+      return undefined;
+    }
   }
 
   private _unpackString(data?: Bytes): string | undefined {
-    return (data && data.toString()) || undefined;
+    if (data) {
+      return data.toString();
+    } else {
+      return undefined;
+    }
   }
 }
 

@@ -230,14 +230,23 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return response.getMsgid();
   }
 
+  async forwardMessage(idempotentId: string, toUserName: string, message: Message): Promise<string> {
+    const response: ForwardMessageResponse = await this.client.grpcRequest(
+      new ForwardMessageRequest().setTousername(toUserName).setMessage(message),
+      {
+        idempotentId,
+      }
+    );
+    return response.getMsgid();
+  }
+
   async getMessageImage(m: Message, imageType: ImageType): Promise<PadLocalClientApi.GetMessageImageResult> {
     if (m.getType() != 3) {
       throw new PadLocalClientApi.ForbiddenError("message type is not image");
     }
 
     // make a copy, and make sure to clear embedded image data, to save bandwidth
-    // TODO: protobuf javascript doesn't support clear field ???
-    const message = Message.clone(m).setBinarypayload(ByteUtils.newBytes());
+    const message = m.clone().setBinarypayload(ByteUtils.newBytes());
 
     const grpcClient = this.client.createGrpcClient();
     const response: GetMessageImageResponse = await grpcClient.request(
@@ -303,16 +312,6 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     const response: GetMessageFileResponse = await grpcClient.request(new GetMessageFileRequest().setMessage(message));
 
     return CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
-  }
-
-  async forwardMessage(idempotentId: string, toUserName: string, message: Message): Promise<string> {
-    const response: ForwardMessageResponse = await this.client.grpcRequest(
-      new ForwardMessageRequest().setTousername(toUserName).setMessage(message),
-      {
-        idempotentId,
-      }
-    );
-    return response.getMsgid();
   }
 
   /**
