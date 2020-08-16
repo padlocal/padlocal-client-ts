@@ -1,15 +1,13 @@
-import { TestUtils } from "./TestUtils";
-import { PadLocalClient } from "../src/PadLocalClient";
-import { Utils } from "../src/utils/Utils";
-import { ByteUtils } from "../src/utils/ByteUtils";
+import { prepareSignedOnClient } from "./TestUtils";
+import { OnPushNewMessageEvent, PadLocalClient, EventName, OnPushContactEvent } from "../src/PadLocalClient";
+import { stringifyPB } from "../src/utils/Utils";
+import { bytesToHexString, fromBytes } from "../src/utils/ByteUtils";
 
-test("login", async function () {
-  const client = await TestUtils.prepareSignedOnClient();
+test("login", async () => {
+  const client = await prepareSignedOnClient();
 
   expect(client.selfContact).not.toBeNull();
   expect(client.isOnline).toBeTruthy();
-
-  return new Promise(() => {});
 
   client.shutdown();
 }, 600000);
@@ -17,20 +15,20 @@ test("login", async function () {
 test(
   "receive push",
   async () => {
-    const client = await TestUtils.prepareSignedOnClient();
-    client.on(PadLocalClient.Event.OnPushNewMessageEvent, (event: PadLocalClient.OnPushNewMessageEvent) => {
+    const client = await prepareSignedOnClient();
+    client.on(EventName.OnPushNewMessageEvent, (event: OnPushNewMessageEvent) => {
       console.log("on message:");
       for (const message of event.messageList) {
-        console.log(ByteUtils.bytesToHexString(ByteUtils.fromBytes(message.serializeBinary())));
-        console.log(Utils.stringifyPB(message));
+        console.log(bytesToHexString(fromBytes(message.serializeBinary())));
+        console.log(stringifyPB(message));
       }
     });
 
-    client.on(PadLocalClient.Event.OnPushContactEvent, (event: PadLocalClient.OnPushContactEvent) => {
+    client.on(EventName.OnPushContactEvent, (event: OnPushContactEvent) => {
       console.log("on contact");
 
       for (const contact of event.contactList) {
-        console.log(Utils.stringifyPB(contact));
+        console.log(stringifyPB(contact));
       }
     });
 

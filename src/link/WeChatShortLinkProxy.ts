@@ -1,13 +1,13 @@
-import { log } from "../utils/log";
-import { RetryStrategy } from "../utils/RetryStrategy";
-import { Bytes, ByteUtils } from "../utils/ByteUtils";
+import { logDebug, logWarn } from "../utils/log";
+import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
+import { Bytes, bytesToHexString, joinBytes, newBytes } from "../utils/ByteUtils";
 import http from "http";
 import VError from "verror";
 
 export class WeChatShortLinkProxy {
   private static readonly REQ_TIMEOUT = 10 * 1000;
 
-  readonly retryStrategy = RetryStrategy.getStrategy(RetryStrategy.Rule.FAST, 5); // retry almost 1 min
+  readonly retryStrategy = RetryStrategy.getStrategy(RetryStrategyRule.FAST, 5); // retry almost 1 min
 
   readonly host: string;
   readonly port: number;
@@ -25,31 +25,29 @@ export class WeChatShortLinkProxy {
     try {
       return await this._sendImpl(path, data);
     } catch (e) {
-      if (!(e instanceof WeChatShortLinkProxy.IOError)) {
+      if (!(e instanceof IOError)) {
         throw e;
       }
 
       if (!this.retryStrategy.canRetry()) {
-        let message = `[tid:${
-          this.traceId
-        }] Fail to request short link for path:${path}, data: ${ByteUtils.bytesToHexString(data)}, after max retry:${
-          this.retryStrategy.retryCount
-        }`;
-        throw new WeChatShortLinkProxy.IOError(e, message);
+        const message = `[tid:${this.traceId}] Fail to request short link for path:${path}, data: ${bytesToHexString(
+          data
+        )}, after max retry:${this.retryStrategy.retryCount}`;
+        throw new IOError(e, message);
       }
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      log.warn(
+      logWarn(
         `[tid:${this.traceId}] short link #${
           this.retryStrategy.retryCount
-        } retry request, after delay: ${delay}ms, path: ${path} data: ${ByteUtils.bytesToHexString(data)}`
+        } retry request, after delay: ${delay}ms, path: ${path} data: ${bytesToHexString(data)}`
       );
 
       return new Promise((resolve, reject) => {
         setTimeout(async () => {
           try {
-            let response = await this.send(path, data);
+            const response = await this.send(path, data);
             resolve(response);
           } catch (e) {
             reject(e);
@@ -60,14 +58,12 @@ export class WeChatShortLinkProxy {
   }
 
   private async _sendImpl(path: string, data: Bytes): Promise<Bytes> {
-    log.debug(
-      `[tid:${this.traceId}] short link send, ${this.host}:${this.port}${path}, request: ${ByteUtils.bytesToHexString(
-        data
-      )}`
+    logDebug(
+      `[tid:${this.traceId}] short link send, ${this.host}:${this.port}${path}, request: ${bytesToHexString(data)}`
     );
 
     return new Promise((resolve, reject) => {
-      let responseBuffer = ByteUtils.newBytes();
+      let responseBuffer = newBytes();
 
       const req = http.request(
         `http://${this.host}:${this.port}${path}`,
@@ -86,21 +82,15 @@ export class WeChatShortLinkProxy {
         },
         (res) => {
           if (res.statusCode && res.statusCode >= 400) {
-            reject(
-              new WeChatShortLinkProxy.HttpError(
-                `http status error, status: ${res.statusCode}, message:${res.statusMessage}`
-              )
-            );
+            reject(new HttpError(`http status error, status: ${res.statusCode}, message:${res.statusMessage}`));
           }
 
           res.on("data", (chunk) => {
-            responseBuffer = ByteUtils.joinBytes(responseBuffer, chunk);
+            responseBuffer = joinBytes(responseBuffer, chunk);
           });
 
           res.on("end", () => {
-            log.debug(
-              `[tid:${this.traceId}] short link receive, response: ${ByteUtils.bytesToHexString(responseBuffer)}`
-            );
+            logDebug(`[tid:${this.traceId}] short link receive, response: ${bytesToHexString(responseBuffer)}`);
 
             resolve(responseBuffer);
           });
@@ -108,16 +98,16 @@ export class WeChatShortLinkProxy {
       );
 
       req.on("timeout", () => {
-        req.destroy(new WeChatShortLinkProxy.IOError("timeout"));
+        req.destroy(new IOError("timeout"));
       });
 
       req.on("error", (e: NodeJS.ErrnoException) => {
         const errorCode = e.code;
-        // dns reslove failed
-        if (errorCode == "ENOTFOUND") {
-          e = new WeChatShortLinkProxy.IOError(e, "ENOTFOUND");
-        } else if (errorCode == "ETIMEDOUT") {
-          e = new WeChatShortLinkProxy.IOError(e, "ETIMEDOUT");
+        // dns resolve failed
+        if (errorCode === "ENOTFOUND") {
+          e = new IOError(e, "ENOTFOUND");
+        } else if (errorCode === "ETIMEDOUT") {
+          e = new IOError(e, "ETIMEDOUT");
         }
 
         reject(e);
@@ -129,8 +119,6 @@ export class WeChatShortLinkProxy {
   }
 }
 
-export namespace WeChatShortLinkProxy {
-  export class IOError extends VError {}
+export class IOError extends VError {}
 
-  export class HttpError extends VError {}
-}
+export class HttpError extends VError {}

@@ -1,11 +1,11 @@
 import * as padlocal from "./proto/padlocal_grpc_pb";
 import { credentials, Metadata, CallCredentials } from "@grpc/grpc-js";
-import { Constant } from "./utils/Constant";
-import { GrpcClient } from "./GrpcClient";
-import { Host, Contact, SystemEventRequest, SystemEventType, ActionMessage, Message } from "./proto/padlocal_pb";
-import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
+import { AUTHORIZATION_METADATA_KEY } from "./utils/Constant";
+import { GrpcClient, Options } from "./GrpcClient";
+import { Host, Contact, SystemEventRequest, SystemEventType, Message } from "./proto/padlocal_pb";
+import { WeChatLongLinkProxy, EventName as LongLinkEvent, HeartBeatEventPayload } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
-import { log } from "./utils/log";
+import { logDebug, logError } from "./utils/log";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
 
@@ -28,47 +28,44 @@ export class PadLocalClient extends EventEmitter {
 
     this._callCredentials = credentials.createFromMetadataGenerator((params, callback) => {
       const metaData = new Metadata();
-      metaData.set(Constant.AUTHORIZATION_METADATA_KEY, `Bearer ${token}`);
+      metaData.set(AUTHORIZATION_METADATA_KEY, `Bearer ${token}`);
       callback(null, metaData);
     });
 
     this._longLinkProxy = new WeChatLongLinkProxy(this);
 
-    this._longLinkProxy.on(
-      WeChatLongLinkProxy.Event.HeartBeatEvent,
-      async (event: WeChatLongLinkProxy.HeartBeatEventPayload) => {
-        try {
-          await this.api.sendLongLinkHeartBeat(event.heartBeatSeq);
-          this._longLinkProxy.onHeartBeatResult(true);
-        } catch (e) {
-          log.error(`error to send longlink heartbeat: ${e}`);
-          this._longLinkProxy.onHeartBeatResult(false);
-        }
+    this._longLinkProxy.on(LongLinkEvent.HeartBeatEvent, async (event: HeartBeatEventPayload) => {
+      try {
+        await this.api.sendLongLinkHeartBeat(event.heartBeatSeq);
+        this._longLinkProxy.onHeartBeatResult(true);
+      } catch (e) {
+        logError(`error to send longlink heartbeat: ${e}`);
+        this._longLinkProxy.onHeartBeatResult(false);
       }
-    );
+    });
 
-    this._longLinkProxy.on(WeChatLongLinkProxy.Event.OnPushNewMessageEvent, async () => {
+    this._longLinkProxy.on(LongLinkEvent.OnPushNewMessageEvent, async () => {
       try {
         const syncEvent = await this.api.sync();
 
-        log.debug(
+        logDebug(
           `on push notification, contact count:${syncEvent.getContactList().length}, message count:${
             syncEvent.getMessageList().length
           }`
         );
 
         if (syncEvent.getContactList().length > 0) {
-          this._postEvent(PadLocalClient.Event.OnPushContactEvent, {
+          this._postEvent(EventName.OnPushContactEvent, {
             contactList: syncEvent.getContactList(),
           });
         }
         if (syncEvent.getMessageList().length > 0) {
-          this._postEvent(PadLocalClient.Event.OnPushNewMessageEvent, {
+          this._postEvent(EventName.OnPushNewMessageEvent, {
             messageList: syncEvent.getMessageList(),
           });
         }
       } catch (e) {
-        log.error(`error while syncing onpush: ${e}`);
+        logError(`error while syncing onpush: ${e}`);
       }
     });
   }
@@ -85,21 +82,21 @@ export class PadLocalClient extends EventEmitter {
     return this.selfContact?.getUsername() === userName;
   }
 
-  createGrpcClient(options?: Partial<GrpcClient.Options>): GrpcClient {
+  createGrpcClient(options?: Partial<Options>): GrpcClient {
     const ret = new GrpcClient(this, this._stub, this._callCredentials, options);
 
     ret.onSystemEventCallback = (systemEventRequest: SystemEventRequest) => {
       const systemEventType = systemEventRequest.getType();
-      if (systemEventType == SystemEventType.DID_KICKOUT) {
+      if (systemEventType === SystemEventType.DID_KICKOUT) {
         this._reset();
 
-        this._postEvent(PadLocalClient.Event.KickOutEvent, {
+        this._postEvent(EventName.KickOutEvent, {
           errorCode: systemEventRequest.getKickoutevent()!.getErrorcode(),
           errorMessage: systemEventRequest.getKickoutevent()!.getErrormessage(),
         });
-      } else if (systemEventType == SystemEventType.DID_REFRESH_TOKEN) {
+      } else if (systemEventType === SystemEventType.DID_REFRESH_TOKEN) {
         // re-connect longlink after token refresh
-        this.getLongLinkProxy(true);
+        this.getLongLinkProxy(true).then();
       }
     };
 
@@ -108,10 +105,9 @@ export class PadLocalClient extends EventEmitter {
 
   async grpcRequest<REQ extends GrpcMessage, RES extends GrpcMessage>(
     request: REQ,
-    options?: Partial<GrpcClient.Options>
+    options?: Partial<Options>
   ): Promise<RES> {
-    const grpcClient = this.createGrpcClient(options);
-    return await grpcClient.request(request);
+    return this.createGrpcClient(options).request(request);
   }
 
   async getLongLinkProxy(reset?: boolean): Promise<WeChatLongLinkProxy> {
@@ -132,31 +128,26 @@ export class PadLocalClient extends EventEmitter {
     this._longLinkProxy.shutdown(true);
   }
 
-  private _postEvent(
-    eventName: PadLocalClient.Event,
-    payload: PadLocalClient.KickOutEvent | PadLocalClient.OnPushNewMessageEvent | PadLocalClient.OnPushContactEvent
-  ) {
+  private _postEvent(eventName: EventName, payload: KickOutEvent | OnPushNewMessageEvent | OnPushContactEvent) {
     this.emit(eventName, payload);
   }
 }
 
-export namespace PadLocalClient {
-  export enum Event {
-    KickOutEvent = "KickOutEvent",
-    OnPushNewMessageEvent = "OnPushNewMessageEvent",
-    OnPushContactEvent = "OnPushContactEvent",
-  }
+export enum EventName {
+  KickOutEvent = "KickOutEvent",
+  OnPushNewMessageEvent = "OnPushNewMessageEvent",
+  OnPushContactEvent = "OnPushContactEvent",
+}
 
-  export interface KickOutEvent {
-    readonly errorCode: number;
-    readonly errorMessage: string;
-  }
+export interface KickOutEvent {
+  readonly errorCode: number;
+  readonly errorMessage: string;
+}
 
-  export interface OnPushNewMessageEvent {
-    readonly messageList: Array<Message>;
-  }
+export interface OnPushNewMessageEvent {
+  readonly messageList: Message[];
+}
 
-  export interface OnPushContactEvent {
-    readonly contactList: Array<Contact>;
-  }
+export interface OnPushContactEvent {
+  readonly contactList: Contact[];
 }

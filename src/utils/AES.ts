@@ -1,11 +1,9 @@
-import { Bytes, ByteUtils } from "./ByteUtils";
+import { Bytes, joinBytes } from "./ByteUtils";
 import crypto from "crypto";
 
-export namespace AES {
-  export function ebcDecrypt(key: Bytes, encryptedData: Bytes): Bytes {
-    const cipher = crypto.createDecipheriv("aes-128-ecb", key, "");
-    cipher.setAutoPadding(true);
+export function ebcDecrypt(key: Bytes, encryptedData: Bytes): Bytes {
+  const cipher = crypto.createDecipheriv("aes-128-ecb", key, "");
+  cipher.setAutoPadding(true);
 
-    return ByteUtils.joinBytes(cipher.update(encryptedData), cipher.final());
-  }
+  return joinBytes(cipher.update(encryptedData), cipher.final());
 }

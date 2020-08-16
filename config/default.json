@@ -12,7 +12,8 @@
                 "toChatRoom": "",
                 "atUserNameList": [""],
                 "imageFilePath": "",
-                "miniProgramThumbFilePath": ""
+                "miniProgramThumbFilePath": "",
+                "miniProgramMessage": ""
             },
             "payload": {
                 "outFileDir": "",
@@ -64,7 +65,13 @@
                 "commentId": ""
             },
             "makePublicPrivateCommentId": "",
-            "removeMomentId": ""
+            "removeMomentId": "",
+            "forward": {
+                "textMoment": "<TimelineObject>...</TimelineObject>",
+                "imageMoment": "<TimelineObject>...</TimelineObject>",
+                "linkMoment": "<TimelineObject>...</TimelineObject>",
+                "poiMoment": "<TimelineObject>...</TimelineObject>"
+            }
         }
     }
 }

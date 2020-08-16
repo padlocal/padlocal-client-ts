@@ -1,6 +1,6 @@
 import { CdnRequest } from "../proto/padlocal_pb";
 import { Bytes } from "../utils/ByteUtils";
-import { CdnUtils } from "../wechat/CdnUtils";
+import { requestCdn } from "../wechat/CdnUtils";
 
 export class WeChatCdnProxy {
   readonly traceId: string;
@@ -10,6 +10,6 @@ export class WeChatCdnProxy {
   }
 
   async send(cdnRequest: CdnRequest): Promise<Bytes> {
-    return CdnUtils.requestCdn(cdnRequest, this.traceId);
+    return requestCdn(cdnRequest, this.traceId);
   }
 }

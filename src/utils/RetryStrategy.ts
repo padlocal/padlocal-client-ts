@@ -16,8 +16,8 @@ export class RetryStrategy {
     return this._retryCount;
   }
 
-  static getStrategy(rule: RetryStrategy.Rule, maxRetry: number): RetryStrategy {
-    if (rule == RetryStrategy.Rule.FAST) {
+  static getStrategy(rule: RetryStrategyRule, maxRetry: number): RetryStrategy {
+    if (rule === RetryStrategyRule.FAST) {
       return new RetryStrategy(RetryStrategy.FAST_RETRY_DELAYS, maxRetry);
     }
 
@@ -36,7 +36,7 @@ export class RetryStrategy {
    * @return millisecond
    */
   nextRetryDelay(): number {
-    let index = this._retryCount++;
+    const index = this._retryCount++;
     if (index < this._retryDelays.length) {
       return this._retryDelays[index];
     } else {
@@ -45,8 +45,6 @@ export class RetryStrategy {
   }
 }
 
-export namespace RetryStrategy {
-  export enum Rule {
-    FAST,
-  }
+export enum RetryStrategyRule {
+  FAST,
 }

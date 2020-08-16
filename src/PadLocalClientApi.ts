@@ -1,108 +1,12 @@
 import VError from "verror";
-import {
-  LoginPolicy,
-  LoginRequest,
-  ActionMessage,
-  LoginStatus,
-  LogoutResponse,
-  LogoutRequest,
-  LongLinkHeartBeatResponse,
-  LongLinkHeartBeatRequest,
-  SyncEvent,
-  SyncRequest,
-  SyncResponse,
-  SendTextMessageRequest,
-  SendTextMessageResponse,
-  SendImageMessageRequest,
-  SendImageMessageResponse,
-  AppMessageLink,
-  SendAppMessageRequest,
-  SendAppMessageResponse,
-  AppMessageMiniProgram,
-  Message,
-  ForwardMessageResponse,
-  ForwardMessageRequest,
-  AcceptUserRequest,
-  AddContactScene,
-  AddContactRequest,
-  DeleteContactRequest,
-  Contact,
-  GetContactResponse,
-  GetContactRequest,
-  GetContactQRCodeResponse,
-  GetContactQRCodeRequest,
-  SearchContactResponse,
-  SearchContactRequest,
-  CreateChatRoomResponse,
-  CreateChatRoomRequest,
-  ChatRoomMember,
-  GetChatRoomMembersRequest,
-  GetChatRoomMembersResponse,
-  GetChatRoomQrCodeResponse,
-  GetChatRoomQrCodeRequest,
-  GetChatRoomMemberResponse,
-  GetChatRoomMemberRequest,
-  SetChatRoomAnnouncementRequest,
-  AddChatRoomMemberRequest,
-  InviteChatRoomMemberRequest,
-  DeleteChatRoomMemberRequest,
-  SetChatRoomNameRequest,
-  Label,
-  GetLabelListResponse,
-  GetLabelListRequest,
-  SnsSendMomentResponse,
-  SnsSendMomentRequest,
-  SnsGetUserPageResponse,
-  SnsGetUserPageRequest,
-  SnsSendCommentResponse,
-  SnsSendCommentRequest,
-  SnsUploadImageResponse,
-  SnsUploadImageRequest,
-  SnsGetTimelineResponse,
-  SnsGetTimelineRequest,
-  SnsGetMomentResponse,
-  SnsGetMomentRequest,
-  SnsLikeMomentResponse,
-  SnsLikeMomentRequest,
-  SnsUnlikeMomentRequest,
-  SnsRemoveMomentCommentRequest,
-  SnsMakeMomentPrivateRequest,
-  SnsMakeMomentPublicRequest,
-  SnsRemoveMomentRequest,
-  AddLabelResponse,
-  AddLabelRequest,
-  RemoveLabelRequest,
-  SetContactLabelRequest,
-  ImageType,
-  LoginType,
-  QRCodeEvent,
-  GetMessageImageResponse,
-  GetMessageImageRequest,
-  GetMessageVoiceRequest,
-  GetMessageVoiceResponse,
-  GetMessageVideoThumbResponse,
-  GetMessageVideoThumbRequest,
-  GetMessageVideoResponse,
-  GetMessageVideoRequest,
-  GetMessageFileResponse,
-  GetMessageFileRequest,
-  SyncContactRequest,
-  SnsSendMomentText,
-  SnsSendMomentImages,
-  SnsSendMomentUrl,
-  SnsSendMomentOptions,
-  SnsMoment,
-  SnsForwardMomentRequest,
-  SnsForwardMomentResponse,
-  SnsSendCommentReplyTo,
-} from "./proto/padlocal_pb";
-import { Bytes, ByteUtils } from "./utils/ByteUtils";
-import { CdnUtils } from "./wechat/CdnUtils";
+import * as pb from "./proto/padlocal_pb";
+import { Bytes, newBytes } from "./utils/ByteUtils";
+import { requestCdnAndUnpack } from "./wechat/CdnUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 
 export class PadLocalClientApi extends PadLocalClientPlugin {
-  async login(loginPolicy: LoginPolicy, callback: PadLocalClientApi.LoginCallback): Promise<void> {
-    const request = new LoginRequest();
+  async login(loginPolicy: pb.LoginPolicy, callback: LoginCallback): Promise<void> {
+    const request = new pb.LoginRequest();
     request.setPolicy(loginPolicy);
 
     // 10 min timeout
@@ -110,21 +14,21 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       requestTimeout: 10 * 60 * 1000,
     });
 
-    grpcClient.onMessageCallback = (actionMessage: ActionMessage) => {
-      if (actionMessage.getPayloadCase() == ActionMessage.PayloadCase.LOGINUPDATEEVENT) {
+    grpcClient.onMessageCallback = (actionMessage: pb.ActionMessage) => {
+      if (actionMessage.getPayloadCase() === pb.ActionMessage.PayloadCase.LOGINUPDATEEVENT) {
         const loginUpdateEvent = actionMessage.getLoginupdateevent()!;
-        if (loginUpdateEvent.getStatus() == LoginStatus.START) {
+        if (loginUpdateEvent.getStatus() === pb.LoginStatus.START) {
           callback.onLoginStart(loginUpdateEvent.getLogintype());
-        } else if (loginUpdateEvent.getStatus() == LoginStatus.ONE_CLICK_EVENT) {
+        } else if (loginUpdateEvent.getStatus() === pb.LoginStatus.ONE_CLICK_EVENT) {
           callback.onOneClickEvent(loginUpdateEvent.getQrcodeevent()!);
-        } else if (loginUpdateEvent.getStatus() == LoginStatus.QRCODE_EVENT) {
+        } else if (loginUpdateEvent.getStatus() === pb.LoginStatus.QRCODE_EVENT) {
           callback.onQrCodeEvent(loginUpdateEvent.getQrcodeevent()!);
-        } else if (loginUpdateEvent.getStatus() == LoginStatus.AUTH_SUCCESS) {
+        } else if (loginUpdateEvent.getStatus() === pb.LoginStatus.AUTH_SUCCESS) {
           const authInfo = loginUpdateEvent.getAuthinfo()!;
 
           this.client.selfContact = authInfo.getSelfcontact();
           this.client.updateLongLinkHost(authInfo.getLonglinkhost()!);
-        } else if (loginUpdateEvent.getStatus() == LoginStatus.SYNC) {
+        } else if (loginUpdateEvent.getStatus() === pb.LoginStatus.SYNC) {
           callback.onSync(loginUpdateEvent.getSyncevent()!);
         }
       }
@@ -132,25 +36,25 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
     await grpcClient.request(request);
 
-    // start long link  after login successfullly
-    this.client.getLongLinkProxy(true);
+    // start long link  after login successfully
+    this.client.getLongLinkProxy(true).then();
   }
 
-  async logout(): Promise<LogoutResponse> {
-    return this.client.grpcRequest(new LogoutRequest());
+  async logout(): Promise<pb.LogoutResponse> {
+    return this.client.grpcRequest(new pb.LogoutRequest());
   }
 
-  async sendLongLinkHeartBeat(heartBeatSeq: number): Promise<LongLinkHeartBeatResponse> {
-    const request = new LongLinkHeartBeatRequest();
+  async sendLongLinkHeartBeat(heartBeatSeq: number): Promise<pb.LongLinkHeartBeatResponse> {
+    const request = new pb.LongLinkHeartBeatRequest();
     request.setHeartbeatseq(heartBeatSeq);
 
-    return this.client.grpcRequest(new LongLinkHeartBeatRequest().setHeartbeatseq(heartBeatSeq), {
+    return this.client.grpcRequest(new pb.LongLinkHeartBeatRequest().setHeartbeatseq(heartBeatSeq), {
       requestTimeout: 3000, // longlink heart beat require more instancy
     });
   }
 
-  async sync(): Promise<SyncEvent> {
-    const response: SyncResponse = await this.client.grpcRequest(new SyncRequest());
+  async sync(): Promise<pb.SyncEvent> {
+    const response: pb.SyncResponse = await this.client.grpcRequest(new pb.SyncRequest());
     return response.getPayload()!;
   }
 
@@ -161,20 +65,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async sendTextMessage(
-    idempotentId: string,
-    toUserName: string,
-    text: string,
-    atList?: Array<string>
-  ): Promise<string> {
-    const sendTextMessageRequest = new SendTextMessageRequest();
+  async sendTextMessage(idempotentId: string, toUserName: string, text: string, atList?: string[]): Promise<string> {
+    const sendTextMessageRequest = new pb.SendTextMessageRequest();
     sendTextMessageRequest.setTousername(toUserName).setContent(text);
 
     if (atList) {
       sendTextMessageRequest.setAtList(atList);
     }
 
-    const response: SendTextMessageResponse = await this.client.grpcRequest(sendTextMessageRequest, {
+    const response: pb.SendTextMessageResponse = await this.client.grpcRequest(sendTextMessageRequest, {
       idempotentId,
     });
 
@@ -188,8 +87,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @return
    */
   async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<string> {
-    const response: SendImageMessageResponse = await this.client.grpcRequest(
-      new SendImageMessageRequest().setTousername(toUserName).setImage(image),
+    const response: pb.SendImageMessageResponse = await this.client.grpcRequest(
+      new pb.SendImageMessageRequest().setTousername(toUserName).setImage(image),
       {
         idempotentId,
       }
@@ -204,9 +103,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param link
    * @return
    */
-  async sendAppMessageLink(idempotentId: string, toUserName: string, link: AppMessageLink): Promise<string> {
-    const response: SendAppMessageResponse = await this.client.grpcRequest(
-      new SendAppMessageRequest().setTousername(toUserName).setLink(link),
+  async sendAppMessageLink(idempotentId: string, toUserName: string, link: pb.AppMessageLink): Promise<string> {
+    const response: pb.SendAppMessageResponse = await this.client.grpcRequest(
+      new pb.SendAppMessageRequest().setTousername(toUserName).setLink(link),
       {
         idempotentId,
       }
@@ -218,10 +117,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   async sendAppMessageMiniProgram(
     idempotentId: string,
     toUserName: string,
-    miniProgram: AppMessageMiniProgram
+    miniProgram: pb.AppMessageMiniProgram
   ): Promise<string> {
-    const response: SendAppMessageResponse = await this.client.grpcRequest(
-      new SendAppMessageRequest().setTousername(toUserName).setMiniprogram(miniProgram),
+    const response: pb.SendAppMessageResponse = await this.client.grpcRequest(
+      new pb.SendAppMessageRequest().setTousername(toUserName).setMiniprogram(miniProgram),
       {
         idempotentId,
       }
@@ -230,9 +129,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return response.getMsgid();
   }
 
-  async forwardMessage(idempotentId: string, toUserName: string, message: Message): Promise<string> {
-    const response: ForwardMessageResponse = await this.client.grpcRequest(
-      new ForwardMessageRequest().setTousername(toUserName).setMessage(message),
+  async forwardMessage(idempotentId: string, toUserName: string, message: pb.Message): Promise<string> {
+    const response: pb.ForwardMessageResponse = await this.client.grpcRequest(
+      new pb.ForwardMessageRequest().setTousername(toUserName).setMessage(message),
       {
         idempotentId,
       }
@@ -240,125 +139,129 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return response.getMsgid();
   }
 
-  async getMessageImage(m: Message, imageType: ImageType): Promise<PadLocalClientApi.GetMessageImageResult> {
-    if (m.getType() != 3) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not image");
+  async getMessageImage(m: pb.Message, imageType: pb.ImageType): Promise<GetMessageImageResult> {
+    if (m.getType() !== 3) {
+      throw new ForbiddenError("message type is not image");
     }
 
     // make a copy, and make sure to clear embedded image data, to save bandwidth
-    const message = m.clone().setBinarypayload(ByteUtils.newBytes());
+    const message = m.clone().setBinarypayload(newBytes());
 
     const grpcClient = this.client.createGrpcClient();
-    const response: GetMessageImageResponse = await grpcClient.request(
-      new GetMessageImageRequest().setMessage(message).setImagetype(imageType)
+    const response: pb.GetMessageImageResponse = await grpcClient.request(
+      new pb.GetMessageImageRequest().setMessage(message).setImagetype(imageType)
     );
 
-    const imageData: Bytes = await CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    const imageData: Bytes = await requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
 
     return {
       imageType: response.getImagetype(),
-      imageData: imageData,
+      imageData,
     };
   }
 
-  async getMessageVoice(message: Message): Promise<Bytes> {
-    if (message.getType() != 34) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not audio");
+  async getMessageVoice(message: pb.Message): Promise<Bytes> {
+    if (message.getType() !== 34) {
+      throw new ForbiddenError("message type is not audio");
     }
 
     if (message.getBinarypayload().length > 0) {
-      throw new PadLocalClientApi.ForbiddenError("audio data is already embedded in message");
+      throw new ForbiddenError("audio data is already embedded in message");
     }
 
-    const response: GetMessageVoiceResponse = await this.client.grpcRequest(
-      new GetMessageVoiceRequest().setMessage(message)
+    const response: pb.GetMessageVoiceResponse = await this.client.grpcRequest(
+      new pb.GetMessageVoiceRequest().setMessage(message)
     );
 
     return Buffer.from(response.getVoice());
   }
 
-  async getMessageVideoThumb(message: Message): Promise<Bytes> {
-    if (message.getType() != 43) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not video");
+  async getMessageVideoThumb(message: pb.Message): Promise<Bytes> {
+    if (message.getType() !== 43) {
+      throw new ForbiddenError("message type is not video");
     }
 
     const grpcClient = this.client.createGrpcClient();
-    const response: GetMessageVideoThumbResponse = await grpcClient.request(
-      new GetMessageVideoThumbRequest().setMessage(message)
+    const response: pb.GetMessageVideoThumbResponse = await grpcClient.request(
+      new pb.GetMessageVideoThumbRequest().setMessage(message)
     );
 
-    return await CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
   }
 
-  async getMessageVideo(message: Message): Promise<Bytes> {
-    if (message.getType() != 43) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not video");
+  async getMessageVideo(message: pb.Message): Promise<Bytes> {
+    if (message.getType() !== 43) {
+      throw new ForbiddenError("message type is not video");
     }
 
     const grpcClient = this.client.createGrpcClient();
-    const response: GetMessageVideoResponse = await grpcClient.request(
-      new GetMessageVideoRequest().setMessage(message)
+    const response: pb.GetMessageVideoResponse = await grpcClient.request(
+      new pb.GetMessageVideoRequest().setMessage(message)
     );
 
-    return CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
   }
 
-  async getMessageFile(message: Message): Promise<Bytes> {
-    if (message.getType() != 49) {
-      throw new PadLocalClientApi.ForbiddenError("message type is not file");
+  async getMessageFile(message: pb.Message): Promise<Bytes> {
+    if (message.getType() !== 49) {
+      throw new ForbiddenError("message type is not file");
     }
 
     const grpcClient = this.client.createGrpcClient();
-    const response: GetMessageFileResponse = await grpcClient.request(new GetMessageFileRequest().setMessage(message));
+    const response: pb.GetMessageFileResponse = await grpcClient.request(
+      new pb.GetMessageFileRequest().setMessage(message)
+    );
 
-    return CdnUtils.requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
   }
 
   /**
-   * sync contact is very costy, may be last for minutes, so use wiselly.
+   * sync contact is very costly, may be last for minutes, so use wisely.
    * @param callback
    */
-  async syncContact(callback: PadLocalClientApi.SyncContactCallback): Promise<void> {
+  async syncContact(callback: SyncContactCallback): Promise<void> {
     // 10 min timeout
     const grpcClient = this.client.createGrpcClient({
       requestTimeout: 10 * 60 * 1000,
     });
 
-    grpcClient.onMessageCallback = (actionMessage: ActionMessage) => {
-      if (actionMessage.getPayloadCase() == ActionMessage.PayloadCase.SYNCEVENT) {
+    grpcClient.onMessageCallback = (actionMessage: pb.ActionMessage) => {
+      if (actionMessage.getPayloadCase() === pb.ActionMessage.PayloadCase.SYNCEVENT) {
         const syncEvent = actionMessage.getSyncevent()!;
         callback.onSync(syncEvent.getContactList());
       }
     };
 
-    await grpcClient.request(new SyncContactRequest());
+    await grpcClient.request(new pb.SyncContactRequest());
   }
 
   async acceptUser(stranger: string, ticket: string): Promise<void> {
-    await this.client.grpcRequest(new AcceptUserRequest().setStranger(stranger).setTicket(ticket));
+    await this.client.grpcRequest(new pb.AcceptUserRequest().setStranger(stranger).setTicket(ticket));
   }
 
-  async addContact(stranger: string, ticket: string, scene: AddContactScene, hello: string): Promise<void> {
+  async addContact(stranger: string, ticket: string, scene: pb.AddContactScene, hello: string): Promise<void> {
     await this.client.grpcRequest(
-      new AddContactRequest().setStranger(stranger).setTicket(ticket).setScene(scene).setContent(hello)
+      new pb.AddContactRequest().setStranger(stranger).setTicket(ticket).setScene(scene).setContent(hello)
     );
   }
 
   async deleteContact(userName: string): Promise<void> {
-    await this.client.grpcRequest(new DeleteContactRequest().setUsername(userName));
+    await this.client.grpcRequest(new pb.DeleteContactRequest().setUsername(userName));
   }
 
-  async getContact(userName: string): Promise<Contact> {
-    const response: GetContactResponse = await this.client.grpcRequest(new GetContactRequest().setUsername(userName));
+  async getContact(userName: string): Promise<pb.Contact> {
+    const response: pb.GetContactResponse = await this.client.grpcRequest(
+      new pb.GetContactRequest().setUsername(userName)
+    );
     return response.getContact()!;
   }
 
-  async getContactQRCode(userName: string, style: number): Promise<GetContactQRCodeResponse> {
-    return this.client.grpcRequest(new GetContactQRCodeRequest().setUsername(userName).setStyle(style));
+  async getContactQRCode(userName: string, style: number): Promise<pb.GetContactQRCodeResponse> {
+    return this.client.grpcRequest(new pb.GetContactQRCodeRequest().setUsername(userName).setStyle(style));
   }
 
-  async searchContact(userName: string): Promise<SearchContactResponse> {
-    return await this.client.grpcRequest(new SearchContactRequest().setUsername(userName));
+  async searchContact(userName: string): Promise<pb.SearchContactResponse> {
+    return this.client.grpcRequest(new pb.SearchContactRequest().setUsername(userName));
   }
 
   /**
@@ -367,96 +270,98 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async createChatRoom(idempotentId: string, userNameList: Array<string>): Promise<CreateChatRoomResponse> {
-    return await this.client.grpcRequest(new CreateChatRoomRequest().setUsernamesList(userNameList), {
+  async createChatRoom(idempotentId: string, userNameList: string[]): Promise<pb.CreateChatRoomResponse> {
+    return this.client.grpcRequest(new pb.CreateChatRoomRequest().setUsernamesList(userNameList), {
       idempotentId,
     });
   }
 
-  async getChatRoomMembers(roomId: string): Promise<Array<ChatRoomMember>> {
-    const response: GetChatRoomMembersResponse = await this.client.grpcRequest(
-      new GetChatRoomMembersRequest().setRoomid(roomId)
+  async getChatRoomMembers(roomId: string): Promise<pb.ChatRoomMember[]> {
+    const response: pb.GetChatRoomMembersResponse = await this.client.grpcRequest(
+      new pb.GetChatRoomMembersRequest().setRoomid(roomId)
     );
     return response.getMemberList();
   }
 
-  async getChatRoomQrCode(roomId: string): Promise<GetChatRoomQrCodeResponse> {
-    return await this.client.grpcRequest(new GetChatRoomQrCodeRequest().setRoomid(roomId));
+  async getChatRoomQrCode(roomId: string): Promise<pb.GetChatRoomQrCodeResponse> {
+    return this.client.grpcRequest(new pb.GetChatRoomQrCodeRequest().setRoomid(roomId));
   }
 
-  async getChatRoomMember(roomId: string, userName: string): Promise<Contact> {
-    const response: GetChatRoomMemberResponse = await this.client.grpcRequest(
-      new GetChatRoomMemberRequest().setRoomid(roomId).setUsername(userName)
+  async getChatRoomMember(roomId: string, userName: string): Promise<pb.Contact> {
+    const response: pb.GetChatRoomMemberResponse = await this.client.grpcRequest(
+      new pb.GetChatRoomMemberRequest().setRoomid(roomId).setUsername(userName)
     );
     return response.getContact()!;
   }
 
   async setChatRoomAnnouncement(roomId: string, announcement: string): Promise<void> {
-    await this.client.grpcRequest(new SetChatRoomAnnouncementRequest().setRoomid(roomId).setAnnouncement(announcement));
+    await this.client.grpcRequest(
+      new pb.SetChatRoomAnnouncementRequest().setRoomid(roomId).setAnnouncement(announcement)
+    );
   }
 
   async addChatRoomMember(roomId: string, userName: string): Promise<void> {
-    await this.client.grpcRequest(new AddChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
+    await this.client.grpcRequest(new pb.AddChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
   }
 
   async inviteChatRoomMember(roomId: string, userName: string): Promise<void> {
-    await this.client.grpcRequest(new InviteChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
+    await this.client.grpcRequest(new pb.InviteChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
   }
 
   async deleteChatRoomMember(roomId: string, userName: string): Promise<void> {
-    await this.client.grpcRequest(new DeleteChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
+    await this.client.grpcRequest(new pb.DeleteChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
   }
 
   async setChatRoomName(roomId: string, name: string): Promise<void> {
-    await this.client.grpcRequest(new SetChatRoomNameRequest().setRoomid(roomId).setName(name));
+    await this.client.grpcRequest(new pb.SetChatRoomNameRequest().setRoomid(roomId).setName(name));
   }
 
-  async getLabelList(): Promise<Array<Label>> {
-    const response: GetLabelListResponse = await this.client.grpcRequest(new GetLabelListRequest());
+  async getLabelList(): Promise<pb.Label[]> {
+    const response: pb.GetLabelListResponse = await this.client.grpcRequest(new pb.GetLabelListRequest());
     return response.getLabelList();
   }
 
   async addLabel(label: string): Promise<number> {
-    const response: AddLabelResponse = await this.client.grpcRequest(new AddLabelRequest().setLabel(label));
+    const response: pb.AddLabelResponse = await this.client.grpcRequest(new pb.AddLabelRequest().setLabel(label));
     return response.getLabelid();
   }
 
   async removeLabel(labelId: number): Promise<void> {
-    await this.client.grpcRequest(new RemoveLabelRequest().setLabelid(labelId));
+    await this.client.grpcRequest(new pb.RemoveLabelRequest().setLabelid(labelId));
   }
 
-  async setContactLabel(userName: string, labelIdList: Array<number>): Promise<void> {
-    await this.client.grpcRequest(new SetContactLabelRequest().setUsername(userName).setLabelidList(labelIdList));
+  async setContactLabel(userName: string, labelIdList: number[]): Promise<void> {
+    await this.client.grpcRequest(new pb.SetContactLabelRequest().setUsername(userName).setLabelidList(labelIdList));
   }
 
   /**
    * @param maxId: 0 for the first page
    * @return
    */
-  async snsGetTimeline(maxId?: string): Promise<Array<SnsMoment>> {
-    const request = new SnsGetTimelineRequest();
+  async snsGetTimeline(maxId?: string): Promise<pb.SnsMoment[]> {
+    const request = new pb.SnsGetTimelineRequest();
     if (maxId !== undefined) {
       request.setMaxid(maxId);
     }
 
-    const response: SnsGetTimelineResponse = await this.client.grpcRequest(request);
+    const response: pb.SnsGetTimelineResponse = await this.client.grpcRequest(request);
     return response.getMomentList();
   }
 
-  async snsGetUserPage(userName: string, maxId?: string): Promise<Array<SnsMoment>> {
-    const request = new SnsGetUserPageRequest().setUsername(userName);
+  async snsGetUserPage(userName: string, maxId?: string): Promise<pb.SnsMoment[]> {
+    const request = new pb.SnsGetUserPageRequest().setUsername(userName);
 
     if (maxId !== undefined) {
       request.setMaxid(maxId);
     }
 
-    const response: SnsGetUserPageResponse = await this.client.grpcRequest(request);
+    const response: pb.SnsGetUserPageResponse = await this.client.grpcRequest(request);
     return response.getMomentList();
   }
 
-  async snsGetMoment(momentId: string): Promise<SnsMoment> {
-    const response: SnsGetMomentResponse = await this.client.grpcRequest(
-      new SnsGetMomentRequest().setMomentid(momentId)
+  async snsGetMoment(momentId: string): Promise<pb.SnsMoment> {
+    const response: pb.SnsGetMomentResponse = await this.client.grpcRequest(
+      new pb.SnsGetMomentRequest().setMomentid(momentId)
     );
     return response.getMoment()!;
   }
@@ -470,23 +375,23 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    */
   async snsSendMoment(
     idempotentId: string,
-    payload: SnsSendMomentText | SnsSendMomentImages | SnsSendMomentUrl,
-    options?: SnsSendMomentOptions
-  ): Promise<SnsMoment> {
-    const request = new SnsSendMomentRequest();
+    payload: pb.SnsSendMomentText | pb.SnsSendMomentImages | pb.SnsSendMomentUrl,
+    options?: pb.SnsSendMomentOptions
+  ): Promise<pb.SnsMoment> {
+    const request = new pb.SnsSendMomentRequest();
     if (options) {
       request.setOptions(options);
     }
 
-    if (payload instanceof SnsSendMomentText) {
+    if (payload instanceof pb.SnsSendMomentText) {
       request.setText(payload);
-    } else if (payload instanceof SnsSendMomentImages) {
+    } else if (payload instanceof pb.SnsSendMomentImages) {
       request.setImages(payload);
     } else {
       request.setUrl(payload);
     }
 
-    const response: SnsSendMomentResponse = await this.client.grpcRequest(request, {
+    const response: pb.SnsSendMomentResponse = await this.client.grpcRequest(request, {
       idempotentId,
     });
     return response.getMoment()!;
@@ -495,15 +400,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   async snsForwardMoment(
     idempotentId: string,
     momentContentXml: string,
-    options?: SnsSendMomentOptions
-  ): Promise<SnsMoment> {
-    const request = new SnsForwardMomentRequest().setMomentcontentxml(momentContentXml);
+    options?: pb.SnsSendMomentOptions
+  ): Promise<pb.SnsMoment> {
+    const request = new pb.SnsForwardMomentRequest().setMomentcontentxml(momentContentXml);
 
     if (options) {
       request.setOptions(options);
     }
 
-    const response: SnsForwardMomentResponse = await this.client.grpcRequest(request, {
+    const response: pb.SnsForwardMomentResponse = await this.client.grpcRequest(request, {
       idempotentId,
     });
 
@@ -524,9 +429,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     momentId: string,
     momentOwnerUserName: string,
     commentText: string,
-    replyTo?: SnsSendCommentReplyTo
-  ): Promise<SnsMoment> {
-    const request = new SnsSendCommentRequest()
+    replyTo?: pb.SnsSendCommentReplyTo
+  ): Promise<pb.SnsMoment> {
+    const request = new pb.SnsSendCommentRequest()
       .setMomentid(momentId)
       .setMomentownerusername(momentOwnerUserName)
       .setCommenttext(commentText);
@@ -535,69 +440,67 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       request.setReplyto(replyTo);
     }
 
-    const response: SnsSendCommentResponse = await this.client.grpcRequest(request, {
+    const response: pb.SnsSendCommentResponse = await this.client.grpcRequest(request, {
       idempotentId,
     });
     return response.getMoment()!;
   }
 
-  async snsUploadImage(image: Bytes, description?: string): Promise<SnsUploadImageResponse> {
-    const request = new SnsUploadImageRequest().setImage(image);
+  async snsUploadImage(image: Bytes, description?: string): Promise<pb.SnsUploadImageResponse> {
+    const request = new pb.SnsUploadImageRequest().setImage(image);
 
     if (description) {
       request.setDescription(description);
     }
 
-    return await this.client.grpcRequest(request);
+    return this.client.grpcRequest(request);
   }
 
-  async snsLikeMoment(momentId: string, momentOwnerUserName: string): Promise<SnsMoment> {
-    const response: SnsLikeMomentResponse = await this.client.grpcRequest(
-      new SnsLikeMomentRequest().setMomentid(momentId).setMomentownerusername(momentOwnerUserName)
+  async snsLikeMoment(momentId: string, momentOwnerUserName: string): Promise<pb.SnsMoment> {
+    const response: pb.SnsLikeMomentResponse = await this.client.grpcRequest(
+      new pb.SnsLikeMomentRequest().setMomentid(momentId).setMomentownerusername(momentOwnerUserName)
     );
     return response.getMoment()!;
   }
 
   async snsUnlikeMoment(momentId: string): Promise<void> {
-    await this.client.grpcRequest(new SnsUnlikeMomentRequest().setMomentid(momentId));
+    await this.client.grpcRequest(new pb.SnsUnlikeMomentRequest().setMomentid(momentId));
   }
 
   async snsRemoveMomentComment(momentId: string, commentId: string): Promise<void> {
-    await this.client.grpcRequest(new SnsRemoveMomentCommentRequest().setMomentid(momentId).setCommentid(commentId));
+    await this.client.grpcRequest(new pb.SnsRemoveMomentCommentRequest().setMomentid(momentId).setCommentid(commentId));
   }
 
   async snsMakeMomentPrivate(momentId: string): Promise<void> {
-    await this.client.grpcRequest(new SnsMakeMomentPrivateRequest().setMomentid(momentId));
+    await this.client.grpcRequest(new pb.SnsMakeMomentPrivateRequest().setMomentid(momentId));
   }
 
   async snsMakeMomentPublic(momentId: string): Promise<void> {
-    await this.client.grpcRequest(new SnsMakeMomentPublicRequest().setMomentid(momentId));
+    await this.client.grpcRequest(new pb.SnsMakeMomentPublicRequest().setMomentid(momentId));
   }
 
   async snsRemoveMoment(momentId: string): Promise<void> {
-    await this.client.grpcRequest(new SnsRemoveMomentRequest().setMomentid(momentId));
+    await this.client.grpcRequest(new pb.SnsRemoveMomentRequest().setMomentid(momentId));
   }
 }
 
-export namespace PadLocalClientApi {
-  export class ForbiddenError extends VError {}
+export class ForbiddenError extends VError {}
 
-  export interface LoginCallback {
-    onLoginStart(loginType: LoginType): void;
+export interface LoginCallback {
+  onLoginStart(loginType: pb.LoginType): void;
 
-    onOneClickEvent(oneClickEvent: QRCodeEvent): void;
+  onOneClickEvent(oneClickEvent: pb.QRCodeEvent): void;
 
-    onQrCodeEvent(qrCodeEvent: QRCodeEvent): void;
+  onQrCodeEvent(qrCodeEvent: pb.QRCodeEvent): void;
 
-    onSync(syncEvent: SyncEvent): void;
-  }
+  onSync(syncEvent: pb.SyncEvent): void;
+}
 
-  export interface SyncContactCallback {
-    onSync(contactList: Array<Contact>): void;
-  }
+export interface SyncContactCallback {
+  onSync(contactList: pb.Contact[]): void;
+}
 
-  export interface GetMessageImageResult {
-    readonly imageType: ImageType;
-    readonly imageData: Bytes;
-  }
+export interface GetMessageImageResult {
+  readonly imageType: pb.ImageType;
+  readonly imageData: Bytes;
 }

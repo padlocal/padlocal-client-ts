@@ -1,21 +1,19 @@
-import { Bytes, ByteUtils } from "../utils/ByteUtils";
+import { Bytes, bytesToHexString, fromBytes } from "../utils/ByteUtils";
 import { CdnRequest } from "../proto/padlocal_pb";
 import { CdnUnPacker } from "./CdnUnpacker";
-import { log } from "../utils/log";
+import { logDebug } from "../utils/log";
 import { SocketClient } from "../link/SocketClient";
 
 async function _sendCdnRequest(cdnRequest: CdnRequest, traceId: string): Promise<CdnUnPacker> {
   const host = cdnRequest.getHost()!;
 
-  const cdnUnPacker = new CdnUnPacker(ByteUtils.fromBytes(cdnRequest.getUnpackaeskey()));
+  const cdnUnPacker = new CdnUnPacker(fromBytes(cdnRequest.getUnpackaeskey()));
 
   const startDate = new Date();
-  log.debug(
+  logDebug(
     `[tid:${traceId}] send cdn request, host:\"${cdnRequest
       .getHost()!
-      .getHost()}:${cdnRequest.getHost()!.getPort()}\" payload: ${ByteUtils.bytesToHexString(
-      ByteUtils.fromBytes(cdnRequest.getPayload())
-    )}`
+      .getHost()}:${cdnRequest.getHost()!.getPort()}\" payload: ${bytesToHexString(fromBytes(cdnRequest.getPayload()))}`
   );
 
   const socketClient = new SocketClient(host.getHost(), host.getPort(), traceId, {
@@ -32,7 +30,7 @@ async function _sendCdnRequest(cdnRequest: CdnRequest, traceId: string): Promise
 
   const responseEndDate = new Date();
 
-  log.debug(
+  logDebug(
     `[tid:${traceId}] [${
       responseEndDate.getTime() - startDate.getTime()
     }ms] received cdn response: ${cdnUnPacker.toString()}`
@@ -41,23 +39,21 @@ async function _sendCdnRequest(cdnRequest: CdnRequest, traceId: string): Promise
   return cdnUnPacker;
 }
 
-export namespace CdnUtils {
-  export async function requestCdnAndUnpack(cdnRequest: CdnRequest, traceId: string): Promise<Bytes> {
-    const cdnUnPacker = await _sendCdnRequest(cdnRequest, traceId);
+export async function requestCdnAndUnpack(cdnRequest: CdnRequest, traceId: string): Promise<Bytes> {
+  const cdnUnPacker = await _sendCdnRequest(cdnRequest, traceId);
 
-    const startDate = new Date();
+  const startDate = new Date();
 
-    const ret = cdnUnPacker.getDecryptedFileData()!;
+  const ret = cdnUnPacker.getDecryptedFileData()!;
 
-    const endDate = new Date();
+  const endDate = new Date();
 
-    log.debug(`[tid:${traceId}] decrypt out data len: ${ret.length}[${endDate.getTime() - startDate.getTime()}ms]`);
+  logDebug(`[tid:${traceId}] decrypt out data len: ${ret.length}[${endDate.getTime() - startDate.getTime()}ms]`);
 
-    return ret;
-  }
+  return ret;
+}
 
-  export async function requestCdn(cdnRequest: CdnRequest, traceId: string): Promise<Bytes> {
-    const cdnUnPacker = await _sendCdnRequest(cdnRequest, traceId);
-    return cdnUnPacker.getRawResponseData()!;
-  }
+export async function requestCdn(cdnRequest: CdnRequest, traceId: string): Promise<Bytes> {
+  const cdnUnPacker = await _sendCdnRequest(cdnRequest, traceId);
+  return cdnUnPacker.getRawResponseData()!;
 }
