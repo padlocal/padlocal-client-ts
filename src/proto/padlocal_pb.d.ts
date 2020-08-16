@@ -1,5 +1,5 @@
 // package: padlocal
-// file: src/proto/padlocal.proto
+// file: padlocal.proto
 
 /* tslint:disable */
 /* eslint-disable */

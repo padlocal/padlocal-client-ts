@@ -1,4 +1,4 @@
-// source: src/proto/padlocal.proto
+// source: padlocal.proto
 /**
  * @fileoverview
  * @enhanceable

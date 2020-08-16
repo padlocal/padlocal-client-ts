@@ -17,11 +17,11 @@ export class PadLocalClient extends EventEmitter {
 
   readonly api: PadLocalClientApi = new PadLocalClientApi(this);
 
-  constructor(host: string, port: number, token: string) {
+  constructor(serverAddr: string, token: string) {
     super();
 
     // Oops, @grpc/grpc-js does not support retry yet
-    this._stub = new padlocal.PadLocalClient(`${host}:${port}`, credentials.createInsecure(), {
+    this._stub = new padlocal.PadLocalClient(serverAddr, credentials.createInsecure(), {
       "grpc.default_compression_algorithm": 2,
       "grpc.default_compression_level": 2,
     });

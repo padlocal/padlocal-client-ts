@@ -19,9 +19,9 @@
   ],
   "scripts": {
     "clean": "rm -fr dist/*",
-    "dist": "npm run clean && tsc",
+    "dist": "npm run clean && tsc && cp -R src/proto/ dist/proto/",
     "lint": "tslint --project tsconfig.json",
-    "gen-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:. --grpc_out=grpc_js:. --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --plugin=protoc-gen-ts=node_modules/.bin/protoc-gen-ts --ts_out=generate_package_definition:. src/proto/padlocal.proto",
+    "gen-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/proto --grpc_out=grpc_js:src/proto --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --plugin=protoc-gen-ts=node_modules/.bin/protoc-gen-ts --ts_out=generate_package_definition:src/proto padlocal.proto",
     "test": "jest",
     "coverage": "jest --coverage",
     "prepare": "npm run dist"

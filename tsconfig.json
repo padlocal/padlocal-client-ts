@@ -9,12 +9,12 @@
         "traceResolution": false,
         "esModuleInterop" : true,
         "resolveJsonModule": true,
-        "skipLibCheck"    : true,
-        "allowJs": true
+        "skipLibCheck"    : true
     },
     "exclude": [
         "node_modules/",
-        "dist/"
+        "dist/",
+        "src/proto"
     ],
     "include": [
         "src/**/*"

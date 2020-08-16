@@ -7,7 +7,7 @@ export async function prepareSignedOnClient(): Promise<PadLocalClient> {
   const host: string = config.get("padLocal.host");
   const port: number = config.get("padLocal.port");
   const token: string = config.get("padLocal.token");
-  const padLocalClient = new PadLocalClient(host, port, token);
+  const padLocalClient = new PadLocalClient(`${host}:${port}`, token);
 
   await padLocalClient.api.login(LoginPolicy.DEFAULT, {
     onLoginStart: (loginType: LoginType) => {
