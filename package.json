@@ -2,21 +2,34 @@
   "name": "padlocal-client-ts",
   "version": "0.1.0",
   "description": "Padlocal ts client",
-  "main": "index.js",
+  "keywords": [
+    "padlocal",
+    "chatbot",
+    "weixin",
+    "wechat",
+    "wechaty",
+    "wechaty-puppet"
+  ],
+  "author": "haoda",
+  "license": "ISC",
+  "main": "dist/PadLocalClient.js",
+  "types": "dist/PadLocalClient.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "clean": "rm -fr dist/*",
     "dist": "npm run clean && tsc",
     "lint": "tslint --project tsconfig.json",
     "gen-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:. --grpc_out=grpc_js:. --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --plugin=protoc-gen-ts=node_modules/.bin/protoc-gen-ts --ts_out=generate_package_definition:. src/proto/padlocal.proto",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "prepare": "npm run dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/padlocal/padlocal-client-ts.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/padlocal/padlocal-client-ts/issues"
   },
