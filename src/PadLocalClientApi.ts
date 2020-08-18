@@ -1,9 +1,8 @@
-import VError from "verror";
 import * as pb from "./proto/padlocal_pb";
-import { Bytes, newBytes } from "./utils/ByteUtils";
+import { Bytes } from "./utils/ByteUtils";
 import { requestCdnAndUnpack } from "./wechat/CdnUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
-import {Contact} from "./proto/padlocal_pb";
+import { Contact } from "./proto/padlocal_pb";
 
 export class PadLocalClientApi extends PadLocalClientPlugin {
   async login(loginPolicy: pb.LoginPolicy, callback: LoginCallback): Promise<void> {
@@ -52,7 +51,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     request.setHeartbeatseq(heartBeatSeq);
 
     return this.client.grpcRequest(new pb.LongLinkHeartBeatRequest().setHeartbeatseq(heartBeatSeq), {
-      requestTimeout: 3000, // longlink heart beat require more instancy
+      requestTimeout: 3000, // longlink heart beat require more instantly
     });
   }
 
@@ -132,9 +131,19 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return response.getMsgid();
   }
 
-  async forwardMessage(idempotentId: string, toUserName: string, message: pb.Message): Promise<string> {
+  async forwardMessage(
+    idempotentId: string,
+    toUserName: string,
+    messageContent: string,
+    messageType: number,
+    messageToUserName: string
+  ): Promise<string> {
     const response: pb.ForwardMessageResponse = await this.client.grpcRequest(
-      new pb.ForwardMessageRequest().setTousername(toUserName).setMessage(message),
+      new pb.ForwardMessageRequest()
+        .setTousername(toUserName)
+        .setMessagetype(messageType)
+        .setMessagecontent(messageContent)
+        .setMessagetousername(messageToUserName),
       {
         idempotentId,
       }
@@ -142,17 +151,17 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return response.getMsgid();
   }
 
-  async getMessageImage(m: pb.Message, imageType: pb.ImageType): Promise<GetMessageImageResult> {
-    if (m.getType() !== 3) {
-      throw new ForbiddenError("message type is not image");
-    }
-
-    // make a copy, and make sure to clear embedded image data, to save bandwidth
-    const message = m.clone().setBinarypayload(newBytes());
-
+  async getMessageImage(
+    messageContent: string,
+    messageToUserName: string,
+    imageType: pb.ImageType
+  ): Promise<GetMessageImageResult> {
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageImageResponse = await grpcClient.request(
-      new pb.GetMessageImageRequest().setMessage(message).setImagetype(imageType)
+      new pb.GetMessageImageRequest()
+        .setImagetype(imageType)
+        .setMessagecontent(messageContent)
+        .setMessagetousername(messageToUserName)
     );
 
     const imageData: Bytes = await requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
@@ -163,56 +172,39 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     };
   }
 
-  async getMessageVoice(message: pb.Message): Promise<Bytes> {
-    if (message.getType() !== 34) {
-      throw new ForbiddenError("message type is not audio");
-    }
-
-    if (message.getBinarypayload().length > 0) {
-      throw new ForbiddenError("audio data is already embedded in message");
-    }
-
+  async getMessageVoice(messageId: string, messageContent: string, messageToUserName: string): Promise<Bytes> {
     const response: pb.GetMessageVoiceResponse = await this.client.grpcRequest(
-      new pb.GetMessageVoiceRequest().setMessage(message)
+      new pb.GetMessageVoiceRequest()
+        .setMessageid(messageId)
+        .setMessagecontent(messageContent)
+        .setMessagetousername(messageToUserName)
     );
 
     return Buffer.from(response.getVoice());
   }
 
-  async getMessageVideoThumb(message: pb.Message): Promise<Bytes> {
-    if (message.getType() !== 43) {
-      throw new ForbiddenError("message type is not video");
-    }
-
+  async getMessageVideoThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageVideoThumbResponse = await grpcClient.request(
-      new pb.GetMessageVideoThumbRequest().setMessage(message)
+      new pb.GetMessageVideoThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
     return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
   }
 
-  async getMessageVideo(message: pb.Message): Promise<Bytes> {
-    if (message.getType() !== 43) {
-      throw new ForbiddenError("message type is not video");
-    }
-
+  async getMessageVideo(messageContent: string, messageToUserName: string): Promise<Bytes> {
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageVideoResponse = await grpcClient.request(
-      new pb.GetMessageVideoRequest().setMessage(message)
+      new pb.GetMessageVideoRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
     return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
   }
 
-  async getMessageFile(message: pb.Message): Promise<Bytes> {
-    if (message.getType() !== 49) {
-      throw new ForbiddenError("message type is not file");
-    }
-
+  async getMessageFile(messageContent: string, messageToUserName: string): Promise<Bytes> {
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageFileResponse = await grpcClient.request(
-      new pb.GetMessageFileRequest().setMessage(message)
+      new pb.GetMessageFileRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
     return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
@@ -487,13 +479,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 }
 
-export class ForbiddenError extends VError {}
-
 export interface LoginCallback {
   onLoginStart(loginType: pb.LoginType): void;
+
   onOneClickEvent(oneClickEvent: pb.QRCodeEvent): void;
+
   onQrCodeEvent(qrCodeEvent: pb.QRCodeEvent): void;
+
   onLoginSuccess(contact: Contact): void;
+
   onSync(syncEvent: pb.SyncEvent): void;
 }
 

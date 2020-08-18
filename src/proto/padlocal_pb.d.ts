@@ -3842,14 +3842,14 @@ export namespace SyncResponse {
 }
 
 export class GetMessageImageRequest extends jspb.Message { 
-
-    hasMessage(): boolean;
-    clearMessage(): void;
-    getMessage(): Message | undefined;
-    setMessage(value?: Message): GetMessageImageRequest;
-
     getImagetype(): ImageType;
     setImagetype(value: ImageType): GetMessageImageRequest;
+
+    getMessagecontent(): string;
+    setMessagecontent(value: string): GetMessageImageRequest;
+
+    getMessagetousername(): string;
+    setMessagetousername(value: string): GetMessageImageRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -3864,8 +3864,9 @@ export class GetMessageImageRequest extends jspb.Message {
 
 export namespace GetMessageImageRequest {
     export type AsObject = {
-        message?: Message.AsObject,
         imagetype: ImageType,
+        messagecontent: string,
+        messagetousername: string,
     }
 }
 
@@ -3968,11 +3969,14 @@ export namespace SyncContactResponse {
 }
 
 export class GetMessageVoiceRequest extends jspb.Message { 
+    getMessageid(): string;
+    setMessageid(value: string): GetMessageVoiceRequest;
 
-    hasMessage(): boolean;
-    clearMessage(): void;
-    getMessage(): Message | undefined;
-    setMessage(value?: Message): GetMessageVoiceRequest;
+    getMessagecontent(): string;
+    setMessagecontent(value: string): GetMessageVoiceRequest;
+
+    getMessagetousername(): string;
+    setMessagetousername(value: string): GetMessageVoiceRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -3987,7 +3991,9 @@ export class GetMessageVoiceRequest extends jspb.Message {
 
 export namespace GetMessageVoiceRequest {
     export type AsObject = {
-        message?: Message.AsObject,
+        messageid: string,
+        messagecontent: string,
+        messagetousername: string,
     }
 }
 
@@ -4015,11 +4021,11 @@ export namespace GetMessageVoiceResponse {
 }
 
 export class GetMessageVideoThumbRequest extends jspb.Message { 
+    getMessagecontent(): string;
+    setMessagecontent(value: string): GetMessageVideoThumbRequest;
 
-    hasMessage(): boolean;
-    clearMessage(): void;
-    getMessage(): Message | undefined;
-    setMessage(value?: Message): GetMessageVideoThumbRequest;
+    getMessagetousername(): string;
+    setMessagetousername(value: string): GetMessageVideoThumbRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -4034,7 +4040,8 @@ export class GetMessageVideoThumbRequest extends jspb.Message {
 
 export namespace GetMessageVideoThumbRequest {
     export type AsObject = {
-        message?: Message.AsObject,
+        messagecontent: string,
+        messagetousername: string,
     }
 }
 
@@ -4063,11 +4070,11 @@ export namespace GetMessageVideoThumbResponse {
 }
 
 export class GetMessageVideoRequest extends jspb.Message { 
+    getMessagecontent(): string;
+    setMessagecontent(value: string): GetMessageVideoRequest;
 
-    hasMessage(): boolean;
-    clearMessage(): void;
-    getMessage(): Message | undefined;
-    setMessage(value?: Message): GetMessageVideoRequest;
+    getMessagetousername(): string;
+    setMessagetousername(value: string): GetMessageVideoRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -4082,7 +4089,8 @@ export class GetMessageVideoRequest extends jspb.Message {
 
 export namespace GetMessageVideoRequest {
     export type AsObject = {
-        message?: Message.AsObject,
+        messagecontent: string,
+        messagetousername: string,
     }
 }
 
@@ -4111,11 +4119,11 @@ export namespace GetMessageVideoResponse {
 }
 
 export class GetMessageFileRequest extends jspb.Message { 
+    getMessagecontent(): string;
+    setMessagecontent(value: string): GetMessageFileRequest;
 
-    hasMessage(): boolean;
-    clearMessage(): void;
-    getMessage(): Message | undefined;
-    setMessage(value?: Message): GetMessageFileRequest;
+    getMessagetousername(): string;
+    setMessagetousername(value: string): GetMessageFileRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -4130,7 +4138,8 @@ export class GetMessageFileRequest extends jspb.Message {
 
 export namespace GetMessageFileRequest {
     export type AsObject = {
-        message?: Message.AsObject,
+        messagecontent: string,
+        messagetousername: string,
     }
 }
 
@@ -4162,11 +4171,14 @@ export class ForwardMessageRequest extends jspb.Message {
     getTousername(): string;
     setTousername(value: string): ForwardMessageRequest;
 
+    getMessagetype(): number;
+    setMessagetype(value: number): ForwardMessageRequest;
 
-    hasMessage(): boolean;
-    clearMessage(): void;
-    getMessage(): Message | undefined;
-    setMessage(value?: Message): ForwardMessageRequest;
+    getMessagecontent(): string;
+    setMessagecontent(value: string): ForwardMessageRequest;
+
+    getMessagetousername(): string;
+    setMessagetousername(value: string): ForwardMessageRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -4182,7 +4194,9 @@ export class ForwardMessageRequest extends jspb.Message {
 export namespace ForwardMessageRequest {
     export type AsObject = {
         tousername: string,
-        message?: Message.AsObject,
+        messagetype: number,
+        messagecontent: string,
+        messagetousername: string,
     }
 }
 

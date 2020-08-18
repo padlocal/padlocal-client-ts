@@ -26919,8 +26919,9 @@ proto.padlocal.GetMessageImageRequest.prototype.toObject = function(opt_includeI
  */
 proto.padlocal.GetMessageImageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    message: (f = msg.getMessage()) && proto.padlocal.Message.toObject(includeInstance, f),
-    imagetype: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    imagetype: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    messagecontent: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    messagetousername: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -26958,13 +26959,16 @@ proto.padlocal.GetMessageImageRequest.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.padlocal.Message;
-      reader.readMessage(value,proto.padlocal.Message.deserializeBinaryFromReader);
-      msg.setMessage(value);
-      break;
-    case 2:
       var value = /** @type {!proto.padlocal.ImageType} */ (reader.readEnum());
       msg.setImagetype(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagecontent(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagetousername(value);
       break;
     default:
       reader.skipField();
@@ -26995,18 +26999,24 @@ proto.padlocal.GetMessageImageRequest.prototype.serializeBinary = function() {
  */
 proto.padlocal.GetMessageImageRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessage();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.padlocal.Message.serializeBinaryToWriter
-    );
-  }
   f = message.getImagetype();
   if (f !== 0.0) {
     writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getMessagecontent();
+  if (f.length > 0) {
+    writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getMessagetousername();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -27014,48 +27024,11 @@ proto.padlocal.GetMessageImageRequest.serializeBinaryToWriter = function(message
 
 
 /**
- * optional Message message = 1;
- * @return {?proto.padlocal.Message}
- */
-proto.padlocal.GetMessageImageRequest.prototype.getMessage = function() {
-  return /** @type{?proto.padlocal.Message} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.Message, 1));
-};
-
-
-/**
- * @param {?proto.padlocal.Message|undefined} value
- * @return {!proto.padlocal.GetMessageImageRequest} returns this
-*/
-proto.padlocal.GetMessageImageRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.GetMessageImageRequest} returns this
- */
-proto.padlocal.GetMessageImageRequest.prototype.clearMessage = function() {
-  return this.setMessage(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.GetMessageImageRequest.prototype.hasMessage = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional ImageType imageType = 2;
+ * optional ImageType imageType = 1;
  * @return {!proto.padlocal.ImageType}
  */
 proto.padlocal.GetMessageImageRequest.prototype.getImagetype = function() {
-  return /** @type {!proto.padlocal.ImageType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.padlocal.ImageType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -27064,7 +27037,43 @@ proto.padlocal.GetMessageImageRequest.prototype.getImagetype = function() {
  * @return {!proto.padlocal.GetMessageImageRequest} returns this
  */
 proto.padlocal.GetMessageImageRequest.prototype.setImagetype = function(value) {
-  return jspb.Message.setProto3EnumField(this, 2, value);
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional string messageContent = 2;
+ * @return {string}
+ */
+proto.padlocal.GetMessageImageRequest.prototype.getMessagecontent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.GetMessageImageRequest} returns this
+ */
+proto.padlocal.GetMessageImageRequest.prototype.setMessagecontent = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string messageToUserName = 3;
+ * @return {string}
+ */
+proto.padlocal.GetMessageImageRequest.prototype.getMessagetousername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.GetMessageImageRequest} returns this
+ */
+proto.padlocal.GetMessageImageRequest.prototype.setMessagetousername = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -27742,7 +27751,9 @@ proto.padlocal.GetMessageVoiceRequest.prototype.toObject = function(opt_includeI
  */
 proto.padlocal.GetMessageVoiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    message: (f = msg.getMessage()) && proto.padlocal.Message.toObject(includeInstance, f)
+    messageid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    messagecontent: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    messagetousername: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -27780,9 +27791,16 @@ proto.padlocal.GetMessageVoiceRequest.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.padlocal.Message;
-      reader.readMessage(value,proto.padlocal.Message.deserializeBinaryFromReader);
-      msg.setMessage(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessageid(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagecontent(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagetousername(value);
       break;
     default:
       reader.skipField();
@@ -27813,51 +27831,81 @@ proto.padlocal.GetMessageVoiceRequest.prototype.serializeBinary = function() {
  */
 proto.padlocal.GetMessageVoiceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessage();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getMessageid();
+  if (f.length > 0) {
+    writer.writeString(
       1,
-      f,
-      proto.padlocal.Message.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getMessagecontent();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getMessagetousername();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
 };
 
 
 /**
- * optional Message message = 1;
- * @return {?proto.padlocal.Message}
+ * optional string messageId = 1;
+ * @return {string}
  */
-proto.padlocal.GetMessageVoiceRequest.prototype.getMessage = function() {
-  return /** @type{?proto.padlocal.Message} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.Message, 1));
+proto.padlocal.GetMessageVoiceRequest.prototype.getMessageid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {?proto.padlocal.Message|undefined} value
- * @return {!proto.padlocal.GetMessageVoiceRequest} returns this
-*/
-proto.padlocal.GetMessageVoiceRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {string} value
  * @return {!proto.padlocal.GetMessageVoiceRequest} returns this
  */
-proto.padlocal.GetMessageVoiceRequest.prototype.clearMessage = function() {
-  return this.setMessage(undefined);
+proto.padlocal.GetMessageVoiceRequest.prototype.setMessageid = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * optional string messageContent = 2;
+ * @return {string}
  */
-proto.padlocal.GetMessageVoiceRequest.prototype.hasMessage = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.padlocal.GetMessageVoiceRequest.prototype.getMessagecontent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.GetMessageVoiceRequest} returns this
+ */
+proto.padlocal.GetMessageVoiceRequest.prototype.setMessagecontent = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string messageToUserName = 3;
+ * @return {string}
+ */
+proto.padlocal.GetMessageVoiceRequest.prototype.getMessagetousername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.GetMessageVoiceRequest} returns this
+ */
+proto.padlocal.GetMessageVoiceRequest.prototype.setMessagetousername = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -28047,7 +28095,8 @@ proto.padlocal.GetMessageVideoThumbRequest.prototype.toObject = function(opt_inc
  */
 proto.padlocal.GetMessageVideoThumbRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    message: (f = msg.getMessage()) && proto.padlocal.Message.toObject(includeInstance, f)
+    messagecontent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    messagetousername: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -28085,9 +28134,12 @@ proto.padlocal.GetMessageVideoThumbRequest.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.padlocal.Message;
-      reader.readMessage(value,proto.padlocal.Message.deserializeBinaryFromReader);
-      msg.setMessage(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagecontent(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagetousername(value);
       break;
     default:
       reader.skipField();
@@ -28118,51 +28170,56 @@ proto.padlocal.GetMessageVideoThumbRequest.prototype.serializeBinary = function(
  */
 proto.padlocal.GetMessageVideoThumbRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessage();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getMessagecontent();
+  if (f.length > 0) {
+    writer.writeString(
       1,
-      f,
-      proto.padlocal.Message.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getMessagetousername();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
 
 
 /**
- * optional Message message = 1;
- * @return {?proto.padlocal.Message}
+ * optional string messageContent = 1;
+ * @return {string}
  */
-proto.padlocal.GetMessageVideoThumbRequest.prototype.getMessage = function() {
-  return /** @type{?proto.padlocal.Message} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.Message, 1));
+proto.padlocal.GetMessageVideoThumbRequest.prototype.getMessagecontent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {?proto.padlocal.Message|undefined} value
- * @return {!proto.padlocal.GetMessageVideoThumbRequest} returns this
-*/
-proto.padlocal.GetMessageVideoThumbRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {string} value
  * @return {!proto.padlocal.GetMessageVideoThumbRequest} returns this
  */
-proto.padlocal.GetMessageVideoThumbRequest.prototype.clearMessage = function() {
-  return this.setMessage(undefined);
+proto.padlocal.GetMessageVideoThumbRequest.prototype.setMessagecontent = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * optional string messageToUserName = 2;
+ * @return {string}
  */
-proto.padlocal.GetMessageVideoThumbRequest.prototype.hasMessage = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.padlocal.GetMessageVideoThumbRequest.prototype.getMessagetousername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.GetMessageVideoThumbRequest} returns this
+ */
+proto.padlocal.GetMessageVideoThumbRequest.prototype.setMessagetousername = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -28349,7 +28406,8 @@ proto.padlocal.GetMessageVideoRequest.prototype.toObject = function(opt_includeI
  */
 proto.padlocal.GetMessageVideoRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    message: (f = msg.getMessage()) && proto.padlocal.Message.toObject(includeInstance, f)
+    messagecontent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    messagetousername: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -28387,9 +28445,12 @@ proto.padlocal.GetMessageVideoRequest.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.padlocal.Message;
-      reader.readMessage(value,proto.padlocal.Message.deserializeBinaryFromReader);
-      msg.setMessage(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagecontent(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagetousername(value);
       break;
     default:
       reader.skipField();
@@ -28420,51 +28481,56 @@ proto.padlocal.GetMessageVideoRequest.prototype.serializeBinary = function() {
  */
 proto.padlocal.GetMessageVideoRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessage();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getMessagecontent();
+  if (f.length > 0) {
+    writer.writeString(
       1,
-      f,
-      proto.padlocal.Message.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getMessagetousername();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
 
 
 /**
- * optional Message message = 1;
- * @return {?proto.padlocal.Message}
+ * optional string messageContent = 1;
+ * @return {string}
  */
-proto.padlocal.GetMessageVideoRequest.prototype.getMessage = function() {
-  return /** @type{?proto.padlocal.Message} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.Message, 1));
+proto.padlocal.GetMessageVideoRequest.prototype.getMessagecontent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {?proto.padlocal.Message|undefined} value
- * @return {!proto.padlocal.GetMessageVideoRequest} returns this
-*/
-proto.padlocal.GetMessageVideoRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {string} value
  * @return {!proto.padlocal.GetMessageVideoRequest} returns this
  */
-proto.padlocal.GetMessageVideoRequest.prototype.clearMessage = function() {
-  return this.setMessage(undefined);
+proto.padlocal.GetMessageVideoRequest.prototype.setMessagecontent = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * optional string messageToUserName = 2;
+ * @return {string}
  */
-proto.padlocal.GetMessageVideoRequest.prototype.hasMessage = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.padlocal.GetMessageVideoRequest.prototype.getMessagetousername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.GetMessageVideoRequest} returns this
+ */
+proto.padlocal.GetMessageVideoRequest.prototype.setMessagetousername = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -28651,7 +28717,8 @@ proto.padlocal.GetMessageFileRequest.prototype.toObject = function(opt_includeIn
  */
 proto.padlocal.GetMessageFileRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    message: (f = msg.getMessage()) && proto.padlocal.Message.toObject(includeInstance, f)
+    messagecontent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    messagetousername: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -28689,9 +28756,12 @@ proto.padlocal.GetMessageFileRequest.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.padlocal.Message;
-      reader.readMessage(value,proto.padlocal.Message.deserializeBinaryFromReader);
-      msg.setMessage(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagecontent(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagetousername(value);
       break;
     default:
       reader.skipField();
@@ -28722,51 +28792,56 @@ proto.padlocal.GetMessageFileRequest.prototype.serializeBinary = function() {
  */
 proto.padlocal.GetMessageFileRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessage();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getMessagecontent();
+  if (f.length > 0) {
+    writer.writeString(
       1,
-      f,
-      proto.padlocal.Message.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getMessagetousername();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
 
 
 /**
- * optional Message message = 1;
- * @return {?proto.padlocal.Message}
+ * optional string messageContent = 1;
+ * @return {string}
  */
-proto.padlocal.GetMessageFileRequest.prototype.getMessage = function() {
-  return /** @type{?proto.padlocal.Message} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.Message, 1));
+proto.padlocal.GetMessageFileRequest.prototype.getMessagecontent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {?proto.padlocal.Message|undefined} value
- * @return {!proto.padlocal.GetMessageFileRequest} returns this
-*/
-proto.padlocal.GetMessageFileRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {string} value
  * @return {!proto.padlocal.GetMessageFileRequest} returns this
  */
-proto.padlocal.GetMessageFileRequest.prototype.clearMessage = function() {
-  return this.setMessage(undefined);
+proto.padlocal.GetMessageFileRequest.prototype.setMessagecontent = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * optional string messageToUserName = 2;
+ * @return {string}
  */
-proto.padlocal.GetMessageFileRequest.prototype.hasMessage = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.padlocal.GetMessageFileRequest.prototype.getMessagetousername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.GetMessageFileRequest} returns this
+ */
+proto.padlocal.GetMessageFileRequest.prototype.setMessagetousername = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -28954,7 +29029,9 @@ proto.padlocal.ForwardMessageRequest.prototype.toObject = function(opt_includeIn
 proto.padlocal.ForwardMessageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     tousername: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    message: (f = msg.getMessage()) && proto.padlocal.Message.toObject(includeInstance, f)
+    messagetype: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    messagecontent: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    messagetousername: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -28996,9 +29073,16 @@ proto.padlocal.ForwardMessageRequest.deserializeBinaryFromReader = function(msg,
       msg.setTousername(value);
       break;
     case 2:
-      var value = new proto.padlocal.Message;
-      reader.readMessage(value,proto.padlocal.Message.deserializeBinaryFromReader);
-      msg.setMessage(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMessagetype(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagecontent(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessagetousername(value);
       break;
     default:
       reader.skipField();
@@ -29036,12 +29120,25 @@ proto.padlocal.ForwardMessageRequest.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getMessage();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getMessagetype();
+  if (f !== 0) {
+    writer.writeInt32(
       2,
-      f,
-      proto.padlocal.Message.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getMessagecontent();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getMessagetousername();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -29066,39 +29163,56 @@ proto.padlocal.ForwardMessageRequest.prototype.setTousername = function(value) {
 
 
 /**
- * optional Message message = 2;
- * @return {?proto.padlocal.Message}
+ * optional int32 messageType = 2;
+ * @return {number}
  */
-proto.padlocal.ForwardMessageRequest.prototype.getMessage = function() {
-  return /** @type{?proto.padlocal.Message} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.Message, 2));
+proto.padlocal.ForwardMessageRequest.prototype.getMessagetype = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {?proto.padlocal.Message|undefined} value
- * @return {!proto.padlocal.ForwardMessageRequest} returns this
-*/
-proto.padlocal.ForwardMessageRequest.prototype.setMessage = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {number} value
  * @return {!proto.padlocal.ForwardMessageRequest} returns this
  */
-proto.padlocal.ForwardMessageRequest.prototype.clearMessage = function() {
-  return this.setMessage(undefined);
+proto.padlocal.ForwardMessageRequest.prototype.setMessagetype = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * optional string messageContent = 3;
+ * @return {string}
  */
-proto.padlocal.ForwardMessageRequest.prototype.hasMessage = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.padlocal.ForwardMessageRequest.prototype.getMessagecontent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.ForwardMessageRequest} returns this
+ */
+proto.padlocal.ForwardMessageRequest.prototype.setMessagecontent = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string messageToUserName = 4;
+ * @return {string}
+ */
+proto.padlocal.ForwardMessageRequest.prototype.getMessagetousername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.ForwardMessageRequest} returns this
+ */
+proto.padlocal.ForwardMessageRequest.prototype.setMessagetousername = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
