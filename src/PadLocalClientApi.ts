@@ -3,6 +3,7 @@ import * as pb from "./proto/padlocal_pb";
 import { Bytes, newBytes } from "./utils/ByteUtils";
 import { requestCdnAndUnpack } from "./wechat/CdnUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
+import {Contact} from "./proto/padlocal_pb";
 
 export class PadLocalClientApi extends PadLocalClientPlugin {
   async login(loginPolicy: pb.LoginPolicy, callback: LoginCallback): Promise<void> {
@@ -28,6 +29,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
           this.client.selfContact = authInfo.getSelfcontact();
           this.client.updateLongLinkHost(authInfo.getLonglinkhost()!);
+
+          callback.onLoginSuccess(this.client.selfContact!);
         } else if (loginUpdateEvent.getStatus() === pb.LoginStatus.SYNC) {
           callback.onSync(loginUpdateEvent.getSyncevent()!);
         }
@@ -488,11 +491,9 @@ export class ForbiddenError extends VError {}
 
 export interface LoginCallback {
   onLoginStart(loginType: pb.LoginType): void;
-
   onOneClickEvent(oneClickEvent: pb.QRCodeEvent): void;
-
   onQrCodeEvent(qrCodeEvent: pb.QRCodeEvent): void;
-
+  onLoginSuccess(contact: Contact): void;
   onSync(syncEvent: pb.SyncEvent): void;
 }
 
