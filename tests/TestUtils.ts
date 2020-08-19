@@ -1,6 +1,6 @@
 import { PadLocalClient } from "../src/PadLocalClient";
 import { stringifyPB } from "../src/utils/Utils";
-import { LoginPolicy, LoginType, QRCodeEvent, SyncEvent } from "../src/proto/padlocal_pb";
+import { Contact, LoginPolicy, LoginType, QRCodeEvent, SyncEvent } from "../src/proto/padlocal_pb";
 import config from "config";
 
 export async function prepareSignedOnClient(): Promise<PadLocalClient> {
@@ -22,6 +22,10 @@ export async function prepareSignedOnClient(): Promise<PadLocalClient> {
       console.log(`on qr code event: ${stringifyPB(qrCodeEvent)}`);
     },
 
+    onLoginSuccess(contact: Contact) {
+      console.log(`on login success: ${stringifyPB(contact)}`);
+    },
+
     onSync: (syncEvent: SyncEvent) => {
       for (const contact of syncEvent.getContactList()) {
         console.log(`login on sync contact: ${stringifyPB(contact)}`);
@@ -33,7 +37,7 @@ export async function prepareSignedOnClient(): Promise<PadLocalClient> {
     },
   });
 
-  console.log("login success");
+  console.log("login done, listen for notifications");
 
   return padLocalClient;
 }

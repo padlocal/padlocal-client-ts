@@ -3,11 +3,13 @@ import { credentials, Metadata, CallCredentials } from "@grpc/grpc-js";
 import { AUTHORIZATION_METADATA_KEY } from "./utils/Constant";
 import { GrpcClient, Options } from "./GrpcClient";
 import { Host, Contact, SystemEventRequest, SystemEventType, Message } from "./proto/padlocal_pb";
-import { WeChatLongLinkProxy, EventName as LongLinkEvent, HeartBeatEventPayload } from "./link/WeChatLongLinkProxy";
+import { WeChatLongLinkProxy, HeartBeatEventPayload } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
 import { logDebug, logError } from "./utils/log";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
+
+export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
 export class PadLocalClient extends EventEmitter {
   private readonly _stub: padlocal.PadLocalClient;
@@ -16,6 +18,14 @@ export class PadLocalClient extends EventEmitter {
   selfContact?: Contact;
 
   readonly api: PadLocalClientApi = new PadLocalClientApi(this);
+
+  emit(event: "kickout", detail: KickOutEvent): boolean;
+  emit(event: "contact", contactList: Contact[]): boolean;
+  emit(event: "message", messageList: Message[]): boolean;
+
+  emit(event: PadLocalClientEvent, ...args: any[]): boolean {
+    return super.emit(event, ...args);
+  }
 
   constructor(serverAddr: string, token: string) {
     super();
@@ -34,7 +44,7 @@ export class PadLocalClient extends EventEmitter {
 
     this._longLinkProxy = new WeChatLongLinkProxy(this);
 
-    this._longLinkProxy.on(LongLinkEvent.HeartBeatEvent, async (event: HeartBeatEventPayload) => {
+    this._longLinkProxy.on("heartbeat", async (event: HeartBeatEventPayload) => {
       try {
         await this.api.sendLongLinkHeartBeat(event.heartBeatSeq);
         this._longLinkProxy.onHeartBeatResult(true);
@@ -44,7 +54,7 @@ export class PadLocalClient extends EventEmitter {
       }
     });
 
-    this._longLinkProxy.on(LongLinkEvent.OnPushNewMessageEvent, async () => {
+    this._longLinkProxy.on("message-push", async () => {
       try {
         const syncEvent = await this.api.sync();
 
@@ -55,14 +65,10 @@ export class PadLocalClient extends EventEmitter {
         );
 
         if (syncEvent.getContactList().length > 0) {
-          this._postEvent(EventName.OnPushContactEvent, {
-            contactList: syncEvent.getContactList(),
-          });
+          this.emit("contact", syncEvent.getContactList());
         }
         if (syncEvent.getMessageList().length > 0) {
-          this._postEvent(EventName.OnPushNewMessageEvent, {
-            messageList: syncEvent.getMessageList(),
-          });
+          this.emit("message", syncEvent.getMessageList());
         }
       } catch (e) {
         logError(`error while syncing onpush: ${e}`);
@@ -90,7 +96,7 @@ export class PadLocalClient extends EventEmitter {
       if (systemEventType === SystemEventType.DID_KICKOUT) {
         this._reset();
 
-        this._postEvent(EventName.KickOutEvent, {
+        this.emit("kickout", {
           errorCode: systemEventRequest.getKickoutevent()!.getErrorcode(),
           errorMessage: systemEventRequest.getKickoutevent()!.getErrormessage(),
         });
@@ -127,27 +133,9 @@ export class PadLocalClient extends EventEmitter {
     this.selfContact = undefined;
     this._longLinkProxy.shutdown(true);
   }
-
-  private _postEvent(eventName: EventName, payload: KickOutEvent | OnPushNewMessageEvent | OnPushContactEvent) {
-    this.emit(eventName, payload);
-  }
-}
-
-export enum EventName {
-  KickOutEvent = "KickOutEvent",
-  OnPushNewMessageEvent = "OnPushNewMessageEvent",
-  OnPushContactEvent = "OnPushContactEvent",
 }
 
 export interface KickOutEvent {
   readonly errorCode: number;
   readonly errorMessage: string;
-}
-
-export interface OnPushNewMessageEvent {
-  readonly messageList: Message[];
-}
-
-export interface OnPushContactEvent {
-  readonly contactList: Contact[];
 }

@@ -13,6 +13,8 @@ import {
 } from "../proto/padlocal_pb";
 import VError from "verror";
 
+export type WeChatLongLinkProxyEvent = "heartbeat" | "message-push" | "status";
+
 export class WeChatLongLinkProxy extends EventEmitter {
   private static readonly REQUEST_TIMEOUT = 10 * 1000;
   private static readonly CONNECT_TIMEOUT = 10 * 1000;
@@ -35,6 +37,14 @@ export class WeChatLongLinkProxy extends EventEmitter {
   private _socketDataBuffer: Bytes = newBytes();
 
   private readonly _client: PadLocalClient;
+
+  emit(event: "heartbeat", detail: HeartBeatEventPayload): boolean;
+  emit(event: "message-push"): boolean;
+  emit(event: "status", detail: StatusEventPayload): boolean;
+
+  emit(event: WeChatLongLinkProxyEvent, ...args: any[]): boolean {
+    return super.emit(event, ...args);
+  }
 
   constructor(client: PadLocalClient) {
     super();
@@ -143,10 +153,6 @@ export class WeChatLongLinkProxy extends EventEmitter {
     }
   }
 
-  private _postEvent(name: EventName, payload?: StatusEventPayload | HeartBeatEventPayload): void {
-    this.emit(name, payload);
-  }
-
   private _updateStatus(newStatus: Status): void {
     const oldStatus = this._status;
     if (oldStatus === newStatus) {
@@ -155,14 +161,14 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     this._status = newStatus;
 
-    this._postEvent(EventName.StatusEvent, {
+    this.emit("status", {
       newStatus,
       oldStatus,
     });
   }
 
   private _heartBeatTick(): void {
-    this._postEvent(EventName.HeartBeatEvent, {
+    this.emit("heartbeat", {
       heartBeatSeq: this._heartBeatSeq,
     });
   }
@@ -402,7 +408,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
       } else if (packet.getTypeCase() === LongLinkPacket.TypeCase.PUSH) {
         const pushPacket = packet.getPush()!;
         if (pushPacket.getType() === LongLinkPacketPushType.NEW_MESSAGE) {
-          this._postEvent(EventName.OnPushNewMessageEvent);
+          this.emit("message-push");
         }
       }
     }
@@ -436,12 +442,6 @@ export interface StatusEventPayload {
 
 export interface HeartBeatEventPayload {
   heartBeatSeq: number;
-}
-
-export enum EventName {
-  StatusEvent = "longLinkStatusEvent",
-  HeartBeatEvent = "longLinkHeartBeatEvent",
-  OnPushNewMessageEvent = "longLinkOnPushNewMessageEvent",
 }
 
 export class IOError extends VError {}
