@@ -1287,10 +1287,8 @@ export class QRCodeEvent extends jspb.Message {
     getStatus(): QRCodeStatus;
     setStatus(value: QRCodeStatus): QRCodeEvent;
 
-    getImage(): Uint8Array | string;
-    getImage_asU8(): Uint8Array;
-    getImage_asB64(): string;
-    setImage(value: Uint8Array | string): QRCodeEvent;
+    getImageurl(): string;
+    setImageurl(value: string): QRCodeEvent;
 
     getExpireat(): number;
     setExpireat(value: number): QRCodeEvent;
@@ -1315,7 +1313,7 @@ export class QRCodeEvent extends jspb.Message {
 export namespace QRCodeEvent {
     export type AsObject = {
         status: QRCodeStatus,
-        image: Uint8Array | string,
+        imageurl: string,
         expireat: number,
         contact?: Contact.AsObject,
     }

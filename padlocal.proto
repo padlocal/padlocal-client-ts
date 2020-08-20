@@ -221,7 +221,7 @@ enum QRCodeStatus {
 
 message QRCodeEvent {
   QRCodeStatus status = 1;
-  bytes image = 2;
+  string imageUrl = 2;
   uint32 expireAt = 3;
   Contact contact = 4;
 }
