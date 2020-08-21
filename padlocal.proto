@@ -48,10 +48,12 @@ message ActionMessage {
     GetMessageVideoThumbResponse getMessageVideoThumbResponse = 311;
     GetMessageVideoRequest getMessageVideoRequest = 312;
     GetMessageVideoResponse getMessageVideoResponse = 313;
-    GetMessageFileRequest getMessageFileRequest = 314;
-    GetMessageFileResponse getMessageFileResponse = 315;
+    GetMessageAttachRequest getMessageAttachRequest = 314;
+    GetMessageAttachResponse getMessageAttachResponse = 315;
     ForwardMessageRequest forwardMessageRequest = 316;
     ForwardMessageResponse forwardMessageResponse = 317;
+    GetMessageAttachThumbRequest getMessageAttachThumbRequest = 318;
+    GetMessageAttachThumbResponse getMessageAttachThumbResponse = 319;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -778,12 +780,21 @@ message GetMessageVideoResponse {
   CdnRequest cdnRequest = 1;
 }
 
-message GetMessageFileRequest {
+message GetMessageAttachRequest {
   string messageContent = 1;
   string messageToUserName = 2;
 }
 
-message GetMessageFileResponse {
+message GetMessageAttachResponse {
+  CdnRequest cdnRequest = 1;
+}
+
+message GetMessageAttachThumbRequest {
+  string messageContent = 1;
+  string messageToUserName = 2;
+}
+
+message GetMessageAttachThumbResponse {
   CdnRequest cdnRequest = 1;
 }
 

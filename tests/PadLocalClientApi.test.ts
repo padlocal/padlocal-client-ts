@@ -248,14 +248,24 @@ describe("message", () => {
       console.log(`write video to ${filePath}`);
     });
 
-    test("get message file", async () => {
+    test("get message attach", async () => {
       const message = pb.Message.deserializeBinary(hexStringToBytes(config.get("test.message.payload.fileMessage")));
 
-      const fileData = await client.api.getMessageFile(message.getContent(), message.getTousername());
+      const fileData = await client.api.getMessageAttach(message.getContent(), message.getTousername());
       expect(fileData).toBeTruthy();
 
       const filePath = `${payloadDir}/${message.getId()}-file`;
       fs.writeFileSync(filePath, fileData);
+      console.log(`write file to ${filePath}`);
+    });
+
+    test("get message attach thumb", async () => {
+      const message = pb.Message.deserializeBinary(hexStringToBytes(config.get("test.message.payload.linkMessage")));
+      const thumbData = await client.api.getMessageAttachThumb(message.getContent(), message.getTousername());
+      expect(thumbData).toBeTruthy();
+
+      const filePath = `${payloadDir}/${message.getId()}-thumb`;
+      fs.writeFileSync(filePath, thumbData);
       console.log(`write file to ${filePath}`);
     });
   });

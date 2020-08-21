@@ -219,16 +219,16 @@ export class ActionMessage extends jspb.Message {
     setGetmessagevideoresponse(value?: GetMessageVideoResponse): ActionMessage;
 
 
-    hasGetmessagefilerequest(): boolean;
-    clearGetmessagefilerequest(): void;
-    getGetmessagefilerequest(): GetMessageFileRequest | undefined;
-    setGetmessagefilerequest(value?: GetMessageFileRequest): ActionMessage;
+    hasGetmessageattachrequest(): boolean;
+    clearGetmessageattachrequest(): void;
+    getGetmessageattachrequest(): GetMessageAttachRequest | undefined;
+    setGetmessageattachrequest(value?: GetMessageAttachRequest): ActionMessage;
 
 
-    hasGetmessagefileresponse(): boolean;
-    clearGetmessagefileresponse(): void;
-    getGetmessagefileresponse(): GetMessageFileResponse | undefined;
-    setGetmessagefileresponse(value?: GetMessageFileResponse): ActionMessage;
+    hasGetmessageattachresponse(): boolean;
+    clearGetmessageattachresponse(): void;
+    getGetmessageattachresponse(): GetMessageAttachResponse | undefined;
+    setGetmessageattachresponse(value?: GetMessageAttachResponse): ActionMessage;
 
 
     hasForwardmessagerequest(): boolean;
@@ -241,6 +241,18 @@ export class ActionMessage extends jspb.Message {
     clearForwardmessageresponse(): void;
     getForwardmessageresponse(): ForwardMessageResponse | undefined;
     setForwardmessageresponse(value?: ForwardMessageResponse): ActionMessage;
+
+
+    hasGetmessageattachthumbrequest(): boolean;
+    clearGetmessageattachthumbrequest(): void;
+    getGetmessageattachthumbrequest(): GetMessageAttachThumbRequest | undefined;
+    setGetmessageattachthumbrequest(value?: GetMessageAttachThumbRequest): ActionMessage;
+
+
+    hasGetmessageattachthumbresponse(): boolean;
+    clearGetmessageattachthumbresponse(): void;
+    getGetmessageattachthumbresponse(): GetMessageAttachThumbResponse | undefined;
+    setGetmessageattachthumbresponse(value?: GetMessageAttachThumbResponse): ActionMessage;
 
 
     hasSynccontactrequest(): boolean;
@@ -684,10 +696,12 @@ export namespace ActionMessage {
         getmessagevideothumbresponse?: GetMessageVideoThumbResponse.AsObject,
         getmessagevideorequest?: GetMessageVideoRequest.AsObject,
         getmessagevideoresponse?: GetMessageVideoResponse.AsObject,
-        getmessagefilerequest?: GetMessageFileRequest.AsObject,
-        getmessagefileresponse?: GetMessageFileResponse.AsObject,
+        getmessageattachrequest?: GetMessageAttachRequest.AsObject,
+        getmessageattachresponse?: GetMessageAttachResponse.AsObject,
         forwardmessagerequest?: ForwardMessageRequest.AsObject,
         forwardmessageresponse?: ForwardMessageResponse.AsObject,
+        getmessageattachthumbrequest?: GetMessageAttachThumbRequest.AsObject,
+        getmessageattachthumbresponse?: GetMessageAttachThumbResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -819,13 +833,17 @@ export namespace ActionMessage {
 
     GETMESSAGEVIDEORESPONSE = 313,
 
-    GETMESSAGEFILEREQUEST = 314,
+    GETMESSAGEATTACHREQUEST = 314,
 
-    GETMESSAGEFILERESPONSE = 315,
+    GETMESSAGEATTACHRESPONSE = 315,
 
     FORWARDMESSAGEREQUEST = 316,
 
     FORWARDMESSAGERESPONSE = 317,
+
+    GETMESSAGEATTACHTHUMBREQUEST = 318,
+
+    GETMESSAGEATTACHTHUMBRESPONSE = 319,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -4116,50 +4134,99 @@ export namespace GetMessageVideoResponse {
     }
 }
 
-export class GetMessageFileRequest extends jspb.Message { 
+export class GetMessageAttachRequest extends jspb.Message { 
     getMessagecontent(): string;
-    setMessagecontent(value: string): GetMessageFileRequest;
+    setMessagecontent(value: string): GetMessageAttachRequest;
 
     getMessagetousername(): string;
-    setMessagetousername(value: string): GetMessageFileRequest;
+    setMessagetousername(value: string): GetMessageAttachRequest;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): GetMessageFileRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: GetMessageFileRequest): GetMessageFileRequest.AsObject;
+    toObject(includeInstance?: boolean): GetMessageAttachRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetMessageAttachRequest): GetMessageAttachRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: GetMessageFileRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): GetMessageFileRequest;
-    static deserializeBinaryFromReader(message: GetMessageFileRequest, reader: jspb.BinaryReader): GetMessageFileRequest;
+    static serializeBinaryToWriter(message: GetMessageAttachRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetMessageAttachRequest;
+    static deserializeBinaryFromReader(message: GetMessageAttachRequest, reader: jspb.BinaryReader): GetMessageAttachRequest;
 }
 
-export namespace GetMessageFileRequest {
+export namespace GetMessageAttachRequest {
     export type AsObject = {
         messagecontent: string,
         messagetousername: string,
     }
 }
 
-export class GetMessageFileResponse extends jspb.Message { 
+export class GetMessageAttachResponse extends jspb.Message { 
 
     hasCdnrequest(): boolean;
     clearCdnrequest(): void;
     getCdnrequest(): CdnRequest | undefined;
-    setCdnrequest(value?: CdnRequest): GetMessageFileResponse;
+    setCdnrequest(value?: CdnRequest): GetMessageAttachResponse;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): GetMessageFileResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: GetMessageFileResponse): GetMessageFileResponse.AsObject;
+    toObject(includeInstance?: boolean): GetMessageAttachResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetMessageAttachResponse): GetMessageAttachResponse.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: GetMessageFileResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): GetMessageFileResponse;
-    static deserializeBinaryFromReader(message: GetMessageFileResponse, reader: jspb.BinaryReader): GetMessageFileResponse;
+    static serializeBinaryToWriter(message: GetMessageAttachResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetMessageAttachResponse;
+    static deserializeBinaryFromReader(message: GetMessageAttachResponse, reader: jspb.BinaryReader): GetMessageAttachResponse;
 }
 
-export namespace GetMessageFileResponse {
+export namespace GetMessageAttachResponse {
+    export type AsObject = {
+        cdnrequest?: CdnRequest.AsObject,
+    }
+}
+
+export class GetMessageAttachThumbRequest extends jspb.Message { 
+    getMessagecontent(): string;
+    setMessagecontent(value: string): GetMessageAttachThumbRequest;
+
+    getMessagetousername(): string;
+    setMessagetousername(value: string): GetMessageAttachThumbRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetMessageAttachThumbRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetMessageAttachThumbRequest): GetMessageAttachThumbRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetMessageAttachThumbRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetMessageAttachThumbRequest;
+    static deserializeBinaryFromReader(message: GetMessageAttachThumbRequest, reader: jspb.BinaryReader): GetMessageAttachThumbRequest;
+}
+
+export namespace GetMessageAttachThumbRequest {
+    export type AsObject = {
+        messagecontent: string,
+        messagetousername: string,
+    }
+}
+
+export class GetMessageAttachThumbResponse extends jspb.Message { 
+
+    hasCdnrequest(): boolean;
+    clearCdnrequest(): void;
+    getCdnrequest(): CdnRequest | undefined;
+    setCdnrequest(value?: CdnRequest): GetMessageAttachThumbResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetMessageAttachThumbResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetMessageAttachThumbResponse): GetMessageAttachThumbResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetMessageAttachThumbResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetMessageAttachThumbResponse;
+    static deserializeBinaryFromReader(message: GetMessageAttachThumbResponse, reader: jspb.BinaryReader): GetMessageAttachThumbResponse;
+}
+
+export namespace GetMessageAttachThumbResponse {
     export type AsObject = {
         cdnrequest?: CdnRequest.AsObject,
     }

@@ -201,12 +201,19 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
   }
 
-  async getMessageFile(messageContent: string, messageToUserName: string): Promise<Bytes> {
+  async getMessageAttach(messageContent: string, messageToUserName: string): Promise<Bytes> {
     const grpcClient = this.client.createGrpcClient();
-    const response: pb.GetMessageFileResponse = await grpcClient.request(
-      new pb.GetMessageFileRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
+    const response: pb.GetMessageAttachResponse = await grpcClient.request(
+      new pb.GetMessageAttachRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
+    return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+  }
 
+  async getMessageAttachThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
+    const grpcClient = this.client.createGrpcClient();
+    const response: pb.GetMessageAttachThumbResponse = await grpcClient.request(
+      new pb.GetMessageAttachThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
+    );
     return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
   }
 

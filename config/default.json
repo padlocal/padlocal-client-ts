@@ -21,7 +21,8 @@
                 "hdImageMessage": "PROTOBUF_HEX",
                 "videoMessage": "PROTOBUF_HEX",
                 "voiceMessage": "PROTOBUF_HEX",
-                "fileMessage": "PROTOBUF_HEX"
+                "fileMessage": "PROTOBUF_HEX",
+                "linkMessage": "PROTOBUF_HEX"
             }
         },
 
