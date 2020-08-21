@@ -29861,8 +29861,9 @@ proto.padlocal.SystemEventType = {
  * @enum {number}
  */
 proto.padlocal.ImageType = {
-  NORMAL: 0,
-  HD: 1
+  THUMB: 0,
+  NORMAL: 1,
+  HD: 2
 };
 
 goog.object.extend(exports, proto.padlocal);

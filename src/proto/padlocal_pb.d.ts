@@ -4339,6 +4339,7 @@ export enum SystemEventType {
 }
 
 export enum ImageType {
-    NORMAL = 0,
-    HD = 1,
+    THUMB = 0,
+    NORMAL = 1,
+    HD = 2,
 }
