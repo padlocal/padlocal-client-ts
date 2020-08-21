@@ -136,7 +136,13 @@ describe("message", () => {
       const payload: string = config.get("test.message.send.miniProgramMessage");
       const originalMessage = pb.Message.deserializeBinary(hexStringToBytes(payload));
 
-      const msgId = await client.api.forwardMessage(genIdempotentId(), toChatRoom, originalMessage);
+      const msgId = await client.api.forwardMessage(
+        genIdempotentId(),
+        toChatRoom,
+        originalMessage.getContent(),
+        originalMessage.getType(),
+        originalMessage.getTousername()
+      );
 
       console.log(`forward miniprogram message to ${toChatRoom}, return msg id: ${msgId}`);
 
@@ -156,7 +162,11 @@ describe("message", () => {
         hexStringToBytes(config.get("test.message.payload.normalImageMessage"))
       );
 
-      const imageResult = await client.api.getMessageImage(message, pb.ImageType.NORMAL);
+      const imageResult = await client.api.getMessageImage(
+        message.getContent(),
+        message.getTousername(),
+        pb.ImageType.NORMAL
+      );
       expect(imageResult.imageType === pb.ImageType.NORMAL);
       expect(imageResult.imageData.length).toBeTruthy();
 
@@ -164,7 +174,11 @@ describe("message", () => {
       fs.writeFileSync(normalFilePath, imageResult.imageData);
       console.log(`write image to ${normalFilePath}`);
 
-      const hdImageResult = await client.api.getMessageImage(message, pb.ImageType.HD);
+      const hdImageResult = await client.api.getMessageImage(
+        message.getContent(),
+        message.getTousername(),
+        pb.ImageType.HD
+      );
       expect(hdImageResult.imageType === pb.ImageType.NORMAL);
       expect(hdImageResult.imageData.length).toBe(imageResult.imageData.length);
     });
@@ -172,7 +186,11 @@ describe("message", () => {
     test("get message with hd image", async () => {
       const message = pb.Message.deserializeBinary(hexStringToBytes(config.get("test.message.payload.hdImageMessage")));
 
-      const imageResult = await client.api.getMessageImage(message, pb.ImageType.NORMAL);
+      const imageResult = await client.api.getMessageImage(
+        message.getContent(),
+        message.getTousername(),
+        pb.ImageType.NORMAL
+      );
       expect(imageResult.imageType === pb.ImageType.NORMAL);
       expect(imageResult.imageData.length).toBeTruthy();
 
@@ -180,7 +198,11 @@ describe("message", () => {
       fs.writeFileSync(normalFilePath, imageResult.imageData);
       console.log(`write image to ${normalFilePath}`);
 
-      const hdImageResult = await client.api.getMessageImage(message, pb.ImageType.HD);
+      const hdImageResult = await client.api.getMessageImage(
+        message.getContent(),
+        message.getTousername(),
+        pb.ImageType.HD
+      );
       expect(hdImageResult.imageType === pb.ImageType.HD);
       expect(hdImageResult.imageData.length).toBeTruthy();
 
@@ -192,7 +214,11 @@ describe("message", () => {
     test("get message voice", async () => {
       const message = pb.Message.deserializeBinary(hexStringToBytes(config.get("test.message.payload.voiceMessage")));
 
-      const voiceData = await client.api.getMessageVoice(message);
+      const voiceData = await client.api.getMessageVoice(
+        message.getId(),
+        message.getContent(),
+        message.getTousername()
+      );
       expect(voiceData).toBeTruthy();
 
       const filePath = `${payloadDir}/${message.getId()}-voice.slk`;
@@ -203,7 +229,7 @@ describe("message", () => {
     test("get message videoThumb", async () => {
       const message = pb.Message.deserializeBinary(hexStringToBytes(config.get("test.message.payload.videoMessage")));
 
-      const videoThumbData = await client.api.getMessageVideoThumb(message);
+      const videoThumbData = await client.api.getMessageVideoThumb(message.getContent(), message.getTousername());
       expect(videoThumbData).toBeTruthy();
 
       const filePath = `${payloadDir}/${message.getId()}-video-thumb.jpg`;
@@ -214,7 +240,7 @@ describe("message", () => {
     test("get message video", async () => {
       const message = pb.Message.deserializeBinary(hexStringToBytes(config.get("test.message.payload.videoMessage")));
 
-      const videoData = await client.api.getMessageVideo(message);
+      const videoData = await client.api.getMessageVideo(message.getContent(), message.getTousername());
       expect(videoData).toBeTruthy();
 
       const filePath = `${payloadDir}/${message.getId()}-video.mp4`;
@@ -225,7 +251,7 @@ describe("message", () => {
     test("get message file", async () => {
       const message = pb.Message.deserializeBinary(hexStringToBytes(config.get("test.message.payload.fileMessage")));
 
-      const fileData = await client.api.getMessageFile(message);
+      const fileData = await client.api.getMessageFile(message.getContent(), message.getTousername());
       expect(fileData).toBeTruthy();
 
       const filePath = `${payloadDir}/${message.getId()}-file`;
