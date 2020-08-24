@@ -339,6 +339,18 @@ export class ActionMessage extends jspb.Message {
     setSearchcontactresponse(value?: SearchContactResponse): ActionMessage;
 
 
+    hasUpdateselfnicknamerequest(): boolean;
+    clearUpdateselfnicknamerequest(): void;
+    getUpdateselfnicknamerequest(): UpdateSelfNickNameRequest | undefined;
+    setUpdateselfnicknamerequest(value?: UpdateSelfNickNameRequest): ActionMessage;
+
+
+    hasUpdateselfnicknameresponse(): boolean;
+    clearUpdateselfnicknameresponse(): void;
+    getUpdateselfnicknameresponse(): UpdateSelfNickNameResponse | undefined;
+    setUpdateselfnicknameresponse(value?: UpdateSelfNickNameResponse): ActionMessage;
+
+
     hasCreatechatroomrequest(): boolean;
     clearCreatechatroomrequest(): void;
     getCreatechatroomrequest(): CreateChatRoomRequest | undefined;
@@ -716,6 +728,8 @@ export namespace ActionMessage {
         getcontactqrcoderesponse?: GetContactQRCodeResponse.AsObject,
         searchcontactrequest?: SearchContactRequest.AsObject,
         searchcontactresponse?: SearchContactResponse.AsObject,
+        updateselfnicknamerequest?: UpdateSelfNickNameRequest.AsObject,
+        updateselfnicknameresponse?: UpdateSelfNickNameResponse.AsObject,
         createchatroomrequest?: CreateChatRoomRequest.AsObject,
         createchatroomresponse?: CreateChatRoomResponse.AsObject,
         getchatroommembersrequest?: GetChatRoomMembersRequest.AsObject,
@@ -872,6 +886,10 @@ export namespace ActionMessage {
     SEARCHCONTACTREQUEST = 412,
 
     SEARCHCONTACTRESPONSE = 413,
+
+    UPDATESELFNICKNAMEREQUEST = 414,
+
+    UPDATESELFNICKNAMERESPONSE = 415,
 
     CREATECHATROOMREQUEST = 500,
 
@@ -1983,6 +2001,44 @@ export namespace SearchContactResponse {
         encryptusername: string,
         antispamticket: string,
         toaddscene: AddContactScene,
+    }
+}
+
+export class UpdateSelfNickNameRequest extends jspb.Message { 
+    getNickname(): string;
+    setNickname(value: string): UpdateSelfNickNameRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateSelfNickNameRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateSelfNickNameRequest): UpdateSelfNickNameRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateSelfNickNameRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateSelfNickNameRequest;
+    static deserializeBinaryFromReader(message: UpdateSelfNickNameRequest, reader: jspb.BinaryReader): UpdateSelfNickNameRequest;
+}
+
+export namespace UpdateSelfNickNameRequest {
+    export type AsObject = {
+        nickname: string,
+    }
+}
+
+export class UpdateSelfNickNameResponse extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateSelfNickNameResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateSelfNickNameResponse): UpdateSelfNickNameResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateSelfNickNameResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateSelfNickNameResponse;
+    static deserializeBinaryFromReader(message: UpdateSelfNickNameResponse, reader: jspb.BinaryReader): UpdateSelfNickNameResponse;
+}
+
+export namespace UpdateSelfNickNameResponse {
+    export type AsObject = {
     }
 }
 

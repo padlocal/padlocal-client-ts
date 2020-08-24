@@ -334,6 +334,10 @@ describe("contact", () => {
     fs.writeFileSync(outFilePath, response.getQrcode_asU8());
     console.log(`write qr image to: ${outFilePath}`);
   });
+
+  test("upate self nickname", async () => {
+    await client.api.updateSelfNickName("TestNickName");
+  });
 });
 
 describe("chatroom", () => {

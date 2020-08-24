@@ -266,6 +266,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return this.client.grpcRequest(new pb.SearchContactRequest().setUsername(userName));
   }
 
+  async updateSelfNickName(nickName: string): Promise<void> {
+    await this.client.grpcRequest(new pb.UpdateSelfNickNameRequest().setNickname(nickName));
+  }
+
   /**
    *
    * @param userNameList

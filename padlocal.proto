@@ -69,6 +69,8 @@ message ActionMessage {
     GetContactQRCodeResponse getContactQRCodeResponse = 411;
     SearchContactRequest searchContactRequest = 412;
     SearchContactResponse searchContactResponse = 413;
+    UpdateSelfNickNameRequest updateSelfNickNameRequest = 414;
+    UpdateSelfNickNameResponse updateSelfNickNameResponse = 415;
 
     CreateChatRoomRequest createChatRoomRequest = 500;
     CreateChatRoomResponse createChatRoomResponse = 501;
@@ -362,6 +364,13 @@ message SearchContactResponse {
   string encryptUserName = 2;
   string antispamTicket = 3;
   AddContactScene toAddScene = 4;
+}
+
+message UpdateSelfNickNameRequest {
+  string nickName = 1;
+}
+
+message UpdateSelfNickNameResponse {
 }
 
 message CreateChatRoomRequest {
