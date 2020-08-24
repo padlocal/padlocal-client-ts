@@ -14637,7 +14637,8 @@ proto.padlocal.SearchContactResponse.prototype.toObject = function(opt_includeIn
 proto.padlocal.SearchContactResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     contact: (f = msg.getContact()) && proto.padlocal.Contact.toObject(includeInstance, f),
-    antispamticket: jspb.Message.getFieldWithDefault(msg, 30, "")
+    encryptusername: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    antispamticket: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -14679,7 +14680,11 @@ proto.padlocal.SearchContactResponse.deserializeBinaryFromReader = function(msg,
       reader.readMessage(value,proto.padlocal.Contact.deserializeBinaryFromReader);
       msg.setContact(value);
       break;
-    case 30:
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEncryptusername(value);
+      break;
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setAntispamticket(value);
       break;
@@ -14720,10 +14725,17 @@ proto.padlocal.SearchContactResponse.serializeBinaryToWriter = function(message,
       proto.padlocal.Contact.serializeBinaryToWriter
     );
   }
+  f = message.getEncryptusername();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getAntispamticket();
   if (f.length > 0) {
     writer.writeString(
-      30,
+      3,
       f
     );
   }
@@ -14768,11 +14780,29 @@ proto.padlocal.SearchContactResponse.prototype.hasContact = function() {
 
 
 /**
- * optional string antispamTicket = 30;
+ * optional string encryptUserName = 2;
+ * @return {string}
+ */
+proto.padlocal.SearchContactResponse.prototype.getEncryptusername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.SearchContactResponse} returns this
+ */
+proto.padlocal.SearchContactResponse.prototype.setEncryptusername = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string antispamTicket = 3;
  * @return {string}
  */
 proto.padlocal.SearchContactResponse.prototype.getAntispamticket = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 30, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -14781,7 +14811,7 @@ proto.padlocal.SearchContactResponse.prototype.getAntispamticket = function() {
  * @return {!proto.padlocal.SearchContactResponse} returns this
  */
 proto.padlocal.SearchContactResponse.prototype.setAntispamticket = function(value) {
-  return jspb.Message.setProto3StringField(this, 30, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

@@ -1957,6 +1957,9 @@ export class SearchContactResponse extends jspb.Message {
     getContact(): Contact | undefined;
     setContact(value?: Contact): SearchContactResponse;
 
+    getEncryptusername(): string;
+    setEncryptusername(value: string): SearchContactResponse;
+
     getAntispamticket(): string;
     setAntispamticket(value: string): SearchContactResponse;
 
@@ -1974,6 +1977,7 @@ export class SearchContactResponse extends jspb.Message {
 export namespace SearchContactResponse {
     export type AsObject = {
         contact?: Contact.AsObject,
+        encryptusername: string,
         antispamticket: string,
     }
 }

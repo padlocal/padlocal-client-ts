@@ -358,7 +358,8 @@ message SearchContactRequest {
 
 message SearchContactResponse {
   Contact contact = 1;
-  string antispamTicket = 30;
+  string encryptUserName = 2;
+  string antispamTicket = 3;
 }
 
 message CreateChatRoomRequest {
