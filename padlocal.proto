@@ -315,6 +315,7 @@ enum AddContactScene {
   CHATROOM = 3;
   CONTACT_QR = 4;
   CONTACT_CARD = 5;
+  SINGLE_CHAT = 6;
 }
 
 message AddContactRequest {
@@ -360,6 +361,7 @@ message SearchContactResponse {
   Contact contact = 1;
   string encryptUserName = 2;
   string antispamTicket = 3;
+  AddContactScene toAddScene = 4;
 }
 
 message CreateChatRoomRequest {

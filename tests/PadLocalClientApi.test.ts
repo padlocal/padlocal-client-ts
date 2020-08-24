@@ -293,8 +293,9 @@ describe("contact", () => {
 
     console.log(`search contact: ${stringifyPB(searchRes)}`);
 
-    expect(searchRes.getContact()).not.toBeFalsy();
-    expect(searchRes.getAntispamticket()).not.toBeFalsy();
+    expect(searchRes.getContact()).toBeTruthy();
+    expect(searchRes.getAntispamticket()).toBeTruthy();
+    expect(searchRes.getEncryptusername()).toBeTruthy();
 
     await client.api.addContact(
       searchRes.getContact()!.getUsername(),

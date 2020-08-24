@@ -1963,6 +1963,9 @@ export class SearchContactResponse extends jspb.Message {
     getAntispamticket(): string;
     setAntispamticket(value: string): SearchContactResponse;
 
+    getToaddscene(): AddContactScene;
+    setToaddscene(value: AddContactScene): SearchContactResponse;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SearchContactResponse.AsObject;
@@ -1979,6 +1982,7 @@ export namespace SearchContactResponse {
         contact?: Contact.AsObject,
         encryptusername: string,
         antispamticket: string,
+        toaddscene: AddContactScene,
     }
 }
 
@@ -4335,6 +4339,7 @@ export enum AddContactScene {
     CHATROOM = 3,
     CONTACT_QR = 4,
     CONTACT_CARD = 5,
+    SINGLE_CHAT = 6,
 }
 
 export enum SystemEventType {

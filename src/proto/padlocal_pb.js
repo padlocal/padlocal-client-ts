@@ -14638,7 +14638,8 @@ proto.padlocal.SearchContactResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     contact: (f = msg.getContact()) && proto.padlocal.Contact.toObject(includeInstance, f),
     encryptusername: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    antispamticket: jspb.Message.getFieldWithDefault(msg, 3, "")
+    antispamticket: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    toaddscene: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -14688,6 +14689,10 @@ proto.padlocal.SearchContactResponse.deserializeBinaryFromReader = function(msg,
       var value = /** @type {string} */ (reader.readString());
       msg.setAntispamticket(value);
       break;
+    case 4:
+      var value = /** @type {!proto.padlocal.AddContactScene} */ (reader.readEnum());
+      msg.setToaddscene(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -14736,6 +14741,13 @@ proto.padlocal.SearchContactResponse.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getToaddscene();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
       f
     );
   }
@@ -14812,6 +14824,24 @@ proto.padlocal.SearchContactResponse.prototype.getAntispamticket = function() {
  */
 proto.padlocal.SearchContactResponse.prototype.setAntispamticket = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional AddContactScene toAddScene = 4;
+ * @return {!proto.padlocal.AddContactScene}
+ */
+proto.padlocal.SearchContactResponse.prototype.getToaddscene = function() {
+  return /** @type {!proto.padlocal.AddContactScene} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.padlocal.AddContactScene} value
+ * @return {!proto.padlocal.SearchContactResponse} returns this
+ */
+proto.padlocal.SearchContactResponse.prototype.setToaddscene = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
@@ -29876,7 +29906,8 @@ proto.padlocal.AddContactScene = {
   QQ_ID: 2,
   CHATROOM: 3,
   CONTACT_QR: 4,
-  CONTACT_CARD: 5
+  CONTACT_CARD: 5,
+  SINGLE_CHAT: 6
 };
 
 /**
