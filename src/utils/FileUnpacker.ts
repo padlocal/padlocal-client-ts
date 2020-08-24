@@ -1,10 +1,10 @@
-import { Bytes, BytesReader, joinBytes, newBytes, subBytes } from "../utils/ByteUtils";
-import { ebcDecrypt } from "../utils/AES";
+import { Bytes, BytesReader, joinBytes, newBytes, subBytes } from "./ByteUtils";
+import { ebcDecrypt } from "./AES";
 import VError from "verror";
 
-export class CdnUnPacker {
+export class FileUnpacker {
   private readonly _aesKey: Bytes;
-  private _header?: CDNResponseHeader;
+  private _header?: FileResponseHeader;
   private _headerData?: Bytes;
   private _buffer: Bytes = newBytes();
 
@@ -44,7 +44,7 @@ export class CdnUnPacker {
       return null;
     }
 
-    const body = CdnUnPacker._unpackResponseBody(this._buffer);
+    const body = FileUnpacker._unpackResponseBody(this._buffer);
     if (body.retCode !== 0) {
       throw new UnpackError(`retcode is not zero: ${body.retCode}`);
     }
@@ -67,12 +67,12 @@ export class CdnUnPacker {
     this._buffer = newBytes();
   }
 
-  private _unpackHeader(): CDNResponseHeader {
+  private _unpackHeader(): FileResponseHeader {
     const reader = new BytesReader(this._buffer, true);
 
     const protocolByte = reader.readUByte();
     if (protocolByte !== 0xab) {
-      throw new UnpackError("response is not cdn protocol");
+      throw new UnpackError("response is not file protocol");
     }
 
     const totalLen = reader.readUInt();
@@ -87,28 +87,28 @@ export class CdnUnPacker {
     this._headerData = subBytes(this._buffer, 0, reader.cursor);
     this._buffer = subBytes(this._buffer, reader.cursor, this._buffer.length);
 
-    return new CDNResponseHeader(headerLen, bodyLen);
+    return new FileResponseHeader(headerLen, bodyLen);
   }
 
-  private static _unpackResponseBody(buff: Bytes): CDNResponseBody {
-    const m: Map<string, Buffer | undefined> = CdnUnPacker._unpackRawResponse(buff);
+  private static _unpackResponseBody(buff: Bytes): FileResponseBody {
+    const m: Map<string, Buffer | undefined> = FileUnpacker._unpackRawResponse(buff);
 
-    const ret = new CDNResponseBody();
-    ret.ver = CdnUnPacker._unpackInteger(m.get("ver"));
-    ret.seq = CdnUnPacker._unpackInteger(m.get("seq"));
-    ret.videoFormat = CdnUnPacker._unpackInteger(m.get("videoformat"));
-    ret.rspPicFormat = CdnUnPacker._unpackInteger(m.get("rsppicformat"));
-    ret.rangeStart = CdnUnPacker._unpackInteger(m.get("rangestart"));
-    ret.rangeEnd = CdnUnPacker._unpackInteger(m.get("rangeend"));
-    ret.totalSize = CdnUnPacker._unpackInteger(m.get("totalsize"));
-    ret.srcSize = CdnUnPacker._unpackInteger(m.get("srcsize"));
-    ret.retCode = CdnUnPacker._unpackInteger(m.get("retcode"));
-    ret.substituteFType = CdnUnPacker._unpackInteger(m.get("substituteftype"));
-    ret.retrySec = CdnUnPacker._unpackInteger(m.get("retrysec"));
-    ret.isRetry = CdnUnPacker._unpackInteger(m.get("isretry"));
-    ret.isOverload = CdnUnPacker._unpackInteger(m.get("isoverload"));
-    ret.isGetCdn = CdnUnPacker._unpackInteger(m.get("isgetcdn"));
-    ret.xClientIp = CdnUnPacker._unpackString(m.get("x-ClientIp"));
+    const ret = new FileResponseBody();
+    ret.ver = FileUnpacker._unpackInteger(m.get("ver"));
+    ret.seq = FileUnpacker._unpackInteger(m.get("seq"));
+    ret.videoFormat = FileUnpacker._unpackInteger(m.get("videoformat"));
+    ret.rspPicFormat = FileUnpacker._unpackInteger(m.get("rsppicformat"));
+    ret.rangeStart = FileUnpacker._unpackInteger(m.get("rangestart"));
+    ret.rangeEnd = FileUnpacker._unpackInteger(m.get("rangeend"));
+    ret.totalSize = FileUnpacker._unpackInteger(m.get("totalsize"));
+    ret.srcSize = FileUnpacker._unpackInteger(m.get("srcsize"));
+    ret.retCode = FileUnpacker._unpackInteger(m.get("retcode"));
+    ret.substituteFType = FileUnpacker._unpackInteger(m.get("substituteftype"));
+    ret.retrySec = FileUnpacker._unpackInteger(m.get("retrysec"));
+    ret.isRetry = FileUnpacker._unpackInteger(m.get("isretry"));
+    ret.isOverload = FileUnpacker._unpackInteger(m.get("isoverload"));
+    ret.isGetCdn = FileUnpacker._unpackInteger(m.get("isgetcdn"));
+    ret.xClientIp = FileUnpacker._unpackString(m.get("x-ClientIp"));
     ret.fileData = m.get("filedata");
 
     return ret;
@@ -158,7 +158,7 @@ export class UnpackError extends VError {
   }
 }
 
-export class CDNResponseHeader {
+export class FileResponseHeader {
   readonly headerLen: number;
   readonly bodyLen: number;
 
@@ -168,7 +168,7 @@ export class CDNResponseHeader {
   }
 }
 
-export class CDNResponseBody {
+export class FileResponseBody {
   ver?: number;
   seq?: number;
   videoFormat?: number;

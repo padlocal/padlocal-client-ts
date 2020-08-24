@@ -5,6 +5,7 @@ import config from "config";
 import * as fs from "fs";
 import * as pb from "../src/proto/padlocal_pb";
 import { hexStringToBytes } from "../src/utils/ByteUtils";
+import { ZombieStatue } from "../src/proto/padlocal_pb";
 
 let client: PadLocalClient;
 
@@ -343,6 +344,21 @@ describe("contact", () => {
     await client.api.updateSelfSignature("");
     await client.api.updateSelfSignature("Everything is ok");
   });
+
+  test("zombie test", async () => {
+    const strangerUserName: string = config.get("test.contact.zombieTest.strangerUserName");
+    const friendUserName: string = config.get("test.contact.zombieTest.friendUserName");
+    const zombieUserName: string = config.get("test.contact.zombieTest.zombieUserName");
+
+    const strangerStatus = await client.api.zombieTest(strangerUserName);
+    expect(strangerStatus).toEqual(ZombieStatue.STRANGER);
+
+    const friendStatus = await client.api.zombieTest(friendUserName);
+    expect(friendStatus).toEqual(ZombieStatue.FRIEND);
+
+    const zombieStatus = await client.api.zombieTest(zombieUserName);
+    expect(zombieStatus).toEqual(ZombieStatue.ZOMBIE);
+  }, 60000000);
 });
 
 describe("chatroom", () => {

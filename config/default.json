@@ -33,7 +33,12 @@
             },
             "userName": "",
             "search": "",
-            "qrImageOutFilePath": ""
+            "qrImageOutFilePath": "",
+            "zombieTest": {
+                "strangerUserName":"",
+                "friendUserName": "",
+                "zombieUserName": ""
+            }
         },
 
         "room": {

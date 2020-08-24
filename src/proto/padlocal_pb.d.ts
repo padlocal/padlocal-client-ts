@@ -363,6 +363,18 @@ export class ActionMessage extends jspb.Message {
     setUpdateselfsignatureresponse(value?: UpdateSelfSignatureResponse): ActionMessage;
 
 
+    hasZombietestrequest(): boolean;
+    clearZombietestrequest(): void;
+    getZombietestrequest(): ZombieTestRequest | undefined;
+    setZombietestrequest(value?: ZombieTestRequest): ActionMessage;
+
+
+    hasZombietestresponse(): boolean;
+    clearZombietestresponse(): void;
+    getZombietestresponse(): ZombieTestResponse | undefined;
+    setZombietestresponse(value?: ZombieTestResponse): ActionMessage;
+
+
     hasCreatechatroomrequest(): boolean;
     clearCreatechatroomrequest(): void;
     getCreatechatroomrequest(): CreateChatRoomRequest | undefined;
@@ -744,6 +756,8 @@ export namespace ActionMessage {
         updateselfnicknameresponse?: UpdateSelfNickNameResponse.AsObject,
         updateselfsignaturerequest?: UpdateSelfSignatureRequest.AsObject,
         updateselfsignatureresponse?: UpdateSelfSignatureResponse.AsObject,
+        zombietestrequest?: ZombieTestRequest.AsObject,
+        zombietestresponse?: ZombieTestResponse.AsObject,
         createchatroomrequest?: CreateChatRoomRequest.AsObject,
         createchatroomresponse?: CreateChatRoomResponse.AsObject,
         getchatroommembersrequest?: GetChatRoomMembersRequest.AsObject,
@@ -909,6 +923,10 @@ export namespace ActionMessage {
 
     UPDATESELFSIGNATURERESPONSE = 417,
 
+    ZOMBIETESTREQUEST = 418,
+
+    ZOMBIETESTRESPONSE = 419,
+
     CREATECHATROOMREQUEST = 500,
 
     CREATECHATROOMRESPONSE = 501,
@@ -1042,10 +1060,10 @@ export class WeChatRequest extends jspb.Message {
     setSocketresponsedatalen(value: number): WeChatRequest;
 
 
-    hasCdnrequest(): boolean;
-    clearCdnrequest(): void;
-    getCdnrequest(): CdnRequest | undefined;
-    setCdnrequest(value?: CdnRequest): WeChatRequest;
+    hasFilerequest(): boolean;
+    clearFilerequest(): void;
+    getFilerequest(): FileRequest | undefined;
+    setFilerequest(value?: FileRequest): WeChatRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -1066,7 +1084,7 @@ export namespace WeChatRequest {
         path: string,
         seq: number,
         socketresponsedatalen: number,
-        cdnrequest?: CdnRequest.AsObject,
+        filerequest?: FileRequest.AsObject,
     }
 }
 
@@ -2095,6 +2113,48 @@ export class UpdateSelfSignatureResponse extends jspb.Message {
 
 export namespace UpdateSelfSignatureResponse {
     export type AsObject = {
+    }
+}
+
+export class ZombieTestRequest extends jspb.Message { 
+    getUsername(): string;
+    setUsername(value: string): ZombieTestRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ZombieTestRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ZombieTestRequest): ZombieTestRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ZombieTestRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ZombieTestRequest;
+    static deserializeBinaryFromReader(message: ZombieTestRequest, reader: jspb.BinaryReader): ZombieTestRequest;
+}
+
+export namespace ZombieTestRequest {
+    export type AsObject = {
+        username: string,
+    }
+}
+
+export class ZombieTestResponse extends jspb.Message { 
+    getZombiestatues(): ZombieStatue;
+    setZombiestatues(value: ZombieStatue): ZombieTestResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ZombieTestResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: ZombieTestResponse): ZombieTestResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ZombieTestResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ZombieTestResponse;
+    static deserializeBinaryFromReader(message: ZombieTestResponse, reader: jspb.BinaryReader): ZombieTestResponse;
+}
+
+export namespace ZombieTestResponse {
+    export type AsObject = {
+        zombiestatues: ZombieStatue,
     }
 }
 
@@ -4008,10 +4068,10 @@ export namespace GetMessageImageRequest {
 
 export class GetMessageImageResponse extends jspb.Message { 
 
-    hasCdnrequest(): boolean;
-    clearCdnrequest(): void;
-    getCdnrequest(): CdnRequest | undefined;
-    setCdnrequest(value?: CdnRequest): GetMessageImageResponse;
+    hasFilerequest(): boolean;
+    clearFilerequest(): void;
+    getFilerequest(): FileRequest | undefined;
+    setFilerequest(value?: FileRequest): GetMessageImageResponse;
 
     getImagetype(): ImageType;
     setImagetype(value: ImageType): GetMessageImageResponse;
@@ -4029,40 +4089,40 @@ export class GetMessageImageResponse extends jspb.Message {
 
 export namespace GetMessageImageResponse {
     export type AsObject = {
-        cdnrequest?: CdnRequest.AsObject,
+        filerequest?: FileRequest.AsObject,
         imagetype: ImageType,
     }
 }
 
-export class CdnRequest extends jspb.Message { 
+export class FileRequest extends jspb.Message { 
 
     hasHost(): boolean;
     clearHost(): void;
     getHost(): Host | undefined;
-    setHost(value?: Host): CdnRequest;
+    setHost(value?: Host): FileRequest;
 
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
-    setPayload(value: Uint8Array | string): CdnRequest;
+    setPayload(value: Uint8Array | string): FileRequest;
 
     getUnpackaeskey(): Uint8Array | string;
     getUnpackaeskey_asU8(): Uint8Array;
     getUnpackaeskey_asB64(): string;
-    setUnpackaeskey(value: Uint8Array | string): CdnRequest;
+    setUnpackaeskey(value: Uint8Array | string): FileRequest;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): CdnRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: CdnRequest): CdnRequest.AsObject;
+    toObject(includeInstance?: boolean): FileRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: FileRequest): FileRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: CdnRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): CdnRequest;
-    static deserializeBinaryFromReader(message: CdnRequest, reader: jspb.BinaryReader): CdnRequest;
+    static serializeBinaryToWriter(message: FileRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileRequest;
+    static deserializeBinaryFromReader(message: FileRequest, reader: jspb.BinaryReader): FileRequest;
 }
 
-export namespace CdnRequest {
+export namespace FileRequest {
     export type AsObject = {
         host?: Host.AsObject,
         payload: Uint8Array | string,
@@ -4183,10 +4243,10 @@ export namespace GetMessageVideoThumbRequest {
 
 export class GetMessageVideoThumbResponse extends jspb.Message { 
 
-    hasCdnrequest(): boolean;
-    clearCdnrequest(): void;
-    getCdnrequest(): CdnRequest | undefined;
-    setCdnrequest(value?: CdnRequest): GetMessageVideoThumbResponse;
+    hasFilerequest(): boolean;
+    clearFilerequest(): void;
+    getFilerequest(): FileRequest | undefined;
+    setFilerequest(value?: FileRequest): GetMessageVideoThumbResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -4201,7 +4261,7 @@ export class GetMessageVideoThumbResponse extends jspb.Message {
 
 export namespace GetMessageVideoThumbResponse {
     export type AsObject = {
-        cdnrequest?: CdnRequest.AsObject,
+        filerequest?: FileRequest.AsObject,
     }
 }
 
@@ -4232,10 +4292,10 @@ export namespace GetMessageVideoRequest {
 
 export class GetMessageVideoResponse extends jspb.Message { 
 
-    hasCdnrequest(): boolean;
-    clearCdnrequest(): void;
-    getCdnrequest(): CdnRequest | undefined;
-    setCdnrequest(value?: CdnRequest): GetMessageVideoResponse;
+    hasFilerequest(): boolean;
+    clearFilerequest(): void;
+    getFilerequest(): FileRequest | undefined;
+    setFilerequest(value?: FileRequest): GetMessageVideoResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -4250,7 +4310,7 @@ export class GetMessageVideoResponse extends jspb.Message {
 
 export namespace GetMessageVideoResponse {
     export type AsObject = {
-        cdnrequest?: CdnRequest.AsObject,
+        filerequest?: FileRequest.AsObject,
     }
 }
 
@@ -4281,10 +4341,10 @@ export namespace GetMessageAttachRequest {
 
 export class GetMessageAttachResponse extends jspb.Message { 
 
-    hasCdnrequest(): boolean;
-    clearCdnrequest(): void;
-    getCdnrequest(): CdnRequest | undefined;
-    setCdnrequest(value?: CdnRequest): GetMessageAttachResponse;
+    hasFilerequest(): boolean;
+    clearFilerequest(): void;
+    getFilerequest(): FileRequest | undefined;
+    setFilerequest(value?: FileRequest): GetMessageAttachResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -4299,7 +4359,7 @@ export class GetMessageAttachResponse extends jspb.Message {
 
 export namespace GetMessageAttachResponse {
     export type AsObject = {
-        cdnrequest?: CdnRequest.AsObject,
+        filerequest?: FileRequest.AsObject,
     }
 }
 
@@ -4330,10 +4390,10 @@ export namespace GetMessageAttachThumbRequest {
 
 export class GetMessageAttachThumbResponse extends jspb.Message { 
 
-    hasCdnrequest(): boolean;
-    clearCdnrequest(): void;
-    getCdnrequest(): CdnRequest | undefined;
-    setCdnrequest(value?: CdnRequest): GetMessageAttachThumbResponse;
+    hasFilerequest(): boolean;
+    clearFilerequest(): void;
+    getFilerequest(): FileRequest | undefined;
+    setFilerequest(value?: FileRequest): GetMessageAttachThumbResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -4348,7 +4408,7 @@ export class GetMessageAttachThumbResponse extends jspb.Message {
 
 export namespace GetMessageAttachThumbResponse {
     export type AsObject = {
-        cdnrequest?: CdnRequest.AsObject,
+        filerequest?: FileRequest.AsObject,
     }
 }
 
@@ -4410,7 +4470,7 @@ export enum WeChatRequestChannel {
     SHORT = 0,
     LONG = 1,
     SOCKET = 3,
-    CDN = 4,
+    FILE = 4,
 }
 
 export enum LongLinkPacketPushType {
@@ -4452,6 +4512,12 @@ export enum AddContactScene {
     CONTACT_QR = 4,
     CONTACT_CARD = 5,
     SINGLE_CHAT = 6,
+}
+
+export enum ZombieStatue {
+    STRANGER = 0,
+    FRIEND = 1,
+    ZOMBIE = 2,
 }
 
 export enum SystemEventType {

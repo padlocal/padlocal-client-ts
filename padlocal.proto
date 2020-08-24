@@ -73,6 +73,8 @@ message ActionMessage {
     UpdateSelfNickNameResponse updateSelfNickNameResponse = 415;
     UpdateSelfSignatureRequest updateSelfSignatureRequest = 416;
     UpdateSelfSignatureResponse updateSelfSignatureResponse = 417;
+    ZombieTestRequest zombieTestRequest = 418;
+    ZombieTestResponse zombieTestResponse = 419;
 
     CreateChatRoomRequest createChatRoomRequest = 500;
     CreateChatRoomResponse createChatRoomResponse = 501;
@@ -135,7 +137,7 @@ enum WeChatRequestChannel {
   SHORT = 0;
   LONG = 1;
   SOCKET = 3;
-  CDN = 4;
+  FILE = 4;
 }
 
 message WeChatRequest {
@@ -145,7 +147,7 @@ message WeChatRequest {
   string path = 4;
   int64 seq = 5;
   int64 socketResponseDataLen = 6;
-  CdnRequest cdnRequest = 7;
+  FileRequest fileRequest = 7;
 }
 
 message WeChatResponse {
@@ -380,6 +382,20 @@ message UpdateSelfSignatureRequest {
 }
 
 message UpdateSelfSignatureResponse {
+}
+
+message ZombieTestRequest {
+  string userName = 1;
+}
+
+enum ZombieStatue {
+  STRANGER = 0;
+  FRIEND = 1;
+  ZOMBIE = 2;
+}
+
+message ZombieTestResponse {
+  ZombieStatue zombieStatues = 1;
 }
 
 message CreateChatRoomRequest {
@@ -758,11 +774,11 @@ enum ImageType {
 }
 
 message GetMessageImageResponse {
-  CdnRequest cdnRequest = 1;
+  FileRequest fileRequest = 1;
   ImageType imageType = 2;
 }
 
-message CdnRequest {
+message FileRequest {
   Host host = 1;
   bytes payload = 2;
   bytes unpackAesKey = 3;
@@ -790,7 +806,7 @@ message GetMessageVideoThumbRequest {
 }
 
 message GetMessageVideoThumbResponse {
-  CdnRequest cdnRequest = 1;
+  FileRequest fileRequest = 1;
 }
 
 message GetMessageVideoRequest {
@@ -799,7 +815,7 @@ message GetMessageVideoRequest {
 }
 
 message GetMessageVideoResponse {
-  CdnRequest cdnRequest = 1;
+  FileRequest fileRequest = 1;
 }
 
 message GetMessageAttachRequest {
@@ -808,7 +824,7 @@ message GetMessageAttachRequest {
 }
 
 message GetMessageAttachResponse {
-  CdnRequest cdnRequest = 1;
+  FileRequest fileRequest = 1;
 }
 
 message GetMessageAttachThumbRequest {
@@ -817,7 +833,7 @@ message GetMessageAttachThumbRequest {
 }
 
 message GetMessageAttachThumbResponse {
-  CdnRequest cdnRequest = 1;
+  FileRequest fileRequest = 1;
 }
 
 message ForwardMessageRequest {

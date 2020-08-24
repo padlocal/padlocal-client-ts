@@ -19,7 +19,7 @@ import { PromiseCallback } from "./utils/PromiseUtils";
 import { Bytes } from "./utils/ByteUtils";
 import { WeChatShortLinkProxy } from "./link/WeChatShortLinkProxy";
 import { WeChatSocketProxy } from "./link/WeChatSocketProxy";
-import { WeChatCdnProxy } from "./link/WeChatCdnProxy";
+import { WeChatFileProxy } from "./link/WeChatFileProxy";
 import VError from "verror";
 import { stringifyPB } from "./utils/Utils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
@@ -249,9 +249,9 @@ export class GrpcClient extends PadLocalClientPlugin {
         this.traceId
       );
       responseData = await socketProxy.send(Buffer.from(weChatRequest.getPayload()));
-    } else if (weChatRequest.getChannel() === WeChatRequestChannel.CDN) {
-      const cdnProxy = new WeChatCdnProxy(this.traceId);
-      responseData = await cdnProxy.send(weChatRequest.getCdnrequest()!);
+    } else if (weChatRequest.getChannel() === WeChatRequestChannel.FILE) {
+      const fileProxy = new WeChatFileProxy(this.traceId);
+      responseData = await fileProxy.send(weChatRequest.getFilerequest()!);
     } else {
       throw new Error(`unsupported channel: ${weChatRequest.getChannel()}`);
     }

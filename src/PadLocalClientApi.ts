@@ -1,8 +1,8 @@
 import * as pb from "./proto/padlocal_pb";
 import { Bytes } from "./utils/ByteUtils";
-import { requestCdnAndUnpack } from "./wechat/CdnUtils";
+import { requestFileAndUnpack } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
-import { Contact } from "./proto/padlocal_pb";
+import { Contact, ZombieStatue, ZombieTestResponse } from "./proto/padlocal_pb";
 
 export class PadLocalClientApi extends PadLocalClientPlugin {
   async login(loginPolicy: pb.LoginPolicy, callback: LoginCallback): Promise<void> {
@@ -164,7 +164,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
         .setMessagetousername(messageToUserName)
     );
 
-    const imageData: Bytes = await requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    const imageData: Bytes = await requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
 
     return {
       imageType: response.getImagetype(),
@@ -189,7 +189,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       new pb.GetMessageVideoThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
-    return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async getMessageVideo(messageContent: string, messageToUserName: string): Promise<Bytes> {
@@ -198,7 +198,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       new pb.GetMessageVideoRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
-    return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async getMessageAttach(messageContent: string, messageToUserName: string): Promise<Bytes> {
@@ -206,7 +206,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     const response: pb.GetMessageAttachResponse = await grpcClient.request(
       new pb.GetMessageAttachRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
-    return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async getMessageAttachThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
@@ -214,7 +214,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     const response: pb.GetMessageAttachThumbResponse = await grpcClient.request(
       new pb.GetMessageAttachThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
-    return requestCdnAndUnpack(response.getCdnrequest()!, grpcClient.traceId);
+    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
   }
 
   /**
@@ -272,6 +272,13 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
   async updateSelfSignature(signature: string): Promise<void> {
     await this.client.grpcRequest(new pb.UpdateSelfSignatureRequest().setSignature(signature));
+  }
+
+  async zombieTest(userName: string): Promise<ZombieStatue> {
+    const response: ZombieTestResponse = await this.client.grpcRequest(
+      new pb.ZombieTestRequest().setUsername(userName)
+    );
+    return response.getZombiestatues();
   }
 
   /**
