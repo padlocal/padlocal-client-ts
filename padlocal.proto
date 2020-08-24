@@ -71,6 +71,8 @@ message ActionMessage {
     SearchContactResponse searchContactResponse = 413;
     UpdateSelfNickNameRequest updateSelfNickNameRequest = 414;
     UpdateSelfNickNameResponse updateSelfNickNameResponse = 415;
+    UpdateSelfSignatureRequest updateSelfSignatureRequest = 416;
+    UpdateSelfSignatureResponse updateSelfSignatureResponse = 417;
 
     CreateChatRoomRequest createChatRoomRequest = 500;
     CreateChatRoomResponse createChatRoomResponse = 501;
@@ -371,6 +373,13 @@ message UpdateSelfNickNameRequest {
 }
 
 message UpdateSelfNickNameResponse {
+}
+
+message UpdateSelfSignatureRequest {
+  string signature = 1;
+}
+
+message UpdateSelfSignatureResponse {
 }
 
 message CreateChatRoomRequest {

@@ -335,8 +335,13 @@ describe("contact", () => {
     console.log(`write qr image to: ${outFilePath}`);
   });
 
-  test("upate self nickname", async () => {
+  test("update self nickname", async () => {
     await client.api.updateSelfNickName("TestNickName");
+  });
+
+  test("update self signature", async () => {
+    await client.api.updateSelfSignature("");
+    await client.api.updateSelfSignature("Everything is ok");
   });
 });
 

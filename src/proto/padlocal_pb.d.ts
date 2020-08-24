@@ -351,6 +351,18 @@ export class ActionMessage extends jspb.Message {
     setUpdateselfnicknameresponse(value?: UpdateSelfNickNameResponse): ActionMessage;
 
 
+    hasUpdateselfsignaturerequest(): boolean;
+    clearUpdateselfsignaturerequest(): void;
+    getUpdateselfsignaturerequest(): UpdateSelfSignatureRequest | undefined;
+    setUpdateselfsignaturerequest(value?: UpdateSelfSignatureRequest): ActionMessage;
+
+
+    hasUpdateselfsignatureresponse(): boolean;
+    clearUpdateselfsignatureresponse(): void;
+    getUpdateselfsignatureresponse(): UpdateSelfSignatureResponse | undefined;
+    setUpdateselfsignatureresponse(value?: UpdateSelfSignatureResponse): ActionMessage;
+
+
     hasCreatechatroomrequest(): boolean;
     clearCreatechatroomrequest(): void;
     getCreatechatroomrequest(): CreateChatRoomRequest | undefined;
@@ -730,6 +742,8 @@ export namespace ActionMessage {
         searchcontactresponse?: SearchContactResponse.AsObject,
         updateselfnicknamerequest?: UpdateSelfNickNameRequest.AsObject,
         updateselfnicknameresponse?: UpdateSelfNickNameResponse.AsObject,
+        updateselfsignaturerequest?: UpdateSelfSignatureRequest.AsObject,
+        updateselfsignatureresponse?: UpdateSelfSignatureResponse.AsObject,
         createchatroomrequest?: CreateChatRoomRequest.AsObject,
         createchatroomresponse?: CreateChatRoomResponse.AsObject,
         getchatroommembersrequest?: GetChatRoomMembersRequest.AsObject,
@@ -890,6 +904,10 @@ export namespace ActionMessage {
     UPDATESELFNICKNAMEREQUEST = 414,
 
     UPDATESELFNICKNAMERESPONSE = 415,
+
+    UPDATESELFSIGNATUREREQUEST = 416,
+
+    UPDATESELFSIGNATURERESPONSE = 417,
 
     CREATECHATROOMREQUEST = 500,
 
@@ -2038,6 +2056,44 @@ export class UpdateSelfNickNameResponse extends jspb.Message {
 }
 
 export namespace UpdateSelfNickNameResponse {
+    export type AsObject = {
+    }
+}
+
+export class UpdateSelfSignatureRequest extends jspb.Message { 
+    getSignature(): string;
+    setSignature(value: string): UpdateSelfSignatureRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateSelfSignatureRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateSelfSignatureRequest): UpdateSelfSignatureRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateSelfSignatureRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateSelfSignatureRequest;
+    static deserializeBinaryFromReader(message: UpdateSelfSignatureRequest, reader: jspb.BinaryReader): UpdateSelfSignatureRequest;
+}
+
+export namespace UpdateSelfSignatureRequest {
+    export type AsObject = {
+        signature: string,
+    }
+}
+
+export class UpdateSelfSignatureResponse extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateSelfSignatureResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateSelfSignatureResponse): UpdateSelfSignatureResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateSelfSignatureResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateSelfSignatureResponse;
+    static deserializeBinaryFromReader(message: UpdateSelfSignatureResponse, reader: jspb.BinaryReader): UpdateSelfSignatureResponse;
+}
+
+export namespace UpdateSelfSignatureResponse {
     export type AsObject = {
     }
 }

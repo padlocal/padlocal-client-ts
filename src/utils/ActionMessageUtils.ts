@@ -110,6 +110,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.SNSREMOVEMOMENTRESPONSE, pb.SnsRemoveMomentResponse],
   [ActionMessage.PayloadCase.UPDATESELFNICKNAMEREQUEST, pb.UpdateSelfNickNameRequest],
   [ActionMessage.PayloadCase.UPDATESELFNICKNAMERESPONSE, pb.UpdateSelfNickNameResponse],
+  [ActionMessage.PayloadCase.UPDATESELFSIGNATUREREQUEST, pb.UpdateSelfSignatureRequest],
+  [ActionMessage.PayloadCase.UPDATESELFSIGNATURERESPONSE, pb.UpdateSelfSignatureResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

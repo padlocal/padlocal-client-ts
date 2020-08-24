@@ -270,6 +270,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     await this.client.grpcRequest(new pb.UpdateSelfNickNameRequest().setNickname(nickName));
   }
 
+  async updateSelfSignature(signature: string): Promise<void> {
+    await this.client.grpcRequest(new pb.UpdateSelfSignatureRequest().setSignature(signature));
+  }
+
   /**
    *
    * @param userNameList
