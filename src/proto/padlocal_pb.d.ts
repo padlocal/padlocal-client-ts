@@ -375,6 +375,18 @@ export class ActionMessage extends jspb.Message {
     setZombietestresponse(value?: ZombieTestResponse): ActionMessage;
 
 
+    hasUpdatecontactremarkrequest(): boolean;
+    clearUpdatecontactremarkrequest(): void;
+    getUpdatecontactremarkrequest(): UpdateContactRemarkRequest | undefined;
+    setUpdatecontactremarkrequest(value?: UpdateContactRemarkRequest): ActionMessage;
+
+
+    hasUpdatecontactremarkresponse(): boolean;
+    clearUpdatecontactremarkresponse(): void;
+    getUpdatecontactremarkresponse(): UpdateContactRemarkResponse | undefined;
+    setUpdatecontactremarkresponse(value?: UpdateContactRemarkResponse): ActionMessage;
+
+
     hasCreatechatroomrequest(): boolean;
     clearCreatechatroomrequest(): void;
     getCreatechatroomrequest(): CreateChatRoomRequest | undefined;
@@ -758,6 +770,8 @@ export namespace ActionMessage {
         updateselfsignatureresponse?: UpdateSelfSignatureResponse.AsObject,
         zombietestrequest?: ZombieTestRequest.AsObject,
         zombietestresponse?: ZombieTestResponse.AsObject,
+        updatecontactremarkrequest?: UpdateContactRemarkRequest.AsObject,
+        updatecontactremarkresponse?: UpdateContactRemarkResponse.AsObject,
         createchatroomrequest?: CreateChatRoomRequest.AsObject,
         createchatroomresponse?: CreateChatRoomResponse.AsObject,
         getchatroommembersrequest?: GetChatRoomMembersRequest.AsObject,
@@ -926,6 +940,10 @@ export namespace ActionMessage {
     ZOMBIETESTREQUEST = 418,
 
     ZOMBIETESTRESPONSE = 419,
+
+    UPDATECONTACTREMARKREQUEST = 420,
+
+    UPDATECONTACTREMARKRESPONSE = 421,
 
     CREATECHATROOMREQUEST = 500,
 
@@ -2155,6 +2173,48 @@ export class ZombieTestResponse extends jspb.Message {
 export namespace ZombieTestResponse {
     export type AsObject = {
         zombiestatues: ZombieStatue,
+    }
+}
+
+export class UpdateContactRemarkRequest extends jspb.Message { 
+    getUsername(): string;
+    setUsername(value: string): UpdateContactRemarkRequest;
+
+    getRemark(): string;
+    setRemark(value: string): UpdateContactRemarkRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateContactRemarkRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateContactRemarkRequest): UpdateContactRemarkRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateContactRemarkRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateContactRemarkRequest;
+    static deserializeBinaryFromReader(message: UpdateContactRemarkRequest, reader: jspb.BinaryReader): UpdateContactRemarkRequest;
+}
+
+export namespace UpdateContactRemarkRequest {
+    export type AsObject = {
+        username: string,
+        remark: string,
+    }
+}
+
+export class UpdateContactRemarkResponse extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateContactRemarkResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateContactRemarkResponse): UpdateContactRemarkResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateContactRemarkResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateContactRemarkResponse;
+    static deserializeBinaryFromReader(message: UpdateContactRemarkResponse, reader: jspb.BinaryReader): UpdateContactRemarkResponse;
+}
+
+export namespace UpdateContactRemarkResponse {
+    export type AsObject = {
     }
 }
 

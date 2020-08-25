@@ -513,6 +513,12 @@ describe("label", () => {
 
     await client.api.setContactLabel(userName, []);
   });
+
+  test("set contact remark", async () => {
+    const userName: string = config.get("test.contact.update.userName");
+    const remark: string = config.get("test.contact.update.remark");
+    await client.api.updateContactRemark(userName, remark);
+  });
 });
 
 describe("sns", () => {

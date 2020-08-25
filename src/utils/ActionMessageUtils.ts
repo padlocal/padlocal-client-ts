@@ -114,6 +114,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.UPDATESELFSIGNATURERESPONSE, pb.UpdateSelfSignatureResponse],
   [ActionMessage.PayloadCase.ZOMBIETESTREQUEST, pb.ZombieTestRequest],
   [ActionMessage.PayloadCase.ZOMBIETESTRESPONSE, pb.ZombieTestResponse],
+  [ActionMessage.PayloadCase.UPDATECONTACTREMARKREQUEST, pb.UpdateContactRemarkRequest],
+  [ActionMessage.PayloadCase.UPDATECONTACTREMARKRESPONSE, pb.UpdateContactRemarkResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

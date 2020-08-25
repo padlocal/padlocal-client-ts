@@ -281,6 +281,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return response.getZombiestatues();
   }
 
+  async updateContactRemark(userName: string, remark: string): Promise<void> {
+    await this.client.grpcRequest(new pb.UpdateContactRemarkRequest().setUsername(userName).setRemark(remark));
+  }
+
   /**
    *
    * @param userNameList

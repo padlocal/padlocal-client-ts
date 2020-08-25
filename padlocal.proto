@@ -75,6 +75,8 @@ message ActionMessage {
     UpdateSelfSignatureResponse updateSelfSignatureResponse = 417;
     ZombieTestRequest zombieTestRequest = 418;
     ZombieTestResponse zombieTestResponse = 419;
+    UpdateContactRemarkRequest updateContactRemarkRequest = 420;
+    UpdateContactRemarkResponse updateContactRemarkResponse = 421;
 
     CreateChatRoomRequest createChatRoomRequest = 500;
     CreateChatRoomResponse createChatRoomResponse = 501;
@@ -396,6 +398,14 @@ enum ZombieStatue {
 
 message ZombieTestResponse {
   ZombieStatue zombieStatues = 1;
+}
+
+message UpdateContactRemarkRequest {
+  string userName = 1;
+  string remark = 2;
+}
+
+message UpdateContactRemarkResponse {
 }
 
 message CreateChatRoomRequest {
