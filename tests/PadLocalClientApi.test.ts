@@ -455,6 +455,11 @@ describe("chatroom", () => {
 
     await client.api.inviteChatRoomMember(roomId, memberUserName);
   });
+
+  test("quit room", async () => {
+    const roomId: string = config.get("test.room.quit.id");
+    await client.api.quitChatRoom(roomId);
+  });
 });
 
 describe("label", () => {

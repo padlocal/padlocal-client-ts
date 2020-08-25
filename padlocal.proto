@@ -98,6 +98,8 @@ message ActionMessage {
     DeleteChatRoomMemberResponse deleteChatRoomMemberResponse = 515;
     SetChatRoomNameRequest setChatRoomNameRequest = 516;
     SetChatRoomNameResponse setChatRoomNameResponse = 517;
+    QuitChatRoomRequest quitChatRoomRequest = 518;
+    QuitChatRoomResponse quitChatRoomResponse = 519;
 
     AddLabelRequest addLabelRequest = 600;
     AddLabelResponse addLabelResponse = 601;
@@ -498,6 +500,14 @@ message SetChatRoomNameRequest {
 }
 
 message SetChatRoomNameResponse {
+}
+
+message QuitChatRoomRequest {
+  string roomId = 1;
+}
+
+message QuitChatRoomResponse {
+
 }
 
 message SnsSendMomentRequest {

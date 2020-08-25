@@ -47,7 +47,10 @@
                 "memberUserNameList": [""]
             },
             "qrImageOutFilePath": "",
-            "modifyMember": ""
+            "modifyMember": "",
+            "quit": {
+                "id": "xxx@chatroom"
+            }
         },
 
         "sns" : {

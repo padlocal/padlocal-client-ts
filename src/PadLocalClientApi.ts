@@ -367,6 +367,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     await this.client.grpcRequest(new pb.SetChatRoomNameRequest().setRoomid(roomId).setName(name));
   }
 
+  async quitChatRoom(roomId: string): Promise<void> {
+    await this.client.grpcRequest(new pb.QuitChatRoomRequest().setRoomid(roomId));
+  }
+
   async getLabelList(): Promise<pb.Label[]> {
     const response: pb.GetLabelListResponse = await this.client.grpcRequest(new pb.GetLabelListRequest());
     return response.getLabelList();

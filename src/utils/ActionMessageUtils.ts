@@ -118,6 +118,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.UPDATECONTACTREMARKRESPONSE, pb.UpdateContactRemarkResponse],
   [ActionMessage.PayloadCase.REVOKEMESSAGEREQUEST, pb.RevokeMessageRequest],
   [ActionMessage.PayloadCase.REVOKEMESSAGERESPONSE, pb.RevokeMessageResponse],
+  [ActionMessage.PayloadCase.QUITCHATROOMREQUEST, pb.QuitChatRoomRequest],
+  [ActionMessage.PayloadCase.QUITCHATROOMRESPONSE, pb.QuitChatRoomResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

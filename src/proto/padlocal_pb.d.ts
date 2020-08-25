@@ -507,6 +507,18 @@ export class ActionMessage extends jspb.Message {
     setSetchatroomnameresponse(value?: SetChatRoomNameResponse): ActionMessage;
 
 
+    hasQuitchatroomrequest(): boolean;
+    clearQuitchatroomrequest(): void;
+    getQuitchatroomrequest(): QuitChatRoomRequest | undefined;
+    setQuitchatroomrequest(value?: QuitChatRoomRequest): ActionMessage;
+
+
+    hasQuitchatroomresponse(): boolean;
+    clearQuitchatroomresponse(): void;
+    getQuitchatroomresponse(): QuitChatRoomResponse | undefined;
+    setQuitchatroomresponse(value?: QuitChatRoomResponse): ActionMessage;
+
+
     hasAddlabelrequest(): boolean;
     clearAddlabelrequest(): void;
     getAddlabelrequest(): AddLabelRequest | undefined;
@@ -804,6 +816,8 @@ export namespace ActionMessage {
         deletechatroommemberresponse?: DeleteChatRoomMemberResponse.AsObject,
         setchatroomnamerequest?: SetChatRoomNameRequest.AsObject,
         setchatroomnameresponse?: SetChatRoomNameResponse.AsObject,
+        quitchatroomrequest?: QuitChatRoomRequest.AsObject,
+        quitchatroomresponse?: QuitChatRoomResponse.AsObject,
         addlabelrequest?: AddLabelRequest.AsObject,
         addlabelresponse?: AddLabelResponse.AsObject,
         removelabelrequest?: RemoveLabelRequest.AsObject,
@@ -998,6 +1012,10 @@ export namespace ActionMessage {
     SETCHATROOMNAMEREQUEST = 516,
 
     SETCHATROOMNAMERESPONSE = 517,
+
+    QUITCHATROOMREQUEST = 518,
+
+    QUITCHATROOMRESPONSE = 519,
 
     ADDLABELREQUEST = 600,
 
@@ -2696,6 +2714,44 @@ export class SetChatRoomNameResponse extends jspb.Message {
 }
 
 export namespace SetChatRoomNameResponse {
+    export type AsObject = {
+    }
+}
+
+export class QuitChatRoomRequest extends jspb.Message { 
+    getRoomid(): string;
+    setRoomid(value: string): QuitChatRoomRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): QuitChatRoomRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: QuitChatRoomRequest): QuitChatRoomRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: QuitChatRoomRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): QuitChatRoomRequest;
+    static deserializeBinaryFromReader(message: QuitChatRoomRequest, reader: jspb.BinaryReader): QuitChatRoomRequest;
+}
+
+export namespace QuitChatRoomRequest {
+    export type AsObject = {
+        roomid: string,
+    }
+}
+
+export class QuitChatRoomResponse extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): QuitChatRoomResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: QuitChatRoomResponse): QuitChatRoomResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: QuitChatRoomResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): QuitChatRoomResponse;
+    static deserializeBinaryFromReader(message: QuitChatRoomResponse, reader: jspb.BinaryReader): QuitChatRoomResponse;
+}
+
+export namespace QuitChatRoomResponse {
     export type AsObject = {
     }
 }
