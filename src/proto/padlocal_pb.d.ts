@@ -255,6 +255,18 @@ export class ActionMessage extends jspb.Message {
     setGetmessageattachthumbresponse(value?: GetMessageAttachThumbResponse): ActionMessage;
 
 
+    hasRevokemessagerequest(): boolean;
+    clearRevokemessagerequest(): void;
+    getRevokemessagerequest(): RevokeMessageRequest | undefined;
+    setRevokemessagerequest(value?: RevokeMessageRequest): ActionMessage;
+
+
+    hasRevokemessageresponse(): boolean;
+    clearRevokemessageresponse(): void;
+    getRevokemessageresponse(): RevokeMessageResponse | undefined;
+    setRevokemessageresponse(value?: RevokeMessageResponse): ActionMessage;
+
+
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
@@ -750,6 +762,8 @@ export namespace ActionMessage {
         forwardmessageresponse?: ForwardMessageResponse.AsObject,
         getmessageattachthumbrequest?: GetMessageAttachThumbRequest.AsObject,
         getmessageattachthumbresponse?: GetMessageAttachThumbResponse.AsObject,
+        revokemessagerequest?: RevokeMessageRequest.AsObject,
+        revokemessageresponse?: RevokeMessageResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -900,6 +914,10 @@ export namespace ActionMessage {
     GETMESSAGEATTACHTHUMBREQUEST = 318,
 
     GETMESSAGEATTACHTHUMBRESPONSE = 319,
+
+    REVOKEMESSAGEREQUEST = 320,
+
+    REVOKEMESSAGERESPONSE = 321,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -1547,6 +1565,15 @@ export class SendTextMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendTextMessageResponse;
 
+    getClientmsgid(): string;
+    setClientmsgid(value: string): SendTextMessageResponse;
+
+    getNewclientmsgid(): string;
+    setNewclientmsgid(value: string): SendTextMessageResponse;
+
+    getCreatetime(): number;
+    setCreatetime(value: number): SendTextMessageResponse;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendTextMessageResponse.AsObject;
@@ -1561,6 +1588,9 @@ export class SendTextMessageResponse extends jspb.Message {
 export namespace SendTextMessageResponse {
     export type AsObject = {
         msgid: string,
+        clientmsgid: string,
+        newclientmsgid: string,
+        createtime: number,
     }
 }
 
@@ -1595,6 +1625,15 @@ export class SendImageMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendImageMessageResponse;
 
+    getClientmsgid(): string;
+    setClientmsgid(value: string): SendImageMessageResponse;
+
+    getNewclientmsgid(): string;
+    setNewclientmsgid(value: string): SendImageMessageResponse;
+
+    getCreatetime(): number;
+    setCreatetime(value: number): SendImageMessageResponse;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendImageMessageResponse.AsObject;
@@ -1609,6 +1648,9 @@ export class SendImageMessageResponse extends jspb.Message {
 export namespace SendImageMessageResponse {
     export type AsObject = {
         msgid: string,
+        clientmsgid: string,
+        newclientmsgid: string,
+        createtime: number,
     }
 }
 
@@ -4523,6 +4565,68 @@ export class ForwardMessageResponse extends jspb.Message {
 export namespace ForwardMessageResponse {
     export type AsObject = {
         msgid: string,
+    }
+}
+
+export class RevokeMessageRequest extends jspb.Message { 
+    getMsgid(): string;
+    setMsgid(value: string): RevokeMessageRequest;
+
+    getClientmsgid(): string;
+    setClientmsgid(value: string): RevokeMessageRequest;
+
+    getNewclientmsgid(): string;
+    setNewclientmsgid(value: string): RevokeMessageRequest;
+
+    getCreatetime(): number;
+    setCreatetime(value: number): RevokeMessageRequest;
+
+    getFromusername(): string;
+    setFromusername(value: string): RevokeMessageRequest;
+
+    getTousername(): string;
+    setTousername(value: string): RevokeMessageRequest;
+
+    getRevokeseq(): number;
+    setRevokeseq(value: number): RevokeMessageRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RevokeMessageRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: RevokeMessageRequest): RevokeMessageRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RevokeMessageRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RevokeMessageRequest;
+    static deserializeBinaryFromReader(message: RevokeMessageRequest, reader: jspb.BinaryReader): RevokeMessageRequest;
+}
+
+export namespace RevokeMessageRequest {
+    export type AsObject = {
+        msgid: string,
+        clientmsgid: string,
+        newclientmsgid: string,
+        createtime: number,
+        fromusername: string,
+        tousername: string,
+        revokeseq: number,
+    }
+}
+
+export class RevokeMessageResponse extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RevokeMessageResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: RevokeMessageResponse): RevokeMessageResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RevokeMessageResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RevokeMessageResponse;
+    static deserializeBinaryFromReader(message: RevokeMessageResponse, reader: jspb.BinaryReader): RevokeMessageResponse;
+}
+
+export namespace RevokeMessageResponse {
+    export type AsObject = {
     }
 }
 

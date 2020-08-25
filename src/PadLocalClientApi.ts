@@ -2,9 +2,17 @@ import * as pb from "./proto/padlocal_pb";
 import { Bytes } from "./utils/ByteUtils";
 import { requestFileAndUnpack } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
-import { Contact, ZombieStatue, ZombieTestResponse } from "./proto/padlocal_pb";
+import { PadLocalClient } from "./PadLocalClient";
 
 export class PadLocalClientApi extends PadLocalClientPlugin {
+  private _revokeMessageSeq: number;
+
+  constructor(client: PadLocalClient) {
+    super(client);
+
+    this._revokeMessageSeq = 0;
+  }
+
   async login(loginPolicy: pb.LoginPolicy, callback: LoginCallback): Promise<void> {
     const request = new pb.LoginRequest();
     request.setPolicy(loginPolicy);
@@ -67,7 +75,12 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async sendTextMessage(idempotentId: string, toUserName: string, text: string, atList?: string[]): Promise<string> {
+  async sendTextMessage(
+    idempotentId: string,
+    toUserName: string,
+    text: string,
+    atList?: string[]
+  ): Promise<pb.SendTextMessageResponse> {
     const sendTextMessageRequest = new pb.SendTextMessageRequest();
     sendTextMessageRequest.setTousername(toUserName).setContent(text);
 
@@ -75,11 +88,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       sendTextMessageRequest.setAtList(atList);
     }
 
-    const response: pb.SendTextMessageResponse = await this.client.grpcRequest(sendTextMessageRequest, {
+    return await this.client.grpcRequest(sendTextMessageRequest, {
       idempotentId,
     });
-
-    return response.getMsgid();
   }
 
   /**
@@ -88,7 +99,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<string> {
+  async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<pb.SendImageMessageResponse> {
     const response: pb.SendImageMessageResponse = await this.client.grpcRequest(
       new pb.SendImageMessageRequest().setTousername(toUserName).setImage(image),
       {
@@ -96,7 +107,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       }
     );
 
-    return response.getMsgid();
+    return response;
   }
 
   /**
@@ -217,6 +228,25 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
   }
 
+  async revokeMessage(
+    msgId: string,
+    clientMsgId: string,
+    newClientMsgId: string,
+    createTime: number,
+    fromUserName: string,
+    toUserName: string
+  ): Promise<void> {
+    const request = new pb.RevokeMessageRequest()
+      .setMsgid(msgId)
+      .setClientmsgid(clientMsgId)
+      .setNewclientmsgid(newClientMsgId)
+      .setCreatetime(createTime)
+      .setFromusername(fromUserName)
+      .setTousername(toUserName)
+      .setRevokeseq(this._revokeMessageSeq++);
+    await this.client.grpcRequest(request);
+  }
+
   /**
    * sync contact is very costly, may be last for minutes, so use wisely.
    * @param callback
@@ -274,8 +304,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     await this.client.grpcRequest(new pb.UpdateSelfSignatureRequest().setSignature(signature));
   }
 
-  async zombieTest(userName: string): Promise<ZombieStatue> {
-    const response: ZombieTestResponse = await this.client.grpcRequest(
+  async zombieTest(userName: string): Promise<pb.ZombieStatue> {
+    const response: pb.ZombieTestResponse = await this.client.grpcRequest(
       new pb.ZombieTestRequest().setUsername(userName)
     );
     return response.getZombiestatues();
@@ -512,7 +542,7 @@ export interface LoginCallback {
 
   onQrCodeEvent(qrCodeEvent: pb.QRCodeEvent): void;
 
-  onLoginSuccess(contact: Contact): void;
+  onLoginSuccess(contact: pb.Contact): void;
 
   onSync(syncEvent: pb.SyncEvent): void;
 }

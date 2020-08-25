@@ -54,6 +54,8 @@ message ActionMessage {
     ForwardMessageResponse forwardMessageResponse = 317;
     GetMessageAttachThumbRequest getMessageAttachThumbRequest = 318;
     GetMessageAttachThumbResponse getMessageAttachThumbResponse = 319;
+    RevokeMessageRequest revokeMessageRequest = 320;
+    RevokeMessageResponse revokeMessageResponse = 321;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -265,6 +267,9 @@ message SendTextMessageRequest {
 
 message SendTextMessageResponse {
   string msgId = 1;
+  string clientMsgId = 2;
+  string newClientMsgId = 3;
+  int32 createTime = 4;
 }
 
 message SendImageMessageRequest {
@@ -274,6 +279,9 @@ message SendImageMessageRequest {
 
 message SendImageMessageResponse {
   string msgId = 1;
+  string clientMsgId = 2;
+  string newClientMsgId = 3;
+  int32 createTime = 4;
 }
 
 message SendAppMessageRequest {
@@ -855,4 +863,17 @@ message ForwardMessageRequest {
 
 message ForwardMessageResponse {
   string msgId = 1;
+}
+
+message RevokeMessageRequest {
+  string msgId = 1;
+  string clientMsgId = 2;
+  string newClientMsgId = 3;
+  int32 createTime = 4;
+  string fromUserName = 5;
+  string toUserName = 6;
+  int32 revokeSeq = 7;
+}
+
+message RevokeMessageResponse {
 }

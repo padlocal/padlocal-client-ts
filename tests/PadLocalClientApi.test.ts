@@ -5,7 +5,7 @@ import config from "config";
 import * as fs from "fs";
 import * as pb from "../src/proto/padlocal_pb";
 import { hexStringToBytes } from "../src/utils/ByteUtils";
-import { ZombieStatue } from "../src/proto/padlocal_pb";
+import { SendTextMessageResponse, ZombieStatue } from "../src/proto/padlocal_pb";
 
 let client: PadLocalClient;
 
@@ -33,59 +33,59 @@ describe("message", () => {
     const mpThumbFilePath: string = config.get("test.message.send.miniProgramThumbFilePath");
 
     test("send to user", async () => {
-      const msgId = await client.api.sendTextMessage(
+      const response: SendTextMessageResponse = await client.api.sendTextMessage(
         genIdempotentId(),
         toUserName,
         `text message: ${new Date().toString()}`
       );
-      console.log(`send text message to ${toUserName}, return msgId: ${msgId}`);
+      console.log(`send text message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
 
-      expect(msgId).toBeTruthy();
+      expect(response.getMsgid()).toBeTruthy();
     });
 
     test("send to chatroom", async () => {
-      const msgId = await client.api.sendTextMessage(
+      const response: SendTextMessageResponse = await client.api.sendTextMessage(
         genIdempotentId(),
         toChatRoom,
         `text message: ${new Date().toString()}`
       );
-      console.log(`send text message to ${toChatRoom}, return msgId: ${msgId}`);
+      console.log(`send text message to ${toChatRoom}, return message: ${JSON.stringify(response.toObject())}`);
 
-      expect(msgId).toBeTruthy();
+      expect(response.getMsgid()).toBeTruthy();
     });
 
     test("send to chatroom with single at list", async () => {
-      const msgId = await client.api.sendTextMessage(
+      const response: SendTextMessageResponse = await client.api.sendTextMessage(
         genIdempotentId(),
         toChatRoom,
         `text message: ${new Date().toString()}`,
         atUserList.slice(0, 1)
       );
-      console.log(`send text message to ${toChatRoom}, return msgId: ${msgId}`);
+      console.log(`send text message to ${toChatRoom}, return message: ${response.toObject()}`);
 
-      expect(msgId).toBeTruthy();
+      expect(response.getMsgid()).toBeTruthy();
     });
 
     test("send to chatroom with multiple at list", async () => {
-      const msgId = await client.api.sendTextMessage(
+      const response: SendTextMessageResponse = await client.api.sendTextMessage(
         genIdempotentId(),
         toChatRoom,
         `text message: ${new Date().toString()}`,
         atUserList
       );
-      console.log(`send text message to ${toChatRoom}, return msgId: ${msgId}`);
+      console.log(`send text message to ${toChatRoom}, return msgId: ${response.toObject()}`);
 
-      expect(msgId).toBeTruthy();
+      expect(response.getMsgid()).toBeTruthy();
     });
 
     test("send image message", async () => {
       const imageData: Buffer = fs.readFileSync(sendImageFilePath);
 
-      const msgId = await client.api.sendImageMessage(genIdempotentId(), toUserName, imageData);
+      const response = await client.api.sendImageMessage(genIdempotentId(), toUserName, imageData);
 
-      console.log(`send image message to ${toUserName}, return msgId: ${msgId}`);
+      console.log(`send image message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
 
-      expect(msgId).toBeTruthy();
+      expect(response.getMsgid()).toBeTruthy();
     });
 
     test("send link msg", async () => {
@@ -149,6 +149,17 @@ describe("message", () => {
 
       expect(msgId).toBeTruthy();
     });
+
+    test("revoke message", async () => {
+      const msgId: string = config.get("test.message.revoke.msgId");
+      const clientMsgId: string = config.get("test.message.revoke.clientMsgId");
+      const newClientMsgId: string = config.get("test.message.revoke.newClientMsgId");
+      const createTime: number = config.get("test.message.revoke.createTime");
+      const fromUserName: string = config.get("test.message.revoke.fromUserName");
+      const toUserName: string = config.get("test.message.revoke.toUserName");
+
+      await client.api.revokeMessage(msgId, clientMsgId, newClientMsgId, createTime, fromUserName, toUserName);
+    }, 6000000);
   });
 
   describe("get message payload", () => {
