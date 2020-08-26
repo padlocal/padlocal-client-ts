@@ -120,6 +120,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.REVOKEMESSAGERESPONSE, pb.RevokeMessageResponse],
   [ActionMessage.PayloadCase.QUITCHATROOMREQUEST, pb.QuitChatRoomRequest],
   [ActionMessage.PayloadCase.QUITCHATROOMRESPONSE, pb.QuitChatRoomResponse],
+  [ActionMessage.PayloadCase.SENDCONTACTCARDMESSAGEREQUEST, pb.SendContactCardMessageRequest],
+  [ActionMessage.PayloadCase.SENDCONTACTCARDMESSAGERESPONSE, pb.SendContactCardMessageResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

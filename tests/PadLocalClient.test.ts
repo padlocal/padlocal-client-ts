@@ -1,4 +1,4 @@
-import { prepareSignedOnClient } from "./TestUtils";
+import { prepareSignedOnClient } from "./Common";
 import { stringifyPB } from "../src/utils/Utils";
 import { bytesToHexString, fromBytes } from "../src/utils/ByteUtils";
 import { Contact, Message } from "../src/proto/padlocal_pb";
@@ -19,8 +19,8 @@ test(
     client.on("message", (messageList: Message[]) => {
       console.log("on message:");
       for (const message of messageList) {
-        console.log(bytesToHexString(fromBytes(message.serializeBinary())));
         console.log(stringifyPB(message));
+        console.log(bytesToHexString(fromBytes(message.serializeBinary())));
       }
     });
 
@@ -29,6 +29,7 @@ test(
 
       for (const contact of contactList) {
         console.log(stringifyPB(contact));
+        console.log(bytesToHexString(fromBytes(contact.serializeBinary())));
       }
     });
 

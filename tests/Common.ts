@@ -29,10 +29,12 @@ export async function prepareSignedOnClient(): Promise<PadLocalClient> {
     onSync: (syncEvent: SyncEvent) => {
       for (const contact of syncEvent.getContactList()) {
         console.log(`login on sync contact: ${stringifyPB(contact)}`);
+        console.log(Buffer.from(contact.serializeBinary()).toString("hex"));
       }
 
       for (const message of syncEvent.getMessageList()) {
         console.log(`login on sync message: ${stringifyPB(message)}`);
+        console.log(Buffer.from(message.serializeBinary()).toString("hex"));
       }
     },
   });

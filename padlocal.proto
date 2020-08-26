@@ -56,6 +56,8 @@ message ActionMessage {
     GetMessageAttachThumbResponse getMessageAttachThumbResponse = 319;
     RevokeMessageRequest revokeMessageRequest = 320;
     RevokeMessageResponse revokeMessageResponse = 321;
+    SendContactCardMessageRequest sendContactCardMessageRequest = 322;
+    SendContactCardMessageResponse sendContactCardMessageResponse = 323;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -886,4 +888,16 @@ message RevokeMessageRequest {
 }
 
 message RevokeMessageResponse {
+}
+
+message SendContactCardMessageRequest {
+  string toUserName = 1;
+  Contact contact = 2;
+}
+
+message SendContactCardMessageResponse {
+  string msgId = 1;
+  string clientMsgId = 2;
+  string newClientMsgId = 3;
+  int32 createTime = 4;
 }

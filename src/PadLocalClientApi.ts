@@ -100,14 +100,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @return
    */
   async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<pb.SendImageMessageResponse> {
-    const response: pb.SendImageMessageResponse = await this.client.grpcRequest(
-      new pb.SendImageMessageRequest().setTousername(toUserName).setImage(image),
-      {
-        idempotentId,
-      }
-    );
-
-    return response;
+    return await this.client.grpcRequest(new pb.SendImageMessageRequest().setTousername(toUserName).setImage(image), {
+      idempotentId,
+    });
   }
 
   /**
@@ -140,6 +135,19 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     );
 
     return response.getMsgid();
+  }
+
+  async sendContactCardMessage(
+    idempotentId: string,
+    toUserName: string,
+    contact: pb.Contact
+  ): Promise<pb.SendContactCardMessageResponse> {
+    return await this.client.grpcRequest(
+      new pb.SendContactCardMessageRequest().setTousername(toUserName).setContact(contact),
+      {
+        idempotentId,
+      }
+    );
   }
 
   async forwardMessage(

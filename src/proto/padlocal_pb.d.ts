@@ -267,6 +267,18 @@ export class ActionMessage extends jspb.Message {
     setRevokemessageresponse(value?: RevokeMessageResponse): ActionMessage;
 
 
+    hasSendcontactcardmessagerequest(): boolean;
+    clearSendcontactcardmessagerequest(): void;
+    getSendcontactcardmessagerequest(): SendContactCardMessageRequest | undefined;
+    setSendcontactcardmessagerequest(value?: SendContactCardMessageRequest): ActionMessage;
+
+
+    hasSendcontactcardmessageresponse(): boolean;
+    clearSendcontactcardmessageresponse(): void;
+    getSendcontactcardmessageresponse(): SendContactCardMessageResponse | undefined;
+    setSendcontactcardmessageresponse(value?: SendContactCardMessageResponse): ActionMessage;
+
+
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
@@ -776,6 +788,8 @@ export namespace ActionMessage {
         getmessageattachthumbresponse?: GetMessageAttachThumbResponse.AsObject,
         revokemessagerequest?: RevokeMessageRequest.AsObject,
         revokemessageresponse?: RevokeMessageResponse.AsObject,
+        sendcontactcardmessagerequest?: SendContactCardMessageRequest.AsObject,
+        sendcontactcardmessageresponse?: SendContactCardMessageResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -932,6 +946,10 @@ export namespace ActionMessage {
     REVOKEMESSAGEREQUEST = 320,
 
     REVOKEMESSAGERESPONSE = 321,
+
+    SENDCONTACTCARDMESSAGEREQUEST = 322,
+
+    SENDCONTACTCARDMESSAGERESPONSE = 323,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -4683,6 +4701,67 @@ export class RevokeMessageResponse extends jspb.Message {
 
 export namespace RevokeMessageResponse {
     export type AsObject = {
+    }
+}
+
+export class SendContactCardMessageRequest extends jspb.Message { 
+    getTousername(): string;
+    setTousername(value: string): SendContactCardMessageRequest;
+
+
+    hasContact(): boolean;
+    clearContact(): void;
+    getContact(): Contact | undefined;
+    setContact(value?: Contact): SendContactCardMessageRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendContactCardMessageRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SendContactCardMessageRequest): SendContactCardMessageRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendContactCardMessageRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendContactCardMessageRequest;
+    static deserializeBinaryFromReader(message: SendContactCardMessageRequest, reader: jspb.BinaryReader): SendContactCardMessageRequest;
+}
+
+export namespace SendContactCardMessageRequest {
+    export type AsObject = {
+        tousername: string,
+        contact?: Contact.AsObject,
+    }
+}
+
+export class SendContactCardMessageResponse extends jspb.Message { 
+    getMsgid(): string;
+    setMsgid(value: string): SendContactCardMessageResponse;
+
+    getClientmsgid(): string;
+    setClientmsgid(value: string): SendContactCardMessageResponse;
+
+    getNewclientmsgid(): string;
+    setNewclientmsgid(value: string): SendContactCardMessageResponse;
+
+    getCreatetime(): number;
+    setCreatetime(value: number): SendContactCardMessageResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendContactCardMessageResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: SendContactCardMessageResponse): SendContactCardMessageResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendContactCardMessageResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendContactCardMessageResponse;
+    static deserializeBinaryFromReader(message: SendContactCardMessageResponse, reader: jspb.BinaryReader): SendContactCardMessageResponse;
+}
+
+export namespace SendContactCardMessageResponse {
+    export type AsObject = {
+        msgid: string,
+        clientmsgid: string,
+        newclientmsgid: string,
+        createtime: number,
     }
 }
 

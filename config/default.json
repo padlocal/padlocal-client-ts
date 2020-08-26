@@ -13,7 +13,8 @@
                 "atUserNameList": [""],
                 "imageFilePath": "",
                 "miniProgramThumbFilePath": "",
-                "miniProgramMessage": ""
+                "miniProgramMessage": "",
+                "contactCard": "PROTOBUF_HEX"
             },
             "payload": {
                 "outFileDir": "",

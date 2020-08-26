@@ -1,4 +1,4 @@
-import { prepareSignedOnClient } from "./TestUtils";
+import { prepareSignedOnClient } from "./Common";
 import { PadLocalClient } from "../src/PadLocalClient";
 import { genIdempotentId, stringifyPB } from "../src/utils/Utils";
 import config from "config";
@@ -160,6 +160,17 @@ describe("message", () => {
 
       await client.api.revokeMessage(msgId, clientMsgId, newClientMsgId, createTime, fromUserName, toUserName);
     }, 6000000);
+
+    test("send contact card message", async () => {
+      const payload: string = config.get("test.message.send.contactCard");
+      const contact = pb.Contact.deserializeBinary(hexStringToBytes(payload));
+
+      const response = await client.api.sendContactCardMessage(genIdempotentId(), toChatRoom, contact);
+      expect(response).toBeTruthy();
+      expect(response.getMsgid()).toBeTruthy();
+      expect(response.getNewclientmsgid()).toBeTruthy();
+      expect(response.getCreatetime()).toBeTruthy();
+    });
   });
 
   describe("get message payload", () => {
