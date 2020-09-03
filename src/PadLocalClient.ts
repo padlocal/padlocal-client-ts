@@ -49,7 +49,7 @@ export class PadLocalClient extends EventEmitter {
         await this.api.sendLongLinkHeartBeat(event.heartBeatSeq);
         this._longLinkProxy.onHeartBeatResult(true);
       } catch (e) {
-        logError(`error to send longlink heartbeat: ${e}`);
+        logError(`error to send longlink heartbeat: ${e.stack}`);
         this._longLinkProxy.onHeartBeatResult(false);
       }
     });
@@ -71,7 +71,7 @@ export class PadLocalClient extends EventEmitter {
           this.emit("message", syncEvent.getMessageList());
         }
       } catch (e) {
-        logError(`error while syncing onpush: ${e}`);
+        logError(`error while syncing onpush: ${e.stack}`);
       }
     });
   }

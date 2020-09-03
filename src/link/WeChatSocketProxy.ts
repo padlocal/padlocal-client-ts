@@ -1,26 +1,39 @@
 import { SocketClient } from "./SocketClient";
-import { Bytes, joinBytes, newBytes } from "../utils/ByteUtils";
+import { Bytes } from "../utils/ByteUtils";
+import { GrpcClient, SubResponseWrap } from "../GrpcClient";
+import { Host, WeChatResponse, WeChatSocketResponseAck } from "../proto/padlocal_pb";
 
 export class WeChatSocketProxy {
+  private readonly _grpcClient: GrpcClient;
   private readonly _socketClient: SocketClient;
-  private _responseData: Bytes = newBytes();
+  private _ack: number;
 
-  constructor(host: string, port: number, responseDataLen: number, traceId: string) {
-    this._socketClient = new SocketClient(host, port, traceId, {
+  constructor(grpcClient: GrpcClient, host: Host, ack: number) {
+    this._ack = ack;
+    this._grpcClient = grpcClient;
+    this._socketClient = new SocketClient(host.getHost(), host.getPort(), grpcClient.traceId, {
       onConnect: () => {
-        // reset data
-        this._responseData = newBytes();
+        // do nothing
       },
-      onReceive: (data: Bytes): boolean => {
-        this._responseData = joinBytes(this._responseData, data);
+      onReceive: async (data: Bytes): Promise<boolean> => {
+        const wechatResponse = new WeChatResponse().setPayload(data);
 
-        return this._responseData.length >= responseDataLen;
+        const response: SubResponseWrap<WeChatSocketResponseAck> = await this._grpcClient.subReplyAndRequest(
+          this._ack,
+          wechatResponse
+        );
+
+        const socketAck: WeChatSocketResponseAck = response.payload;
+        if (!socketAck.getFinish()) {
+          this._ack = response.ack!;
+        }
+
+        return socketAck.getFinish();
       },
     });
   }
 
-  async send(data: Bytes): Promise<Bytes> {
+  async send(data: Bytes): Promise<void> {
     await this._socketClient.send(data);
-    return this._responseData;
   }
 }

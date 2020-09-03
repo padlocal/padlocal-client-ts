@@ -23,6 +23,7 @@ message ActionMessage {
     LongLinkUnpackResponse longLinkUnpackResponse = 15;
     LongLinkHeartBeatRequest longLinkHeartBeatRequest = 16;
     LongLinkHeartBeatResponse longLinkHeartBeatResponse = 17;
+    WeChatSocketResponseAck weChatSocketResponseAck = 18;
 
     SyncRequest syncRequest = 100;
     SyncResponse syncResponse = 101;
@@ -141,25 +142,36 @@ message ActionMessage {
   }
 }
 
-enum WeChatRequestChannel {
-  SHORT = 0;
-  LONG = 1;
-  SOCKET = 3;
-  FILE = 4;
+message WeChatLongLinkRequest {
+  int64 seq = 1;
+  bytes payload = 2;
+}
+
+message WeChatShortLinkRequest {
+  Host host = 1;
+  string path = 2;
+  bytes payload = 3;
+}
+
+message WeChatSocketRequest {
+  Host host = 1;
+  bytes payload = 2;
 }
 
 message WeChatRequest {
-  WeChatRequestChannel channel = 1;
-  bytes payload = 2;
-  Host host = 3;
-  string path = 4;
-  int64 seq = 5;
-  int64 socketResponseDataLen = 6;
-  FileRequest fileRequest = 7;
+  oneof request {
+    WeChatLongLinkRequest longLinkRequest = 1;
+    WeChatShortLinkRequest shortLinkRequest = 2;
+    WeChatSocketRequest socketRequest = 3;
+  }
 }
 
 message WeChatResponse {
   bytes payload = 2;
+}
+
+message WeChatSocketResponseAck {
+  bool finish = 1;
 }
 
 message LongLinkUnpackRequest {
@@ -278,7 +290,7 @@ message SendTextMessageResponse {
 
 message SendImageMessageRequest {
   string toUserName = 1;
-  bytes image = 3;
+  bytes image = 2;
 }
 
 message SendImageMessageResponse {

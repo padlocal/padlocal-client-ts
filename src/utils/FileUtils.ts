@@ -23,7 +23,7 @@ async function _sendFileRequest(fileRequest: FileRequest, traceId: string): Prom
       fileUnpacker.reset();
     },
 
-    onReceive: (data: Bytes): boolean => {
+    onReceive: async (data: Bytes): Promise<boolean> => {
       return fileUnpacker.update(data);
     },
   });

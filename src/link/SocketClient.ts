@@ -1,6 +1,6 @@
 import { Socket } from "net";
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
-import { Bytes, bytesToHexString } from "../utils/ByteUtils";
+import { Bytes, bytesToHexString, joinBytes } from "../utils/ByteUtils";
 import { logInfo, logWarn } from "../utils/log";
 import VError from "verror";
 
@@ -9,7 +9,7 @@ export class SocketClient {
   private static readonly READ_WRITE_TIMEOUT = 10 * 1000;
 
   private _socket?: Socket;
-  private _callback?: Partial<Callback>;
+  private readonly _callback: Partial<Callback>;
 
   readonly host: string;
   readonly port: number;
@@ -113,12 +113,39 @@ export class SocketClient {
         }
       );
 
-      socket.on("data", (data) => {
-        const finish = this._callback?.onReceive?.(data);
+      const socketDataQueue: Bytes[] = [];
+      let flushingDataQueue: boolean = false;
 
-        if (finish) {
-          onSocketFinish();
+      const flushDataQueueSerially = () => {
+        if (flushingDataQueue || !socketDataQueue.length) {
+          return;
         }
+
+        const combinedData = joinBytes(...socketDataQueue);
+        socketDataQueue.length = 0;
+
+        flushingDataQueue = true;
+
+        this._callback.onReceive!(combinedData)
+          .then((finish) => {
+            flushingDataQueue = false;
+
+            if (finish) {
+              onSocketFinish();
+            } else {
+              flushDataQueueSerially();
+            }
+          })
+          .catch((e) => {
+            // close the socket if error happens during process socket data
+            onSocketFinish(e);
+            flushingDataQueue = false;
+          });
+      };
+
+      socket.on("data", async (data) => {
+        socketDataQueue.push(data);
+        flushDataQueueSerially();
       });
 
       socket.on("close", () => {
@@ -141,7 +168,7 @@ export interface Callback {
   onConnect(): void;
 
   // return true, all data are received, be able to close the socket
-  onReceive(data: Bytes): boolean;
+  onReceive(data: Bytes): Promise<boolean>;
 
   onClose(): void;
 
