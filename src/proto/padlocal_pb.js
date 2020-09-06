@@ -10551,7 +10551,8 @@ proto.padlocal.WeChatResponse.prototype.toObject = function(opt_includeInstance)
  */
 proto.padlocal.WeChatResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    payload: msg.getPayload_asB64()
+    payload: msg.getPayload_asB64(),
+    streamreset: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -10588,9 +10589,13 @@ proto.padlocal.WeChatResponse.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setPayload(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setStreamreset(value);
       break;
     default:
       reader.skipField();
@@ -10624,6 +10629,13 @@ proto.padlocal.WeChatResponse.serializeBinaryToWriter = function(message, writer
   f = message.getPayload_asU8();
   if (f.length > 0) {
     writer.writeBytes(
+      1,
+      f
+    );
+  }
+  f = message.getStreamreset();
+  if (f) {
+    writer.writeBool(
       2,
       f
     );
@@ -10632,16 +10644,16 @@ proto.padlocal.WeChatResponse.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional bytes payload = 2;
+ * optional bytes payload = 1;
  * @return {!(string|Uint8Array)}
  */
 proto.padlocal.WeChatResponse.prototype.getPayload = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes payload = 2;
+ * optional bytes payload = 1;
  * This is a type-conversion wrapper around `getPayload()`
  * @return {string}
  */
@@ -10652,7 +10664,7 @@ proto.padlocal.WeChatResponse.prototype.getPayload_asB64 = function() {
 
 
 /**
- * optional bytes payload = 2;
+ * optional bytes payload = 1;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getPayload()`
@@ -10669,7 +10681,25 @@ proto.padlocal.WeChatResponse.prototype.getPayload_asU8 = function() {
  * @return {!proto.padlocal.WeChatResponse} returns this
  */
 proto.padlocal.WeChatResponse.prototype.setPayload = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional bool streamReset = 2;
+ * @return {boolean}
+ */
+proto.padlocal.WeChatResponse.prototype.getStreamreset = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.padlocal.WeChatResponse} returns this
+ */
+proto.padlocal.WeChatResponse.prototype.setStreamreset = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 

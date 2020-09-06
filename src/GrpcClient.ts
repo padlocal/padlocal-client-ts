@@ -18,7 +18,6 @@ import { PromiseCallback } from "./utils/PromiseUtils";
 import { Bytes } from "./utils/ByteUtils";
 import { WeChatShortLinkProxy } from "./link/WeChatShortLinkProxy";
 import { WeChatSocketProxy } from "./link/WeChatSocketProxy";
-import { WeChatFileProxy } from "./link/WeChatFileProxy";
 import VError from "verror";
 import { stringifyPB } from "./utils/Utils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";

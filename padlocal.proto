@@ -167,7 +167,8 @@ message WeChatRequest {
 }
 
 message WeChatResponse {
-  bytes payload = 2;
+  bytes payload = 1;
+  bool streamReset = 2;
 }
 
 message WeChatSocketResponseAck {

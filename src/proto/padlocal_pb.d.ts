@@ -1265,6 +1265,9 @@ export class WeChatResponse extends jspb.Message {
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatResponse;
 
+    getStreamreset(): boolean;
+    setStreamreset(value: boolean): WeChatResponse;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatResponse.AsObject;
@@ -1279,6 +1282,7 @@ export class WeChatResponse extends jspb.Message {
 export namespace WeChatResponse {
     export type AsObject = {
         payload: Uint8Array | string,
+        streamreset: boolean,
     }
 }
 

@@ -3,6 +3,7 @@ import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
 import { Bytes, bytesToHexString, joinBytes } from "../utils/ByteUtils";
 import { logInfo, logWarn } from "../utils/log";
 import VError from "verror";
+import { SerialExecutor } from "../utils/SerialExecutor";
 
 export class SocketClient {
   private static readonly CONNECT_TIMEOUT = 10 * 1000;
@@ -10,6 +11,8 @@ export class SocketClient {
 
   private _socket?: Socket;
   private readonly _callback: Partial<Callback>;
+  private _retryOnError: boolean;
+  private _callbackExecutor: SerialExecutor;
 
   readonly host: string;
   readonly port: number;
@@ -21,13 +24,18 @@ export class SocketClient {
     this.port = port;
     this.traceId = traceId;
     this._callback = callback;
+    this._retryOnError = true;
+    this._callbackExecutor = new SerialExecutor();
   }
 
   async send(data: Bytes): Promise<void> {
+    this._retryOnError = true;
+    this._callbackExecutor.clear();
+
     try {
       await this._sendImpl(data);
     } catch (error) {
-      if (!this.retryStrategy.canRetry()) {
+      if (!this._retryOnError || !this.retryStrategy.canRetry()) {
         const des = `[tid:${this.traceId}] Fail to send socket to:\"${this.host}:${
           this.port
         }\", data:${bytesToHexString(data)}, after max retry:${this.retryStrategy.retryCount}`;
@@ -63,7 +71,9 @@ export class SocketClient {
     this._socket.destroy();
     this._socket = undefined;
 
-    this._callback?.onCancel?.();
+    this._callbackExecutor.execute(async () => {
+      this._callback?.onCancel?.();
+    });
   }
 
   private async _sendImpl(sendData: Bytes): Promise<void> {
@@ -73,14 +83,19 @@ export class SocketClient {
     }
 
     return new Promise((resolve, reject) => {
-      const onSocketFinish = (error?: Error) => {
+      const onSocketFinish = (error?: Error, retryOnError: boolean = true) => {
         if (!this._socket) {
           return;
         }
 
         if (error) {
-          this._callback?.onError?.(error);
+          this._callbackExecutor.execute(async () => {
+            this._callback?.onError?.(error);
+          });
+
           logWarn(`socket on error: ${error}`);
+
+          this._retryOnError = retryOnError;
 
           reject(error);
         } else {
@@ -107,49 +122,37 @@ export class SocketClient {
         () => {
           clearTimeout(connectTimeout);
 
-          this._callback?.onConnect?.();
+          this._callbackExecutor.execute(async () => {
+            this._callback?.onConnect?.();
+          });
 
           socket.write(sendData);
         }
       );
 
-      const socketDataQueue: Bytes[] = [];
-      let flushingDataQueue: boolean = false;
-
-      const flushDataQueueSerially = () => {
-        if (flushingDataQueue || !socketDataQueue.length) {
-          return;
-        }
-
-        const combinedData = joinBytes(...socketDataQueue);
-        socketDataQueue.length = 0;
-
-        flushingDataQueue = true;
-
-        this._callback.onReceive!(combinedData)
-          .then((finish) => {
-            flushingDataQueue = false;
-
-            if (finish) {
-              onSocketFinish();
-            } else {
-              flushDataQueueSerially();
-            }
-          })
-          .catch((e) => {
-            // close the socket if error happens during process socket data
-            onSocketFinish(e);
-            flushingDataQueue = false;
-          });
-      };
-
       socket.on("data", async (data) => {
-        socketDataQueue.push(data);
-        flushDataQueueSerially();
+        this._callbackExecutor.execute(async () => {
+          try {
+            const finished = await this._callback.onReceive!(data);
+
+            if (finished) {
+              // do not execute onReceive in queue
+              this._callbackExecutor.clear("onReceive");
+              onSocketFinish();
+            }
+          } catch (e) {
+            // do not execute onReceive in queue
+            this._callbackExecutor.clear("onReceive");
+            onSocketFinish(e, false);
+          }
+        }, "onReceive");
       });
 
       socket.on("close", () => {
-        this._callback?.onClose?.();
+        this._callbackExecutor.execute(async () => {
+          this._callback?.onClose?.();
+        });
+
         onSocketFinish();
       });
 
@@ -165,16 +168,16 @@ export class SocketClient {
 }
 
 export interface Callback {
-  onConnect(): void;
+  onConnect(): Promise<void>;
 
   // return true, all data are received, be able to close the socket
   onReceive(data: Bytes): Promise<boolean>;
 
-  onClose(): void;
+  onClose(): Promise<void>;
 
-  onError(error: Error): void;
+  onError(error: Error): Promise<void>;
 
-  onCancel(): void;
+  onCancel(): Promise<void>;
 }
 
 export class IOError extends VError {}
