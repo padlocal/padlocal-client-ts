@@ -12,6 +12,8 @@
                 "toChatRoom": "",
                 "atUserNameList": [""],
                 "imageFilePath": "",
+                "voiceFilePath": "",
+                "voiceLength": 0,
                 "miniProgramThumbFilePath": "",
                 "miniProgramMessage": "",
                 "contactCard": "PROTOBUF_HEX"

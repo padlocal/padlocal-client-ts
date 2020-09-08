@@ -59,6 +59,8 @@ message ActionMessage {
     RevokeMessageResponse revokeMessageResponse = 321;
     SendContactCardMessageRequest sendContactCardMessageRequest = 322;
     SendContactCardMessageResponse sendContactCardMessageResponse = 323;
+    SendVoiceMessageRequest sendVoiceMessageRequest = 324;
+    SendVoiceMessageResponse sendVoiceMessageResponse = 325;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -909,6 +911,19 @@ message SendContactCardMessageRequest {
 }
 
 message SendContactCardMessageResponse {
+  string msgId = 1;
+  string clientMsgId = 2;
+  string newClientMsgId = 3;
+  int32 createTime = 4;
+}
+
+message SendVoiceMessageRequest {
+  string toUserName = 1;
+  bytes voice = 2;
+  int32 voiceLength = 3;
+}
+
+message SendVoiceMessageResponse {
   string msgId = 1;
   string clientMsgId = 2;
   string newClientMsgId = 3;

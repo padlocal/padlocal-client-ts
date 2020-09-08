@@ -105,6 +105,20 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     });
   }
 
+  async sendVoiceMessage(
+    idempotentId: string,
+    toUserName: string,
+    voice: Bytes,
+    voiceLength: number
+  ): Promise<pb.SendVoiceMessageResponse> {
+    return await this.client.grpcRequest(
+      new pb.SendVoiceMessageRequest().setTousername(toUserName).setVoice(voice).setVoicelength(voiceLength),
+      {
+        idempotentId,
+      }
+    );
+  }
+
   /**
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @param toUserName

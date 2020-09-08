@@ -285,6 +285,18 @@ export class ActionMessage extends jspb.Message {
     setSendcontactcardmessageresponse(value?: SendContactCardMessageResponse): ActionMessage;
 
 
+    hasSendvoicemessagerequest(): boolean;
+    clearSendvoicemessagerequest(): void;
+    getSendvoicemessagerequest(): SendVoiceMessageRequest | undefined;
+    setSendvoicemessagerequest(value?: SendVoiceMessageRequest): ActionMessage;
+
+
+    hasSendvoicemessageresponse(): boolean;
+    clearSendvoicemessageresponse(): void;
+    getSendvoicemessageresponse(): SendVoiceMessageResponse | undefined;
+    setSendvoicemessageresponse(value?: SendVoiceMessageResponse): ActionMessage;
+
+
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
@@ -797,6 +809,8 @@ export namespace ActionMessage {
         revokemessageresponse?: RevokeMessageResponse.AsObject,
         sendcontactcardmessagerequest?: SendContactCardMessageRequest.AsObject,
         sendcontactcardmessageresponse?: SendContactCardMessageResponse.AsObject,
+        sendvoicemessagerequest?: SendVoiceMessageRequest.AsObject,
+        sendvoicemessageresponse?: SendVoiceMessageResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -959,6 +973,10 @@ export namespace ActionMessage {
     SENDCONTACTCARDMESSAGEREQUEST = 322,
 
     SENDCONTACTCARDMESSAGERESPONSE = 323,
+
+    SENDVOICEMESSAGEREQUEST = 324,
+
+    SENDVOICEMESSAGERESPONSE = 325,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -4881,6 +4899,70 @@ export class SendContactCardMessageResponse extends jspb.Message {
 }
 
 export namespace SendContactCardMessageResponse {
+    export type AsObject = {
+        msgid: string,
+        clientmsgid: string,
+        newclientmsgid: string,
+        createtime: number,
+    }
+}
+
+export class SendVoiceMessageRequest extends jspb.Message { 
+    getTousername(): string;
+    setTousername(value: string): SendVoiceMessageRequest;
+
+    getVoice(): Uint8Array | string;
+    getVoice_asU8(): Uint8Array;
+    getVoice_asB64(): string;
+    setVoice(value: Uint8Array | string): SendVoiceMessageRequest;
+
+    getVoicelength(): number;
+    setVoicelength(value: number): SendVoiceMessageRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendVoiceMessageRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SendVoiceMessageRequest): SendVoiceMessageRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendVoiceMessageRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendVoiceMessageRequest;
+    static deserializeBinaryFromReader(message: SendVoiceMessageRequest, reader: jspb.BinaryReader): SendVoiceMessageRequest;
+}
+
+export namespace SendVoiceMessageRequest {
+    export type AsObject = {
+        tousername: string,
+        voice: Uint8Array | string,
+        voicelength: number,
+    }
+}
+
+export class SendVoiceMessageResponse extends jspb.Message { 
+    getMsgid(): string;
+    setMsgid(value: string): SendVoiceMessageResponse;
+
+    getClientmsgid(): string;
+    setClientmsgid(value: string): SendVoiceMessageResponse;
+
+    getNewclientmsgid(): string;
+    setNewclientmsgid(value: string): SendVoiceMessageResponse;
+
+    getCreatetime(): number;
+    setCreatetime(value: number): SendVoiceMessageResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendVoiceMessageResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: SendVoiceMessageResponse): SendVoiceMessageResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendVoiceMessageResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendVoiceMessageResponse;
+    static deserializeBinaryFromReader(message: SendVoiceMessageResponse, reader: jspb.BinaryReader): SendVoiceMessageResponse;
+}
+
+export namespace SendVoiceMessageResponse {
     export type AsObject = {
         msgid: string,
         clientmsgid: string,

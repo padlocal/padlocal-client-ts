@@ -88,6 +88,19 @@ describe("message", () => {
       expect(response.getMsgid()).toBeTruthy();
     });
 
+    test("send voice message", async () => {
+      const voiceLength: number = config.get("test.message.send.voiceLength");
+
+      const sendVoiceFilePath: string = config.get("test.message.send.voiceFilePath");
+      const voiceData: Buffer = fs.readFileSync(sendVoiceFilePath);
+
+      const response = await client.api.sendVoiceMessage(genIdempotentId(), toUserName, voiceData, voiceLength);
+
+      console.log(`send voice message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
+
+      expect(response.getMsgid()).toBeTruthy();
+    });
+
     test("send link msg", async () => {
       const msgId = await client.api.sendAppMessageLink(
         genIdempotentId(),
