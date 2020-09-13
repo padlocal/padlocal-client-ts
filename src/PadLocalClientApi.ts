@@ -119,6 +119,12 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     );
   }
 
+  async sendVideoMessage(idempotentId: string, toUserName: string, video: Bytes): Promise<pb.SendVideoMessageResponse> {
+    return await this.client.grpcRequest(new pb.SendVideoMessageRequest().setTousername(toUserName).setVideo(video), {
+      idempotentId,
+    });
+  }
+
   /**
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @param toUserName

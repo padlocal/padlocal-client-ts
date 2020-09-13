@@ -19,7 +19,7 @@ async function _sendFileRequest(fileRequest: FileRequest, traceId: string): Prom
   );
 
   const socketClient = new SocketClient(host.getHost(), host.getPort(), traceId, {
-    onConnect: () => {
+    onConnect: async () => {
       fileUnpacker.reset();
     },
 

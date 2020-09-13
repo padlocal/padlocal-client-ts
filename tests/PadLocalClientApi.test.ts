@@ -101,6 +101,16 @@ describe("message", () => {
       expect(response.getMsgid()).toBeTruthy();
     });
 
+    test("send video message", async () => {
+      const sendVideoFilePath: string = config.get("test.message.send.videoFilePath");
+      const videoData: Buffer = fs.readFileSync(sendVideoFilePath);
+      const response = await client.api.sendVideoMessage(genIdempotentId(), toUserName, videoData);
+
+      console.log(`send video message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
+
+      expect(response.getMsgid()).toBeTruthy();
+    }, 6000000);
+
     test("send link msg", async () => {
       const msgId = await client.api.sendAppMessageLink(
         genIdempotentId(),

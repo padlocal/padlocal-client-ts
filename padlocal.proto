@@ -61,6 +61,8 @@ message ActionMessage {
     SendContactCardMessageResponse sendContactCardMessageResponse = 323;
     SendVoiceMessageRequest sendVoiceMessageRequest = 324;
     SendVoiceMessageResponse sendVoiceMessageResponse = 325;
+    SendVideoMessageRequest sendVideoMessageRequest = 326;
+    SendVideoMessageResponse sendVideoMessageResponse = 327;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -924,6 +926,18 @@ message SendVoiceMessageRequest {
 }
 
 message SendVoiceMessageResponse {
+  string msgId = 1;
+  string clientMsgId = 2;
+  string newClientMsgId = 3;
+  int32 createTime = 4;
+}
+
+message SendVideoMessageRequest {
+  string toUserName = 1;
+  bytes video = 2;
+}
+
+message SendVideoMessageResponse {
   string msgId = 1;
   string clientMsgId = 2;
   string newClientMsgId = 3;

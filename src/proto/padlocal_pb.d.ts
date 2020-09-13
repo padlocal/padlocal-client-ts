@@ -297,6 +297,18 @@ export class ActionMessage extends jspb.Message {
     setSendvoicemessageresponse(value?: SendVoiceMessageResponse): ActionMessage;
 
 
+    hasSendvideomessagerequest(): boolean;
+    clearSendvideomessagerequest(): void;
+    getSendvideomessagerequest(): SendVideoMessageRequest | undefined;
+    setSendvideomessagerequest(value?: SendVideoMessageRequest): ActionMessage;
+
+
+    hasSendvideomessageresponse(): boolean;
+    clearSendvideomessageresponse(): void;
+    getSendvideomessageresponse(): SendVideoMessageResponse | undefined;
+    setSendvideomessageresponse(value?: SendVideoMessageResponse): ActionMessage;
+
+
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
@@ -811,6 +823,8 @@ export namespace ActionMessage {
         sendcontactcardmessageresponse?: SendContactCardMessageResponse.AsObject,
         sendvoicemessagerequest?: SendVoiceMessageRequest.AsObject,
         sendvoicemessageresponse?: SendVoiceMessageResponse.AsObject,
+        sendvideomessagerequest?: SendVideoMessageRequest.AsObject,
+        sendvideomessageresponse?: SendVideoMessageResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -977,6 +991,10 @@ export namespace ActionMessage {
     SENDVOICEMESSAGEREQUEST = 324,
 
     SENDVOICEMESSAGERESPONSE = 325,
+
+    SENDVIDEOMESSAGEREQUEST = 326,
+
+    SENDVIDEOMESSAGERESPONSE = 327,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -4963,6 +4981,66 @@ export class SendVoiceMessageResponse extends jspb.Message {
 }
 
 export namespace SendVoiceMessageResponse {
+    export type AsObject = {
+        msgid: string,
+        clientmsgid: string,
+        newclientmsgid: string,
+        createtime: number,
+    }
+}
+
+export class SendVideoMessageRequest extends jspb.Message { 
+    getTousername(): string;
+    setTousername(value: string): SendVideoMessageRequest;
+
+    getVideo(): Uint8Array | string;
+    getVideo_asU8(): Uint8Array;
+    getVideo_asB64(): string;
+    setVideo(value: Uint8Array | string): SendVideoMessageRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendVideoMessageRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SendVideoMessageRequest): SendVideoMessageRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendVideoMessageRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendVideoMessageRequest;
+    static deserializeBinaryFromReader(message: SendVideoMessageRequest, reader: jspb.BinaryReader): SendVideoMessageRequest;
+}
+
+export namespace SendVideoMessageRequest {
+    export type AsObject = {
+        tousername: string,
+        video: Uint8Array | string,
+    }
+}
+
+export class SendVideoMessageResponse extends jspb.Message { 
+    getMsgid(): string;
+    setMsgid(value: string): SendVideoMessageResponse;
+
+    getClientmsgid(): string;
+    setClientmsgid(value: string): SendVideoMessageResponse;
+
+    getNewclientmsgid(): string;
+    setNewclientmsgid(value: string): SendVideoMessageResponse;
+
+    getCreatetime(): number;
+    setCreatetime(value: number): SendVideoMessageResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendVideoMessageResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: SendVideoMessageResponse): SendVideoMessageResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendVideoMessageResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendVideoMessageResponse;
+    static deserializeBinaryFromReader(message: SendVideoMessageResponse, reader: jspb.BinaryReader): SendVideoMessageResponse;
+}
+
+export namespace SendVideoMessageResponse {
     export type AsObject = {
         msgid: string,
         clientmsgid: string,

@@ -125,6 +125,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.WECHATSOCKETRESPONSEACK, pb.WeChatSocketResponseAck],
   [ActionMessage.PayloadCase.SENDVOICEMESSAGEREQUEST, pb.SendVoiceMessageRequest],
   [ActionMessage.PayloadCase.SENDVOICEMESSAGERESPONSE, pb.SendVoiceMessageResponse],
+  [ActionMessage.PayloadCase.SENDVIDEOMESSAGEREQUEST, pb.SendVideoMessageRequest],
+  [ActionMessage.PayloadCase.SENDVIDEOMESSAGERESPONSE, pb.SendVideoMessageResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {
