@@ -5,7 +5,7 @@ import config from "config";
 import * as fs from "fs";
 import * as pb from "../src/proto/padlocal_pb";
 import { hexStringToBytes } from "../src/utils/ByteUtils";
-import { SendTextMessageResponse, ZombieStatue } from "../src/proto/padlocal_pb";
+import { MessageRevokeInfo, SendTextMessageResponse, ZombieStatue } from "../src/proto/padlocal_pb";
 
 let client: PadLocalClient;
 
@@ -194,8 +194,13 @@ describe("message", () => {
       const fromUserName: string = config.get("test.message.revoke.fromUserName");
       const toUserName: string = config.get("test.message.revoke.toUserName");
 
-      await client.api.revokeMessage(msgId, clientMsgId, newClientMsgId, createTime, fromUserName, toUserName);
-    }, 6000000);
+      await client.api.revokeMessage(
+        msgId,
+        fromUserName,
+        toUserName,
+        new MessageRevokeInfo().setClientmsgid(clientMsgId).setNewclientmsgid(newClientMsgId).setCreatetime(createTime)
+      );
+    });
 
     test("send contact card message", async () => {
       const payload: string = config.get("test.message.send.contactCard");

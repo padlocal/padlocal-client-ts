@@ -273,17 +273,13 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
   async revokeMessage(
     msgId: string,
-    clientMsgId: string,
-    newClientMsgId: string,
-    createTime: number,
     fromUserName: string,
-    toUserName: string
+    toUserName: string,
+    messageRevokeInfo: MessageRevokeInfo
   ): Promise<void> {
     const request = new pb.RevokeMessageRequest()
       .setMsgid(msgId)
-      .setMessagerevokeinfo(
-        new MessageRevokeInfo().setClientmsgid(clientMsgId).setNewclientmsgid(newClientMsgId).setCreatetime(createTime)
-      )
+      .setMessagerevokeinfo(messageRevokeInfo)
       .setFromusername(fromUserName)
       .setTousername(toUserName)
       .setRevokeseq(this._revokeMessageSeq++);
