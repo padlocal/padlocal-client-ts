@@ -3,6 +3,7 @@ import { Bytes } from "./utils/ByteUtils";
 import { requestFileAndUnpack } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { PadLocalClient } from "./PadLocalClient";
+import { MessageRevokeInfo } from "./proto/padlocal_pb";
 
 export class PadLocalClientApi extends PadLocalClientPlugin {
   private _revokeMessageSeq: number;
@@ -123,6 +124,20 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return await this.client.grpcRequest(new pb.SendVideoMessageRequest().setTousername(toUserName).setVideo(video), {
       idempotentId,
     });
+  }
+
+  async sendFileMessage(
+    idempotentId: string,
+    toUserName: string,
+    file: Bytes,
+    fileName: string
+  ): Promise<pb.SendFileMessageResponse> {
+    return await this.client.grpcRequest(
+      new pb.SendFileMessageRequest().setTousername(toUserName).setFile(file).setFilename(fileName),
+      {
+        idempotentId,
+      }
+    );
   }
 
   /**
@@ -266,9 +281,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   ): Promise<void> {
     const request = new pb.RevokeMessageRequest()
       .setMsgid(msgId)
-      .setClientmsgid(clientMsgId)
-      .setNewclientmsgid(newClientMsgId)
-      .setCreatetime(createTime)
+      .setMessagerevokeinfo(
+        new MessageRevokeInfo().setClientmsgid(clientMsgId).setNewclientmsgid(newClientMsgId).setCreatetime(createTime)
+      )
       .setFromusername(fromUserName)
       .setTousername(toUserName)
       .setRevokeseq(this._revokeMessageSeq++);

@@ -63,6 +63,8 @@ message ActionMessage {
     SendVoiceMessageResponse sendVoiceMessageResponse = 325;
     SendVideoMessageRequest sendVideoMessageRequest = 326;
     SendVideoMessageResponse sendVideoMessageResponse = 327;
+    SendFileMessageRequest sendFileMessageRequest = 328;
+    SendFileMessageResponse sendFileMessageResponse = 329;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -280,6 +282,12 @@ message LongLinkHeartBeatResponse{
 
 }
 
+message MessageRevokeInfo {
+  string clientMsgId = 1;
+  string newClientMsgId = 2;
+  int32 createTime = 3;
+}
+
 message SendTextMessageRequest {
   string toUserName = 1;
   string content = 2;
@@ -288,9 +296,7 @@ message SendTextMessageRequest {
 
 message SendTextMessageResponse {
   string msgId = 1;
-  string clientMsgId = 2;
-  string newClientMsgId = 3;
-  int32 createTime = 4;
+  MessageRevokeInfo messageRevokeInfo = 2;
 }
 
 message SendImageMessageRequest {
@@ -300,9 +306,7 @@ message SendImageMessageRequest {
 
 message SendImageMessageResponse {
   string msgId = 1;
-  string clientMsgId = 2;
-  string newClientMsgId = 3;
-  int32 createTime = 4;
+  MessageRevokeInfo messageRevokeInfo = 2;
 }
 
 message SendAppMessageRequest {
@@ -896,12 +900,10 @@ message ForwardMessageResponse {
 
 message RevokeMessageRequest {
   string msgId = 1;
-  string clientMsgId = 2;
-  string newClientMsgId = 3;
-  int32 createTime = 4;
-  string fromUserName = 5;
-  string toUserName = 6;
-  int32 revokeSeq = 7;
+  MessageRevokeInfo messageRevokeInfo = 2;
+  string fromUserName = 3;
+  string toUserName = 4;
+  int32 revokeSeq = 5;
 }
 
 message RevokeMessageResponse {
@@ -914,9 +916,7 @@ message SendContactCardMessageRequest {
 
 message SendContactCardMessageResponse {
   string msgId = 1;
-  string clientMsgId = 2;
-  string newClientMsgId = 3;
-  int32 createTime = 4;
+  MessageRevokeInfo messageRevokeInfo = 2;
 }
 
 message SendVoiceMessageRequest {
@@ -927,9 +927,7 @@ message SendVoiceMessageRequest {
 
 message SendVoiceMessageResponse {
   string msgId = 1;
-  string clientMsgId = 2;
-  string newClientMsgId = 3;
-  int32 createTime = 4;
+  MessageRevokeInfo messageRevokeInfo = 2;
 }
 
 message SendVideoMessageRequest {
@@ -939,7 +937,16 @@ message SendVideoMessageRequest {
 
 message SendVideoMessageResponse {
   string msgId = 1;
-  string clientMsgId = 2;
-  string newClientMsgId = 3;
-  int32 createTime = 4;
+  MessageRevokeInfo messageRevokeInfo = 2;
+}
+
+message SendFileMessageRequest {
+  string toUserName = 1;
+  bytes file = 2;
+  string fileName = 3;
+}
+
+message SendFileMessageResponse {
+  string msgId = 1;
+  MessageRevokeInfo messageRevokeInfo = 2;
 }

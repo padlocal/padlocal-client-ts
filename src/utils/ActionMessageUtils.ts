@@ -127,6 +127,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.SENDVOICEMESSAGERESPONSE, pb.SendVoiceMessageResponse],
   [ActionMessage.PayloadCase.SENDVIDEOMESSAGEREQUEST, pb.SendVideoMessageRequest],
   [ActionMessage.PayloadCase.SENDVIDEOMESSAGERESPONSE, pb.SendVideoMessageResponse],
+  [ActionMessage.PayloadCase.SENDFILEMESSAGEREQUEST, pb.SendFileMessageRequest],
+  [ActionMessage.PayloadCase.SENDFILEMESSAGERESPONSE, pb.SendFileMessageResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

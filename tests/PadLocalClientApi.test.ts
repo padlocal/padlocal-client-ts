@@ -109,7 +109,20 @@ describe("message", () => {
       console.log(`send video message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
 
       expect(response.getMsgid()).toBeTruthy();
-    }, 6000000);
+    });
+
+    test("send file message", async () => {
+      const sendFileFilePath: string = config.get("test.message.send.fileFilePath");
+      const fileData: Buffer = fs.readFileSync(sendFileFilePath);
+      const fileName: string = sendFileFilePath.replace(/^.*[\\\/]/, "");
+      const response = await client.api.sendFileMessage(genIdempotentId(), toUserName, fileData, fileName);
+
+      console.log(`send file message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
+
+      expect(response.getMsgid()).toBeTruthy();
+      expect(response.getMessagerevokeinfo()).toBeTruthy();
+      expect(response.getMessagerevokeinfo()!.getClientmsgid()).toBeTruthy();
+    });
 
     test("send link msg", async () => {
       const msgId = await client.api.sendAppMessageLink(
@@ -191,8 +204,9 @@ describe("message", () => {
       const response = await client.api.sendContactCardMessage(genIdempotentId(), toChatRoom, contact);
       expect(response).toBeTruthy();
       expect(response.getMsgid()).toBeTruthy();
-      expect(response.getNewclientmsgid()).toBeTruthy();
-      expect(response.getCreatetime()).toBeTruthy();
+      expect(response.getMessagerevokeinfo()).toBeTruthy();
+      expect(response.getMessagerevokeinfo()!.getNewclientmsgid()).toBeTruthy();
+      expect(response.getMessagerevokeinfo()!.getCreatetime()).toBeTruthy();
     });
   });
 

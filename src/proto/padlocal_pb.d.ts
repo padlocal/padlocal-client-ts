@@ -309,6 +309,18 @@ export class ActionMessage extends jspb.Message {
     setSendvideomessageresponse(value?: SendVideoMessageResponse): ActionMessage;
 
 
+    hasSendfilemessagerequest(): boolean;
+    clearSendfilemessagerequest(): void;
+    getSendfilemessagerequest(): SendFileMessageRequest | undefined;
+    setSendfilemessagerequest(value?: SendFileMessageRequest): ActionMessage;
+
+
+    hasSendfilemessageresponse(): boolean;
+    clearSendfilemessageresponse(): void;
+    getSendfilemessageresponse(): SendFileMessageResponse | undefined;
+    setSendfilemessageresponse(value?: SendFileMessageResponse): ActionMessage;
+
+
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
@@ -825,6 +837,8 @@ export namespace ActionMessage {
         sendvoicemessageresponse?: SendVoiceMessageResponse.AsObject,
         sendvideomessagerequest?: SendVideoMessageRequest.AsObject,
         sendvideomessageresponse?: SendVideoMessageResponse.AsObject,
+        sendfilemessagerequest?: SendFileMessageRequest.AsObject,
+        sendfilemessageresponse?: SendFileMessageResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -995,6 +1009,10 @@ export namespace ActionMessage {
     SENDVIDEOMESSAGEREQUEST = 326,
 
     SENDVIDEOMESSAGERESPONSE = 327,
+
+    SENDFILEMESSAGEREQUEST = 328,
+
+    SENDFILEMESSAGERESPONSE = 329,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -1726,6 +1744,35 @@ export namespace LongLinkHeartBeatResponse {
     }
 }
 
+export class MessageRevokeInfo extends jspb.Message { 
+    getClientmsgid(): string;
+    setClientmsgid(value: string): MessageRevokeInfo;
+
+    getNewclientmsgid(): string;
+    setNewclientmsgid(value: string): MessageRevokeInfo;
+
+    getCreatetime(): number;
+    setCreatetime(value: number): MessageRevokeInfo;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): MessageRevokeInfo.AsObject;
+    static toObject(includeInstance: boolean, msg: MessageRevokeInfo): MessageRevokeInfo.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: MessageRevokeInfo, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): MessageRevokeInfo;
+    static deserializeBinaryFromReader(message: MessageRevokeInfo, reader: jspb.BinaryReader): MessageRevokeInfo;
+}
+
+export namespace MessageRevokeInfo {
+    export type AsObject = {
+        clientmsgid: string,
+        newclientmsgid: string,
+        createtime: number,
+    }
+}
+
 export class SendTextMessageRequest extends jspb.Message { 
     getTousername(): string;
     setTousername(value: string): SendTextMessageRequest;
@@ -1761,14 +1808,11 @@ export class SendTextMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendTextMessageResponse;
 
-    getClientmsgid(): string;
-    setClientmsgid(value: string): SendTextMessageResponse;
 
-    getNewclientmsgid(): string;
-    setNewclientmsgid(value: string): SendTextMessageResponse;
-
-    getCreatetime(): number;
-    setCreatetime(value: number): SendTextMessageResponse;
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): SendTextMessageResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -1784,9 +1828,7 @@ export class SendTextMessageResponse extends jspb.Message {
 export namespace SendTextMessageResponse {
     export type AsObject = {
         msgid: string,
-        clientmsgid: string,
-        newclientmsgid: string,
-        createtime: number,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
     }
 }
 
@@ -1821,14 +1863,11 @@ export class SendImageMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendImageMessageResponse;
 
-    getClientmsgid(): string;
-    setClientmsgid(value: string): SendImageMessageResponse;
 
-    getNewclientmsgid(): string;
-    setNewclientmsgid(value: string): SendImageMessageResponse;
-
-    getCreatetime(): number;
-    setCreatetime(value: number): SendImageMessageResponse;
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): SendImageMessageResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -1844,9 +1883,7 @@ export class SendImageMessageResponse extends jspb.Message {
 export namespace SendImageMessageResponse {
     export type AsObject = {
         msgid: string,
-        clientmsgid: string,
-        newclientmsgid: string,
-        createtime: number,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
     }
 }
 
@@ -4806,14 +4843,11 @@ export class RevokeMessageRequest extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): RevokeMessageRequest;
 
-    getClientmsgid(): string;
-    setClientmsgid(value: string): RevokeMessageRequest;
 
-    getNewclientmsgid(): string;
-    setNewclientmsgid(value: string): RevokeMessageRequest;
-
-    getCreatetime(): number;
-    setCreatetime(value: number): RevokeMessageRequest;
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): RevokeMessageRequest;
 
     getFromusername(): string;
     setFromusername(value: string): RevokeMessageRequest;
@@ -4838,9 +4872,7 @@ export class RevokeMessageRequest extends jspb.Message {
 export namespace RevokeMessageRequest {
     export type AsObject = {
         msgid: string,
-        clientmsgid: string,
-        newclientmsgid: string,
-        createtime: number,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
         fromusername: string,
         tousername: string,
         revokeseq: number,
@@ -4896,14 +4928,11 @@ export class SendContactCardMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendContactCardMessageResponse;
 
-    getClientmsgid(): string;
-    setClientmsgid(value: string): SendContactCardMessageResponse;
 
-    getNewclientmsgid(): string;
-    setNewclientmsgid(value: string): SendContactCardMessageResponse;
-
-    getCreatetime(): number;
-    setCreatetime(value: number): SendContactCardMessageResponse;
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): SendContactCardMessageResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -4919,9 +4948,7 @@ export class SendContactCardMessageResponse extends jspb.Message {
 export namespace SendContactCardMessageResponse {
     export type AsObject = {
         msgid: string,
-        clientmsgid: string,
-        newclientmsgid: string,
-        createtime: number,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
     }
 }
 
@@ -4960,14 +4987,11 @@ export class SendVoiceMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendVoiceMessageResponse;
 
-    getClientmsgid(): string;
-    setClientmsgid(value: string): SendVoiceMessageResponse;
 
-    getNewclientmsgid(): string;
-    setNewclientmsgid(value: string): SendVoiceMessageResponse;
-
-    getCreatetime(): number;
-    setCreatetime(value: number): SendVoiceMessageResponse;
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): SendVoiceMessageResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -4983,9 +5007,7 @@ export class SendVoiceMessageResponse extends jspb.Message {
 export namespace SendVoiceMessageResponse {
     export type AsObject = {
         msgid: string,
-        clientmsgid: string,
-        newclientmsgid: string,
-        createtime: number,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
     }
 }
 
@@ -5020,14 +5042,11 @@ export class SendVideoMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendVideoMessageResponse;
 
-    getClientmsgid(): string;
-    setClientmsgid(value: string): SendVideoMessageResponse;
 
-    getNewclientmsgid(): string;
-    setNewclientmsgid(value: string): SendVideoMessageResponse;
-
-    getCreatetime(): number;
-    setCreatetime(value: number): SendVideoMessageResponse;
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): SendVideoMessageResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -5043,9 +5062,66 @@ export class SendVideoMessageResponse extends jspb.Message {
 export namespace SendVideoMessageResponse {
     export type AsObject = {
         msgid: string,
-        clientmsgid: string,
-        newclientmsgid: string,
-        createtime: number,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
+    }
+}
+
+export class SendFileMessageRequest extends jspb.Message { 
+    getTousername(): string;
+    setTousername(value: string): SendFileMessageRequest;
+
+    getFile(): Uint8Array | string;
+    getFile_asU8(): Uint8Array;
+    getFile_asB64(): string;
+    setFile(value: Uint8Array | string): SendFileMessageRequest;
+
+    getFilename(): string;
+    setFilename(value: string): SendFileMessageRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendFileMessageRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SendFileMessageRequest): SendFileMessageRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendFileMessageRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendFileMessageRequest;
+    static deserializeBinaryFromReader(message: SendFileMessageRequest, reader: jspb.BinaryReader): SendFileMessageRequest;
+}
+
+export namespace SendFileMessageRequest {
+    export type AsObject = {
+        tousername: string,
+        file: Uint8Array | string,
+        filename: string,
+    }
+}
+
+export class SendFileMessageResponse extends jspb.Message { 
+    getMsgid(): string;
+    setMsgid(value: string): SendFileMessageResponse;
+
+
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): SendFileMessageResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendFileMessageResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: SendFileMessageResponse): SendFileMessageResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendFileMessageResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendFileMessageResponse;
+    static deserializeBinaryFromReader(message: SendFileMessageResponse, reader: jspb.BinaryReader): SendFileMessageResponse;
+}
+
+export namespace SendFileMessageResponse {
+    export type AsObject = {
+        msgid: string,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
     }
 }
 
