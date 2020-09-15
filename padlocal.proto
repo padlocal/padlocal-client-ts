@@ -65,6 +65,8 @@ message ActionMessage {
     SendVideoMessageResponse sendVideoMessageResponse = 327;
     SendFileMessageRequest sendFileMessageRequest = 328;
     SendFileMessageResponse sendFileMessageResponse = 329;
+    GetMessageMiniProgramThumbRequest getMessageMiniProgramThumbRequest = 330;
+    GetMessageMiniProgramThumbResponse getMessageMiniProgramThumbResponse = 331;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -949,4 +951,13 @@ message SendFileMessageRequest {
 message SendFileMessageResponse {
   string msgId = 1;
   MessageRevokeInfo messageRevokeInfo = 2;
+}
+
+message GetMessageMiniProgramThumbRequest {
+  string messageContent = 1;
+  string messageToUserName = 2;
+}
+
+message GetMessageMiniProgramThumbResponse {
+  FileRequest fileRequest = 1;
 }

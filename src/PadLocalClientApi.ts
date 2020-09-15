@@ -106,6 +106,13 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     });
   }
 
+  /**
+   *
+   * @param idempotentId
+   * @param toUserName
+   * @param voice
+   * @param voiceLength: voice length show to receiver, in milliseconds
+   */
   async sendVoiceMessage(
     idempotentId: string,
     toUserName: string,
@@ -267,6 +274,16 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageAttachThumbResponse = await grpcClient.request(
       new pb.GetMessageAttachThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
+    );
+    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+  }
+
+  async getMessageMiniProgramThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
+    const grpcClient = this.client.createGrpcClient();
+    const response: pb.GetMessageMiniProgramThumbResponse = await grpcClient.request(
+      new pb.GetMessageMiniProgramThumbRequest()
+        .setMessagecontent(messageContent)
+        .setMessagetousername(messageToUserName)
     );
     return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
   }

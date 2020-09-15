@@ -129,6 +129,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.SENDVIDEOMESSAGERESPONSE, pb.SendVideoMessageResponse],
   [ActionMessage.PayloadCase.SENDFILEMESSAGEREQUEST, pb.SendFileMessageRequest],
   [ActionMessage.PayloadCase.SENDFILEMESSAGERESPONSE, pb.SendFileMessageResponse],
+  [ActionMessage.PayloadCase.GETMESSAGEMINIPROGRAMTHUMBREQUEST, pb.GetMessageMiniProgramThumbRequest],
+  [ActionMessage.PayloadCase.GETMESSAGEMINIPROGRAMTHUMBRESPONSE, pb.GetMessageMiniProgramThumbResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

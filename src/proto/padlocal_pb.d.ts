@@ -321,6 +321,18 @@ export class ActionMessage extends jspb.Message {
     setSendfilemessageresponse(value?: SendFileMessageResponse): ActionMessage;
 
 
+    hasGetmessageminiprogramthumbrequest(): boolean;
+    clearGetmessageminiprogramthumbrequest(): void;
+    getGetmessageminiprogramthumbrequest(): GetMessageMiniProgramThumbRequest | undefined;
+    setGetmessageminiprogramthumbrequest(value?: GetMessageMiniProgramThumbRequest): ActionMessage;
+
+
+    hasGetmessageminiprogramthumbresponse(): boolean;
+    clearGetmessageminiprogramthumbresponse(): void;
+    getGetmessageminiprogramthumbresponse(): GetMessageMiniProgramThumbResponse | undefined;
+    setGetmessageminiprogramthumbresponse(value?: GetMessageMiniProgramThumbResponse): ActionMessage;
+
+
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
@@ -839,6 +851,8 @@ export namespace ActionMessage {
         sendvideomessageresponse?: SendVideoMessageResponse.AsObject,
         sendfilemessagerequest?: SendFileMessageRequest.AsObject,
         sendfilemessageresponse?: SendFileMessageResponse.AsObject,
+        getmessageminiprogramthumbrequest?: GetMessageMiniProgramThumbRequest.AsObject,
+        getmessageminiprogramthumbresponse?: GetMessageMiniProgramThumbResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -1013,6 +1027,10 @@ export namespace ActionMessage {
     SENDFILEMESSAGEREQUEST = 328,
 
     SENDFILEMESSAGERESPONSE = 329,
+
+    GETMESSAGEMINIPROGRAMTHUMBREQUEST = 330,
+
+    GETMESSAGEMINIPROGRAMTHUMBRESPONSE = 331,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -5122,6 +5140,55 @@ export namespace SendFileMessageResponse {
     export type AsObject = {
         msgid: string,
         messagerevokeinfo?: MessageRevokeInfo.AsObject,
+    }
+}
+
+export class GetMessageMiniProgramThumbRequest extends jspb.Message { 
+    getMessagecontent(): string;
+    setMessagecontent(value: string): GetMessageMiniProgramThumbRequest;
+
+    getMessagetousername(): string;
+    setMessagetousername(value: string): GetMessageMiniProgramThumbRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetMessageMiniProgramThumbRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetMessageMiniProgramThumbRequest): GetMessageMiniProgramThumbRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetMessageMiniProgramThumbRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetMessageMiniProgramThumbRequest;
+    static deserializeBinaryFromReader(message: GetMessageMiniProgramThumbRequest, reader: jspb.BinaryReader): GetMessageMiniProgramThumbRequest;
+}
+
+export namespace GetMessageMiniProgramThumbRequest {
+    export type AsObject = {
+        messagecontent: string,
+        messagetousername: string,
+    }
+}
+
+export class GetMessageMiniProgramThumbResponse extends jspb.Message { 
+
+    hasFilerequest(): boolean;
+    clearFilerequest(): void;
+    getFilerequest(): FileRequest | undefined;
+    setFilerequest(value?: FileRequest): GetMessageMiniProgramThumbResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetMessageMiniProgramThumbResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetMessageMiniProgramThumbResponse): GetMessageMiniProgramThumbResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetMessageMiniProgramThumbResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetMessageMiniProgramThumbResponse;
+    static deserializeBinaryFromReader(message: GetMessageMiniProgramThumbResponse, reader: jspb.BinaryReader): GetMessageMiniProgramThumbResponse;
+}
+
+export namespace GetMessageMiniProgramThumbResponse {
+    export type AsObject = {
+        filerequest?: FileRequest.AsObject,
     }
 }
 

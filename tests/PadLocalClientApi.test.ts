@@ -333,6 +333,18 @@ describe("message", () => {
       fs.writeFileSync(filePath, thumbData);
       console.log(`write file to ${filePath}`);
     });
+
+    test("get miniprogram message thumb", async () => {
+      const message = pb.Message.deserializeBinary(
+        hexStringToBytes(config.get("test.message.send.miniProgramMessage"))
+      );
+      const thumbData = await client.api.getMessageMiniProgramThumb(message.getContent(), message.getTousername());
+      expect(thumbData).toBeTruthy();
+
+      const filePath = `${payloadDir}/${message.getId()}-thumb`;
+      fs.writeFileSync(filePath, thumbData);
+      console.log(`write file to ${filePath}`);
+    });
   });
 });
 
