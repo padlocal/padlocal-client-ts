@@ -4,8 +4,8 @@ import { genIdempotentId, stringifyPB } from "../src/utils/Utils";
 import config from "config";
 import * as fs from "fs";
 import * as pb from "../src/proto/padlocal_pb";
-import { hexStringToBytes } from "../src/utils/ByteUtils";
-import { MessageRevokeInfo, SendTextMessageResponse, ZombieStatue } from "../src/proto/padlocal_pb";
+import { EncryptedFileType, MessageRevokeInfo, SendTextMessageResponse, ZombieStatue } from "../src/proto/padlocal_pb";
+import { Bytes, hexStringToBytes } from "../src/utils/ByteUtils";
 
 let client: PadLocalClient;
 
@@ -343,6 +343,21 @@ describe("message", () => {
 
       const filePath = `${payloadDir}/${message.getId()}-thumb`;
       fs.writeFileSync(filePath, thumbData);
+      console.log(`write file to ${filePath}`);
+    });
+
+    test("get encrypted file", async () => {
+      const fileId: string = config.get("test.message.payload.encryptedFile.fileId");
+      const fileKey: Bytes = hexStringToBytes(config.get("test.message.payload.encryptedFile.fileKey"));
+      const originalMessageToUserName: string = config.get(
+        "test.message.payload.encryptedFile.originalMessageToUserName"
+      );
+
+      const fileBinary = await client.api.getEncryptedFile(EncryptedFileType.IMAGE_THUMB, fileId, fileKey, "");
+      expect(fileBinary).toBeTruthy();
+
+      const filePath = `${payloadDir}/encrypted-file-${fileId}`;
+      fs.writeFileSync(filePath, fileBinary);
       console.log(`write file to ${filePath}`);
     });
   });

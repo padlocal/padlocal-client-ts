@@ -333,6 +333,18 @@ export class ActionMessage extends jspb.Message {
     setGetmessageminiprogramthumbresponse(value?: GetMessageMiniProgramThumbResponse): ActionMessage;
 
 
+    hasGetencryptedfilerequest(): boolean;
+    clearGetencryptedfilerequest(): void;
+    getGetencryptedfilerequest(): GetEncryptedFileRequest | undefined;
+    setGetencryptedfilerequest(value?: GetEncryptedFileRequest): ActionMessage;
+
+
+    hasGetencryptedfileresponse(): boolean;
+    clearGetencryptedfileresponse(): void;
+    getGetencryptedfileresponse(): GetEncryptedFileResponse | undefined;
+    setGetencryptedfileresponse(value?: GetEncryptedFileResponse): ActionMessage;
+
+
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
@@ -853,6 +865,8 @@ export namespace ActionMessage {
         sendfilemessageresponse?: SendFileMessageResponse.AsObject,
         getmessageminiprogramthumbrequest?: GetMessageMiniProgramThumbRequest.AsObject,
         getmessageminiprogramthumbresponse?: GetMessageMiniProgramThumbResponse.AsObject,
+        getencryptedfilerequest?: GetEncryptedFileRequest.AsObject,
+        getencryptedfileresponse?: GetEncryptedFileResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -1031,6 +1045,10 @@ export namespace ActionMessage {
     GETMESSAGEMINIPROGRAMTHUMBREQUEST = 330,
 
     GETMESSAGEMINIPROGRAMTHUMBRESPONSE = 331,
+
+    GETENCRYPTEDFILEREQUEST = 332,
+
+    GETENCRYPTEDFILERESPONSE = 333,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -5192,6 +5210,65 @@ export namespace GetMessageMiniProgramThumbResponse {
     }
 }
 
+export class GetEncryptedFileRequest extends jspb.Message { 
+    getFileid(): string;
+    setFileid(value: string): GetEncryptedFileRequest;
+
+    getFilekey(): Uint8Array | string;
+    getFilekey_asU8(): Uint8Array;
+    getFilekey_asB64(): string;
+    setFilekey(value: Uint8Array | string): GetEncryptedFileRequest;
+
+    getFiletype(): EncryptedFileType;
+    setFiletype(value: EncryptedFileType): GetEncryptedFileRequest;
+
+    getOriginalmessagetousername(): string;
+    setOriginalmessagetousername(value: string): GetEncryptedFileRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetEncryptedFileRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetEncryptedFileRequest): GetEncryptedFileRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetEncryptedFileRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetEncryptedFileRequest;
+    static deserializeBinaryFromReader(message: GetEncryptedFileRequest, reader: jspb.BinaryReader): GetEncryptedFileRequest;
+}
+
+export namespace GetEncryptedFileRequest {
+    export type AsObject = {
+        fileid: string,
+        filekey: Uint8Array | string,
+        filetype: EncryptedFileType,
+        originalmessagetousername: string,
+    }
+}
+
+export class GetEncryptedFileResponse extends jspb.Message { 
+
+    hasFilerequest(): boolean;
+    clearFilerequest(): void;
+    getFilerequest(): FileRequest | undefined;
+    setFilerequest(value?: FileRequest): GetEncryptedFileResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetEncryptedFileResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetEncryptedFileResponse): GetEncryptedFileResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetEncryptedFileResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetEncryptedFileResponse;
+    static deserializeBinaryFromReader(message: GetEncryptedFileResponse, reader: jspb.BinaryReader): GetEncryptedFileResponse;
+}
+
+export namespace GetEncryptedFileResponse {
+    export type AsObject = {
+        filerequest?: FileRequest.AsObject,
+    }
+}
+
 export enum LongLinkPacketPushType {
     NEW_MESSAGE = 0,
 }
@@ -5248,4 +5325,12 @@ export enum ImageType {
     THUMB = 0,
     NORMAL = 1,
     HD = 2,
+}
+
+export enum EncryptedFileType {
+    IMAGE_THUMB = 0,
+    IMAGE_NORMAL = 1,
+    IMAGE_HD = 2,
+    VIDEO = 3,
+    FILE = 4,
 }

@@ -67,6 +67,8 @@ message ActionMessage {
     SendFileMessageResponse sendFileMessageResponse = 329;
     GetMessageMiniProgramThumbRequest getMessageMiniProgramThumbRequest = 330;
     GetMessageMiniProgramThumbResponse getMessageMiniProgramThumbResponse = 331;
+    GetEncryptedFileRequest getEncryptedFileRequest = 332;
+    GetEncryptedFileResponse getEncryptedFileResponse = 333;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -959,5 +961,24 @@ message GetMessageMiniProgramThumbRequest {
 }
 
 message GetMessageMiniProgramThumbResponse {
+  FileRequest fileRequest = 1;
+}
+
+enum EncryptedFileType {
+  IMAGE_THUMB = 0;
+  IMAGE_NORMAL = 1;
+  IMAGE_HD = 2;
+  VIDEO = 3;
+  FILE = 4;
+}
+
+message GetEncryptedFileRequest {
+  string fileId = 1;
+  bytes fileKey = 2;
+  EncryptedFileType fileType = 3;
+  string originalMessageToUserName = 4;
+}
+
+message GetEncryptedFileResponse {
   FileRequest fileRequest = 1;
 }

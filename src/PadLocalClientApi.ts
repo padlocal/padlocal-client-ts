@@ -3,7 +3,7 @@ import { Bytes } from "./utils/ByteUtils";
 import { requestFileAndUnpack } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { PadLocalClient } from "./PadLocalClient";
-import { MessageRevokeInfo } from "./proto/padlocal_pb";
+import { EncryptedFileType, MessageRevokeInfo } from "./proto/padlocal_pb";
 
 export class PadLocalClientApi extends PadLocalClientPlugin {
   private _revokeMessageSeq: number;
@@ -284,6 +284,23 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       new pb.GetMessageMiniProgramThumbRequest()
         .setMessagecontent(messageContent)
         .setMessagetousername(messageToUserName)
+    );
+    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+  }
+
+  async getEncryptedFile(
+    fileType: EncryptedFileType,
+    fileId: string,
+    fileKey: Bytes,
+    originalMessageToUserName: string
+  ): Promise<Bytes> {
+    const grpcClient = this.client.createGrpcClient();
+    const response: pb.GetEncryptedFileResponse = await grpcClient.request(
+      new pb.GetEncryptedFileRequest()
+        .setFileid(fileId)
+        .setFilekey(fileKey)
+        .setFiletype(fileType)
+        .setOriginalmessagetousername(originalMessageToUserName)
     );
     return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
   }

@@ -27,7 +27,12 @@
                 "videoMessage": "PROTOBUF_HEX",
                 "voiceMessage": "PROTOBUF_HEX",
                 "fileMessage": "PROTOBUF_HEX",
-                "linkMessage": "PROTOBUF_HEX"
+                "linkMessage": "PROTOBUF_HEX",
+                "encryptedFile": {
+                    "fileId": "",
+                    "fileKey": "",
+                    "originalMessageToUserName": ""
+                }
             }
         },
 
