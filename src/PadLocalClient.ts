@@ -8,6 +8,8 @@ import { EventEmitter } from "events";
 import { logDebug, logError } from "./utils/log";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
+import * as grpc from "@grpc/grpc-js";
+import * as fs from "fs";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
@@ -27,11 +29,19 @@ export class PadLocalClient extends EventEmitter {
     return super.emit(event, ...args);
   }
 
-  constructor(serverAddr: string, token: string) {
+  constructor(serverAddr: string, token: string, serverCAFilePath?: string) {
     super();
 
+    let creds: grpc.ChannelCredentials;
+    if (serverCAFilePath) {
+      creds = credentials.createSsl(fs.readFileSync(serverCAFilePath));
+    } else {
+      creds = credentials.createInsecure();
+    }
+
     // Oops, @grpc/grpc-js does not support retry yet
-    this._stub = new padlocal.PadLocalClient(serverAddr, credentials.createInsecure(), {
+    this._stub = new padlocal.PadLocalClient(serverAddr, creds, {
+      "grpc.ssl_target_name_override": "client.pad-local.com",
       "grpc.default_compression_algorithm": 2,
       "grpc.default_compression_level": 2,
     });
