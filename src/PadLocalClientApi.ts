@@ -5,6 +5,12 @@ import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { PadLocalClient } from "./PadLocalClient";
 import { EncryptedFileType, MessageRevokeInfo } from "./proto/padlocal_pb";
 
+function checkRequiredField(field: any, fieldName: string) {
+  if (!field) {
+    throw new Error(`${fieldName} is required`);
+  }
+}
+
 export class PadLocalClientApi extends PadLocalClientPlugin {
   private _revokeMessageSeq: number;
 
@@ -82,6 +88,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     text: string,
     atList?: string[]
   ): Promise<pb.SendTextMessageResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+    checkRequiredField(text, "text");
+
     const sendTextMessageRequest = new pb.SendTextMessageRequest();
     sendTextMessageRequest.setTousername(toUserName).setContent(text);
 
@@ -101,6 +111,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @return
    */
   async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<pb.SendImageMessageResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+    checkRequiredField(image.length, "image");
+
     return await this.client.grpcRequest(new pb.SendImageMessageRequest().setTousername(toUserName).setImage(image), {
       idempotentId,
     });
@@ -119,6 +133,11 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     voice: Bytes,
     voiceLength: number
   ): Promise<pb.SendVoiceMessageResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+    checkRequiredField(voice.length, "voice");
+    checkRequiredField(voiceLength, "voiceLength");
+
     return await this.client.grpcRequest(
       new pb.SendVoiceMessageRequest().setTousername(toUserName).setVoice(voice).setVoicelength(voiceLength),
       {
@@ -128,6 +147,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async sendVideoMessage(idempotentId: string, toUserName: string, video: Bytes): Promise<pb.SendVideoMessageResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+    checkRequiredField(video.length, "video");
+
     return await this.client.grpcRequest(new pb.SendVideoMessageRequest().setTousername(toUserName).setVideo(video), {
       idempotentId,
     });
@@ -139,6 +162,11 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     file: Bytes,
     fileName: string
   ): Promise<pb.SendFileMessageResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+    checkRequiredField(file.length, "file");
+    checkRequiredField(fileName, "fileName");
+
     return await this.client.grpcRequest(
       new pb.SendFileMessageRequest().setTousername(toUserName).setFile(file).setFilename(fileName),
       {
@@ -154,6 +182,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @return
    */
   async sendAppMessageLink(idempotentId: string, toUserName: string, link: pb.AppMessageLink): Promise<string> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+
     const response: pb.SendAppMessageResponse = await this.client.grpcRequest(
       new pb.SendAppMessageRequest().setTousername(toUserName).setLink(link),
       {
@@ -169,6 +200,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     toUserName: string,
     miniProgram: pb.AppMessageMiniProgram
   ): Promise<string> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+
     const response: pb.SendAppMessageResponse = await this.client.grpcRequest(
       new pb.SendAppMessageRequest().setTousername(toUserName).setMiniprogram(miniProgram),
       {
@@ -184,6 +218,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     toUserName: string,
     contact: pb.Contact
   ): Promise<pb.SendContactCardMessageResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+
     return await this.client.grpcRequest(
       new pb.SendContactCardMessageRequest().setTousername(toUserName).setContact(contact),
       {
@@ -199,6 +236,11 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     messageType: number,
     messageToUserName: string
   ): Promise<string> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+    checkRequiredField(messageContent, "messageContent");
+    checkRequiredField(messageToUserName, "messageToUserName");
+
     const response: pb.ForwardMessageResponse = await this.client.grpcRequest(
       new pb.ForwardMessageRequest()
         .setTousername(toUserName)
@@ -217,6 +259,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     messageToUserName: string,
     imageType: pb.ImageType
   ): Promise<GetMessageImageResult> {
+    checkRequiredField(messageContent, "messageContent");
+    checkRequiredField(messageToUserName, "messageToUserName");
+
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageImageResponse = await grpcClient.request(
       new pb.GetMessageImageRequest()
@@ -234,6 +279,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getMessageVoice(messageId: string, messageContent: string, messageToUserName: string): Promise<Bytes> {
+    checkRequiredField(messageId, "messageId");
+    checkRequiredField(messageContent, "messageContent");
+    checkRequiredField(messageToUserName, "messageToUserName");
+
     const response: pb.GetMessageVoiceResponse = await this.client.grpcRequest(
       new pb.GetMessageVoiceRequest()
         .setMessageid(messageId)
@@ -245,6 +294,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getMessageVideoThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
+    checkRequiredField(messageContent, "messageContent");
+    checkRequiredField(messageToUserName, "messageToUserName");
+
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageVideoThumbResponse = await grpcClient.request(
       new pb.GetMessageVideoThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
@@ -254,6 +306,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getMessageVideo(messageContent: string, messageToUserName: string): Promise<Bytes> {
+    checkRequiredField(messageContent, "messageContent");
+    checkRequiredField(messageToUserName, "messageToUserName");
+
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageVideoResponse = await grpcClient.request(
       new pb.GetMessageVideoRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
@@ -263,6 +318,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getMessageAttach(messageContent: string, messageToUserName: string): Promise<Bytes> {
+    checkRequiredField(messageContent, "messageContent");
+    checkRequiredField(messageToUserName, "messageToUserName");
+
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageAttachResponse = await grpcClient.request(
       new pb.GetMessageAttachRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
@@ -271,6 +329,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getMessageAttachThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
+    checkRequiredField(messageContent, "messageContent");
+    checkRequiredField(messageToUserName, "messageToUserName");
+
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageAttachThumbResponse = await grpcClient.request(
       new pb.GetMessageAttachThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
@@ -279,6 +340,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getMessageMiniProgramThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
+    checkRequiredField(messageContent, "messageContent");
+    checkRequiredField(messageToUserName, "messageToUserName");
+
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetMessageMiniProgramThumbResponse = await grpcClient.request(
       new pb.GetMessageMiniProgramThumbRequest()
@@ -294,6 +358,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     fileKey: Bytes,
     originalMessageToUserName: string
   ): Promise<Bytes> {
+    checkRequiredField(fileId, "fileId");
+    checkRequiredField(fileKey.length, "fileKey");
+    checkRequiredField(originalMessageToUserName, "originalMessageToUserName");
+
     const grpcClient = this.client.createGrpcClient();
     const response: pb.GetEncryptedFileResponse = await grpcClient.request(
       new pb.GetEncryptedFileRequest()
@@ -311,6 +379,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     toUserName: string,
     messageRevokeInfo: MessageRevokeInfo
   ): Promise<void> {
+    checkRequiredField(msgId, "msgId");
+    checkRequiredField(fromUserName, "fromUserName");
+    checkRequiredField(toUserName, "toUserName");
+
     const request = new pb.RevokeMessageRequest()
       .setMsgid(msgId)
       .setMessagerevokeinfo(messageRevokeInfo)
@@ -341,20 +413,30 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async acceptUser(stranger: string, ticket: string): Promise<void> {
+    checkRequiredField(stranger, "stranger");
+    checkRequiredField(ticket, "ticket");
+
     await this.client.grpcRequest(new pb.AcceptUserRequest().setStranger(stranger).setTicket(ticket));
   }
 
   async addContact(stranger: string, ticket: string, scene: pb.AddContactScene, hello: string): Promise<void> {
+    checkRequiredField(stranger, "stranger");
+    checkRequiredField(ticket, "ticket");
+
     await this.client.grpcRequest(
       new pb.AddContactRequest().setStranger(stranger).setTicket(ticket).setScene(scene).setContent(hello)
     );
   }
 
   async deleteContact(userName: string): Promise<void> {
+    checkRequiredField(userName, "userName");
+
     await this.client.grpcRequest(new pb.DeleteContactRequest().setUsername(userName));
   }
 
   async getContact(userName: string): Promise<pb.Contact> {
+    checkRequiredField(userName, "userName");
+
     const response: pb.GetContactResponse = await this.client.grpcRequest(
       new pb.GetContactRequest().setUsername(userName)
     );
@@ -362,14 +444,20 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getContactQRCode(userName: string, style: number): Promise<pb.GetContactQRCodeResponse> {
+    checkRequiredField(userName, "userName");
+
     return this.client.grpcRequest(new pb.GetContactQRCodeRequest().setUsername(userName).setStyle(style));
   }
 
   async searchContact(userName: string): Promise<pb.SearchContactResponse> {
+    checkRequiredField(userName, "userName");
+
     return this.client.grpcRequest(new pb.SearchContactRequest().setUsername(userName));
   }
 
   async updateSelfNickName(nickName: string): Promise<void> {
+    checkRequiredField(nickName, "nickName");
+
     await this.client.grpcRequest(new pb.UpdateSelfNickNameRequest().setNickname(nickName));
   }
 
@@ -378,6 +466,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async zombieTest(userName: string): Promise<pb.ZombieStatue> {
+    checkRequiredField(userName, "userName");
+
     const response: pb.ZombieTestResponse = await this.client.grpcRequest(
       new pb.ZombieTestRequest().setUsername(userName)
     );
@@ -385,6 +475,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async updateContactRemark(userName: string, remark: string): Promise<void> {
+    checkRequiredField(userName, "userName");
+
     await this.client.grpcRequest(new pb.UpdateContactRemarkRequest().setUsername(userName).setRemark(remark));
   }
 
@@ -395,12 +487,17 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @return
    */
   async createChatRoom(idempotentId: string, userNameList: string[]): Promise<pb.CreateChatRoomResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(userNameList.length, "userNameList");
+
     return this.client.grpcRequest(new pb.CreateChatRoomRequest().setUsernamesList(userNameList), {
       idempotentId,
     });
   }
 
   async getChatRoomMembers(roomId: string): Promise<pb.ChatRoomMember[]> {
+    checkRequiredField(roomId, "roomId");
+
     const response: pb.GetChatRoomMembersResponse = await this.client.grpcRequest(
       new pb.GetChatRoomMembersRequest().setRoomid(roomId)
     );
@@ -408,10 +505,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getChatRoomQrCode(roomId: string): Promise<pb.GetChatRoomQrCodeResponse> {
+    checkRequiredField(roomId, "roomId");
+
     return this.client.grpcRequest(new pb.GetChatRoomQrCodeRequest().setRoomid(roomId));
   }
 
   async getChatRoomMember(roomId: string, userName: string): Promise<pb.Contact> {
+    checkRequiredField(roomId, "roomId");
+    checkRequiredField(userName, "userName");
+
     const response: pb.GetChatRoomMemberResponse = await this.client.grpcRequest(
       new pb.GetChatRoomMemberRequest().setRoomid(roomId).setUsername(userName)
     );
@@ -419,28 +521,43 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async setChatRoomAnnouncement(roomId: string, announcement: string): Promise<void> {
+    checkRequiredField(roomId, "roomId");
+
     await this.client.grpcRequest(
       new pb.SetChatRoomAnnouncementRequest().setRoomid(roomId).setAnnouncement(announcement)
     );
   }
 
   async addChatRoomMember(roomId: string, userName: string): Promise<void> {
+    checkRequiredField(roomId, "roomId");
+    checkRequiredField(userName, "userName");
+
     await this.client.grpcRequest(new pb.AddChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
   }
 
   async inviteChatRoomMember(roomId: string, userName: string): Promise<void> {
+    checkRequiredField(roomId, "roomId");
+    checkRequiredField(userName, "userName");
+
     await this.client.grpcRequest(new pb.InviteChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
   }
 
   async deleteChatRoomMember(roomId: string, userName: string): Promise<void> {
+    checkRequiredField(roomId, "roomId");
+    checkRequiredField(userName, "userName");
+
     await this.client.grpcRequest(new pb.DeleteChatRoomMemberRequest().setRoomid(roomId).setUsername(userName));
   }
 
   async setChatRoomName(roomId: string, name: string): Promise<void> {
+    checkRequiredField(roomId, "roomId");
+
     await this.client.grpcRequest(new pb.SetChatRoomNameRequest().setRoomid(roomId).setName(name));
   }
 
   async quitChatRoom(roomId: string): Promise<void> {
+    checkRequiredField(roomId, "roomId");
+
     await this.client.grpcRequest(new pb.QuitChatRoomRequest().setRoomid(roomId));
   }
 
@@ -450,6 +567,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async addLabel(label: string): Promise<number> {
+    checkRequiredField(label, "label");
+
     const response: pb.AddLabelResponse = await this.client.grpcRequest(new pb.AddLabelRequest().setLabel(label));
     return response.getLabelid();
   }
@@ -459,6 +578,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async setContactLabel(userName: string, labelIdList: number[]): Promise<void> {
+    checkRequiredField(userName, "userName");
+
     await this.client.grpcRequest(new pb.SetContactLabelRequest().setUsername(userName).setLabelidList(labelIdList));
   }
 
@@ -477,6 +598,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async snsGetUserPage(userName: string, maxId?: string): Promise<pb.SnsMoment[]> {
+    checkRequiredField(userName, "userName");
+
     const request = new pb.SnsGetUserPageRequest().setUsername(userName);
 
     if (maxId !== undefined) {
@@ -488,6 +611,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async snsGetMoment(momentId: string): Promise<pb.SnsMoment> {
+    checkRequiredField(momentId, "momentId");
+
     const response: pb.SnsGetMomentResponse = await this.client.grpcRequest(
       new pb.SnsGetMomentRequest().setMomentid(momentId)
     );
@@ -506,6 +631,8 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     payload: pb.SnsSendMomentText | pb.SnsSendMomentImages | pb.SnsSendMomentUrl,
     options?: pb.SnsSendMomentOptions
   ): Promise<pb.SnsMoment> {
+    checkRequiredField(idempotentId, "idempotentId");
+
     const request = new pb.SnsSendMomentRequest();
     if (options) {
       request.setOptions(options);
@@ -530,6 +657,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     momentContentXml: string,
     options?: pb.SnsSendMomentOptions
   ): Promise<pb.SnsMoment> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(momentContentXml, "momentContentXml");
+
     const request = new pb.SnsForwardMomentRequest().setMomentcontentxml(momentContentXml);
 
     if (options) {
@@ -559,6 +689,11 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     commentText: string,
     replyTo?: pb.SnsSendCommentReplyTo
   ): Promise<pb.SnsMoment> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(momentId, "momentId");
+    checkRequiredField(momentOwnerUserName, "momentOwnerUserName");
+    checkRequiredField(commentText, "commentText");
+
     const request = new pb.SnsSendCommentRequest()
       .setMomentid(momentId)
       .setMomentownerusername(momentOwnerUserName)
@@ -585,6 +720,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async snsLikeMoment(momentId: string, momentOwnerUserName: string): Promise<pb.SnsMoment> {
+    checkRequiredField(momentId, "momentId");
+    checkRequiredField(momentOwnerUserName, "momentOwnerUserName");
+
     const response: pb.SnsLikeMomentResponse = await this.client.grpcRequest(
       new pb.SnsLikeMomentRequest().setMomentid(momentId).setMomentownerusername(momentOwnerUserName)
     );
@@ -592,22 +730,33 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async snsUnlikeMoment(momentId: string): Promise<void> {
+    checkRequiredField(momentId, "momentId");
+
     await this.client.grpcRequest(new pb.SnsUnlikeMomentRequest().setMomentid(momentId));
   }
 
   async snsRemoveMomentComment(momentId: string, commentId: string): Promise<void> {
+    checkRequiredField(momentId, "momentId");
+    checkRequiredField(commentId, "commentId");
+
     await this.client.grpcRequest(new pb.SnsRemoveMomentCommentRequest().setMomentid(momentId).setCommentid(commentId));
   }
 
   async snsMakeMomentPrivate(momentId: string): Promise<void> {
+    checkRequiredField(momentId, "momentId");
+
     await this.client.grpcRequest(new pb.SnsMakeMomentPrivateRequest().setMomentid(momentId));
   }
 
   async snsMakeMomentPublic(momentId: string): Promise<void> {
+    checkRequiredField(momentId, "momentId");
+
     await this.client.grpcRequest(new pb.SnsMakeMomentPublicRequest().setMomentid(momentId));
   }
 
   async snsRemoveMoment(momentId: string): Promise<void> {
+    checkRequiredField(momentId, "momentId");
+
     await this.client.grpcRequest(new pb.SnsRemoveMomentRequest().setMomentid(momentId));
   }
 }
