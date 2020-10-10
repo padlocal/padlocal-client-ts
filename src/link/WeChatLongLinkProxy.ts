@@ -1,7 +1,7 @@
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
 import { PromiseCallback } from "../utils/PromiseUtils";
 import { PadLocalClient } from "../PadLocalClient";
-import { logDebug, logWarn, logInfo } from "../utils/log";
+import { logDebug, logWarn } from "../utils/log";
 import { EventEmitter } from "events";
 import { Socket } from "net";
 import { Bytes, bytesToHexString, joinBytes, newBytes, subBytes } from "../utils/ByteUtils";
@@ -297,7 +297,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     const delay = this._connectRetryStrategy.nextRetryDelay();
 
-    logInfo(`longlink reconnect [${this._connectRetryStrategy.retryCount}] after delay:${delay}ms`);
+    logDebug(`longlink reconnect [${this._connectRetryStrategy.retryCount}] after delay:${delay}ms`);
 
     this._reconnectDelayTimer = setTimeout(() => {
       this._clearReconnectTimer();

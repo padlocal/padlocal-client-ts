@@ -1,7 +1,7 @@
 import { Socket } from "net";
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
-import { Bytes, bytesToHexString, joinBytes } from "../utils/ByteUtils";
-import { logInfo, logWarn } from "../utils/log";
+import { Bytes, bytesToHexString } from "../utils/ByteUtils";
+import { logDebug, logWarn } from "../utils/log";
 import VError from "verror";
 import { SerialExecutor } from "../utils/SerialExecutor";
 
@@ -44,7 +44,7 @@ export class SocketClient {
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      logInfo(
+      logDebug(
         `[tid:${this.traceId}] socket #${this.retryStrategy.retryCount} retry send, after delay: ${delay}ms, addr:\"${
           this.host
         }:${this.port}\" data:${bytesToHexString(data)}`
