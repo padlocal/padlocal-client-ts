@@ -1,6 +1,11 @@
 import { PadLocalClient } from "./PadLocalClient";
 import { Metadata, CallCredentials, ClientDuplexStream } from "@grpc/grpc-js";
-import { IDEMPOTENT_ID_KEY, TRACE_ID_METADATA_KEY } from "./utils/Constant";
+import {
+  CLIENT_TYPE_METADATA_KEY,
+  CLIENT_VERSION_METADATA_KEY,
+  IDEMPOTENT_ID_KEY,
+  TRACE_ID_METADATA_KEY,
+} from "./utils/Constant";
 import { IPadLocalClient } from "./proto/padlocal_grpc_pb";
 import {
   ActionMessage,
@@ -53,6 +58,8 @@ export class GrpcClient extends PadLocalClientPlugin {
 
     const metaData = new Metadata();
     metaData.set(TRACE_ID_METADATA_KEY, this.traceId);
+    metaData.set(CLIENT_TYPE_METADATA_KEY, "ts");
+    metaData.set(CLIENT_VERSION_METADATA_KEY, client.version);
     if (options?.idempotentId) {
       metaData.set(IDEMPOTENT_ID_KEY, options.idempotentId);
     }
@@ -131,7 +138,7 @@ export class GrpcClient extends PadLocalClientPlugin {
 
       return new Promise((resolve, reject) => {
         const timeoutId = setTimeout(() => {
-          this._failPendingRequest(newSeqId, new IOError("subRequest timeout"));
+          this._failPendingRequest(newSeqId, new IOError(`[tid:${this.traceId}] subRequest timeout`));
         }, this._requestTimeout);
 
         this._pendingCallbacks.set(newSeqId, new PromiseCallback(resolve, reject, timeoutId));
@@ -162,6 +169,7 @@ export class GrpcClient extends PadLocalClientPlugin {
   private __sendMessage<T extends Message>(payload: T, seq?: number, ack?: number) {
     if (this._status !== Status.OK && this._status !== Status.SERVER_COMPLETE) {
       throw new SubRequestCancelError(
+        this.traceId,
         this._status,
         undefined,
         "can not send message while stream status is not illegal"
@@ -256,7 +264,7 @@ export class GrpcClient extends PadLocalClientPlugin {
   }
 
   private _failAllPendingRequest(status: Status, error: Error): void {
-    const e = new SubRequestCancelError(status, error);
+    const e = new SubRequestCancelError(this.traceId, status, error);
     for (const [, p] of this._pendingCallbacks.entries()) {
       p.reject(e);
     }
@@ -330,8 +338,18 @@ export enum Status {
 export class SubRequestCancelError extends VError {
   reason: Status;
 
-  constructor(reason: Status, cause?: Error, message?: string) {
-    super(`sub request has been cancelled reason: ${reason}, ${message || ""}`, cause);
+  constructor(traceId: string, reason: Status, cause?: Error, message?: string) {
+    if (cause) {
+      super(
+        cause,
+        `[tid:${traceId}] request has been cancelled for reason: ${Status[reason]}${message ? ", " + message : ""}`
+      );
+    } else {
+      super(
+        `[tid:${traceId}] request has been cancelled for reason: ${Status[reason]}${message ? ", " + message : ""}`
+      );
+    }
+
     this.reason = reason;
   }
 }

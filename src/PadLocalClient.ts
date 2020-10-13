@@ -5,11 +5,12 @@ import { GrpcClient, Options } from "./GrpcClient";
 import { Host, Contact, SystemEventRequest, SystemEventType, Message } from "./proto/padlocal_pb";
 import { WeChatLongLinkProxy, HeartBeatEventPayload } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
-import { logDebug, logError } from "./utils/log";
+import { logDebug, logError, logInfo } from "./utils/log";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
 import * as grpc from "@grpc/grpc-js";
 import * as fs from "fs";
+import { version } from "../package.json";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
@@ -29,7 +30,7 @@ export class PadLocalClient extends EventEmitter {
     return super.emit(event, ...args);
   }
 
-  constructor(serverAddr: string, token: string, serverCAFilePath?: string) {
+  constructor(serverAddr: string, token: string, serverCAFilePath?: string, skipPrintVersion: boolean = false) {
     super();
 
     let creds: grpc.ChannelCredentials;
@@ -84,10 +85,23 @@ export class PadLocalClient extends EventEmitter {
         logError(`error while syncing onpush: ${e.stack}`);
       }
     });
+
+    if (!skipPrintVersion) {
+      logInfo(`
+      ============================================================
+                    Welcome to padlocal-client-ts !
+                           version: ${this.version}
+      ============================================================
+     `);
+    }
   }
 
   get isOnline(): boolean {
     return !!this.selfContact;
+  }
+
+  get version(): string {
+    return version;
   }
 
   updateLongLinkHost(longLinkHostInfo: Host) {

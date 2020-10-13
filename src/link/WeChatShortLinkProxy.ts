@@ -38,7 +38,7 @@ export class WeChatShortLinkProxy {
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      logWarn(
+      logDebug(
         `[tid:${this.traceId}] short link #${
           this.retryStrategy.retryCount
         } retry request, after delay: ${delay}ms, path: ${path} data: ${bytesToHexString(data)}`
