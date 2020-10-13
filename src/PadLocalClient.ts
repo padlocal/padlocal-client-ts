@@ -10,7 +10,7 @@ import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
 import * as grpc from "@grpc/grpc-js";
 import * as fs from "fs";
-import { version } from "pjson";
+import { VERSION } from "./version";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
@@ -101,7 +101,7 @@ export class PadLocalClient extends EventEmitter {
   }
 
   get version(): string {
-    return version;
+    return VERSION;
   }
 
   updateLongLinkHost(longLinkHostInfo: Host) {

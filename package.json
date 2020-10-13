@@ -1,6 +1,6 @@
 {
   "name": "padlocal-client-ts",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "description": "Padlocal ts client",
   "keywords": [
     "padlocal",
@@ -19,9 +19,10 @@
   ],
   "scripts": {
     "clean": "rm -fr dist/*",
-    "dist": "npm run clean && tsc && cp -R src/proto/ dist/proto/",
+    "dist": "npm run clean && npm run gen-version && tsc && cp -R src/proto/ dist/proto/",
     "lint": "tslint --project tsconfig.json",
     "gen-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/proto --grpc_out=grpc_js:src/proto --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --plugin=protoc-gen-ts=node_modules/.bin/protoc-gen-ts --ts_out=generate_package_definition:src/proto padlocal.proto",
+    "gen-version": "bash scripts/generate-version.sh",
     "test": "jest",
     "coverage": "jest --coverage",
     "prepare": "npm run dist"
@@ -43,7 +44,6 @@
     "axios": "^0.19.2",
     "crypto-random-string": "^3.2.0",
     "google-protobuf": "^3.12.4",
-    "pjson": "^1.0.9",
     "uuid": "^8.3.0",
     "verror": "^1.10.0"
   },
@@ -55,6 +55,7 @@
     "grpc-tools": "^1.9.1",
     "grpc_tools_node_protoc_ts": "^4.1.3",
     "jest": "^26.3.0",
+    "pkg-jq": "^0.2.4",
     "ts-jest": "^26.1.4",
     "typescript": "^3.9.7"
   }
