@@ -1,6 +1,6 @@
 {
   "name": "padlocal-client-ts",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "description": "Padlocal ts client",
   "keywords": [
     "padlocal",
@@ -43,6 +43,7 @@
     "axios": "^0.19.2",
     "crypto-random-string": "^3.2.0",
     "google-protobuf": "^3.12.4",
+    "pjson": "^1.0.9",
     "uuid": "^8.3.0",
     "verror": "^1.10.0"
   },

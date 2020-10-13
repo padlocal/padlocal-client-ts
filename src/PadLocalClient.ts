@@ -10,7 +10,7 @@ import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
 import * as grpc from "@grpc/grpc-js";
 import * as fs from "fs";
-import { version } from "../package.json";
+import { version } from "pjson";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
