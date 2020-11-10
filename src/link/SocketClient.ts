@@ -72,7 +72,7 @@ export class SocketClient {
     this._socket = undefined;
 
     this._callbackExecutor.execute(async () => {
-      this._callback?.onCancel?.();
+      await this._callback?.onCancel?.();
     });
   }
 
@@ -90,7 +90,7 @@ export class SocketClient {
 
         if (error) {
           this._callbackExecutor.execute(async () => {
-            this._callback?.onError?.(error);
+            await this._callback?.onError?.(error);
           });
 
           logWarn(`socket on error: ${error}`);
@@ -123,7 +123,7 @@ export class SocketClient {
           clearTimeout(connectTimeout);
 
           this._callbackExecutor.execute(async () => {
-            this._callback?.onConnect?.();
+            await this._callback?.onConnect?.();
           });
 
           socket.write(sendData);
@@ -150,7 +150,7 @@ export class SocketClient {
 
       socket.on("close", () => {
         this._callbackExecutor.execute(async () => {
-          this._callback?.onClose?.();
+          await this._callback?.onClose?.();
         });
 
         onSocketFinish();
