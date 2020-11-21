@@ -149,6 +149,10 @@ export class PadLocalClient extends EventEmitter {
     return this._longLinkProxy;
   }
 
+  public getLongLinkId(): string | undefined {
+    return this._longLinkProxy.getId();
+  }
+
   public shutdown() {
     this._reset();
   }

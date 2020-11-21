@@ -4,14 +4,21 @@ import { PadLocalClient } from "../PadLocalClient";
 import { logDebug, logWarn } from "../utils/log";
 import { EventEmitter } from "events";
 import { Socket } from "net";
-import { Bytes, bytesToHexString, joinBytes, newBytes, subBytes } from "../utils/ByteUtils";
+import { Bytes, bytesToHexString } from "../utils/ByteUtils";
 import {
   LongLinkUnpackRequest,
   LongLinkUnpackResponse,
   LongLinkPacket,
   LongLinkPacketPushType,
+  LongLinkInitRequest,
+  WeChatResponse,
+  WeChatLongLinkResponse,
+  WeChatStreamAck,
 } from "../proto/padlocal_pb";
 import VError from "verror";
+import { SerialExecutor } from "../utils/SerialExecutor";
+import { genUUID } from "../utils/Utils";
+import { GrpcClient, SubResponseWrap } from "../GrpcClient";
 
 export type WeChatLongLinkProxyEvent = "heartbeat" | "message-push" | "status";
 
@@ -31,10 +38,12 @@ export class WeChatLongLinkProxy extends EventEmitter {
   private _port?: number;
   private _status = Status.IDLE;
   private _socket?: Socket;
+  private _id?: string;
   private _socketPromise?: Promise<Socket>;
   private _reconnectDelayTimer?: NodeJS.Timeout;
   private _requestCallbackMap: Map<number, PromiseCallback> = new Map();
-  private _socketDataBuffer: Bytes = newBytes();
+  private _socketEventExecutor: SerialExecutor;
+  private _initContext?: InitContext;
 
   private readonly _client: PadLocalClient;
 
@@ -50,6 +59,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
     super();
 
     this._client = client;
+    this._socketEventExecutor = new SerialExecutor();
   }
 
   updateHostPort(host: string, port: number, reconnect: boolean = true) {
@@ -98,6 +108,10 @@ export class WeChatLongLinkProxy extends EventEmitter {
     return this._status === Status.CONNECTED;
   }
 
+  getId(): string | undefined {
+    return this._id;
+  }
+
   async makeSureConnected(): Promise<void> {
     if (this.isConnected()) {
       return;
@@ -109,6 +123,11 @@ export class WeChatLongLinkProxy extends EventEmitter {
     } catch (e) {
       throw new IOError(e, `longlink fail to connect, host:${this._host}, port:${this._port}`);
     }
+  }
+
+  sendInitData(data: Bytes, grpcClient: GrpcClient, ack: number) {
+    this._initContext = new InitContext(grpcClient, ack);
+    this._socket!.write(data);
   }
 
   async send(seq: number, data: Bytes): Promise<Bytes> {
@@ -254,17 +273,15 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     this._stopHeartbeat();
 
-    this._destroySocket();
-  }
-
-  private _destroySocket(): void {
-    if (!this._socket) {
-      return;
+    if (this._socket) {
+      this._socket.destroy();
+      this._socket = undefined;
     }
 
-    this._socket.destroy();
-    this._socket = undefined;
+    this._id = undefined;
     this._socketPromise = undefined;
+    this._socketEventExecutor.clear();
+    this._initContext = undefined;
   }
 
   private _onSocketError(error: Error): void {
@@ -320,8 +337,9 @@ export class WeChatLongLinkProxy extends EventEmitter {
         socket.setTimeout(WeChatLongLinkProxy.SOCKET_TIMEOUT);
 
         this._socket = socket;
+        this._id = genUUID();
 
-        // node socket doesn't support connecet timeout natively, so implement our own version.
+        // node socket doesn't support connect timeout natively, so implement our own version.
         const connectTimeout = setTimeout(() => {
           logDebug(`longlink socket[${this._host}:${this._port}] connect timeout`);
 
@@ -346,33 +364,45 @@ export class WeChatLongLinkProxy extends EventEmitter {
             this._connectRetryStrategy.reset();
             this._updateStatus(Status.CONNECTED);
 
-            // 同步心跳，当完成第一个 heart beat 后才可请求以发送
-            this._startHeartbeat();
-
             resolve(socket);
+
+            // do not use _socketEventExecutor to execute, or socket.on("data") will be blocked
+            this._onSocketConnect();
           }
         );
 
         socket.on("data", (data) => {
-          this._processSocketData(data);
+          this._socketEventExecutor.execute(async () => {
+            if (this._initContext) {
+              await this._onSocketInitData(data);
+            } else {
+              await this._onSocketData(data);
+            }
+          });
         });
 
         socket.on("close", () => {
           // in case connectTimeout is still valid
           clearTimeout(connectTimeout);
 
-          this._onSocketError(new IOError("socket is closed"));
+          this._socketEventExecutor.execute(async () => {
+            await this._onSocketError(new IOError("socket is closed"));
+          });
         });
 
         socket.on("timeout", () => {
-          this._onSocketError(new IOError("socket is read-write timeout"));
+          this._socketEventExecutor.execute(async () => {
+            await this._onSocketError(new IOError("socket is read-write timeout"));
+          });
         });
 
         socket.on("error", (error) => {
           // in case connectTimeout is still valid
           clearTimeout(connectTimeout);
 
-          this._onSocketError(error);
+          this._socketEventExecutor.execute(async () => {
+            await this._onSocketError(error);
+          });
         });
       });
     } else {
@@ -382,19 +412,52 @@ export class WeChatLongLinkProxy extends EventEmitter {
     }
   }
 
-  private async _processSocketData(data: Bytes): Promise<void> {
-    logDebug(`long link receive data: ${bytesToHexString(data)}`);
+  private async _onSocketConnect() {
+    try {
+      const startDate = new Date();
+      logDebug(`longlink start init`);
 
-    this._socketDataBuffer = joinBytes(this._socketDataBuffer, data);
+      await this._client.grpcRequest(new LongLinkInitRequest());
+
+      logDebug(`longlink init done, cost ${new Date().getTime() - startDate.getTime()}ms`);
+    } catch (e) {
+      this._onSocketError(new IOError(e, "long link init failed"));
+      return;
+    }
+
+    this._startHeartbeat();
+  }
+
+  private async _onSocketInitData(data: Bytes): Promise<void> {
+    const response: SubResponseWrap<WeChatStreamAck> = await this._initContext!.grpcClient.subReplyAndRequest(
+      this._initContext!.ack,
+      new WeChatResponse().setLonglinkresponse(new WeChatLongLinkResponse().setPayload(data))
+    );
+
+    const streamAck = response.payload;
+    if (!streamAck.getFinish()) {
+      // not finished, continue to receive data
+      this._initContext!.ack = response.ack!;
+    } else {
+      // init finished, send data and switch to normal logic.
+      const dataToSend: Bytes = Buffer.from(streamAck.getSenddata());
+      this._socket!.write(dataToSend);
+
+      this._initContext = undefined;
+    }
+  }
+
+  private async _onSocketData(data: Bytes): Promise<void> {
+    logDebug(`long link receive data: ${bytesToHexString(data)}`);
 
     let response: LongLinkUnpackResponse;
 
     try {
-      response = await this._client.grpcRequest(new LongLinkUnpackRequest().setStreamdata(this._socketDataBuffer));
+      response = await this._client.grpcRequest(new LongLinkUnpackRequest().setStreamdata(data));
     } catch (e) {
       // if longlink unpack failed, notify all longlink pending callback with error,
       // bcz we don't known which request corresponding to current response exactly.
-      const desc = `Exception while unpack long link data:${bytesToHexString(this._socketDataBuffer)}`;
+      const desc = `Exception while unpack long link data`;
       this._notifyAllRequestCallbackWithError(new IOError(e, desc));
 
       return;
@@ -410,18 +473,6 @@ export class WeChatLongLinkProxy extends EventEmitter {
         if (pushPacket.getType() === LongLinkPacketPushType.NEW_MESSAGE) {
           this.emit("message-push");
         }
-      }
-    }
-
-    // data is consumed completely
-    const consumedLen = response.getStreamdataconsumedlen();
-    if (consumedLen === this._socketDataBuffer.length) {
-      this._socketDataBuffer = newBytes();
-    } else {
-      if (this._socketDataBuffer.length > 0) {
-        this._socketDataBuffer = subBytes(this._socketDataBuffer, consumedLen, this._socketDataBuffer.length);
-      } else {
-        // do not change buffer, if none byte is consumed
       }
     }
   }
@@ -445,3 +496,13 @@ export interface HeartBeatEventPayload {
 }
 
 export class IOError extends VError {}
+
+class InitContext {
+  public grpcClient: GrpcClient;
+  public ack: number;
+
+  constructor(grpcClient: GrpcClient, ack: number) {
+    this.grpcClient = grpcClient;
+    this.ack = ack;
+  }
+}

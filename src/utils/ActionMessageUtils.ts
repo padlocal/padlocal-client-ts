@@ -122,7 +122,7 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.QUITCHATROOMRESPONSE, pb.QuitChatRoomResponse],
   [ActionMessage.PayloadCase.SENDCONTACTCARDMESSAGEREQUEST, pb.SendContactCardMessageRequest],
   [ActionMessage.PayloadCase.SENDCONTACTCARDMESSAGERESPONSE, pb.SendContactCardMessageResponse],
-  [ActionMessage.PayloadCase.WECHATSOCKETRESPONSEACK, pb.WeChatSocketResponseAck],
+  [ActionMessage.PayloadCase.WECHATSTREAMACK, pb.WeChatStreamAck],
   [ActionMessage.PayloadCase.SENDVOICEMESSAGEREQUEST, pb.SendVoiceMessageRequest],
   [ActionMessage.PayloadCase.SENDVOICEMESSAGERESPONSE, pb.SendVoiceMessageResponse],
   [ActionMessage.PayloadCase.SENDVIDEOMESSAGEREQUEST, pb.SendVideoMessageRequest],
@@ -133,6 +133,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.GETMESSAGEMINIPROGRAMTHUMBRESPONSE, pb.GetMessageMiniProgramThumbResponse],
   [ActionMessage.PayloadCase.GETENCRYPTEDFILEREQUEST, pb.GetEncryptedFileRequest],
   [ActionMessage.PayloadCase.GETENCRYPTEDFILERESPONSE, pb.GetEncryptedFileResponse],
+  [ActionMessage.PayloadCase.LONGLINKINITREQUEST, pb.LongLinkInitRequest],
+  [ActionMessage.PayloadCase.LONGLINKINITRESPONSE, pb.LongLinkInitResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

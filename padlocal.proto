@@ -23,7 +23,9 @@ message ActionMessage {
     LongLinkUnpackResponse longLinkUnpackResponse = 15;
     LongLinkHeartBeatRequest longLinkHeartBeatRequest = 16;
     LongLinkHeartBeatResponse longLinkHeartBeatResponse = 17;
-    WeChatSocketResponseAck weChatSocketResponseAck = 18;
+    WeChatStreamAck weChatStreamAck = 18;
+    LongLinkInitRequest longLinkInitRequest = 19;
+    LongLinkInitResponse longLinkInitResponse = 20;
 
     SyncRequest syncRequest = 100;
     SyncResponse syncResponse = 101;
@@ -155,6 +157,11 @@ message ActionMessage {
 message WeChatLongLinkRequest {
   int64 seq = 1;
   bytes payload = 2;
+  bool initMode = 3;
+}
+
+message WeChatLongLinkResponse {
+  bytes payload = 1;
 }
 
 message WeChatShortLinkRequest {
@@ -163,9 +170,23 @@ message WeChatShortLinkRequest {
   bytes payload = 3;
 }
 
+message WeChatShortLinkResponse {
+  bytes payload = 1;
+}
+
 message WeChatSocketRequest {
   Host host = 1;
   bytes payload = 2;
+}
+
+message WeChatSocketResponse {
+  bytes payload = 1;
+  bool streamReset = 2;
+}
+
+message WeChatStreamAck {
+  bool finish = 1;
+  bytes sendData = 2;
 }
 
 message WeChatRequest {
@@ -177,12 +198,11 @@ message WeChatRequest {
 }
 
 message WeChatResponse {
-  bytes payload = 1;
-  bool streamReset = 2;
-}
-
-message WeChatSocketResponseAck {
-  bool finish = 1;
+  oneof response {
+    WeChatLongLinkResponse longLinkResponse = 1;
+    WeChatShortLinkResponse shortLinkResponse = 2;
+    WeChatSocketResponse socketResponse = 3;
+  }
 }
 
 message LongLinkUnpackRequest {
@@ -191,7 +211,6 @@ message LongLinkUnpackRequest {
 
 message LongLinkUnpackResponse {
   repeated LongLinkPacket packet = 1;
-  int64 streamDataConsumedLen = 2;
 }
 
 message LongLinkPacket {
@@ -284,6 +303,12 @@ message LongLinkHeartBeatRequest {
 
 message LongLinkHeartBeatResponse{
 
+}
+
+message LongLinkInitRequest {
+}
+
+message LongLinkInitResponse {
 }
 
 message MessageRevokeInfo {

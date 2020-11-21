@@ -1,7 +1,7 @@
 import { SocketClient } from "./SocketClient";
 import { Bytes } from "../utils/ByteUtils";
 import { GrpcClient, SubResponseWrap } from "../GrpcClient";
-import { Host, WeChatResponse, WeChatSocketResponseAck } from "../proto/padlocal_pb";
+import { Host, WeChatResponse, WeChatSocketResponse, WeChatStreamAck } from "../proto/padlocal_pb";
 
 export class WeChatSocketProxy {
   private readonly _grpcClient: GrpcClient;
@@ -13,10 +13,10 @@ export class WeChatSocketProxy {
     this._grpcClient = grpcClient;
     this._socketClient = new SocketClient(host.getHost(), host.getPort(), grpcClient.traceId, {
       onConnect: async () => {
-        await this._reply(new WeChatResponse().setStreamreset(true));
+        await this._reply(new WeChatSocketResponse().setStreamreset(true));
       },
       onReceive: async (data: Bytes): Promise<boolean> => {
-        return this._reply(new WeChatResponse().setPayload(data));
+        return this._reply(new WeChatSocketResponse().setPayload(data));
       },
     });
   }
@@ -25,13 +25,13 @@ export class WeChatSocketProxy {
     await this._socketClient.send(data);
   }
 
-  private async _reply(wechatResponse: WeChatResponse) {
-    const response: SubResponseWrap<WeChatSocketResponseAck> = await this._grpcClient.subReplyAndRequest(
+  private async _reply(socketResponse: WeChatSocketResponse) {
+    const response: SubResponseWrap<WeChatStreamAck> = await this._grpcClient.subReplyAndRequest(
       this._ack,
-      wechatResponse
+      new WeChatResponse().setSocketresponse().setSocketresponse(socketResponse)
     );
 
-    const socketAck: WeChatSocketResponseAck = response.payload;
+    const socketAck: WeChatStreamAck = response.payload;
     if (!socketAck.getFinish()) {
       this._ack = response.ack!;
     }

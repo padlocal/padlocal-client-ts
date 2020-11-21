@@ -18,5 +18,9 @@ export function stringifyPB(obj: any): string {
 }
 
 export function genIdempotentId(): string {
-  return uuid().replace("-", "");
+  return uuid().replace(/-/g, "");
+}
+
+export function genUUID(): string {
+  return uuid().replace(/-/g, "");
 }
