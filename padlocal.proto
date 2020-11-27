@@ -17,15 +17,20 @@ message ActionMessage {
   oneof payload {
     WeChatRequest wechatRequest = 10;
     WeChatResponse wechatResponse = 11;
-    SystemEventRequest systemEventRequest = 12;
-    SystemEventResponse systemEventResponse = 13;
-    LongLinkUnpackRequest longLinkUnpackRequest = 14;
-    LongLinkUnpackResponse longLinkUnpackResponse = 15;
-    LongLinkHeartBeatRequest longLinkHeartBeatRequest = 16;
-    LongLinkHeartBeatResponse longLinkHeartBeatResponse = 17;
-    WeChatStreamAck weChatStreamAck = 18;
-    LongLinkInitRequest longLinkInitRequest = 19;
-    LongLinkInitResponse longLinkInitResponse = 20;
+    WeChatStreamRequest weChatStreamRequest = 12;
+    WeChatStreamResponse weChatStreamResponse = 13;
+    WeChatStreamResponseReply weChatStreamResponseReply = 14;
+    SystemEventRequest systemEventRequest = 15;
+    SystemEventResponse systemEventResponse = 16;
+
+    LongLinkInitRequest longLinkInitRequest = 80;
+    LongLinkInitResponse longLinkInitResponse = 81;
+    LongLinkPackRequest longLinkPackRequest = 82;
+    LongLinkPackResponse longLinkPackResponse = 83;
+    LongLinkUnpackRequest longLinkUnpackRequest = 84;
+    LongLinkUnpackResponse longLinkUnpackResponse = 85;
+    LongLinkHeartBeatRequest longLinkHeartBeatRequest = 86;
+    LongLinkHeartBeatResponse longLinkHeartBeatResponse = 87;
 
     SyncRequest syncRequest = 100;
     SyncResponse syncResponse = 101;
@@ -155,13 +160,12 @@ message ActionMessage {
 }
 
 message WeChatLongLinkRequest {
-  int64 seq = 1;
-  bytes payload = 2;
-  bool initMode = 3;
+  string messageId = 1;
+  string longLinkId = 2;
+  bool initPhase = 3;
 }
 
 message WeChatLongLinkResponse {
-  bytes payload = 1;
 }
 
 message WeChatShortLinkRequest {
@@ -174,63 +178,83 @@ message WeChatShortLinkResponse {
   bytes payload = 1;
 }
 
+message WeChatRequest {
+  oneof payload {
+    WeChatLongLinkRequest longLinkRequest = 10;
+    WeChatShortLinkRequest shortLinkRequest = 11;
+  }
+}
+
+message WeChatResponse {
+  oneof payload {
+    WeChatLongLinkResponse longLinkResponse = 10;
+    WeChatShortLinkResponse shortLinkResponse = 11;
+  }
+}
+
+message WeChatLongLinkStreamRequest {
+  bytes payload = 1;
+  string longLinkId = 2;
+  bool initPhase = 3;
+}
+
+message WeChatLongLinkStreamResponse {
+  bytes payload = 1;
+}
+
+message WeChatLongLinkStreamResponseReply {
+  bytes payload = 1;
+}
+
 message WeChatSocketRequest {
   Host host = 1;
   bytes payload = 2;
 }
 
 message WeChatSocketResponse {
-  bytes payload = 1;
-  bool streamReset = 2;
-}
-
-message WeChatStreamAck {
-  bool finish = 1;
-  bytes sendData = 2;
-}
-
-message WeChatRequest {
-  oneof request {
-    WeChatLongLinkRequest longLinkRequest = 1;
-    WeChatShortLinkRequest shortLinkRequest = 2;
-    WeChatSocketRequest socketRequest = 3;
-  }
-}
-
-message WeChatResponse {
-  oneof response {
-    WeChatLongLinkResponse longLinkResponse = 1;
-    WeChatShortLinkResponse shortLinkResponse = 2;
-    WeChatSocketResponse socketResponse = 3;
-  }
-}
-
-message LongLinkUnpackRequest {
-  bytes streamData = 1;
-}
-
-message LongLinkUnpackResponse {
-  repeated LongLinkPacket packet = 1;
-}
-
-message LongLinkPacket {
-  oneof type {
-    LongLinkPacketNormal normal = 1;
-    LongLinkPacketPush push = 2;
-  }
-}
-
-message LongLinkPacketNormal {
-  int64 seq = 1;
+  bool socketReset = 1;
   bytes payload = 2;
 }
 
-enum LongLinkPacketPushType {
-  NEW_MESSAGE = 0;
+message WeChatSocketResponseReply {
 }
 
-message LongLinkPacketPush {
-  LongLinkPacketPushType type = 1;
+message WeChatPushSubscribeRequest {
+  repeated LongLinkMessagePushType pushType = 1;
+}
+
+message WeChatPushSubscribeResponse {
+  repeated LongLinkMessage message = 1;
+}
+
+message WeChatPushSubscribeResponseReply {
+}
+
+message WeChatStreamRequest {
+  bool eof = 1;
+  oneof payload {
+    WeChatLongLinkStreamRequest longLinkRequest = 10;
+    WeChatSocketRequest socketRequest = 11;
+    WeChatPushSubscribeRequest pushSubscribeRequest = 12;
+  }
+}
+
+message WeChatStreamResponse {
+  bool eof = 1;
+  oneof payload {
+    WeChatLongLinkStreamResponse longLinkResponse = 10;
+    WeChatSocketResponse socketResponse = 11;
+    WeChatPushSubscribeResponse pushSubscribeResponse = 12;
+  }
+}
+
+message WeChatStreamResponseReply {
+  bool eof = 1;
+  oneof payload {
+    WeChatLongLinkStreamResponseReply longLinkResponseReply= 10;
+    WeChatSocketResponseReply socketResponseReply = 11;
+    WeChatPushSubscribeResponseReply pushSubscribeResponseReply = 12;
+  }
 }
 
 enum LoginPolicy{
@@ -286,7 +310,6 @@ message QRCodeEvent {
 
 message AuthInfo {
   Contact selfContact = 1;
-  Host longLinkHost = 2;
 }
 
 message LogoutRequest {
@@ -297,18 +320,58 @@ message LogoutResponse {
 
 }
 
-message LongLinkHeartBeatRequest {
-  int64 heartBeatSeq = 1;
-}
-
-message LongLinkHeartBeatResponse{
-
-}
-
 message LongLinkInitRequest {
+  string longLinkId = 1;
 }
 
 message LongLinkInitResponse {
+}
+
+message LongLinkPackRequest {
+  string longLinkId = 1;
+  string messageId = 2;
+}
+
+message LongLinkPackResponse {
+  bytes payload = 1;
+}
+
+message LongLinkUnpackRequest {
+  string longLinkId = 1;
+  bytes payload = 2;
+}
+
+message LongLinkUnpackResponse {
+  repeated LongLinkMessage message = 1;
+}
+
+enum LongLinkMessageType {
+  NORMAL_MESSAGE = 0;
+  PUSH_MESSAGE = 1;
+}
+
+message LongLinkMessage {
+  LongLinkMessageType type = 1;
+  string messageId = 2;
+  oneof payload {
+    LongLinkMessagePush push = 10;
+  }
+}
+
+enum LongLinkMessagePushType {
+  NEW_MESSAGE = 0;
+  LOGIN_STATUS_NOTIFY = 1;
+}
+
+message LongLinkMessagePush {
+  LongLinkMessagePushType type = 1;
+}
+
+message LongLinkHeartBeatRequest {
+  string longLinkId = 1;
+}
+
+message LongLinkHeartBeatResponse{
 }
 
 message MessageRevokeInfo {
@@ -814,20 +877,20 @@ message SnsMomentComment {
   string replyUserName = 8;
 }
 
-enum SystemEventType {
-  DID_REFRESH_TOKEN = 0;
-  DID_KICKOUT = 1;
-}
-
 message SystemKickOutEvent {
   int32 errorCode = 1;
   string errorMessage = 2;
 }
 
+message SystemLongLinkUpdateEvent {
+  Host longLinkHost = 1;
+  bool reconnectImmediately = 2;
+}
+
 message SystemEventRequest {
-  SystemEventType type = 1;
   oneof payload {
-    SystemKickOutEvent kickOutEvent = 2;
+    SystemKickOutEvent kickOutEvent = 1;
+    SystemLongLinkUpdateEvent longLinkUpdateEvent = 2;
   }
 }
 

@@ -12,7 +12,7 @@ export class PromiseCallback {
     this._timeoutId = timeoutId;
   }
 
-  resolve(val: any): void {
+  resolve(val?: any): void {
     this._resolve(val);
     this._invalidateTimeout();
   }

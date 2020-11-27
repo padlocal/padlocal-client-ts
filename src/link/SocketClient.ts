@@ -71,9 +71,11 @@ export class SocketClient {
     this._socket.destroy();
     this._socket = undefined;
 
-    this._callbackExecutor.execute(async () => {
-      await this._callback?.onCancel?.();
-    });
+    this._callbackExecutor
+      .execute(async () => {
+        await this._callback?.onCancel?.();
+      })
+      .then();
   }
 
   private async _sendImpl(sendData: Bytes): Promise<void> {
@@ -130,7 +132,7 @@ export class SocketClient {
         }
       );
 
-      socket.on("data", async (data) => {
+      socket.on("data", (data) => {
         this._callbackExecutor.execute(async () => {
           try {
             const finished = await this._callback.onReceive!(data);

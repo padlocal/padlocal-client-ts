@@ -2,6 +2,10 @@ import { PadLocalClient } from "../src/PadLocalClient";
 import { stringifyPB } from "../src/utils/Utils";
 import { Contact, LoginPolicy, LoginType, QRCodeEvent, SyncEvent } from "../src/proto/padlocal_pb";
 import config from "config";
+import { LogLevel, setLogLevel } from "../src/utils/log";
+import { EnumValues } from "enum-values";
+
+setLogLevel(LogLevel.DEBUG);
 
 export async function prepareSignedOnClient(): Promise<PadLocalClient> {
   const host: string = config.get("padLocal.host");
@@ -13,7 +17,7 @@ export async function prepareSignedOnClient(): Promise<PadLocalClient> {
 
   await padLocalClient.api.login(LoginPolicy.DEFAULT, {
     onLoginStart: (loginType: LoginType) => {
-      console.log(`start login with type: ${loginType}`);
+      console.log(`start login with type: ${EnumValues.getNameFromValue(LoginType, loginType)}`);
     },
 
     onOneClickEvent: (oneClickEvent: QRCodeEvent) => {
@@ -42,6 +46,10 @@ export async function prepareSignedOnClient(): Promise<PadLocalClient> {
   });
 
   console.log("login done, listen for notifications");
+
+  padLocalClient.on("kickout", (e) => {
+    console.log(`client did kickout: ${JSON.stringify(e)}`);
+  });
 
   return padLocalClient;
 }

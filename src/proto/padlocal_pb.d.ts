@@ -51,6 +51,24 @@ export class ActionMessage extends jspb.Message {
     setWechatresponse(value?: WeChatResponse): ActionMessage;
 
 
+    hasWechatstreamrequest(): boolean;
+    clearWechatstreamrequest(): void;
+    getWechatstreamrequest(): WeChatStreamRequest | undefined;
+    setWechatstreamrequest(value?: WeChatStreamRequest): ActionMessage;
+
+
+    hasWechatstreamresponse(): boolean;
+    clearWechatstreamresponse(): void;
+    getWechatstreamresponse(): WeChatStreamResponse | undefined;
+    setWechatstreamresponse(value?: WeChatStreamResponse): ActionMessage;
+
+
+    hasWechatstreamresponsereply(): boolean;
+    clearWechatstreamresponsereply(): void;
+    getWechatstreamresponsereply(): WeChatStreamResponseReply | undefined;
+    setWechatstreamresponsereply(value?: WeChatStreamResponseReply): ActionMessage;
+
+
     hasSystemeventrequest(): boolean;
     clearSystemeventrequest(): void;
     getSystemeventrequest(): SystemEventRequest | undefined;
@@ -61,6 +79,30 @@ export class ActionMessage extends jspb.Message {
     clearSystemeventresponse(): void;
     getSystemeventresponse(): SystemEventResponse | undefined;
     setSystemeventresponse(value?: SystemEventResponse): ActionMessage;
+
+
+    hasLonglinkinitrequest(): boolean;
+    clearLonglinkinitrequest(): void;
+    getLonglinkinitrequest(): LongLinkInitRequest | undefined;
+    setLonglinkinitrequest(value?: LongLinkInitRequest): ActionMessage;
+
+
+    hasLonglinkinitresponse(): boolean;
+    clearLonglinkinitresponse(): void;
+    getLonglinkinitresponse(): LongLinkInitResponse | undefined;
+    setLonglinkinitresponse(value?: LongLinkInitResponse): ActionMessage;
+
+
+    hasLonglinkpackrequest(): boolean;
+    clearLonglinkpackrequest(): void;
+    getLonglinkpackrequest(): LongLinkPackRequest | undefined;
+    setLonglinkpackrequest(value?: LongLinkPackRequest): ActionMessage;
+
+
+    hasLonglinkpackresponse(): boolean;
+    clearLonglinkpackresponse(): void;
+    getLonglinkpackresponse(): LongLinkPackResponse | undefined;
+    setLonglinkpackresponse(value?: LongLinkPackResponse): ActionMessage;
 
 
     hasLonglinkunpackrequest(): boolean;
@@ -85,24 +127,6 @@ export class ActionMessage extends jspb.Message {
     clearLonglinkheartbeatresponse(): void;
     getLonglinkheartbeatresponse(): LongLinkHeartBeatResponse | undefined;
     setLonglinkheartbeatresponse(value?: LongLinkHeartBeatResponse): ActionMessage;
-
-
-    hasWechatstreamack(): boolean;
-    clearWechatstreamack(): void;
-    getWechatstreamack(): WeChatStreamAck | undefined;
-    setWechatstreamack(value?: WeChatStreamAck): ActionMessage;
-
-
-    hasLonglinkinitrequest(): boolean;
-    clearLonglinkinitrequest(): void;
-    getLonglinkinitrequest(): LongLinkInitRequest | undefined;
-    setLonglinkinitrequest(value?: LongLinkInitRequest): ActionMessage;
-
-
-    hasLonglinkinitresponse(): boolean;
-    clearLonglinkinitresponse(): void;
-    getLonglinkinitresponse(): LongLinkInitResponse | undefined;
-    setLonglinkinitresponse(value?: LongLinkInitResponse): ActionMessage;
 
 
     hasSyncrequest(): boolean;
@@ -830,15 +854,19 @@ export namespace ActionMessage {
         header?: ActionMessageHeader.AsObject,
         wechatrequest?: WeChatRequest.AsObject,
         wechatresponse?: WeChatResponse.AsObject,
+        wechatstreamrequest?: WeChatStreamRequest.AsObject,
+        wechatstreamresponse?: WeChatStreamResponse.AsObject,
+        wechatstreamresponsereply?: WeChatStreamResponseReply.AsObject,
         systemeventrequest?: SystemEventRequest.AsObject,
         systemeventresponse?: SystemEventResponse.AsObject,
+        longlinkinitrequest?: LongLinkInitRequest.AsObject,
+        longlinkinitresponse?: LongLinkInitResponse.AsObject,
+        longlinkpackrequest?: LongLinkPackRequest.AsObject,
+        longlinkpackresponse?: LongLinkPackResponse.AsObject,
         longlinkunpackrequest?: LongLinkUnpackRequest.AsObject,
         longlinkunpackresponse?: LongLinkUnpackResponse.AsObject,
         longlinkheartbeatrequest?: LongLinkHeartBeatRequest.AsObject,
         longlinkheartbeatresponse?: LongLinkHeartBeatResponse.AsObject,
-        wechatstreamack?: WeChatStreamAck.AsObject,
-        longlinkinitrequest?: LongLinkInitRequest.AsObject,
-        longlinkinitresponse?: LongLinkInitResponse.AsObject,
         syncrequest?: SyncRequest.AsObject,
         syncresponse?: SyncResponse.AsObject,
         syncevent?: SyncEvent.AsObject,
@@ -966,23 +994,31 @@ export namespace ActionMessage {
 
     WECHATRESPONSE = 11,
 
-    SYSTEMEVENTREQUEST = 12,
+    WECHATSTREAMREQUEST = 12,
 
-    SYSTEMEVENTRESPONSE = 13,
+    WECHATSTREAMRESPONSE = 13,
 
-    LONGLINKUNPACKREQUEST = 14,
+    WECHATSTREAMRESPONSEREPLY = 14,
 
-    LONGLINKUNPACKRESPONSE = 15,
+    SYSTEMEVENTREQUEST = 15,
 
-    LONGLINKHEARTBEATREQUEST = 16,
+    SYSTEMEVENTRESPONSE = 16,
 
-    LONGLINKHEARTBEATRESPONSE = 17,
+    LONGLINKINITREQUEST = 80,
 
-    WECHATSTREAMACK = 18,
+    LONGLINKINITRESPONSE = 81,
 
-    LONGLINKINITREQUEST = 19,
+    LONGLINKPACKREQUEST = 82,
 
-    LONGLINKINITRESPONSE = 20,
+    LONGLINKPACKRESPONSE = 83,
+
+    LONGLINKUNPACKREQUEST = 84,
+
+    LONGLINKUNPACKRESPONSE = 85,
+
+    LONGLINKHEARTBEATREQUEST = 86,
+
+    LONGLINKHEARTBEATRESPONSE = 87,
 
     SYNCREQUEST = 100,
 
@@ -1225,16 +1261,14 @@ export namespace ActionMessage {
 }
 
 export class WeChatLongLinkRequest extends jspb.Message { 
-    getSeq(): number;
-    setSeq(value: number): WeChatLongLinkRequest;
+    getMessageid(): string;
+    setMessageid(value: string): WeChatLongLinkRequest;
 
-    getPayload(): Uint8Array | string;
-    getPayload_asU8(): Uint8Array;
-    getPayload_asB64(): string;
-    setPayload(value: Uint8Array | string): WeChatLongLinkRequest;
+    getLonglinkid(): string;
+    setLonglinkid(value: string): WeChatLongLinkRequest;
 
-    getInitmode(): boolean;
-    setInitmode(value: boolean): WeChatLongLinkRequest;
+    getInitphase(): boolean;
+    setInitphase(value: boolean): WeChatLongLinkRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -1249,18 +1283,13 @@ export class WeChatLongLinkRequest extends jspb.Message {
 
 export namespace WeChatLongLinkRequest {
     export type AsObject = {
-        seq: number,
-        payload: Uint8Array | string,
-        initmode: boolean,
+        messageid: string,
+        longlinkid: string,
+        initphase: boolean,
     }
 }
 
 export class WeChatLongLinkResponse extends jspb.Message { 
-    getPayload(): Uint8Array | string;
-    getPayload_asU8(): Uint8Array;
-    getPayload_asB64(): string;
-    setPayload(value: Uint8Array | string): WeChatLongLinkResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatLongLinkResponse.AsObject;
@@ -1274,7 +1303,6 @@ export class WeChatLongLinkResponse extends jspb.Message {
 
 export namespace WeChatLongLinkResponse {
     export type AsObject = {
-        payload: Uint8Array | string,
     }
 }
 
@@ -1335,6 +1363,169 @@ export namespace WeChatShortLinkResponse {
     }
 }
 
+export class WeChatRequest extends jspb.Message { 
+
+    hasLonglinkrequest(): boolean;
+    clearLonglinkrequest(): void;
+    getLonglinkrequest(): WeChatLongLinkRequest | undefined;
+    setLonglinkrequest(value?: WeChatLongLinkRequest): WeChatRequest;
+
+
+    hasShortlinkrequest(): boolean;
+    clearShortlinkrequest(): void;
+    getShortlinkrequest(): WeChatShortLinkRequest | undefined;
+    setShortlinkrequest(value?: WeChatShortLinkRequest): WeChatRequest;
+
+
+    getPayloadCase(): WeChatRequest.PayloadCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatRequest): WeChatRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatRequest;
+    static deserializeBinaryFromReader(message: WeChatRequest, reader: jspb.BinaryReader): WeChatRequest;
+}
+
+export namespace WeChatRequest {
+    export type AsObject = {
+        longlinkrequest?: WeChatLongLinkRequest.AsObject,
+        shortlinkrequest?: WeChatShortLinkRequest.AsObject,
+    }
+
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
+    
+    LONGLINKREQUEST = 10,
+
+    SHORTLINKREQUEST = 11,
+
+    }
+
+}
+
+export class WeChatResponse extends jspb.Message { 
+
+    hasLonglinkresponse(): boolean;
+    clearLonglinkresponse(): void;
+    getLonglinkresponse(): WeChatLongLinkResponse | undefined;
+    setLonglinkresponse(value?: WeChatLongLinkResponse): WeChatResponse;
+
+
+    hasShortlinkresponse(): boolean;
+    clearShortlinkresponse(): void;
+    getShortlinkresponse(): WeChatShortLinkResponse | undefined;
+    setShortlinkresponse(value?: WeChatShortLinkResponse): WeChatResponse;
+
+
+    getPayloadCase(): WeChatResponse.PayloadCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatResponse): WeChatResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatResponse;
+    static deserializeBinaryFromReader(message: WeChatResponse, reader: jspb.BinaryReader): WeChatResponse;
+}
+
+export namespace WeChatResponse {
+    export type AsObject = {
+        longlinkresponse?: WeChatLongLinkResponse.AsObject,
+        shortlinkresponse?: WeChatShortLinkResponse.AsObject,
+    }
+
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
+    
+    LONGLINKRESPONSE = 10,
+
+    SHORTLINKRESPONSE = 11,
+
+    }
+
+}
+
+export class WeChatLongLinkStreamRequest extends jspb.Message { 
+    getPayload(): Uint8Array | string;
+    getPayload_asU8(): Uint8Array;
+    getPayload_asB64(): string;
+    setPayload(value: Uint8Array | string): WeChatLongLinkStreamRequest;
+
+    getLonglinkid(): string;
+    setLonglinkid(value: string): WeChatLongLinkStreamRequest;
+
+    getInitphase(): boolean;
+    setInitphase(value: boolean): WeChatLongLinkStreamRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatLongLinkStreamRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatLongLinkStreamRequest): WeChatLongLinkStreamRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatLongLinkStreamRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatLongLinkStreamRequest;
+    static deserializeBinaryFromReader(message: WeChatLongLinkStreamRequest, reader: jspb.BinaryReader): WeChatLongLinkStreamRequest;
+}
+
+export namespace WeChatLongLinkStreamRequest {
+    export type AsObject = {
+        payload: Uint8Array | string,
+        longlinkid: string,
+        initphase: boolean,
+    }
+}
+
+export class WeChatLongLinkStreamResponse extends jspb.Message { 
+    getPayload(): Uint8Array | string;
+    getPayload_asU8(): Uint8Array;
+    getPayload_asB64(): string;
+    setPayload(value: Uint8Array | string): WeChatLongLinkStreamResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatLongLinkStreamResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatLongLinkStreamResponse): WeChatLongLinkStreamResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatLongLinkStreamResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatLongLinkStreamResponse;
+    static deserializeBinaryFromReader(message: WeChatLongLinkStreamResponse, reader: jspb.BinaryReader): WeChatLongLinkStreamResponse;
+}
+
+export namespace WeChatLongLinkStreamResponse {
+    export type AsObject = {
+        payload: Uint8Array | string,
+    }
+}
+
+export class WeChatLongLinkStreamResponseReply extends jspb.Message { 
+    getPayload(): Uint8Array | string;
+    getPayload_asU8(): Uint8Array;
+    getPayload_asB64(): string;
+    setPayload(value: Uint8Array | string): WeChatLongLinkStreamResponseReply;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatLongLinkStreamResponseReply.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatLongLinkStreamResponseReply): WeChatLongLinkStreamResponseReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatLongLinkStreamResponseReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatLongLinkStreamResponseReply;
+    static deserializeBinaryFromReader(message: WeChatLongLinkStreamResponseReply, reader: jspb.BinaryReader): WeChatLongLinkStreamResponseReply;
+}
+
+export namespace WeChatLongLinkStreamResponseReply {
+    export type AsObject = {
+        payload: Uint8Array | string,
+    }
+}
+
 export class WeChatSocketRequest extends jspb.Message { 
 
     hasHost(): boolean;
@@ -1366,13 +1557,13 @@ export namespace WeChatSocketRequest {
 }
 
 export class WeChatSocketResponse extends jspb.Message { 
+    getSocketreset(): boolean;
+    setSocketreset(value: boolean): WeChatSocketResponse;
+
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatSocketResponse;
-
-    getStreamreset(): boolean;
-    setStreamreset(value: boolean): WeChatSocketResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -1387,277 +1578,257 @@ export class WeChatSocketResponse extends jspb.Message {
 
 export namespace WeChatSocketResponse {
     export type AsObject = {
+        socketreset: boolean,
         payload: Uint8Array | string,
-        streamreset: boolean,
     }
 }
 
-export class WeChatStreamAck extends jspb.Message { 
-    getFinish(): boolean;
-    setFinish(value: boolean): WeChatStreamAck;
+export class WeChatSocketResponseReply extends jspb.Message { 
 
-    getSenddata(): Uint8Array | string;
-    getSenddata_asU8(): Uint8Array;
-    getSenddata_asB64(): string;
-    setSenddata(value: Uint8Array | string): WeChatStreamAck;
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatSocketResponseReply.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatSocketResponseReply): WeChatSocketResponseReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatSocketResponseReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatSocketResponseReply;
+    static deserializeBinaryFromReader(message: WeChatSocketResponseReply, reader: jspb.BinaryReader): WeChatSocketResponseReply;
+}
+
+export namespace WeChatSocketResponseReply {
+    export type AsObject = {
+    }
+}
+
+export class WeChatPushSubscribeRequest extends jspb.Message { 
+    clearPushtypeList(): void;
+    getPushtypeList(): Array<LongLinkMessagePushType>;
+    setPushtypeList(value: Array<LongLinkMessagePushType>): WeChatPushSubscribeRequest;
+    addPushtype(value: LongLinkMessagePushType, index?: number): LongLinkMessagePushType;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): WeChatStreamAck.AsObject;
-    static toObject(includeInstance: boolean, msg: WeChatStreamAck): WeChatStreamAck.AsObject;
+    toObject(includeInstance?: boolean): WeChatPushSubscribeRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatPushSubscribeRequest): WeChatPushSubscribeRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: WeChatStreamAck, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): WeChatStreamAck;
-    static deserializeBinaryFromReader(message: WeChatStreamAck, reader: jspb.BinaryReader): WeChatStreamAck;
+    static serializeBinaryToWriter(message: WeChatPushSubscribeRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatPushSubscribeRequest;
+    static deserializeBinaryFromReader(message: WeChatPushSubscribeRequest, reader: jspb.BinaryReader): WeChatPushSubscribeRequest;
 }
 
-export namespace WeChatStreamAck {
+export namespace WeChatPushSubscribeRequest {
     export type AsObject = {
-        finish: boolean,
-        senddata: Uint8Array | string,
+        pushtypeList: Array<LongLinkMessagePushType>,
     }
 }
 
-export class WeChatRequest extends jspb.Message { 
+export class WeChatPushSubscribeResponse extends jspb.Message { 
+    clearMessageList(): void;
+    getMessageList(): Array<LongLinkMessage>;
+    setMessageList(value: Array<LongLinkMessage>): WeChatPushSubscribeResponse;
+    addMessage(value?: LongLinkMessage, index?: number): LongLinkMessage;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatPushSubscribeResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatPushSubscribeResponse): WeChatPushSubscribeResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatPushSubscribeResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatPushSubscribeResponse;
+    static deserializeBinaryFromReader(message: WeChatPushSubscribeResponse, reader: jspb.BinaryReader): WeChatPushSubscribeResponse;
+}
+
+export namespace WeChatPushSubscribeResponse {
+    export type AsObject = {
+        messageList: Array<LongLinkMessage.AsObject>,
+    }
+}
+
+export class WeChatPushSubscribeResponseReply extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatPushSubscribeResponseReply.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatPushSubscribeResponseReply): WeChatPushSubscribeResponseReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatPushSubscribeResponseReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatPushSubscribeResponseReply;
+    static deserializeBinaryFromReader(message: WeChatPushSubscribeResponseReply, reader: jspb.BinaryReader): WeChatPushSubscribeResponseReply;
+}
+
+export namespace WeChatPushSubscribeResponseReply {
+    export type AsObject = {
+    }
+}
+
+export class WeChatStreamRequest extends jspb.Message { 
+    getEof(): boolean;
+    setEof(value: boolean): WeChatStreamRequest;
+
 
     hasLonglinkrequest(): boolean;
     clearLonglinkrequest(): void;
-    getLonglinkrequest(): WeChatLongLinkRequest | undefined;
-    setLonglinkrequest(value?: WeChatLongLinkRequest): WeChatRequest;
-
-
-    hasShortlinkrequest(): boolean;
-    clearShortlinkrequest(): void;
-    getShortlinkrequest(): WeChatShortLinkRequest | undefined;
-    setShortlinkrequest(value?: WeChatShortLinkRequest): WeChatRequest;
+    getLonglinkrequest(): WeChatLongLinkStreamRequest | undefined;
+    setLonglinkrequest(value?: WeChatLongLinkStreamRequest): WeChatStreamRequest;
 
 
     hasSocketrequest(): boolean;
     clearSocketrequest(): void;
     getSocketrequest(): WeChatSocketRequest | undefined;
-    setSocketrequest(value?: WeChatSocketRequest): WeChatRequest;
+    setSocketrequest(value?: WeChatSocketRequest): WeChatStreamRequest;
 
 
-    getRequestCase(): WeChatRequest.RequestCase;
+    hasPushsubscriberequest(): boolean;
+    clearPushsubscriberequest(): void;
+    getPushsubscriberequest(): WeChatPushSubscribeRequest | undefined;
+    setPushsubscriberequest(value?: WeChatPushSubscribeRequest): WeChatStreamRequest;
+
+
+    getPayloadCase(): WeChatStreamRequest.PayloadCase;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): WeChatRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: WeChatRequest): WeChatRequest.AsObject;
+    toObject(includeInstance?: boolean): WeChatStreamRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatStreamRequest): WeChatStreamRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: WeChatRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): WeChatRequest;
-    static deserializeBinaryFromReader(message: WeChatRequest, reader: jspb.BinaryReader): WeChatRequest;
+    static serializeBinaryToWriter(message: WeChatStreamRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatStreamRequest;
+    static deserializeBinaryFromReader(message: WeChatStreamRequest, reader: jspb.BinaryReader): WeChatStreamRequest;
 }
 
-export namespace WeChatRequest {
+export namespace WeChatStreamRequest {
     export type AsObject = {
-        longlinkrequest?: WeChatLongLinkRequest.AsObject,
-        shortlinkrequest?: WeChatShortLinkRequest.AsObject,
+        eof: boolean,
+        longlinkrequest?: WeChatLongLinkStreamRequest.AsObject,
         socketrequest?: WeChatSocketRequest.AsObject,
+        pushsubscriberequest?: WeChatPushSubscribeRequest.AsObject,
     }
 
-    export enum RequestCase {
-        REQUEST_NOT_SET = 0,
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
     
-    LONGLINKREQUEST = 1,
+    LONGLINKREQUEST = 10,
 
-    SHORTLINKREQUEST = 2,
+    SOCKETREQUEST = 11,
 
-    SOCKETREQUEST = 3,
+    PUSHSUBSCRIBEREQUEST = 12,
 
     }
 
 }
 
-export class WeChatResponse extends jspb.Message { 
+export class WeChatStreamResponse extends jspb.Message { 
+    getEof(): boolean;
+    setEof(value: boolean): WeChatStreamResponse;
+
 
     hasLonglinkresponse(): boolean;
     clearLonglinkresponse(): void;
-    getLonglinkresponse(): WeChatLongLinkResponse | undefined;
-    setLonglinkresponse(value?: WeChatLongLinkResponse): WeChatResponse;
-
-
-    hasShortlinkresponse(): boolean;
-    clearShortlinkresponse(): void;
-    getShortlinkresponse(): WeChatShortLinkResponse | undefined;
-    setShortlinkresponse(value?: WeChatShortLinkResponse): WeChatResponse;
+    getLonglinkresponse(): WeChatLongLinkStreamResponse | undefined;
+    setLonglinkresponse(value?: WeChatLongLinkStreamResponse): WeChatStreamResponse;
 
 
     hasSocketresponse(): boolean;
     clearSocketresponse(): void;
     getSocketresponse(): WeChatSocketResponse | undefined;
-    setSocketresponse(value?: WeChatSocketResponse): WeChatResponse;
+    setSocketresponse(value?: WeChatSocketResponse): WeChatStreamResponse;
 
 
-    getResponseCase(): WeChatResponse.ResponseCase;
+    hasPushsubscriberesponse(): boolean;
+    clearPushsubscriberesponse(): void;
+    getPushsubscriberesponse(): WeChatPushSubscribeResponse | undefined;
+    setPushsubscriberesponse(value?: WeChatPushSubscribeResponse): WeChatStreamResponse;
+
+
+    getPayloadCase(): WeChatStreamResponse.PayloadCase;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): WeChatResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: WeChatResponse): WeChatResponse.AsObject;
+    toObject(includeInstance?: boolean): WeChatStreamResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatStreamResponse): WeChatStreamResponse.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: WeChatResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): WeChatResponse;
-    static deserializeBinaryFromReader(message: WeChatResponse, reader: jspb.BinaryReader): WeChatResponse;
+    static serializeBinaryToWriter(message: WeChatStreamResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatStreamResponse;
+    static deserializeBinaryFromReader(message: WeChatStreamResponse, reader: jspb.BinaryReader): WeChatStreamResponse;
 }
 
-export namespace WeChatResponse {
+export namespace WeChatStreamResponse {
     export type AsObject = {
-        longlinkresponse?: WeChatLongLinkResponse.AsObject,
-        shortlinkresponse?: WeChatShortLinkResponse.AsObject,
+        eof: boolean,
+        longlinkresponse?: WeChatLongLinkStreamResponse.AsObject,
         socketresponse?: WeChatSocketResponse.AsObject,
+        pushsubscriberesponse?: WeChatPushSubscribeResponse.AsObject,
     }
 
-    export enum ResponseCase {
-        RESPONSE_NOT_SET = 0,
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
     
-    LONGLINKRESPONSE = 1,
+    LONGLINKRESPONSE = 10,
 
-    SHORTLINKRESPONSE = 2,
+    SOCKETRESPONSE = 11,
 
-    SOCKETRESPONSE = 3,
+    PUSHSUBSCRIBERESPONSE = 12,
 
     }
 
 }
 
-export class LongLinkUnpackRequest extends jspb.Message { 
-    getStreamdata(): Uint8Array | string;
-    getStreamdata_asU8(): Uint8Array;
-    getStreamdata_asB64(): string;
-    setStreamdata(value: Uint8Array | string): LongLinkUnpackRequest;
+export class WeChatStreamResponseReply extends jspb.Message { 
+    getEof(): boolean;
+    setEof(value: boolean): WeChatStreamResponseReply;
 
+
+    hasLonglinkresponsereply(): boolean;
+    clearLonglinkresponsereply(): void;
+    getLonglinkresponsereply(): WeChatLongLinkStreamResponseReply | undefined;
+    setLonglinkresponsereply(value?: WeChatLongLinkStreamResponseReply): WeChatStreamResponseReply;
+
+
+    hasSocketresponsereply(): boolean;
+    clearSocketresponsereply(): void;
+    getSocketresponsereply(): WeChatSocketResponseReply | undefined;
+    setSocketresponsereply(value?: WeChatSocketResponseReply): WeChatStreamResponseReply;
+
+
+    hasPushsubscriberesponsereply(): boolean;
+    clearPushsubscriberesponsereply(): void;
+    getPushsubscriberesponsereply(): WeChatPushSubscribeResponseReply | undefined;
+    setPushsubscriberesponsereply(value?: WeChatPushSubscribeResponseReply): WeChatStreamResponseReply;
+
+
+    getPayloadCase(): WeChatStreamResponseReply.PayloadCase;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): LongLinkUnpackRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: LongLinkUnpackRequest): LongLinkUnpackRequest.AsObject;
+    toObject(includeInstance?: boolean): WeChatStreamResponseReply.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatStreamResponseReply): WeChatStreamResponseReply.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: LongLinkUnpackRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): LongLinkUnpackRequest;
-    static deserializeBinaryFromReader(message: LongLinkUnpackRequest, reader: jspb.BinaryReader): LongLinkUnpackRequest;
+    static serializeBinaryToWriter(message: WeChatStreamResponseReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatStreamResponseReply;
+    static deserializeBinaryFromReader(message: WeChatStreamResponseReply, reader: jspb.BinaryReader): WeChatStreamResponseReply;
 }
 
-export namespace LongLinkUnpackRequest {
+export namespace WeChatStreamResponseReply {
     export type AsObject = {
-        streamdata: Uint8Array | string,
-    }
-}
-
-export class LongLinkUnpackResponse extends jspb.Message { 
-    clearPacketList(): void;
-    getPacketList(): Array<LongLinkPacket>;
-    setPacketList(value: Array<LongLinkPacket>): LongLinkUnpackResponse;
-    addPacket(value?: LongLinkPacket, index?: number): LongLinkPacket;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): LongLinkUnpackResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: LongLinkUnpackResponse): LongLinkUnpackResponse.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: LongLinkUnpackResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): LongLinkUnpackResponse;
-    static deserializeBinaryFromReader(message: LongLinkUnpackResponse, reader: jspb.BinaryReader): LongLinkUnpackResponse;
-}
-
-export namespace LongLinkUnpackResponse {
-    export type AsObject = {
-        packetList: Array<LongLinkPacket.AsObject>,
-    }
-}
-
-export class LongLinkPacket extends jspb.Message { 
-
-    hasNormal(): boolean;
-    clearNormal(): void;
-    getNormal(): LongLinkPacketNormal | undefined;
-    setNormal(value?: LongLinkPacketNormal): LongLinkPacket;
-
-
-    hasPush(): boolean;
-    clearPush(): void;
-    getPush(): LongLinkPacketPush | undefined;
-    setPush(value?: LongLinkPacketPush): LongLinkPacket;
-
-
-    getTypeCase(): LongLinkPacket.TypeCase;
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): LongLinkPacket.AsObject;
-    static toObject(includeInstance: boolean, msg: LongLinkPacket): LongLinkPacket.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: LongLinkPacket, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): LongLinkPacket;
-    static deserializeBinaryFromReader(message: LongLinkPacket, reader: jspb.BinaryReader): LongLinkPacket;
-}
-
-export namespace LongLinkPacket {
-    export type AsObject = {
-        normal?: LongLinkPacketNormal.AsObject,
-        push?: LongLinkPacketPush.AsObject,
+        eof: boolean,
+        longlinkresponsereply?: WeChatLongLinkStreamResponseReply.AsObject,
+        socketresponsereply?: WeChatSocketResponseReply.AsObject,
+        pushsubscriberesponsereply?: WeChatPushSubscribeResponseReply.AsObject,
     }
 
-    export enum TypeCase {
-        TYPE_NOT_SET = 0,
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
     
-    NORMAL = 1,
+    LONGLINKRESPONSEREPLY = 10,
 
-    PUSH = 2,
+    SOCKETRESPONSEREPLY = 11,
+
+    PUSHSUBSCRIBERESPONSEREPLY = 12,
 
     }
 
-}
-
-export class LongLinkPacketNormal extends jspb.Message { 
-    getSeq(): number;
-    setSeq(value: number): LongLinkPacketNormal;
-
-    getPayload(): Uint8Array | string;
-    getPayload_asU8(): Uint8Array;
-    getPayload_asB64(): string;
-    setPayload(value: Uint8Array | string): LongLinkPacketNormal;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): LongLinkPacketNormal.AsObject;
-    static toObject(includeInstance: boolean, msg: LongLinkPacketNormal): LongLinkPacketNormal.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: LongLinkPacketNormal, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): LongLinkPacketNormal;
-    static deserializeBinaryFromReader(message: LongLinkPacketNormal, reader: jspb.BinaryReader): LongLinkPacketNormal;
-}
-
-export namespace LongLinkPacketNormal {
-    export type AsObject = {
-        seq: number,
-        payload: Uint8Array | string,
-    }
-}
-
-export class LongLinkPacketPush extends jspb.Message { 
-    getType(): LongLinkPacketPushType;
-    setType(value: LongLinkPacketPushType): LongLinkPacketPush;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): LongLinkPacketPush.AsObject;
-    static toObject(includeInstance: boolean, msg: LongLinkPacketPush): LongLinkPacketPush.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: LongLinkPacketPush, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): LongLinkPacketPush;
-    static deserializeBinaryFromReader(message: LongLinkPacketPush, reader: jspb.BinaryReader): LongLinkPacketPush;
-}
-
-export namespace LongLinkPacketPush {
-    export type AsObject = {
-        type: LongLinkPacketPushType,
-    }
 }
 
 export class LoginRequest extends jspb.Message { 
@@ -1807,12 +1978,6 @@ export class AuthInfo extends jspb.Message {
     setSelfcontact(value?: Contact): AuthInfo;
 
 
-    hasLonglinkhost(): boolean;
-    clearLonglinkhost(): void;
-    getLonglinkhost(): Host | undefined;
-    setLonglinkhost(value?: Host): AuthInfo;
-
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AuthInfo.AsObject;
     static toObject(includeInstance: boolean, msg: AuthInfo): AuthInfo.AsObject;
@@ -1826,7 +1991,6 @@ export class AuthInfo extends jspb.Message {
 export namespace AuthInfo {
     export type AsObject = {
         selfcontact?: Contact.AsObject,
-        longlinkhost?: Host.AsObject,
     }
 }
 
@@ -1864,45 +2028,10 @@ export namespace LogoutResponse {
     }
 }
 
-export class LongLinkHeartBeatRequest extends jspb.Message { 
-    getHeartbeatseq(): number;
-    setHeartbeatseq(value: number): LongLinkHeartBeatRequest;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): LongLinkHeartBeatRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: LongLinkHeartBeatRequest): LongLinkHeartBeatRequest.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: LongLinkHeartBeatRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): LongLinkHeartBeatRequest;
-    static deserializeBinaryFromReader(message: LongLinkHeartBeatRequest, reader: jspb.BinaryReader): LongLinkHeartBeatRequest;
-}
-
-export namespace LongLinkHeartBeatRequest {
-    export type AsObject = {
-        heartbeatseq: number,
-    }
-}
-
-export class LongLinkHeartBeatResponse extends jspb.Message { 
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): LongLinkHeartBeatResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: LongLinkHeartBeatResponse): LongLinkHeartBeatResponse.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: LongLinkHeartBeatResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): LongLinkHeartBeatResponse;
-    static deserializeBinaryFromReader(message: LongLinkHeartBeatResponse, reader: jspb.BinaryReader): LongLinkHeartBeatResponse;
-}
-
-export namespace LongLinkHeartBeatResponse {
-    export type AsObject = {
-    }
-}
-
 export class LongLinkInitRequest extends jspb.Message { 
+    getLonglinkid(): string;
+    setLonglinkid(value: string): LongLinkInitRequest;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LongLinkInitRequest.AsObject;
@@ -1916,6 +2045,7 @@ export class LongLinkInitRequest extends jspb.Message {
 
 export namespace LongLinkInitRequest {
     export type AsObject = {
+        longlinkid: string,
     }
 }
 
@@ -1932,6 +2062,205 @@ export class LongLinkInitResponse extends jspb.Message {
 }
 
 export namespace LongLinkInitResponse {
+    export type AsObject = {
+    }
+}
+
+export class LongLinkPackRequest extends jspb.Message { 
+    getLonglinkid(): string;
+    setLonglinkid(value: string): LongLinkPackRequest;
+
+    getMessageid(): string;
+    setMessageid(value: string): LongLinkPackRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): LongLinkPackRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: LongLinkPackRequest): LongLinkPackRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: LongLinkPackRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): LongLinkPackRequest;
+    static deserializeBinaryFromReader(message: LongLinkPackRequest, reader: jspb.BinaryReader): LongLinkPackRequest;
+}
+
+export namespace LongLinkPackRequest {
+    export type AsObject = {
+        longlinkid: string,
+        messageid: string,
+    }
+}
+
+export class LongLinkPackResponse extends jspb.Message { 
+    getPayload(): Uint8Array | string;
+    getPayload_asU8(): Uint8Array;
+    getPayload_asB64(): string;
+    setPayload(value: Uint8Array | string): LongLinkPackResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): LongLinkPackResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: LongLinkPackResponse): LongLinkPackResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: LongLinkPackResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): LongLinkPackResponse;
+    static deserializeBinaryFromReader(message: LongLinkPackResponse, reader: jspb.BinaryReader): LongLinkPackResponse;
+}
+
+export namespace LongLinkPackResponse {
+    export type AsObject = {
+        payload: Uint8Array | string,
+    }
+}
+
+export class LongLinkUnpackRequest extends jspb.Message { 
+    getLonglinkid(): string;
+    setLonglinkid(value: string): LongLinkUnpackRequest;
+
+    getPayload(): Uint8Array | string;
+    getPayload_asU8(): Uint8Array;
+    getPayload_asB64(): string;
+    setPayload(value: Uint8Array | string): LongLinkUnpackRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): LongLinkUnpackRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: LongLinkUnpackRequest): LongLinkUnpackRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: LongLinkUnpackRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): LongLinkUnpackRequest;
+    static deserializeBinaryFromReader(message: LongLinkUnpackRequest, reader: jspb.BinaryReader): LongLinkUnpackRequest;
+}
+
+export namespace LongLinkUnpackRequest {
+    export type AsObject = {
+        longlinkid: string,
+        payload: Uint8Array | string,
+    }
+}
+
+export class LongLinkUnpackResponse extends jspb.Message { 
+    clearMessageList(): void;
+    getMessageList(): Array<LongLinkMessage>;
+    setMessageList(value: Array<LongLinkMessage>): LongLinkUnpackResponse;
+    addMessage(value?: LongLinkMessage, index?: number): LongLinkMessage;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): LongLinkUnpackResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: LongLinkUnpackResponse): LongLinkUnpackResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: LongLinkUnpackResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): LongLinkUnpackResponse;
+    static deserializeBinaryFromReader(message: LongLinkUnpackResponse, reader: jspb.BinaryReader): LongLinkUnpackResponse;
+}
+
+export namespace LongLinkUnpackResponse {
+    export type AsObject = {
+        messageList: Array<LongLinkMessage.AsObject>,
+    }
+}
+
+export class LongLinkMessage extends jspb.Message { 
+    getType(): LongLinkMessageType;
+    setType(value: LongLinkMessageType): LongLinkMessage;
+
+    getMessageid(): string;
+    setMessageid(value: string): LongLinkMessage;
+
+
+    hasPush(): boolean;
+    clearPush(): void;
+    getPush(): LongLinkMessagePush | undefined;
+    setPush(value?: LongLinkMessagePush): LongLinkMessage;
+
+
+    getPayloadCase(): LongLinkMessage.PayloadCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): LongLinkMessage.AsObject;
+    static toObject(includeInstance: boolean, msg: LongLinkMessage): LongLinkMessage.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: LongLinkMessage, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): LongLinkMessage;
+    static deserializeBinaryFromReader(message: LongLinkMessage, reader: jspb.BinaryReader): LongLinkMessage;
+}
+
+export namespace LongLinkMessage {
+    export type AsObject = {
+        type: LongLinkMessageType,
+        messageid: string,
+        push?: LongLinkMessagePush.AsObject,
+    }
+
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
+    
+    PUSH = 10,
+
+    }
+
+}
+
+export class LongLinkMessagePush extends jspb.Message { 
+    getType(): LongLinkMessagePushType;
+    setType(value: LongLinkMessagePushType): LongLinkMessagePush;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): LongLinkMessagePush.AsObject;
+    static toObject(includeInstance: boolean, msg: LongLinkMessagePush): LongLinkMessagePush.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: LongLinkMessagePush, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): LongLinkMessagePush;
+    static deserializeBinaryFromReader(message: LongLinkMessagePush, reader: jspb.BinaryReader): LongLinkMessagePush;
+}
+
+export namespace LongLinkMessagePush {
+    export type AsObject = {
+        type: LongLinkMessagePushType,
+    }
+}
+
+export class LongLinkHeartBeatRequest extends jspb.Message { 
+    getLonglinkid(): string;
+    setLonglinkid(value: string): LongLinkHeartBeatRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): LongLinkHeartBeatRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: LongLinkHeartBeatRequest): LongLinkHeartBeatRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: LongLinkHeartBeatRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): LongLinkHeartBeatRequest;
+    static deserializeBinaryFromReader(message: LongLinkHeartBeatRequest, reader: jspb.BinaryReader): LongLinkHeartBeatRequest;
+}
+
+export namespace LongLinkHeartBeatRequest {
+    export type AsObject = {
+        longlinkid: string,
+    }
+}
+
+export class LongLinkHeartBeatResponse extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): LongLinkHeartBeatResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: LongLinkHeartBeatResponse): LongLinkHeartBeatResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: LongLinkHeartBeatResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): LongLinkHeartBeatResponse;
+    static deserializeBinaryFromReader(message: LongLinkHeartBeatResponse, reader: jspb.BinaryReader): LongLinkHeartBeatResponse;
+}
+
+export namespace LongLinkHeartBeatResponse {
     export type AsObject = {
     }
 }
@@ -4506,15 +4835,46 @@ export namespace SystemKickOutEvent {
     }
 }
 
-export class SystemEventRequest extends jspb.Message { 
-    getType(): SystemEventType;
-    setType(value: SystemEventType): SystemEventRequest;
+export class SystemLongLinkUpdateEvent extends jspb.Message { 
 
+    hasLonglinkhost(): boolean;
+    clearLonglinkhost(): void;
+    getLonglinkhost(): Host | undefined;
+    setLonglinkhost(value?: Host): SystemLongLinkUpdateEvent;
+
+    getReconnectimmediately(): boolean;
+    setReconnectimmediately(value: boolean): SystemLongLinkUpdateEvent;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SystemLongLinkUpdateEvent.AsObject;
+    static toObject(includeInstance: boolean, msg: SystemLongLinkUpdateEvent): SystemLongLinkUpdateEvent.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SystemLongLinkUpdateEvent, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SystemLongLinkUpdateEvent;
+    static deserializeBinaryFromReader(message: SystemLongLinkUpdateEvent, reader: jspb.BinaryReader): SystemLongLinkUpdateEvent;
+}
+
+export namespace SystemLongLinkUpdateEvent {
+    export type AsObject = {
+        longlinkhost?: Host.AsObject,
+        reconnectimmediately: boolean,
+    }
+}
+
+export class SystemEventRequest extends jspb.Message { 
 
     hasKickoutevent(): boolean;
     clearKickoutevent(): void;
     getKickoutevent(): SystemKickOutEvent | undefined;
     setKickoutevent(value?: SystemKickOutEvent): SystemEventRequest;
+
+
+    hasLonglinkupdateevent(): boolean;
+    clearLonglinkupdateevent(): void;
+    getLonglinkupdateevent(): SystemLongLinkUpdateEvent | undefined;
+    setLonglinkupdateevent(value?: SystemLongLinkUpdateEvent): SystemEventRequest;
 
 
     getPayloadCase(): SystemEventRequest.PayloadCase;
@@ -4531,14 +4891,16 @@ export class SystemEventRequest extends jspb.Message {
 
 export namespace SystemEventRequest {
     export type AsObject = {
-        type: SystemEventType,
         kickoutevent?: SystemKickOutEvent.AsObject,
+        longlinkupdateevent?: SystemLongLinkUpdateEvent.AsObject,
     }
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
     
-    KICKOUTEVENT = 2,
+    KICKOUTEVENT = 1,
+
+    LONGLINKUPDATEEVENT = 2,
 
     }
 
@@ -5425,10 +5787,6 @@ export namespace GetEncryptedFileResponse {
     }
 }
 
-export enum LongLinkPacketPushType {
-    NEW_MESSAGE = 0,
-}
-
 export enum LoginPolicy {
     DEFAULT = 0,
 }
@@ -5456,6 +5814,16 @@ export enum QRCodeStatus {
     UNKNOWN_ERROR = 5,
 }
 
+export enum LongLinkMessageType {
+    NORMAL_MESSAGE = 0,
+    PUSH_MESSAGE = 1,
+}
+
+export enum LongLinkMessagePushType {
+    NEW_MESSAGE = 0,
+    LOGIN_STATUS_NOTIFY = 1,
+}
+
 export enum AddContactScene {
     MOBILE_PHONE = 0,
     WECHAT_ID = 1,
@@ -5470,11 +5838,6 @@ export enum ZombieStatue {
     STRANGER = 0,
     FRIEND = 1,
     ZOMBIE = 2,
-}
-
-export enum SystemEventType {
-    DID_REFRESH_TOKEN = 0,
-    DID_KICKOUT = 1,
 }
 
 export enum ImageType {

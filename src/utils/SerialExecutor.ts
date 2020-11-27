@@ -1,11 +1,15 @@
-export type SerialJobFunc = () => Promise<void>;
+import { PromiseCallback } from "./PromiseUtils";
+
+export type SerialJobFunc = () => Promise<any>;
 
 class SerialJob {
   readonly type: string | undefined;
   readonly func: SerialJobFunc;
+  readonly promiseCallback: PromiseCallback;
 
-  constructor(func: SerialJobFunc, type?: string) {
+  constructor(func: SerialJobFunc, promiseCallback: PromiseCallback, type?: string) {
     this.func = func;
+    this.promiseCallback = promiseCallback;
     this.type = type;
   }
 }
@@ -19,10 +23,12 @@ export class SerialExecutor {
     this._executing = false;
   }
 
-  execute(jobFunc: SerialJobFunc, type?: string) {
-    this._jobs.push(new SerialJob(jobFunc, type));
+  execute<T>(jobFunc: SerialJobFunc, type?: string): Promise<T> {
+    return new Promise((resolve, reject) => {
+      this._jobs.push(new SerialJob(jobFunc, new PromiseCallback(resolve, reject), type));
 
-    this._executeNextJob();
+      this._executeNextJob();
+    });
   }
 
   /**
@@ -50,10 +56,18 @@ export class SerialExecutor {
 
     this._executing = true;
 
-    job.func().finally(() => {
-      this._executing = false;
+    job
+      .func()
+      .then((res) => {
+        job.promiseCallback.resolve(res);
+      })
+      .catch((e) => {
+        job.promiseCallback.reject(e);
+      })
+      .finally(() => {
+        this._executing = false;
 
-      this._executeNextJob();
-    });
+        this._executeNextJob();
+      });
   }
 }

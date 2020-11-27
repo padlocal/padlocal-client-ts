@@ -85,11 +85,13 @@ goog.exportSymbol('proto.padlocal.LongLinkHeartBeatRequest', null, global);
 goog.exportSymbol('proto.padlocal.LongLinkHeartBeatResponse', null, global);
 goog.exportSymbol('proto.padlocal.LongLinkInitRequest', null, global);
 goog.exportSymbol('proto.padlocal.LongLinkInitResponse', null, global);
-goog.exportSymbol('proto.padlocal.LongLinkPacket', null, global);
-goog.exportSymbol('proto.padlocal.LongLinkPacket.TypeCase', null, global);
-goog.exportSymbol('proto.padlocal.LongLinkPacketNormal', null, global);
-goog.exportSymbol('proto.padlocal.LongLinkPacketPush', null, global);
-goog.exportSymbol('proto.padlocal.LongLinkPacketPushType', null, global);
+goog.exportSymbol('proto.padlocal.LongLinkMessage', null, global);
+goog.exportSymbol('proto.padlocal.LongLinkMessage.PayloadCase', null, global);
+goog.exportSymbol('proto.padlocal.LongLinkMessagePush', null, global);
+goog.exportSymbol('proto.padlocal.LongLinkMessagePushType', null, global);
+goog.exportSymbol('proto.padlocal.LongLinkMessageType', null, global);
+goog.exportSymbol('proto.padlocal.LongLinkPackRequest', null, global);
+goog.exportSymbol('proto.padlocal.LongLinkPackResponse', null, global);
 goog.exportSymbol('proto.padlocal.LongLinkUnpackRequest', null, global);
 goog.exportSymbol('proto.padlocal.LongLinkUnpackResponse', null, global);
 goog.exportSymbol('proto.padlocal.Message', null, global);
@@ -168,8 +170,8 @@ goog.exportSymbol('proto.padlocal.SyncResponse', null, global);
 goog.exportSymbol('proto.padlocal.SystemEventRequest', null, global);
 goog.exportSymbol('proto.padlocal.SystemEventRequest.PayloadCase', null, global);
 goog.exportSymbol('proto.padlocal.SystemEventResponse', null, global);
-goog.exportSymbol('proto.padlocal.SystemEventType', null, global);
 goog.exportSymbol('proto.padlocal.SystemKickOutEvent', null, global);
+goog.exportSymbol('proto.padlocal.SystemLongLinkUpdateEvent', null, global);
 goog.exportSymbol('proto.padlocal.UpdateContactRemarkRequest', null, global);
 goog.exportSymbol('proto.padlocal.UpdateContactRemarkResponse', null, global);
 goog.exportSymbol('proto.padlocal.UpdateSelfNickNameRequest', null, global);
@@ -178,15 +180,27 @@ goog.exportSymbol('proto.padlocal.UpdateSelfSignatureRequest', null, global);
 goog.exportSymbol('proto.padlocal.UpdateSelfSignatureResponse', null, global);
 goog.exportSymbol('proto.padlocal.WeChatLongLinkRequest', null, global);
 goog.exportSymbol('proto.padlocal.WeChatLongLinkResponse', null, global);
+goog.exportSymbol('proto.padlocal.WeChatLongLinkStreamRequest', null, global);
+goog.exportSymbol('proto.padlocal.WeChatLongLinkStreamResponse', null, global);
+goog.exportSymbol('proto.padlocal.WeChatLongLinkStreamResponseReply', null, global);
+goog.exportSymbol('proto.padlocal.WeChatPushSubscribeRequest', null, global);
+goog.exportSymbol('proto.padlocal.WeChatPushSubscribeResponse', null, global);
+goog.exportSymbol('proto.padlocal.WeChatPushSubscribeResponseReply', null, global);
 goog.exportSymbol('proto.padlocal.WeChatRequest', null, global);
-goog.exportSymbol('proto.padlocal.WeChatRequest.RequestCase', null, global);
+goog.exportSymbol('proto.padlocal.WeChatRequest.PayloadCase', null, global);
 goog.exportSymbol('proto.padlocal.WeChatResponse', null, global);
-goog.exportSymbol('proto.padlocal.WeChatResponse.ResponseCase', null, global);
+goog.exportSymbol('proto.padlocal.WeChatResponse.PayloadCase', null, global);
 goog.exportSymbol('proto.padlocal.WeChatShortLinkRequest', null, global);
 goog.exportSymbol('proto.padlocal.WeChatShortLinkResponse', null, global);
 goog.exportSymbol('proto.padlocal.WeChatSocketRequest', null, global);
 goog.exportSymbol('proto.padlocal.WeChatSocketResponse', null, global);
-goog.exportSymbol('proto.padlocal.WeChatStreamAck', null, global);
+goog.exportSymbol('proto.padlocal.WeChatSocketResponseReply', null, global);
+goog.exportSymbol('proto.padlocal.WeChatStreamRequest', null, global);
+goog.exportSymbol('proto.padlocal.WeChatStreamRequest.PayloadCase', null, global);
+goog.exportSymbol('proto.padlocal.WeChatStreamResponse', null, global);
+goog.exportSymbol('proto.padlocal.WeChatStreamResponse.PayloadCase', null, global);
+goog.exportSymbol('proto.padlocal.WeChatStreamResponseReply', null, global);
+goog.exportSymbol('proto.padlocal.WeChatStreamResponseReply.PayloadCase', null, global);
 goog.exportSymbol('proto.padlocal.ZombieStatue', null, global);
 goog.exportSymbol('proto.padlocal.ZombieTestRequest', null, global);
 goog.exportSymbol('proto.padlocal.ZombieTestResponse', null, global);
@@ -326,69 +340,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.padlocal.WeChatSocketRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.padlocal.WeChatSocketRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.padlocal.WeChatSocketRequest.displayName = 'proto.padlocal.WeChatSocketRequest';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.padlocal.WeChatSocketResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.padlocal.WeChatSocketResponse, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.padlocal.WeChatSocketResponse.displayName = 'proto.padlocal.WeChatSocketResponse';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.padlocal.WeChatStreamAck = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.padlocal.WeChatStreamAck, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.padlocal.WeChatStreamAck.displayName = 'proto.padlocal.WeChatStreamAck';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.padlocal.WeChatRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.WeChatRequest.oneofGroups_);
 };
@@ -431,16 +382,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.padlocal.LongLinkUnpackRequest = function(opt_data) {
+proto.padlocal.WeChatLongLinkStreamRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.padlocal.LongLinkUnpackRequest, jspb.Message);
+goog.inherits(proto.padlocal.WeChatLongLinkStreamRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.padlocal.LongLinkUnpackRequest.displayName = 'proto.padlocal.LongLinkUnpackRequest';
+  proto.padlocal.WeChatLongLinkStreamRequest.displayName = 'proto.padlocal.WeChatLongLinkStreamRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -452,58 +403,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.padlocal.LongLinkUnpackResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.padlocal.LongLinkUnpackResponse.repeatedFields_, null);
-};
-goog.inherits(proto.padlocal.LongLinkUnpackResponse, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.padlocal.LongLinkUnpackResponse.displayName = 'proto.padlocal.LongLinkUnpackResponse';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.padlocal.LongLinkPacket = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.LongLinkPacket.oneofGroups_);
-};
-goog.inherits(proto.padlocal.LongLinkPacket, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.padlocal.LongLinkPacket.displayName = 'proto.padlocal.LongLinkPacket';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.padlocal.LongLinkPacketNormal = function(opt_data) {
+proto.padlocal.WeChatLongLinkStreamResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.padlocal.LongLinkPacketNormal, jspb.Message);
+goog.inherits(proto.padlocal.WeChatLongLinkStreamResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.padlocal.LongLinkPacketNormal.displayName = 'proto.padlocal.LongLinkPacketNormal';
+  proto.padlocal.WeChatLongLinkStreamResponse.displayName = 'proto.padlocal.WeChatLongLinkStreamResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -515,16 +424,205 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.padlocal.LongLinkPacketPush = function(opt_data) {
+proto.padlocal.WeChatLongLinkStreamResponseReply = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.padlocal.LongLinkPacketPush, jspb.Message);
+goog.inherits(proto.padlocal.WeChatLongLinkStreamResponseReply, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.padlocal.LongLinkPacketPush.displayName = 'proto.padlocal.LongLinkPacketPush';
+  proto.padlocal.WeChatLongLinkStreamResponseReply.displayName = 'proto.padlocal.WeChatLongLinkStreamResponseReply';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatSocketRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.WeChatSocketRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatSocketRequest.displayName = 'proto.padlocal.WeChatSocketRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatSocketResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.WeChatSocketResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatSocketResponse.displayName = 'proto.padlocal.WeChatSocketResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatSocketResponseReply = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.WeChatSocketResponseReply, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatSocketResponseReply.displayName = 'proto.padlocal.WeChatSocketResponseReply';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatPushSubscribeRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.padlocal.WeChatPushSubscribeRequest.repeatedFields_, null);
+};
+goog.inherits(proto.padlocal.WeChatPushSubscribeRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatPushSubscribeRequest.displayName = 'proto.padlocal.WeChatPushSubscribeRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatPushSubscribeResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.padlocal.WeChatPushSubscribeResponse.repeatedFields_, null);
+};
+goog.inherits(proto.padlocal.WeChatPushSubscribeResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatPushSubscribeResponse.displayName = 'proto.padlocal.WeChatPushSubscribeResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatPushSubscribeResponseReply = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.WeChatPushSubscribeResponseReply, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatPushSubscribeResponseReply.displayName = 'proto.padlocal.WeChatPushSubscribeResponseReply';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatStreamRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.WeChatStreamRequest.oneofGroups_);
+};
+goog.inherits(proto.padlocal.WeChatStreamRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatStreamRequest.displayName = 'proto.padlocal.WeChatStreamRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatStreamResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.WeChatStreamResponse.oneofGroups_);
+};
+goog.inherits(proto.padlocal.WeChatStreamResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatStreamResponse.displayName = 'proto.padlocal.WeChatStreamResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.WeChatStreamResponseReply = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.WeChatStreamResponseReply.oneofGroups_);
+};
+goog.inherits(proto.padlocal.WeChatStreamResponseReply, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.WeChatStreamResponseReply.displayName = 'proto.padlocal.WeChatStreamResponseReply';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -683,48 +781,6 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.padlocal.LongLinkHeartBeatRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.padlocal.LongLinkHeartBeatRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.padlocal.LongLinkHeartBeatRequest.displayName = 'proto.padlocal.LongLinkHeartBeatRequest';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.padlocal.LongLinkHeartBeatResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.padlocal.LongLinkHeartBeatResponse, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.padlocal.LongLinkHeartBeatResponse.displayName = 'proto.padlocal.LongLinkHeartBeatResponse';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.padlocal.LongLinkInitRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -756,6 +812,174 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.padlocal.LongLinkInitResponse.displayName = 'proto.padlocal.LongLinkInitResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.LongLinkPackRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.LongLinkPackRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.LongLinkPackRequest.displayName = 'proto.padlocal.LongLinkPackRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.LongLinkPackResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.LongLinkPackResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.LongLinkPackResponse.displayName = 'proto.padlocal.LongLinkPackResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.LongLinkUnpackRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.LongLinkUnpackRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.LongLinkUnpackRequest.displayName = 'proto.padlocal.LongLinkUnpackRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.LongLinkUnpackResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.padlocal.LongLinkUnpackResponse.repeatedFields_, null);
+};
+goog.inherits(proto.padlocal.LongLinkUnpackResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.LongLinkUnpackResponse.displayName = 'proto.padlocal.LongLinkUnpackResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.LongLinkMessage = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.LongLinkMessage.oneofGroups_);
+};
+goog.inherits(proto.padlocal.LongLinkMessage, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.LongLinkMessage.displayName = 'proto.padlocal.LongLinkMessage';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.LongLinkMessagePush = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.LongLinkMessagePush, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.LongLinkMessagePush.displayName = 'proto.padlocal.LongLinkMessagePush';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.LongLinkHeartBeatRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.LongLinkHeartBeatRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.LongLinkHeartBeatRequest.displayName = 'proto.padlocal.LongLinkHeartBeatRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.padlocal.LongLinkHeartBeatResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.LongLinkHeartBeatResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.LongLinkHeartBeatResponse.displayName = 'proto.padlocal.LongLinkHeartBeatResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -2825,6 +3049,27 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.padlocal.SystemLongLinkUpdateEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.padlocal.SystemLongLinkUpdateEvent, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.padlocal.SystemLongLinkUpdateEvent.displayName = 'proto.padlocal.SystemLongLinkUpdateEvent';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.padlocal.SystemEventRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.SystemEventRequest.oneofGroups_);
 };
@@ -3719,7 +3964,7 @@ proto.padlocal.ActionMessageHeader.prototype.setAck = function(value) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.padlocal.ActionMessage.oneofGroups_ = [[10,11,12,13,14,15,16,17,18,19,20,100,101,102,200,201,202,203,204,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,600,601,602,603,604,605,606,607,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723,724,725]];
+proto.padlocal.ActionMessage.oneofGroups_ = [[10,11,12,13,14,15,16,80,81,82,83,84,85,86,87,100,101,102,200,201,202,203,204,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,600,601,602,603,604,605,606,607,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723,724,725]];
 
 /**
  * @enum {number}
@@ -3728,15 +3973,19 @@ proto.padlocal.ActionMessage.PayloadCase = {
   PAYLOAD_NOT_SET: 0,
   WECHATREQUEST: 10,
   WECHATRESPONSE: 11,
-  SYSTEMEVENTREQUEST: 12,
-  SYSTEMEVENTRESPONSE: 13,
-  LONGLINKUNPACKREQUEST: 14,
-  LONGLINKUNPACKRESPONSE: 15,
-  LONGLINKHEARTBEATREQUEST: 16,
-  LONGLINKHEARTBEATRESPONSE: 17,
-  WECHATSTREAMACK: 18,
-  LONGLINKINITREQUEST: 19,
-  LONGLINKINITRESPONSE: 20,
+  WECHATSTREAMREQUEST: 12,
+  WECHATSTREAMRESPONSE: 13,
+  WECHATSTREAMRESPONSEREPLY: 14,
+  SYSTEMEVENTREQUEST: 15,
+  SYSTEMEVENTRESPONSE: 16,
+  LONGLINKINITREQUEST: 80,
+  LONGLINKINITRESPONSE: 81,
+  LONGLINKPACKREQUEST: 82,
+  LONGLINKPACKRESPONSE: 83,
+  LONGLINKUNPACKREQUEST: 84,
+  LONGLINKUNPACKRESPONSE: 85,
+  LONGLINKHEARTBEATREQUEST: 86,
+  LONGLINKHEARTBEATRESPONSE: 87,
   SYNCREQUEST: 100,
   SYNCRESPONSE: 101,
   SYNCEVENT: 102,
@@ -3898,15 +4147,19 @@ proto.padlocal.ActionMessage.toObject = function(includeInstance, msg) {
     header: (f = msg.getHeader()) && proto.padlocal.ActionMessageHeader.toObject(includeInstance, f),
     wechatrequest: (f = msg.getWechatrequest()) && proto.padlocal.WeChatRequest.toObject(includeInstance, f),
     wechatresponse: (f = msg.getWechatresponse()) && proto.padlocal.WeChatResponse.toObject(includeInstance, f),
+    wechatstreamrequest: (f = msg.getWechatstreamrequest()) && proto.padlocal.WeChatStreamRequest.toObject(includeInstance, f),
+    wechatstreamresponse: (f = msg.getWechatstreamresponse()) && proto.padlocal.WeChatStreamResponse.toObject(includeInstance, f),
+    wechatstreamresponsereply: (f = msg.getWechatstreamresponsereply()) && proto.padlocal.WeChatStreamResponseReply.toObject(includeInstance, f),
     systemeventrequest: (f = msg.getSystemeventrequest()) && proto.padlocal.SystemEventRequest.toObject(includeInstance, f),
     systemeventresponse: (f = msg.getSystemeventresponse()) && proto.padlocal.SystemEventResponse.toObject(includeInstance, f),
+    longlinkinitrequest: (f = msg.getLonglinkinitrequest()) && proto.padlocal.LongLinkInitRequest.toObject(includeInstance, f),
+    longlinkinitresponse: (f = msg.getLonglinkinitresponse()) && proto.padlocal.LongLinkInitResponse.toObject(includeInstance, f),
+    longlinkpackrequest: (f = msg.getLonglinkpackrequest()) && proto.padlocal.LongLinkPackRequest.toObject(includeInstance, f),
+    longlinkpackresponse: (f = msg.getLonglinkpackresponse()) && proto.padlocal.LongLinkPackResponse.toObject(includeInstance, f),
     longlinkunpackrequest: (f = msg.getLonglinkunpackrequest()) && proto.padlocal.LongLinkUnpackRequest.toObject(includeInstance, f),
     longlinkunpackresponse: (f = msg.getLonglinkunpackresponse()) && proto.padlocal.LongLinkUnpackResponse.toObject(includeInstance, f),
     longlinkheartbeatrequest: (f = msg.getLonglinkheartbeatrequest()) && proto.padlocal.LongLinkHeartBeatRequest.toObject(includeInstance, f),
     longlinkheartbeatresponse: (f = msg.getLonglinkheartbeatresponse()) && proto.padlocal.LongLinkHeartBeatResponse.toObject(includeInstance, f),
-    wechatstreamack: (f = msg.getWechatstreamack()) && proto.padlocal.WeChatStreamAck.toObject(includeInstance, f),
-    longlinkinitrequest: (f = msg.getLonglinkinitrequest()) && proto.padlocal.LongLinkInitRequest.toObject(includeInstance, f),
-    longlinkinitresponse: (f = msg.getLonglinkinitresponse()) && proto.padlocal.LongLinkInitResponse.toObject(includeInstance, f),
     syncrequest: (f = msg.getSyncrequest()) && proto.padlocal.SyncRequest.toObject(includeInstance, f),
     syncresponse: (f = msg.getSyncresponse()) && proto.padlocal.SyncResponse.toObject(includeInstance, f),
     syncevent: (f = msg.getSyncevent()) && proto.padlocal.SyncEvent.toObject(includeInstance, f),
@@ -4077,49 +4330,69 @@ proto.padlocal.ActionMessage.deserializeBinaryFromReader = function(msg, reader)
       msg.setWechatresponse(value);
       break;
     case 12:
+      var value = new proto.padlocal.WeChatStreamRequest;
+      reader.readMessage(value,proto.padlocal.WeChatStreamRequest.deserializeBinaryFromReader);
+      msg.setWechatstreamrequest(value);
+      break;
+    case 13:
+      var value = new proto.padlocal.WeChatStreamResponse;
+      reader.readMessage(value,proto.padlocal.WeChatStreamResponse.deserializeBinaryFromReader);
+      msg.setWechatstreamresponse(value);
+      break;
+    case 14:
+      var value = new proto.padlocal.WeChatStreamResponseReply;
+      reader.readMessage(value,proto.padlocal.WeChatStreamResponseReply.deserializeBinaryFromReader);
+      msg.setWechatstreamresponsereply(value);
+      break;
+    case 15:
       var value = new proto.padlocal.SystemEventRequest;
       reader.readMessage(value,proto.padlocal.SystemEventRequest.deserializeBinaryFromReader);
       msg.setSystemeventrequest(value);
       break;
-    case 13:
+    case 16:
       var value = new proto.padlocal.SystemEventResponse;
       reader.readMessage(value,proto.padlocal.SystemEventResponse.deserializeBinaryFromReader);
       msg.setSystemeventresponse(value);
       break;
-    case 14:
-      var value = new proto.padlocal.LongLinkUnpackRequest;
-      reader.readMessage(value,proto.padlocal.LongLinkUnpackRequest.deserializeBinaryFromReader);
-      msg.setLonglinkunpackrequest(value);
-      break;
-    case 15:
-      var value = new proto.padlocal.LongLinkUnpackResponse;
-      reader.readMessage(value,proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader);
-      msg.setLonglinkunpackresponse(value);
-      break;
-    case 16:
-      var value = new proto.padlocal.LongLinkHeartBeatRequest;
-      reader.readMessage(value,proto.padlocal.LongLinkHeartBeatRequest.deserializeBinaryFromReader);
-      msg.setLonglinkheartbeatrequest(value);
-      break;
-    case 17:
-      var value = new proto.padlocal.LongLinkHeartBeatResponse;
-      reader.readMessage(value,proto.padlocal.LongLinkHeartBeatResponse.deserializeBinaryFromReader);
-      msg.setLonglinkheartbeatresponse(value);
-      break;
-    case 18:
-      var value = new proto.padlocal.WeChatStreamAck;
-      reader.readMessage(value,proto.padlocal.WeChatStreamAck.deserializeBinaryFromReader);
-      msg.setWechatstreamack(value);
-      break;
-    case 19:
+    case 80:
       var value = new proto.padlocal.LongLinkInitRequest;
       reader.readMessage(value,proto.padlocal.LongLinkInitRequest.deserializeBinaryFromReader);
       msg.setLonglinkinitrequest(value);
       break;
-    case 20:
+    case 81:
       var value = new proto.padlocal.LongLinkInitResponse;
       reader.readMessage(value,proto.padlocal.LongLinkInitResponse.deserializeBinaryFromReader);
       msg.setLonglinkinitresponse(value);
+      break;
+    case 82:
+      var value = new proto.padlocal.LongLinkPackRequest;
+      reader.readMessage(value,proto.padlocal.LongLinkPackRequest.deserializeBinaryFromReader);
+      msg.setLonglinkpackrequest(value);
+      break;
+    case 83:
+      var value = new proto.padlocal.LongLinkPackResponse;
+      reader.readMessage(value,proto.padlocal.LongLinkPackResponse.deserializeBinaryFromReader);
+      msg.setLonglinkpackresponse(value);
+      break;
+    case 84:
+      var value = new proto.padlocal.LongLinkUnpackRequest;
+      reader.readMessage(value,proto.padlocal.LongLinkUnpackRequest.deserializeBinaryFromReader);
+      msg.setLonglinkunpackrequest(value);
+      break;
+    case 85:
+      var value = new proto.padlocal.LongLinkUnpackResponse;
+      reader.readMessage(value,proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader);
+      msg.setLonglinkunpackresponse(value);
+      break;
+    case 86:
+      var value = new proto.padlocal.LongLinkHeartBeatRequest;
+      reader.readMessage(value,proto.padlocal.LongLinkHeartBeatRequest.deserializeBinaryFromReader);
+      msg.setLonglinkheartbeatrequest(value);
+      break;
+    case 87:
+      var value = new proto.padlocal.LongLinkHeartBeatResponse;
+      reader.readMessage(value,proto.padlocal.LongLinkHeartBeatResponse.deserializeBinaryFromReader);
+      msg.setLonglinkheartbeatresponse(value);
       break;
     case 100:
       var value = new proto.padlocal.SyncRequest;
@@ -4764,10 +5037,34 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
       proto.padlocal.WeChatResponse.serializeBinaryToWriter
     );
   }
-  f = message.getSystemeventrequest();
+  f = message.getWechatstreamrequest();
   if (f != null) {
     writer.writeMessage(
       12,
+      f,
+      proto.padlocal.WeChatStreamRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getWechatstreamresponse();
+  if (f != null) {
+    writer.writeMessage(
+      13,
+      f,
+      proto.padlocal.WeChatStreamResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getWechatstreamresponsereply();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      proto.padlocal.WeChatStreamResponseReply.serializeBinaryToWriter
+    );
+  }
+  f = message.getSystemeventrequest();
+  if (f != null) {
+    writer.writeMessage(
+      15,
       f,
       proto.padlocal.SystemEventRequest.serializeBinaryToWriter
     );
@@ -4775,55 +5072,15 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getSystemeventresponse();
   if (f != null) {
     writer.writeMessage(
-      13,
-      f,
-      proto.padlocal.SystemEventResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkunpackrequest();
-  if (f != null) {
-    writer.writeMessage(
-      14,
-      f,
-      proto.padlocal.LongLinkUnpackRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkunpackresponse();
-  if (f != null) {
-    writer.writeMessage(
-      15,
-      f,
-      proto.padlocal.LongLinkUnpackResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkheartbeatrequest();
-  if (f != null) {
-    writer.writeMessage(
       16,
       f,
-      proto.padlocal.LongLinkHeartBeatRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkheartbeatresponse();
-  if (f != null) {
-    writer.writeMessage(
-      17,
-      f,
-      proto.padlocal.LongLinkHeartBeatResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getWechatstreamack();
-  if (f != null) {
-    writer.writeMessage(
-      18,
-      f,
-      proto.padlocal.WeChatStreamAck.serializeBinaryToWriter
+      proto.padlocal.SystemEventResponse.serializeBinaryToWriter
     );
   }
   f = message.getLonglinkinitrequest();
   if (f != null) {
     writer.writeMessage(
-      19,
+      80,
       f,
       proto.padlocal.LongLinkInitRequest.serializeBinaryToWriter
     );
@@ -4831,9 +5088,57 @@ proto.padlocal.ActionMessage.serializeBinaryToWriter = function(message, writer)
   f = message.getLonglinkinitresponse();
   if (f != null) {
     writer.writeMessage(
-      20,
+      81,
       f,
       proto.padlocal.LongLinkInitResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkpackrequest();
+  if (f != null) {
+    writer.writeMessage(
+      82,
+      f,
+      proto.padlocal.LongLinkPackRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkpackresponse();
+  if (f != null) {
+    writer.writeMessage(
+      83,
+      f,
+      proto.padlocal.LongLinkPackResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkunpackrequest();
+  if (f != null) {
+    writer.writeMessage(
+      84,
+      f,
+      proto.padlocal.LongLinkUnpackRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkunpackresponse();
+  if (f != null) {
+    writer.writeMessage(
+      85,
+      f,
+      proto.padlocal.LongLinkUnpackResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkheartbeatrequest();
+  if (f != null) {
+    writer.writeMessage(
+      86,
+      f,
+      proto.padlocal.LongLinkHeartBeatRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getLonglinkheartbeatresponse();
+  if (f != null) {
+    writer.writeMessage(
+      87,
+      f,
+      proto.padlocal.LongLinkHeartBeatResponse.serializeBinaryToWriter
     );
   }
   f = message.getSyncrequest();
@@ -5895,12 +6200,123 @@ proto.padlocal.ActionMessage.prototype.hasWechatresponse = function() {
 
 
 /**
- * optional SystemEventRequest systemEventRequest = 12;
+ * optional WeChatStreamRequest weChatStreamRequest = 12;
+ * @return {?proto.padlocal.WeChatStreamRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getWechatstreamrequest = function() {
+  return /** @type{?proto.padlocal.WeChatStreamRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatStreamRequest, 12));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatStreamRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setWechatstreamrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 12, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearWechatstreamrequest = function() {
+  return this.setWechatstreamrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasWechatstreamrequest = function() {
+  return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional WeChatStreamResponse weChatStreamResponse = 13;
+ * @return {?proto.padlocal.WeChatStreamResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getWechatstreamresponse = function() {
+  return /** @type{?proto.padlocal.WeChatStreamResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatStreamResponse, 13));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatStreamResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setWechatstreamresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 13, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearWechatstreamresponse = function() {
+  return this.setWechatstreamresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasWechatstreamresponse = function() {
+  return jspb.Message.getField(this, 13) != null;
+};
+
+
+/**
+ * optional WeChatStreamResponseReply weChatStreamResponseReply = 14;
+ * @return {?proto.padlocal.WeChatStreamResponseReply}
+ */
+proto.padlocal.ActionMessage.prototype.getWechatstreamresponsereply = function() {
+  return /** @type{?proto.padlocal.WeChatStreamResponseReply} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatStreamResponseReply, 14));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatStreamResponseReply|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setWechatstreamresponsereply = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 14, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearWechatstreamresponsereply = function() {
+  return this.setWechatstreamresponsereply(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasWechatstreamresponsereply = function() {
+  return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * optional SystemEventRequest systemEventRequest = 15;
  * @return {?proto.padlocal.SystemEventRequest}
  */
 proto.padlocal.ActionMessage.prototype.getSystemeventrequest = function() {
   return /** @type{?proto.padlocal.SystemEventRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SystemEventRequest, 12));
+    jspb.Message.getWrapperField(this, proto.padlocal.SystemEventRequest, 15));
 };
 
 
@@ -5909,7 +6325,7 @@ proto.padlocal.ActionMessage.prototype.getSystemeventrequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setSystemeventrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 12, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 15, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -5927,17 +6343,17 @@ proto.padlocal.ActionMessage.prototype.clearSystemeventrequest = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasSystemeventrequest = function() {
-  return jspb.Message.getField(this, 12) != null;
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
 /**
- * optional SystemEventResponse systemEventResponse = 13;
+ * optional SystemEventResponse systemEventResponse = 16;
  * @return {?proto.padlocal.SystemEventResponse}
  */
 proto.padlocal.ActionMessage.prototype.getSystemeventresponse = function() {
   return /** @type{?proto.padlocal.SystemEventResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SystemEventResponse, 13));
+    jspb.Message.getWrapperField(this, proto.padlocal.SystemEventResponse, 16));
 };
 
 
@@ -5946,7 +6362,7 @@ proto.padlocal.ActionMessage.prototype.getSystemeventresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setSystemeventresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 13, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 16, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -5964,202 +6380,17 @@ proto.padlocal.ActionMessage.prototype.clearSystemeventresponse = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasSystemeventresponse = function() {
-  return jspb.Message.getField(this, 13) != null;
-};
-
-
-/**
- * optional LongLinkUnpackRequest longLinkUnpackRequest = 14;
- * @return {?proto.padlocal.LongLinkUnpackRequest}
- */
-proto.padlocal.ActionMessage.prototype.getLonglinkunpackrequest = function() {
-  return /** @type{?proto.padlocal.LongLinkUnpackRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkUnpackRequest, 14));
-};
-
-
-/**
- * @param {?proto.padlocal.LongLinkUnpackRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLonglinkunpackrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 14, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLonglinkunpackrequest = function() {
-  return this.setLonglinkunpackrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLonglinkunpackrequest = function() {
-  return jspb.Message.getField(this, 14) != null;
-};
-
-
-/**
- * optional LongLinkUnpackResponse longLinkUnpackResponse = 15;
- * @return {?proto.padlocal.LongLinkUnpackResponse}
- */
-proto.padlocal.ActionMessage.prototype.getLonglinkunpackresponse = function() {
-  return /** @type{?proto.padlocal.LongLinkUnpackResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkUnpackResponse, 15));
-};
-
-
-/**
- * @param {?proto.padlocal.LongLinkUnpackResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLonglinkunpackresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 15, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLonglinkunpackresponse = function() {
-  return this.setLonglinkunpackresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLonglinkunpackresponse = function() {
-  return jspb.Message.getField(this, 15) != null;
-};
-
-
-/**
- * optional LongLinkHeartBeatRequest longLinkHeartBeatRequest = 16;
- * @return {?proto.padlocal.LongLinkHeartBeatRequest}
- */
-proto.padlocal.ActionMessage.prototype.getLonglinkheartbeatrequest = function() {
-  return /** @type{?proto.padlocal.LongLinkHeartBeatRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkHeartBeatRequest, 16));
-};
-
-
-/**
- * @param {?proto.padlocal.LongLinkHeartBeatRequest|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLonglinkheartbeatrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 16, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLonglinkheartbeatrequest = function() {
-  return this.setLonglinkheartbeatrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLonglinkheartbeatrequest = function() {
   return jspb.Message.getField(this, 16) != null;
 };
 
 
 /**
- * optional LongLinkHeartBeatResponse longLinkHeartBeatResponse = 17;
- * @return {?proto.padlocal.LongLinkHeartBeatResponse}
- */
-proto.padlocal.ActionMessage.prototype.getLonglinkheartbeatresponse = function() {
-  return /** @type{?proto.padlocal.LongLinkHeartBeatResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkHeartBeatResponse, 17));
-};
-
-
-/**
- * @param {?proto.padlocal.LongLinkHeartBeatResponse|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setLonglinkheartbeatresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 17, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearLonglinkheartbeatresponse = function() {
-  return this.setLonglinkheartbeatresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasLonglinkheartbeatresponse = function() {
-  return jspb.Message.getField(this, 17) != null;
-};
-
-
-/**
- * optional WeChatStreamAck weChatStreamAck = 18;
- * @return {?proto.padlocal.WeChatStreamAck}
- */
-proto.padlocal.ActionMessage.prototype.getWechatstreamack = function() {
-  return /** @type{?proto.padlocal.WeChatStreamAck} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatStreamAck, 18));
-};
-
-
-/**
- * @param {?proto.padlocal.WeChatStreamAck|undefined} value
- * @return {!proto.padlocal.ActionMessage} returns this
-*/
-proto.padlocal.ActionMessage.prototype.setWechatstreamack = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 18, proto.padlocal.ActionMessage.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.ActionMessage} returns this
- */
-proto.padlocal.ActionMessage.prototype.clearWechatstreamack = function() {
-  return this.setWechatstreamack(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.ActionMessage.prototype.hasWechatstreamack = function() {
-  return jspb.Message.getField(this, 18) != null;
-};
-
-
-/**
- * optional LongLinkInitRequest longLinkInitRequest = 19;
+ * optional LongLinkInitRequest longLinkInitRequest = 80;
  * @return {?proto.padlocal.LongLinkInitRequest}
  */
 proto.padlocal.ActionMessage.prototype.getLonglinkinitrequest = function() {
   return /** @type{?proto.padlocal.LongLinkInitRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkInitRequest, 19));
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkInitRequest, 80));
 };
 
 
@@ -6168,7 +6399,7 @@ proto.padlocal.ActionMessage.prototype.getLonglinkinitrequest = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setLonglinkinitrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 19, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 80, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -6186,17 +6417,17 @@ proto.padlocal.ActionMessage.prototype.clearLonglinkinitrequest = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasLonglinkinitrequest = function() {
-  return jspb.Message.getField(this, 19) != null;
+  return jspb.Message.getField(this, 80) != null;
 };
 
 
 /**
- * optional LongLinkInitResponse longLinkInitResponse = 20;
+ * optional LongLinkInitResponse longLinkInitResponse = 81;
  * @return {?proto.padlocal.LongLinkInitResponse}
  */
 proto.padlocal.ActionMessage.prototype.getLonglinkinitresponse = function() {
   return /** @type{?proto.padlocal.LongLinkInitResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkInitResponse, 20));
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkInitResponse, 81));
 };
 
 
@@ -6205,7 +6436,7 @@ proto.padlocal.ActionMessage.prototype.getLonglinkinitresponse = function() {
  * @return {!proto.padlocal.ActionMessage} returns this
 */
 proto.padlocal.ActionMessage.prototype.setLonglinkinitresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 20, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 81, proto.padlocal.ActionMessage.oneofGroups_[0], value);
 };
 
 
@@ -6223,7 +6454,229 @@ proto.padlocal.ActionMessage.prototype.clearLonglinkinitresponse = function() {
  * @return {boolean}
  */
 proto.padlocal.ActionMessage.prototype.hasLonglinkinitresponse = function() {
-  return jspb.Message.getField(this, 20) != null;
+  return jspb.Message.getField(this, 81) != null;
+};
+
+
+/**
+ * optional LongLinkPackRequest longLinkPackRequest = 82;
+ * @return {?proto.padlocal.LongLinkPackRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkpackrequest = function() {
+  return /** @type{?proto.padlocal.LongLinkPackRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkPackRequest, 82));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkPackRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkpackrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 82, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkpackrequest = function() {
+  return this.setLonglinkpackrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkpackrequest = function() {
+  return jspb.Message.getField(this, 82) != null;
+};
+
+
+/**
+ * optional LongLinkPackResponse longLinkPackResponse = 83;
+ * @return {?proto.padlocal.LongLinkPackResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkpackresponse = function() {
+  return /** @type{?proto.padlocal.LongLinkPackResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkPackResponse, 83));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkPackResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkpackresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 83, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkpackresponse = function() {
+  return this.setLonglinkpackresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkpackresponse = function() {
+  return jspb.Message.getField(this, 83) != null;
+};
+
+
+/**
+ * optional LongLinkUnpackRequest longLinkUnpackRequest = 84;
+ * @return {?proto.padlocal.LongLinkUnpackRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkunpackrequest = function() {
+  return /** @type{?proto.padlocal.LongLinkUnpackRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkUnpackRequest, 84));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkUnpackRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkunpackrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 84, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkunpackrequest = function() {
+  return this.setLonglinkunpackrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkunpackrequest = function() {
+  return jspb.Message.getField(this, 84) != null;
+};
+
+
+/**
+ * optional LongLinkUnpackResponse longLinkUnpackResponse = 85;
+ * @return {?proto.padlocal.LongLinkUnpackResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkunpackresponse = function() {
+  return /** @type{?proto.padlocal.LongLinkUnpackResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkUnpackResponse, 85));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkUnpackResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkunpackresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 85, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkunpackresponse = function() {
+  return this.setLonglinkunpackresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkunpackresponse = function() {
+  return jspb.Message.getField(this, 85) != null;
+};
+
+
+/**
+ * optional LongLinkHeartBeatRequest longLinkHeartBeatRequest = 86;
+ * @return {?proto.padlocal.LongLinkHeartBeatRequest}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkheartbeatrequest = function() {
+  return /** @type{?proto.padlocal.LongLinkHeartBeatRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkHeartBeatRequest, 86));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkHeartBeatRequest|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkheartbeatrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 86, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkheartbeatrequest = function() {
+  return this.setLonglinkheartbeatrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkheartbeatrequest = function() {
+  return jspb.Message.getField(this, 86) != null;
+};
+
+
+/**
+ * optional LongLinkHeartBeatResponse longLinkHeartBeatResponse = 87;
+ * @return {?proto.padlocal.LongLinkHeartBeatResponse}
+ */
+proto.padlocal.ActionMessage.prototype.getLonglinkheartbeatresponse = function() {
+  return /** @type{?proto.padlocal.LongLinkHeartBeatResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkHeartBeatResponse, 87));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkHeartBeatResponse|undefined} value
+ * @return {!proto.padlocal.ActionMessage} returns this
+*/
+proto.padlocal.ActionMessage.prototype.setLonglinkheartbeatresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 87, proto.padlocal.ActionMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ActionMessage} returns this
+ */
+proto.padlocal.ActionMessage.prototype.clearLonglinkheartbeatresponse = function() {
+  return this.setLonglinkheartbeatresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ActionMessage.prototype.hasLonglinkheartbeatresponse = function() {
+  return jspb.Message.getField(this, 87) != null;
 };
 
 
@@ -10625,9 +11078,9 @@ proto.padlocal.WeChatLongLinkRequest.prototype.toObject = function(opt_includeIn
  */
 proto.padlocal.WeChatLongLinkRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    seq: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    payload: msg.getPayload_asB64(),
-    initmode: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    messageid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    longlinkid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    initphase: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -10665,16 +11118,16 @@ proto.padlocal.WeChatLongLinkRequest.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setSeq(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessageid(value);
       break;
     case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPayload(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLonglinkid(value);
       break;
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setInitmode(value);
+      msg.setInitphase(value);
       break;
     default:
       reader.skipField();
@@ -10705,21 +11158,21 @@ proto.padlocal.WeChatLongLinkRequest.prototype.serializeBinary = function() {
  */
 proto.padlocal.WeChatLongLinkRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSeq();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getMessageid();
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
   }
-  f = message.getPayload_asU8();
+  f = message.getLonglinkid();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       2,
       f
     );
   }
-  f = message.getInitmode();
+  f = message.getInitphase();
   if (f) {
     writer.writeBool(
       3,
@@ -10730,70 +11183,46 @@ proto.padlocal.WeChatLongLinkRequest.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional int64 seq = 1;
- * @return {number}
- */
-proto.padlocal.WeChatLongLinkRequest.prototype.getSeq = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.padlocal.WeChatLongLinkRequest} returns this
- */
-proto.padlocal.WeChatLongLinkRequest.prototype.setSeq = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional bytes payload = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.padlocal.WeChatLongLinkRequest.prototype.getPayload = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes payload = 2;
- * This is a type-conversion wrapper around `getPayload()`
+ * optional string messageId = 1;
  * @return {string}
  */
-proto.padlocal.WeChatLongLinkRequest.prototype.getPayload_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getPayload()));
+proto.padlocal.WeChatLongLinkRequest.prototype.getMessageid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes payload = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPayload()`
- * @return {!Uint8Array}
- */
-proto.padlocal.WeChatLongLinkRequest.prototype.getPayload_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getPayload()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
+ * @param {string} value
  * @return {!proto.padlocal.WeChatLongLinkRequest} returns this
  */
-proto.padlocal.WeChatLongLinkRequest.prototype.setPayload = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+proto.padlocal.WeChatLongLinkRequest.prototype.setMessageid = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional bool initMode = 3;
+ * optional string longLinkId = 2;
+ * @return {string}
+ */
+proto.padlocal.WeChatLongLinkRequest.prototype.getLonglinkid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.WeChatLongLinkRequest} returns this
+ */
+proto.padlocal.WeChatLongLinkRequest.prototype.setLonglinkid = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool initPhase = 3;
  * @return {boolean}
  */
-proto.padlocal.WeChatLongLinkRequest.prototype.getInitmode = function() {
+proto.padlocal.WeChatLongLinkRequest.prototype.getInitphase = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
@@ -10802,7 +11231,7 @@ proto.padlocal.WeChatLongLinkRequest.prototype.getInitmode = function() {
  * @param {boolean} value
  * @return {!proto.padlocal.WeChatLongLinkRequest} returns this
  */
-proto.padlocal.WeChatLongLinkRequest.prototype.setInitmode = function(value) {
+proto.padlocal.WeChatLongLinkRequest.prototype.setInitphase = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
@@ -10839,7 +11268,7 @@ proto.padlocal.WeChatLongLinkResponse.prototype.toObject = function(opt_includeI
  */
 proto.padlocal.WeChatLongLinkResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    payload: msg.getPayload_asB64()
+
   };
 
   if (includeInstance) {
@@ -10876,10 +11305,6 @@ proto.padlocal.WeChatLongLinkResponse.deserializeBinaryFromReader = function(msg
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPayload(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -10909,55 +11334,6 @@ proto.padlocal.WeChatLongLinkResponse.prototype.serializeBinary = function() {
  */
 proto.padlocal.WeChatLongLinkResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPayload_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional bytes payload = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.padlocal.WeChatLongLinkResponse.prototype.getPayload = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes payload = 1;
- * This is a type-conversion wrapper around `getPayload()`
- * @return {string}
- */
-proto.padlocal.WeChatLongLinkResponse.prototype.getPayload_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getPayload()));
-};
-
-
-/**
- * optional bytes payload = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPayload()`
- * @return {!Uint8Array}
- */
-proto.padlocal.WeChatLongLinkResponse.prototype.getPayload_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getPayload()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.padlocal.WeChatLongLinkResponse} returns this
- */
-proto.padlocal.WeChatLongLinkResponse.prototype.setPayload = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 
@@ -11351,6 +11727,984 @@ proto.padlocal.WeChatShortLinkResponse.prototype.setPayload = function(value) {
 
 
 
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.padlocal.WeChatRequest.oneofGroups_ = [[10,11]];
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.WeChatRequest.PayloadCase = {
+  PAYLOAD_NOT_SET: 0,
+  LONGLINKREQUEST: 10,
+  SHORTLINKREQUEST: 11
+};
+
+/**
+ * @return {proto.padlocal.WeChatRequest.PayloadCase}
+ */
+proto.padlocal.WeChatRequest.prototype.getPayloadCase = function() {
+  return /** @type {proto.padlocal.WeChatRequest.PayloadCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.WeChatRequest.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.WeChatRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.WeChatRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    longlinkrequest: (f = msg.getLonglinkrequest()) && proto.padlocal.WeChatLongLinkRequest.toObject(includeInstance, f),
+    shortlinkrequest: (f = msg.getShortlinkrequest()) && proto.padlocal.WeChatShortLinkRequest.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.WeChatRequest}
+ */
+proto.padlocal.WeChatRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.WeChatRequest;
+  return proto.padlocal.WeChatRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.WeChatRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.WeChatRequest}
+ */
+proto.padlocal.WeChatRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 10:
+      var value = new proto.padlocal.WeChatLongLinkRequest;
+      reader.readMessage(value,proto.padlocal.WeChatLongLinkRequest.deserializeBinaryFromReader);
+      msg.setLonglinkrequest(value);
+      break;
+    case 11:
+      var value = new proto.padlocal.WeChatShortLinkRequest;
+      reader.readMessage(value,proto.padlocal.WeChatShortLinkRequest.deserializeBinaryFromReader);
+      msg.setShortlinkrequest(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.WeChatRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.WeChatRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLonglinkrequest();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      proto.padlocal.WeChatLongLinkRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getShortlinkrequest();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto.padlocal.WeChatShortLinkRequest.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional WeChatLongLinkRequest longLinkRequest = 10;
+ * @return {?proto.padlocal.WeChatLongLinkRequest}
+ */
+proto.padlocal.WeChatRequest.prototype.getLonglinkrequest = function() {
+  return /** @type{?proto.padlocal.WeChatLongLinkRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatLongLinkRequest, 10));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatLongLinkRequest|undefined} value
+ * @return {!proto.padlocal.WeChatRequest} returns this
+*/
+proto.padlocal.WeChatRequest.prototype.setLonglinkrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.WeChatRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatRequest} returns this
+ */
+proto.padlocal.WeChatRequest.prototype.clearLonglinkrequest = function() {
+  return this.setLonglinkrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatRequest.prototype.hasLonglinkrequest = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional WeChatShortLinkRequest shortLinkRequest = 11;
+ * @return {?proto.padlocal.WeChatShortLinkRequest}
+ */
+proto.padlocal.WeChatRequest.prototype.getShortlinkrequest = function() {
+  return /** @type{?proto.padlocal.WeChatShortLinkRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatShortLinkRequest, 11));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatShortLinkRequest|undefined} value
+ * @return {!proto.padlocal.WeChatRequest} returns this
+*/
+proto.padlocal.WeChatRequest.prototype.setShortlinkrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 11, proto.padlocal.WeChatRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatRequest} returns this
+ */
+proto.padlocal.WeChatRequest.prototype.clearShortlinkrequest = function() {
+  return this.setShortlinkrequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatRequest.prototype.hasShortlinkrequest = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.padlocal.WeChatResponse.oneofGroups_ = [[10,11]];
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.WeChatResponse.PayloadCase = {
+  PAYLOAD_NOT_SET: 0,
+  LONGLINKRESPONSE: 10,
+  SHORTLINKRESPONSE: 11
+};
+
+/**
+ * @return {proto.padlocal.WeChatResponse.PayloadCase}
+ */
+proto.padlocal.WeChatResponse.prototype.getPayloadCase = function() {
+  return /** @type {proto.padlocal.WeChatResponse.PayloadCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.WeChatResponse.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.WeChatResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.WeChatResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    longlinkresponse: (f = msg.getLonglinkresponse()) && proto.padlocal.WeChatLongLinkResponse.toObject(includeInstance, f),
+    shortlinkresponse: (f = msg.getShortlinkresponse()) && proto.padlocal.WeChatShortLinkResponse.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.WeChatResponse}
+ */
+proto.padlocal.WeChatResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.WeChatResponse;
+  return proto.padlocal.WeChatResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.WeChatResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.WeChatResponse}
+ */
+proto.padlocal.WeChatResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 10:
+      var value = new proto.padlocal.WeChatLongLinkResponse;
+      reader.readMessage(value,proto.padlocal.WeChatLongLinkResponse.deserializeBinaryFromReader);
+      msg.setLonglinkresponse(value);
+      break;
+    case 11:
+      var value = new proto.padlocal.WeChatShortLinkResponse;
+      reader.readMessage(value,proto.padlocal.WeChatShortLinkResponse.deserializeBinaryFromReader);
+      msg.setShortlinkresponse(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.WeChatResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.WeChatResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLonglinkresponse();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      proto.padlocal.WeChatLongLinkResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getShortlinkresponse();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto.padlocal.WeChatShortLinkResponse.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional WeChatLongLinkResponse longLinkResponse = 10;
+ * @return {?proto.padlocal.WeChatLongLinkResponse}
+ */
+proto.padlocal.WeChatResponse.prototype.getLonglinkresponse = function() {
+  return /** @type{?proto.padlocal.WeChatLongLinkResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatLongLinkResponse, 10));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatLongLinkResponse|undefined} value
+ * @return {!proto.padlocal.WeChatResponse} returns this
+*/
+proto.padlocal.WeChatResponse.prototype.setLonglinkresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.WeChatResponse.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatResponse} returns this
+ */
+proto.padlocal.WeChatResponse.prototype.clearLonglinkresponse = function() {
+  return this.setLonglinkresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatResponse.prototype.hasLonglinkresponse = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional WeChatShortLinkResponse shortLinkResponse = 11;
+ * @return {?proto.padlocal.WeChatShortLinkResponse}
+ */
+proto.padlocal.WeChatResponse.prototype.getShortlinkresponse = function() {
+  return /** @type{?proto.padlocal.WeChatShortLinkResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatShortLinkResponse, 11));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatShortLinkResponse|undefined} value
+ * @return {!proto.padlocal.WeChatResponse} returns this
+*/
+proto.padlocal.WeChatResponse.prototype.setShortlinkresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 11, proto.padlocal.WeChatResponse.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatResponse} returns this
+ */
+proto.padlocal.WeChatResponse.prototype.clearShortlinkresponse = function() {
+  return this.setShortlinkresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatResponse.prototype.hasShortlinkresponse = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatLongLinkStreamRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.WeChatLongLinkStreamRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    payload: msg.getPayload_asB64(),
+    longlinkid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    initphase: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.WeChatLongLinkStreamRequest}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.WeChatLongLinkStreamRequest;
+  return proto.padlocal.WeChatLongLinkStreamRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.WeChatLongLinkStreamRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.WeChatLongLinkStreamRequest}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPayload(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLonglinkid(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setInitphase(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.WeChatLongLinkStreamRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.WeChatLongLinkStreamRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPayload_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+  f = message.getLonglinkid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getInitphase();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.getPayload = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {string}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.getPayload_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPayload()));
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.getPayload_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPayload()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.padlocal.WeChatLongLinkStreamRequest} returns this
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.setPayload = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional string longLinkId = 2;
+ * @return {string}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.getLonglinkid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.WeChatLongLinkStreamRequest} returns this
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.setLonglinkid = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool initPhase = 3;
+ * @return {boolean}
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.getInitphase = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.padlocal.WeChatLongLinkStreamRequest} returns this
+ */
+proto.padlocal.WeChatLongLinkStreamRequest.prototype.setInitphase = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatLongLinkStreamResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.WeChatLongLinkStreamResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    payload: msg.getPayload_asB64()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.WeChatLongLinkStreamResponse}
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.WeChatLongLinkStreamResponse;
+  return proto.padlocal.WeChatLongLinkStreamResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.WeChatLongLinkStreamResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.WeChatLongLinkStreamResponse}
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPayload(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.WeChatLongLinkStreamResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.WeChatLongLinkStreamResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPayload_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.prototype.getPayload = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {string}
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.prototype.getPayload_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPayload()));
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.prototype.getPayload_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPayload()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.padlocal.WeChatLongLinkStreamResponse} returns this
+ */
+proto.padlocal.WeChatLongLinkStreamResponse.prototype.setPayload = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatLongLinkStreamResponseReply.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.WeChatLongLinkStreamResponseReply} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    payload: msg.getPayload_asB64()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.WeChatLongLinkStreamResponseReply}
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.WeChatLongLinkStreamResponseReply;
+  return proto.padlocal.WeChatLongLinkStreamResponseReply.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.WeChatLongLinkStreamResponseReply} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.WeChatLongLinkStreamResponseReply}
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPayload(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.WeChatLongLinkStreamResponseReply.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.WeChatLongLinkStreamResponseReply} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPayload_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.prototype.getPayload = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {string}
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.prototype.getPayload_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPayload()));
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.prototype.getPayload_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPayload()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.padlocal.WeChatLongLinkStreamResponseReply} returns this
+ */
+proto.padlocal.WeChatLongLinkStreamResponseReply.prototype.setPayload = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -11587,8 +12941,8 @@ proto.padlocal.WeChatSocketResponse.prototype.toObject = function(opt_includeIns
  */
 proto.padlocal.WeChatSocketResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    payload: msg.getPayload_asB64(),
-    streamreset: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    socketreset: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    payload: msg.getPayload_asB64()
   };
 
   if (includeInstance) {
@@ -11626,12 +12980,12 @@ proto.padlocal.WeChatSocketResponse.deserializeBinaryFromReader = function(msg, 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPayload(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSocketreset(value);
       break;
     case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setStreamreset(value);
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPayload(value);
       break;
     default:
       reader.skipField();
@@ -11662,16 +13016,16 @@ proto.padlocal.WeChatSocketResponse.prototype.serializeBinary = function() {
  */
 proto.padlocal.WeChatSocketResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPayload_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
+  f = message.getSocketreset();
+  if (f) {
+    writer.writeBool(
       1,
       f
     );
   }
-  f = message.getStreamreset();
-  if (f) {
-    writer.writeBool(
+  f = message.getPayload_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
       2,
       f
     );
@@ -11680,16 +13034,34 @@ proto.padlocal.WeChatSocketResponse.serializeBinaryToWriter = function(message, 
 
 
 /**
- * optional bytes payload = 1;
- * @return {!(string|Uint8Array)}
+ * optional bool socketReset = 1;
+ * @return {boolean}
  */
-proto.padlocal.WeChatSocketResponse.prototype.getPayload = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.padlocal.WeChatSocketResponse.prototype.getSocketreset = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
 
 /**
- * optional bytes payload = 1;
+ * @param {boolean} value
+ * @return {!proto.padlocal.WeChatSocketResponse} returns this
+ */
+proto.padlocal.WeChatSocketResponse.prototype.setSocketreset = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional bytes payload = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.padlocal.WeChatSocketResponse.prototype.getPayload = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes payload = 2;
  * This is a type-conversion wrapper around `getPayload()`
  * @return {string}
  */
@@ -11700,7 +13072,7 @@ proto.padlocal.WeChatSocketResponse.prototype.getPayload_asB64 = function() {
 
 
 /**
- * optional bytes payload = 1;
+ * optional bytes payload = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getPayload()`
@@ -11717,240 +13089,11 @@ proto.padlocal.WeChatSocketResponse.prototype.getPayload_asU8 = function() {
  * @return {!proto.padlocal.WeChatSocketResponse} returns this
  */
 proto.padlocal.WeChatSocketResponse.prototype.setPayload = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
-};
-
-
-/**
- * optional bool streamReset = 2;
- * @return {boolean}
- */
-proto.padlocal.WeChatSocketResponse.prototype.getStreamreset = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.padlocal.WeChatSocketResponse} returns this
- */
-proto.padlocal.WeChatSocketResponse.prototype.setStreamreset = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.padlocal.WeChatStreamAck.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.WeChatStreamAck.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.padlocal.WeChatStreamAck} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.WeChatStreamAck.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    finish: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    senddata: msg.getSenddata_asB64()
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.WeChatStreamAck}
- */
-proto.padlocal.WeChatStreamAck.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.WeChatStreamAck;
-  return proto.padlocal.WeChatStreamAck.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.padlocal.WeChatStreamAck} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.WeChatStreamAck}
- */
-proto.padlocal.WeChatStreamAck.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setFinish(value);
-      break;
-    case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setSenddata(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.padlocal.WeChatStreamAck.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.padlocal.WeChatStreamAck.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.WeChatStreamAck} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.WeChatStreamAck.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getFinish();
-  if (f) {
-    writer.writeBool(
-      1,
-      f
-    );
-  }
-  f = message.getSenddata_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      2,
-      f
-    );
-  }
-};
-
-
-/**
- * optional bool finish = 1;
- * @return {boolean}
- */
-proto.padlocal.WeChatStreamAck.prototype.getFinish = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.padlocal.WeChatStreamAck} returns this
- */
-proto.padlocal.WeChatStreamAck.prototype.setFinish = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 1, value);
-};
-
-
-/**
- * optional bytes sendData = 2;
- * @return {!(string|Uint8Array)}
- */
-proto.padlocal.WeChatStreamAck.prototype.getSenddata = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * optional bytes sendData = 2;
- * This is a type-conversion wrapper around `getSenddata()`
- * @return {string}
- */
-proto.padlocal.WeChatStreamAck.prototype.getSenddata_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getSenddata()));
-};
-
-
-/**
- * optional bytes sendData = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getSenddata()`
- * @return {!Uint8Array}
- */
-proto.padlocal.WeChatStreamAck.prototype.getSenddata_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getSenddata()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.padlocal.WeChatStreamAck} returns this
- */
-proto.padlocal.WeChatStreamAck.prototype.setSenddata = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 
 
-/**
- * Oneof group definitions for this message. Each group defines the field
- * numbers belonging to that group. When of these fields' value is set, all
- * other fields in the group are cleared. During deserialization, if multiple
- * fields are encountered for a group, only the last value seen will be kept.
- * @private {!Array<!Array<number>>}
- * @const
- */
-proto.padlocal.WeChatRequest.oneofGroups_ = [[1,2,3]];
-
-/**
- * @enum {number}
- */
-proto.padlocal.WeChatRequest.RequestCase = {
-  REQUEST_NOT_SET: 0,
-  LONGLINKREQUEST: 1,
-  SHORTLINKREQUEST: 2,
-  SOCKETREQUEST: 3
-};
-
-/**
- * @return {proto.padlocal.WeChatRequest.RequestCase}
- */
-proto.padlocal.WeChatRequest.prototype.getRequestCase = function() {
-  return /** @type {proto.padlocal.WeChatRequest.RequestCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.WeChatRequest.oneofGroups_[0]));
-};
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -11966,8 +13109,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.padlocal.WeChatRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.WeChatRequest.toObject(opt_includeInstance, this);
+proto.padlocal.WeChatSocketResponseReply.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatSocketResponseReply.toObject(opt_includeInstance, this);
 };
 
 
@@ -11976,15 +13119,13 @@ proto.padlocal.WeChatRequest.prototype.toObject = function(opt_includeInstance) 
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.padlocal.WeChatRequest} msg The msg instance to transform.
+ * @param {!proto.padlocal.WeChatSocketResponseReply} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.WeChatRequest.toObject = function(includeInstance, msg) {
+proto.padlocal.WeChatSocketResponseReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    longlinkrequest: (f = msg.getLonglinkrequest()) && proto.padlocal.WeChatLongLinkRequest.toObject(includeInstance, f),
-    shortlinkrequest: (f = msg.getShortlinkrequest()) && proto.padlocal.WeChatShortLinkRequest.toObject(includeInstance, f),
-    socketrequest: (f = msg.getSocketrequest()) && proto.padlocal.WeChatSocketRequest.toObject(includeInstance, f)
+
   };
 
   if (includeInstance) {
@@ -11998,44 +13139,29 @@ proto.padlocal.WeChatRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.WeChatRequest}
+ * @return {!proto.padlocal.WeChatSocketResponseReply}
  */
-proto.padlocal.WeChatRequest.deserializeBinary = function(bytes) {
+proto.padlocal.WeChatSocketResponseReply.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.WeChatRequest;
-  return proto.padlocal.WeChatRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.padlocal.WeChatSocketResponseReply;
+  return proto.padlocal.WeChatSocketResponseReply.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.padlocal.WeChatRequest} msg The message object to deserialize into.
+ * @param {!proto.padlocal.WeChatSocketResponseReply} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.WeChatRequest}
+ * @return {!proto.padlocal.WeChatSocketResponseReply}
  */
-proto.padlocal.WeChatRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.padlocal.WeChatSocketResponseReply.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.padlocal.WeChatLongLinkRequest;
-      reader.readMessage(value,proto.padlocal.WeChatLongLinkRequest.deserializeBinaryFromReader);
-      msg.setLonglinkrequest(value);
-      break;
-    case 2:
-      var value = new proto.padlocal.WeChatShortLinkRequest;
-      reader.readMessage(value,proto.padlocal.WeChatShortLinkRequest.deserializeBinaryFromReader);
-      msg.setShortlinkrequest(value);
-      break;
-    case 3:
-      var value = new proto.padlocal.WeChatSocketRequest;
-      reader.readMessage(value,proto.padlocal.WeChatSocketRequest.deserializeBinaryFromReader);
-      msg.setSocketrequest(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -12049,9 +13175,9 @@ proto.padlocal.WeChatRequest.deserializeBinaryFromReader = function(msg, reader)
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.padlocal.WeChatRequest.prototype.serializeBinary = function() {
+proto.padlocal.WeChatSocketResponseReply.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.padlocal.WeChatRequest.serializeBinaryToWriter(this, writer);
+  proto.padlocal.WeChatSocketResponseReply.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -12059,581 +13185,12 @@ proto.padlocal.WeChatRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.WeChatRequest} message
+ * @param {!proto.padlocal.WeChatSocketResponseReply} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.WeChatRequest.serializeBinaryToWriter = function(message, writer) {
+proto.padlocal.WeChatSocketResponseReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getLonglinkrequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.padlocal.WeChatLongLinkRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getShortlinkrequest();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.padlocal.WeChatShortLinkRequest.serializeBinaryToWriter
-    );
-  }
-  f = message.getSocketrequest();
-  if (f != null) {
-    writer.writeMessage(
-      3,
-      f,
-      proto.padlocal.WeChatSocketRequest.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional WeChatLongLinkRequest longLinkRequest = 1;
- * @return {?proto.padlocal.WeChatLongLinkRequest}
- */
-proto.padlocal.WeChatRequest.prototype.getLonglinkrequest = function() {
-  return /** @type{?proto.padlocal.WeChatLongLinkRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatLongLinkRequest, 1));
-};
-
-
-/**
- * @param {?proto.padlocal.WeChatLongLinkRequest|undefined} value
- * @return {!proto.padlocal.WeChatRequest} returns this
-*/
-proto.padlocal.WeChatRequest.prototype.setLonglinkrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 1, proto.padlocal.WeChatRequest.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.WeChatRequest} returns this
- */
-proto.padlocal.WeChatRequest.prototype.clearLonglinkrequest = function() {
-  return this.setLonglinkrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.WeChatRequest.prototype.hasLonglinkrequest = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional WeChatShortLinkRequest shortLinkRequest = 2;
- * @return {?proto.padlocal.WeChatShortLinkRequest}
- */
-proto.padlocal.WeChatRequest.prototype.getShortlinkrequest = function() {
-  return /** @type{?proto.padlocal.WeChatShortLinkRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatShortLinkRequest, 2));
-};
-
-
-/**
- * @param {?proto.padlocal.WeChatShortLinkRequest|undefined} value
- * @return {!proto.padlocal.WeChatRequest} returns this
-*/
-proto.padlocal.WeChatRequest.prototype.setShortlinkrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.padlocal.WeChatRequest.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.WeChatRequest} returns this
- */
-proto.padlocal.WeChatRequest.prototype.clearShortlinkrequest = function() {
-  return this.setShortlinkrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.WeChatRequest.prototype.hasShortlinkrequest = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional WeChatSocketRequest socketRequest = 3;
- * @return {?proto.padlocal.WeChatSocketRequest}
- */
-proto.padlocal.WeChatRequest.prototype.getSocketrequest = function() {
-  return /** @type{?proto.padlocal.WeChatSocketRequest} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatSocketRequest, 3));
-};
-
-
-/**
- * @param {?proto.padlocal.WeChatSocketRequest|undefined} value
- * @return {!proto.padlocal.WeChatRequest} returns this
-*/
-proto.padlocal.WeChatRequest.prototype.setSocketrequest = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.padlocal.WeChatRequest.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.WeChatRequest} returns this
- */
-proto.padlocal.WeChatRequest.prototype.clearSocketrequest = function() {
-  return this.setSocketrequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.WeChatRequest.prototype.hasSocketrequest = function() {
-  return jspb.Message.getField(this, 3) != null;
-};
-
-
-
-/**
- * Oneof group definitions for this message. Each group defines the field
- * numbers belonging to that group. When of these fields' value is set, all
- * other fields in the group are cleared. During deserialization, if multiple
- * fields are encountered for a group, only the last value seen will be kept.
- * @private {!Array<!Array<number>>}
- * @const
- */
-proto.padlocal.WeChatResponse.oneofGroups_ = [[1,2,3]];
-
-/**
- * @enum {number}
- */
-proto.padlocal.WeChatResponse.ResponseCase = {
-  RESPONSE_NOT_SET: 0,
-  LONGLINKRESPONSE: 1,
-  SHORTLINKRESPONSE: 2,
-  SOCKETRESPONSE: 3
-};
-
-/**
- * @return {proto.padlocal.WeChatResponse.ResponseCase}
- */
-proto.padlocal.WeChatResponse.prototype.getResponseCase = function() {
-  return /** @type {proto.padlocal.WeChatResponse.ResponseCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.WeChatResponse.oneofGroups_[0]));
-};
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.padlocal.WeChatResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.WeChatResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.padlocal.WeChatResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.WeChatResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    longlinkresponse: (f = msg.getLonglinkresponse()) && proto.padlocal.WeChatLongLinkResponse.toObject(includeInstance, f),
-    shortlinkresponse: (f = msg.getShortlinkresponse()) && proto.padlocal.WeChatShortLinkResponse.toObject(includeInstance, f),
-    socketresponse: (f = msg.getSocketresponse()) && proto.padlocal.WeChatSocketResponse.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.WeChatResponse}
- */
-proto.padlocal.WeChatResponse.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.WeChatResponse;
-  return proto.padlocal.WeChatResponse.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.padlocal.WeChatResponse} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.WeChatResponse}
- */
-proto.padlocal.WeChatResponse.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = new proto.padlocal.WeChatLongLinkResponse;
-      reader.readMessage(value,proto.padlocal.WeChatLongLinkResponse.deserializeBinaryFromReader);
-      msg.setLonglinkresponse(value);
-      break;
-    case 2:
-      var value = new proto.padlocal.WeChatShortLinkResponse;
-      reader.readMessage(value,proto.padlocal.WeChatShortLinkResponse.deserializeBinaryFromReader);
-      msg.setShortlinkresponse(value);
-      break;
-    case 3:
-      var value = new proto.padlocal.WeChatSocketResponse;
-      reader.readMessage(value,proto.padlocal.WeChatSocketResponse.deserializeBinaryFromReader);
-      msg.setSocketresponse(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.padlocal.WeChatResponse.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.padlocal.WeChatResponse.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.WeChatResponse} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.WeChatResponse.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getLonglinkresponse();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.padlocal.WeChatLongLinkResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getShortlinkresponse();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.padlocal.WeChatShortLinkResponse.serializeBinaryToWriter
-    );
-  }
-  f = message.getSocketresponse();
-  if (f != null) {
-    writer.writeMessage(
-      3,
-      f,
-      proto.padlocal.WeChatSocketResponse.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional WeChatLongLinkResponse longLinkResponse = 1;
- * @return {?proto.padlocal.WeChatLongLinkResponse}
- */
-proto.padlocal.WeChatResponse.prototype.getLonglinkresponse = function() {
-  return /** @type{?proto.padlocal.WeChatLongLinkResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatLongLinkResponse, 1));
-};
-
-
-/**
- * @param {?proto.padlocal.WeChatLongLinkResponse|undefined} value
- * @return {!proto.padlocal.WeChatResponse} returns this
-*/
-proto.padlocal.WeChatResponse.prototype.setLonglinkresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 1, proto.padlocal.WeChatResponse.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.WeChatResponse} returns this
- */
-proto.padlocal.WeChatResponse.prototype.clearLonglinkresponse = function() {
-  return this.setLonglinkresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.WeChatResponse.prototype.hasLonglinkresponse = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional WeChatShortLinkResponse shortLinkResponse = 2;
- * @return {?proto.padlocal.WeChatShortLinkResponse}
- */
-proto.padlocal.WeChatResponse.prototype.getShortlinkresponse = function() {
-  return /** @type{?proto.padlocal.WeChatShortLinkResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatShortLinkResponse, 2));
-};
-
-
-/**
- * @param {?proto.padlocal.WeChatShortLinkResponse|undefined} value
- * @return {!proto.padlocal.WeChatResponse} returns this
-*/
-proto.padlocal.WeChatResponse.prototype.setShortlinkresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.padlocal.WeChatResponse.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.WeChatResponse} returns this
- */
-proto.padlocal.WeChatResponse.prototype.clearShortlinkresponse = function() {
-  return this.setShortlinkresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.WeChatResponse.prototype.hasShortlinkresponse = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional WeChatSocketResponse socketResponse = 3;
- * @return {?proto.padlocal.WeChatSocketResponse}
- */
-proto.padlocal.WeChatResponse.prototype.getSocketresponse = function() {
-  return /** @type{?proto.padlocal.WeChatSocketResponse} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.WeChatSocketResponse, 3));
-};
-
-
-/**
- * @param {?proto.padlocal.WeChatSocketResponse|undefined} value
- * @return {!proto.padlocal.WeChatResponse} returns this
-*/
-proto.padlocal.WeChatResponse.prototype.setSocketresponse = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.padlocal.WeChatResponse.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.WeChatResponse} returns this
- */
-proto.padlocal.WeChatResponse.prototype.clearSocketresponse = function() {
-  return this.setSocketresponse(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.WeChatResponse.prototype.hasSocketresponse = function() {
-  return jspb.Message.getField(this, 3) != null;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.padlocal.LongLinkUnpackRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.LongLinkUnpackRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.padlocal.LongLinkUnpackRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.LongLinkUnpackRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    streamdata: msg.getStreamdata_asB64()
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.LongLinkUnpackRequest}
- */
-proto.padlocal.LongLinkUnpackRequest.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.LongLinkUnpackRequest;
-  return proto.padlocal.LongLinkUnpackRequest.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.padlocal.LongLinkUnpackRequest} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.LongLinkUnpackRequest}
- */
-proto.padlocal.LongLinkUnpackRequest.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setStreamdata(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.padlocal.LongLinkUnpackRequest.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.padlocal.LongLinkUnpackRequest.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.LongLinkUnpackRequest} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.LongLinkUnpackRequest.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getStreamdata_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional bytes streamData = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.padlocal.LongLinkUnpackRequest.prototype.getStreamdata = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes streamData = 1;
- * This is a type-conversion wrapper around `getStreamdata()`
- * @return {string}
- */
-proto.padlocal.LongLinkUnpackRequest.prototype.getStreamdata_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getStreamdata()));
-};
-
-
-/**
- * optional bytes streamData = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getStreamdata()`
- * @return {!Uint8Array}
- */
-proto.padlocal.LongLinkUnpackRequest.prototype.getStreamdata_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getStreamdata()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.padlocal.LongLinkUnpackRequest} returns this
- */
-proto.padlocal.LongLinkUnpackRequest.prototype.setStreamdata = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 
@@ -12643,7 +13200,7 @@ proto.padlocal.LongLinkUnpackRequest.prototype.setStreamdata = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.padlocal.LongLinkUnpackResponse.repeatedFields_ = [1];
+proto.padlocal.WeChatPushSubscribeRequest.repeatedFields_ = [1];
 
 
 
@@ -12660,8 +13217,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.padlocal.LongLinkUnpackResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.LongLinkUnpackResponse.toObject(opt_includeInstance, this);
+proto.padlocal.WeChatPushSubscribeRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatPushSubscribeRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -12670,14 +13227,13 @@ proto.padlocal.LongLinkUnpackResponse.prototype.toObject = function(opt_includeI
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.padlocal.LongLinkUnpackResponse} msg The msg instance to transform.
+ * @param {!proto.padlocal.WeChatPushSubscribeRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.LongLinkUnpackResponse.toObject = function(includeInstance, msg) {
+proto.padlocal.WeChatPushSubscribeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    packetList: jspb.Message.toObjectList(msg.getPacketList(),
-    proto.padlocal.LongLinkPacket.toObject, includeInstance)
+    pushtypeList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -12691,23 +13247,23 @@ proto.padlocal.LongLinkUnpackResponse.toObject = function(includeInstance, msg) 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.LongLinkUnpackResponse}
+ * @return {!proto.padlocal.WeChatPushSubscribeRequest}
  */
-proto.padlocal.LongLinkUnpackResponse.deserializeBinary = function(bytes) {
+proto.padlocal.WeChatPushSubscribeRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.LongLinkUnpackResponse;
-  return proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.padlocal.WeChatPushSubscribeRequest;
+  return proto.padlocal.WeChatPushSubscribeRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.padlocal.LongLinkUnpackResponse} msg The message object to deserialize into.
+ * @param {!proto.padlocal.WeChatPushSubscribeRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.LongLinkUnpackResponse}
+ * @return {!proto.padlocal.WeChatPushSubscribeRequest}
  */
-proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.padlocal.WeChatPushSubscribeRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -12715,9 +13271,8 @@ proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.padlocal.LongLinkPacket;
-      reader.readMessage(value,proto.padlocal.LongLinkPacket.deserializeBinaryFromReader);
-      msg.addPacket(value);
+      var value = /** @type {!Array<!proto.padlocal.LongLinkMessagePushType>} */ (reader.readPackedEnum());
+      msg.setPushtypeList(value);
       break;
     default:
       reader.skipField();
@@ -12732,9 +13287,9 @@ proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader = function(msg
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.padlocal.LongLinkUnpackResponse.prototype.serializeBinary = function() {
+proto.padlocal.WeChatPushSubscribeRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.padlocal.LongLinkUnpackResponse.serializeBinaryToWriter(this, writer);
+  proto.padlocal.WeChatPushSubscribeRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -12742,58 +13297,317 @@ proto.padlocal.LongLinkUnpackResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.LongLinkUnpackResponse} message
+ * @param {!proto.padlocal.WeChatPushSubscribeRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.LongLinkUnpackResponse.serializeBinaryToWriter = function(message, writer) {
+proto.padlocal.WeChatPushSubscribeRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPacketList();
+  f = message.getPushtypeList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
+    writer.writePackedEnum(
       1,
-      f,
-      proto.padlocal.LongLinkPacket.serializeBinaryToWriter
+      f
     );
   }
 };
 
 
 /**
- * repeated LongLinkPacket packet = 1;
- * @return {!Array<!proto.padlocal.LongLinkPacket>}
+ * repeated LongLinkMessagePushType pushType = 1;
+ * @return {!Array<!proto.padlocal.LongLinkMessagePushType>}
  */
-proto.padlocal.LongLinkUnpackResponse.prototype.getPacketList = function() {
-  return /** @type{!Array<!proto.padlocal.LongLinkPacket>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.padlocal.LongLinkPacket, 1));
+proto.padlocal.WeChatPushSubscribeRequest.prototype.getPushtypeList = function() {
+  return /** @type {!Array<!proto.padlocal.LongLinkMessagePushType>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
 /**
- * @param {!Array<!proto.padlocal.LongLinkPacket>} value
- * @return {!proto.padlocal.LongLinkUnpackResponse} returns this
-*/
-proto.padlocal.LongLinkUnpackResponse.prototype.setPacketList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+ * @param {!Array<!proto.padlocal.LongLinkMessagePushType>} value
+ * @return {!proto.padlocal.WeChatPushSubscribeRequest} returns this
+ */
+proto.padlocal.WeChatPushSubscribeRequest.prototype.setPushtypeList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!proto.padlocal.LongLinkPacket=} opt_value
+ * @param {!proto.padlocal.LongLinkMessagePushType} value
  * @param {number=} opt_index
- * @return {!proto.padlocal.LongLinkPacket}
+ * @return {!proto.padlocal.WeChatPushSubscribeRequest} returns this
  */
-proto.padlocal.LongLinkUnpackResponse.prototype.addPacket = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.padlocal.LongLinkPacket, opt_index);
+proto.padlocal.WeChatPushSubscribeRequest.prototype.addPushtype = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.padlocal.LongLinkUnpackResponse} returns this
+ * @return {!proto.padlocal.WeChatPushSubscribeRequest} returns this
  */
-proto.padlocal.LongLinkUnpackResponse.prototype.clearPacketList = function() {
-  return this.setPacketList([]);
+proto.padlocal.WeChatPushSubscribeRequest.prototype.clearPushtypeList = function() {
+  return this.setPushtypeList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.padlocal.WeChatPushSubscribeResponse.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.WeChatPushSubscribeResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatPushSubscribeResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.WeChatPushSubscribeResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatPushSubscribeResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    messageList: jspb.Message.toObjectList(msg.getMessageList(),
+    proto.padlocal.LongLinkMessage.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.WeChatPushSubscribeResponse}
+ */
+proto.padlocal.WeChatPushSubscribeResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.WeChatPushSubscribeResponse;
+  return proto.padlocal.WeChatPushSubscribeResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.WeChatPushSubscribeResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.WeChatPushSubscribeResponse}
+ */
+proto.padlocal.WeChatPushSubscribeResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.padlocal.LongLinkMessage;
+      reader.readMessage(value,proto.padlocal.LongLinkMessage.deserializeBinaryFromReader);
+      msg.addMessage(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatPushSubscribeResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.WeChatPushSubscribeResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.WeChatPushSubscribeResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatPushSubscribeResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getMessageList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.padlocal.LongLinkMessage.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated LongLinkMessage message = 1;
+ * @return {!Array<!proto.padlocal.LongLinkMessage>}
+ */
+proto.padlocal.WeChatPushSubscribeResponse.prototype.getMessageList = function() {
+  return /** @type{!Array<!proto.padlocal.LongLinkMessage>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.padlocal.LongLinkMessage, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.padlocal.LongLinkMessage>} value
+ * @return {!proto.padlocal.WeChatPushSubscribeResponse} returns this
+*/
+proto.padlocal.WeChatPushSubscribeResponse.prototype.setMessageList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.padlocal.LongLinkMessage=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.padlocal.LongLinkMessage}
+ */
+proto.padlocal.WeChatPushSubscribeResponse.prototype.addMessage = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.padlocal.LongLinkMessage, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.padlocal.WeChatPushSubscribeResponse} returns this
+ */
+proto.padlocal.WeChatPushSubscribeResponse.prototype.clearMessageList = function() {
+  return this.setMessageList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.WeChatPushSubscribeResponseReply.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatPushSubscribeResponseReply.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.WeChatPushSubscribeResponseReply} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatPushSubscribeResponseReply.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.WeChatPushSubscribeResponseReply}
+ */
+proto.padlocal.WeChatPushSubscribeResponseReply.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.WeChatPushSubscribeResponseReply;
+  return proto.padlocal.WeChatPushSubscribeResponseReply.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.WeChatPushSubscribeResponseReply} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.WeChatPushSubscribeResponseReply}
+ */
+proto.padlocal.WeChatPushSubscribeResponseReply.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.WeChatPushSubscribeResponseReply.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.WeChatPushSubscribeResponseReply.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.WeChatPushSubscribeResponseReply} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.WeChatPushSubscribeResponseReply.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
 };
 
 
@@ -12806,22 +13620,23 @@ proto.padlocal.LongLinkUnpackResponse.prototype.clearPacketList = function() {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.padlocal.LongLinkPacket.oneofGroups_ = [[1,2]];
+proto.padlocal.WeChatStreamRequest.oneofGroups_ = [[10,11,12]];
 
 /**
  * @enum {number}
  */
-proto.padlocal.LongLinkPacket.TypeCase = {
-  TYPE_NOT_SET: 0,
-  NORMAL: 1,
-  PUSH: 2
+proto.padlocal.WeChatStreamRequest.PayloadCase = {
+  PAYLOAD_NOT_SET: 0,
+  LONGLINKREQUEST: 10,
+  SOCKETREQUEST: 11,
+  PUSHSUBSCRIBEREQUEST: 12
 };
 
 /**
- * @return {proto.padlocal.LongLinkPacket.TypeCase}
+ * @return {proto.padlocal.WeChatStreamRequest.PayloadCase}
  */
-proto.padlocal.LongLinkPacket.prototype.getTypeCase = function() {
-  return /** @type {proto.padlocal.LongLinkPacket.TypeCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.LongLinkPacket.oneofGroups_[0]));
+proto.padlocal.WeChatStreamRequest.prototype.getPayloadCase = function() {
+  return /** @type {proto.padlocal.WeChatStreamRequest.PayloadCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.WeChatStreamRequest.oneofGroups_[0]));
 };
 
 
@@ -12839,8 +13654,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.padlocal.LongLinkPacket.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.LongLinkPacket.toObject(opt_includeInstance, this);
+proto.padlocal.WeChatStreamRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatStreamRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -12849,14 +13664,16 @@ proto.padlocal.LongLinkPacket.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.padlocal.LongLinkPacket} msg The msg instance to transform.
+ * @param {!proto.padlocal.WeChatStreamRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.LongLinkPacket.toObject = function(includeInstance, msg) {
+proto.padlocal.WeChatStreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    normal: (f = msg.getNormal()) && proto.padlocal.LongLinkPacketNormal.toObject(includeInstance, f),
-    push: (f = msg.getPush()) && proto.padlocal.LongLinkPacketPush.toObject(includeInstance, f)
+    eof: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    longlinkrequest: (f = msg.getLonglinkrequest()) && proto.padlocal.WeChatLongLinkStreamRequest.toObject(includeInstance, f),
+    socketrequest: (f = msg.getSocketrequest()) && proto.padlocal.WeChatSocketRequest.toObject(includeInstance, f),
+    pushsubscriberequest: (f = msg.getPushsubscriberequest()) && proto.padlocal.WeChatPushSubscribeRequest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -12870,23 +13687,23 @@ proto.padlocal.LongLinkPacket.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.LongLinkPacket}
+ * @return {!proto.padlocal.WeChatStreamRequest}
  */
-proto.padlocal.LongLinkPacket.deserializeBinary = function(bytes) {
+proto.padlocal.WeChatStreamRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.LongLinkPacket;
-  return proto.padlocal.LongLinkPacket.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.padlocal.WeChatStreamRequest;
+  return proto.padlocal.WeChatStreamRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.padlocal.LongLinkPacket} msg The message object to deserialize into.
+ * @param {!proto.padlocal.WeChatStreamRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.LongLinkPacket}
+ * @return {!proto.padlocal.WeChatStreamRequest}
  */
-proto.padlocal.LongLinkPacket.deserializeBinaryFromReader = function(msg, reader) {
+proto.padlocal.WeChatStreamRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -12894,14 +13711,23 @@ proto.padlocal.LongLinkPacket.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.padlocal.LongLinkPacketNormal;
-      reader.readMessage(value,proto.padlocal.LongLinkPacketNormal.deserializeBinaryFromReader);
-      msg.setNormal(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEof(value);
       break;
-    case 2:
-      var value = new proto.padlocal.LongLinkPacketPush;
-      reader.readMessage(value,proto.padlocal.LongLinkPacketPush.deserializeBinaryFromReader);
-      msg.setPush(value);
+    case 10:
+      var value = new proto.padlocal.WeChatLongLinkStreamRequest;
+      reader.readMessage(value,proto.padlocal.WeChatLongLinkStreamRequest.deserializeBinaryFromReader);
+      msg.setLonglinkrequest(value);
+      break;
+    case 11:
+      var value = new proto.padlocal.WeChatSocketRequest;
+      reader.readMessage(value,proto.padlocal.WeChatSocketRequest.deserializeBinaryFromReader);
+      msg.setSocketrequest(value);
+      break;
+    case 12:
+      var value = new proto.padlocal.WeChatPushSubscribeRequest;
+      reader.readMessage(value,proto.padlocal.WeChatPushSubscribeRequest.deserializeBinaryFromReader);
+      msg.setPushsubscriberequest(value);
       break;
     default:
       reader.skipField();
@@ -12916,9 +13742,9 @@ proto.padlocal.LongLinkPacket.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.padlocal.LongLinkPacket.prototype.serializeBinary = function() {
+proto.padlocal.WeChatStreamRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.padlocal.LongLinkPacket.serializeBinaryToWriter(this, writer);
+  proto.padlocal.WeChatStreamRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -12926,56 +13752,89 @@ proto.padlocal.LongLinkPacket.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.LongLinkPacket} message
+ * @param {!proto.padlocal.WeChatStreamRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.LongLinkPacket.serializeBinaryToWriter = function(message, writer) {
+proto.padlocal.WeChatStreamRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getNormal();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getEof();
+  if (f) {
+    writer.writeBool(
       1,
-      f,
-      proto.padlocal.LongLinkPacketNormal.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getPush();
+  f = message.getLonglinkrequest();
   if (f != null) {
     writer.writeMessage(
-      2,
+      10,
       f,
-      proto.padlocal.LongLinkPacketPush.serializeBinaryToWriter
+      proto.padlocal.WeChatLongLinkStreamRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getSocketrequest();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto.padlocal.WeChatSocketRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getPushsubscriberequest();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      proto.padlocal.WeChatPushSubscribeRequest.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional LongLinkPacketNormal normal = 1;
- * @return {?proto.padlocal.LongLinkPacketNormal}
+ * optional bool eof = 1;
+ * @return {boolean}
  */
-proto.padlocal.LongLinkPacket.prototype.getNormal = function() {
-  return /** @type{?proto.padlocal.LongLinkPacketNormal} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkPacketNormal, 1));
+proto.padlocal.WeChatStreamRequest.prototype.getEof = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
 
 /**
- * @param {?proto.padlocal.LongLinkPacketNormal|undefined} value
- * @return {!proto.padlocal.LongLinkPacket} returns this
+ * @param {boolean} value
+ * @return {!proto.padlocal.WeChatStreamRequest} returns this
+ */
+proto.padlocal.WeChatStreamRequest.prototype.setEof = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional WeChatLongLinkStreamRequest longLinkRequest = 10;
+ * @return {?proto.padlocal.WeChatLongLinkStreamRequest}
+ */
+proto.padlocal.WeChatStreamRequest.prototype.getLonglinkrequest = function() {
+  return /** @type{?proto.padlocal.WeChatLongLinkStreamRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatLongLinkStreamRequest, 10));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatLongLinkStreamRequest|undefined} value
+ * @return {!proto.padlocal.WeChatStreamRequest} returns this
 */
-proto.padlocal.LongLinkPacket.prototype.setNormal = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 1, proto.padlocal.LongLinkPacket.oneofGroups_[0], value);
+proto.padlocal.WeChatStreamRequest.prototype.setLonglinkrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.WeChatStreamRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.padlocal.LongLinkPacket} returns this
+ * @return {!proto.padlocal.WeChatStreamRequest} returns this
  */
-proto.padlocal.LongLinkPacket.prototype.clearNormal = function() {
-  return this.setNormal(undefined);
+proto.padlocal.WeChatStreamRequest.prototype.clearLonglinkrequest = function() {
+  return this.setLonglinkrequest(undefined);
 };
 
 
@@ -12983,36 +13842,36 @@ proto.padlocal.LongLinkPacket.prototype.clearNormal = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.padlocal.LongLinkPacket.prototype.hasNormal = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.padlocal.WeChatStreamRequest.prototype.hasLonglinkrequest = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional LongLinkPacketPush push = 2;
- * @return {?proto.padlocal.LongLinkPacketPush}
+ * optional WeChatSocketRequest socketRequest = 11;
+ * @return {?proto.padlocal.WeChatSocketRequest}
  */
-proto.padlocal.LongLinkPacket.prototype.getPush = function() {
-  return /** @type{?proto.padlocal.LongLinkPacketPush} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkPacketPush, 2));
+proto.padlocal.WeChatStreamRequest.prototype.getSocketrequest = function() {
+  return /** @type{?proto.padlocal.WeChatSocketRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatSocketRequest, 11));
 };
 
 
 /**
- * @param {?proto.padlocal.LongLinkPacketPush|undefined} value
- * @return {!proto.padlocal.LongLinkPacket} returns this
+ * @param {?proto.padlocal.WeChatSocketRequest|undefined} value
+ * @return {!proto.padlocal.WeChatStreamRequest} returns this
 */
-proto.padlocal.LongLinkPacket.prototype.setPush = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.padlocal.LongLinkPacket.oneofGroups_[0], value);
+proto.padlocal.WeChatStreamRequest.prototype.setSocketrequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 11, proto.padlocal.WeChatStreamRequest.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.padlocal.LongLinkPacket} returns this
+ * @return {!proto.padlocal.WeChatStreamRequest} returns this
  */
-proto.padlocal.LongLinkPacket.prototype.clearPush = function() {
-  return this.setPush(undefined);
+proto.padlocal.WeChatStreamRequest.prototype.clearSocketrequest = function() {
+  return this.setSocketrequest(undefined);
 };
 
 
@@ -13020,11 +13879,75 @@ proto.padlocal.LongLinkPacket.prototype.clearPush = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.padlocal.LongLinkPacket.prototype.hasPush = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.padlocal.WeChatStreamRequest.prototype.hasSocketrequest = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
+/**
+ * optional WeChatPushSubscribeRequest pushSubscribeRequest = 12;
+ * @return {?proto.padlocal.WeChatPushSubscribeRequest}
+ */
+proto.padlocal.WeChatStreamRequest.prototype.getPushsubscriberequest = function() {
+  return /** @type{?proto.padlocal.WeChatPushSubscribeRequest} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatPushSubscribeRequest, 12));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatPushSubscribeRequest|undefined} value
+ * @return {!proto.padlocal.WeChatStreamRequest} returns this
+*/
+proto.padlocal.WeChatStreamRequest.prototype.setPushsubscriberequest = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 12, proto.padlocal.WeChatStreamRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatStreamRequest} returns this
+ */
+proto.padlocal.WeChatStreamRequest.prototype.clearPushsubscriberequest = function() {
+  return this.setPushsubscriberequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatStreamRequest.prototype.hasPushsubscriberequest = function() {
+  return jspb.Message.getField(this, 12) != null;
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.padlocal.WeChatStreamResponse.oneofGroups_ = [[10,11,12]];
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.WeChatStreamResponse.PayloadCase = {
+  PAYLOAD_NOT_SET: 0,
+  LONGLINKRESPONSE: 10,
+  SOCKETRESPONSE: 11,
+  PUSHSUBSCRIBERESPONSE: 12
+};
+
+/**
+ * @return {proto.padlocal.WeChatStreamResponse.PayloadCase}
+ */
+proto.padlocal.WeChatStreamResponse.prototype.getPayloadCase = function() {
+  return /** @type {proto.padlocal.WeChatStreamResponse.PayloadCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.WeChatStreamResponse.oneofGroups_[0]));
+};
 
 
 
@@ -13041,8 +13964,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.padlocal.LongLinkPacketNormal.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.LongLinkPacketNormal.toObject(opt_includeInstance, this);
+proto.padlocal.WeChatStreamResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatStreamResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -13051,14 +13974,16 @@ proto.padlocal.LongLinkPacketNormal.prototype.toObject = function(opt_includeIns
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.padlocal.LongLinkPacketNormal} msg The msg instance to transform.
+ * @param {!proto.padlocal.WeChatStreamResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.LongLinkPacketNormal.toObject = function(includeInstance, msg) {
+proto.padlocal.WeChatStreamResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    seq: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    payload: msg.getPayload_asB64()
+    eof: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    longlinkresponse: (f = msg.getLonglinkresponse()) && proto.padlocal.WeChatLongLinkStreamResponse.toObject(includeInstance, f),
+    socketresponse: (f = msg.getSocketresponse()) && proto.padlocal.WeChatSocketResponse.toObject(includeInstance, f),
+    pushsubscriberesponse: (f = msg.getPushsubscriberesponse()) && proto.padlocal.WeChatPushSubscribeResponse.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -13072,23 +13997,23 @@ proto.padlocal.LongLinkPacketNormal.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.LongLinkPacketNormal}
+ * @return {!proto.padlocal.WeChatStreamResponse}
  */
-proto.padlocal.LongLinkPacketNormal.deserializeBinary = function(bytes) {
+proto.padlocal.WeChatStreamResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.LongLinkPacketNormal;
-  return proto.padlocal.LongLinkPacketNormal.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.padlocal.WeChatStreamResponse;
+  return proto.padlocal.WeChatStreamResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.padlocal.LongLinkPacketNormal} msg The message object to deserialize into.
+ * @param {!proto.padlocal.WeChatStreamResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.LongLinkPacketNormal}
+ * @return {!proto.padlocal.WeChatStreamResponse}
  */
-proto.padlocal.LongLinkPacketNormal.deserializeBinaryFromReader = function(msg, reader) {
+proto.padlocal.WeChatStreamResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -13096,12 +14021,23 @@ proto.padlocal.LongLinkPacketNormal.deserializeBinaryFromReader = function(msg, 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setSeq(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEof(value);
       break;
-    case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPayload(value);
+    case 10:
+      var value = new proto.padlocal.WeChatLongLinkStreamResponse;
+      reader.readMessage(value,proto.padlocal.WeChatLongLinkStreamResponse.deserializeBinaryFromReader);
+      msg.setLonglinkresponse(value);
+      break;
+    case 11:
+      var value = new proto.padlocal.WeChatSocketResponse;
+      reader.readMessage(value,proto.padlocal.WeChatSocketResponse.deserializeBinaryFromReader);
+      msg.setSocketresponse(value);
+      break;
+    case 12:
+      var value = new proto.padlocal.WeChatPushSubscribeResponse;
+      reader.readMessage(value,proto.padlocal.WeChatPushSubscribeResponse.deserializeBinaryFromReader);
+      msg.setPushsubscriberesponse(value);
       break;
     default:
       reader.skipField();
@@ -13116,9 +14052,9 @@ proto.padlocal.LongLinkPacketNormal.deserializeBinaryFromReader = function(msg, 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.padlocal.LongLinkPacketNormal.prototype.serializeBinary = function() {
+proto.padlocal.WeChatStreamResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.padlocal.LongLinkPacketNormal.serializeBinaryToWriter(this, writer);
+  proto.padlocal.WeChatStreamResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -13126,89 +14062,202 @@ proto.padlocal.LongLinkPacketNormal.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.LongLinkPacketNormal} message
+ * @param {!proto.padlocal.WeChatStreamResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.LongLinkPacketNormal.serializeBinaryToWriter = function(message, writer) {
+proto.padlocal.WeChatStreamResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSeq();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getEof();
+  if (f) {
+    writer.writeBool(
       1,
       f
     );
   }
-  f = message.getPayload_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      2,
-      f
+  f = message.getLonglinkresponse();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      proto.padlocal.WeChatLongLinkStreamResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getSocketresponse();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto.padlocal.WeChatSocketResponse.serializeBinaryToWriter
+    );
+  }
+  f = message.getPushsubscriberesponse();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      proto.padlocal.WeChatPushSubscribeResponse.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional int64 seq = 1;
- * @return {number}
+ * optional bool eof = 1;
+ * @return {boolean}
  */
-proto.padlocal.LongLinkPacketNormal.prototype.getSeq = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.padlocal.WeChatStreamResponse.prototype.getEof = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
 
 /**
- * @param {number} value
- * @return {!proto.padlocal.LongLinkPacketNormal} returns this
+ * @param {boolean} value
+ * @return {!proto.padlocal.WeChatStreamResponse} returns this
  */
-proto.padlocal.LongLinkPacketNormal.prototype.setSeq = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+proto.padlocal.WeChatStreamResponse.prototype.setEof = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
 /**
- * optional bytes payload = 2;
- * @return {!(string|Uint8Array)}
+ * optional WeChatLongLinkStreamResponse longLinkResponse = 10;
+ * @return {?proto.padlocal.WeChatLongLinkStreamResponse}
  */
-proto.padlocal.LongLinkPacketNormal.prototype.getPayload = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.padlocal.WeChatStreamResponse.prototype.getLonglinkresponse = function() {
+  return /** @type{?proto.padlocal.WeChatLongLinkStreamResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatLongLinkStreamResponse, 10));
 };
 
 
 /**
- * optional bytes payload = 2;
- * This is a type-conversion wrapper around `getPayload()`
- * @return {string}
- */
-proto.padlocal.LongLinkPacketNormal.prototype.getPayload_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getPayload()));
+ * @param {?proto.padlocal.WeChatLongLinkStreamResponse|undefined} value
+ * @return {!proto.padlocal.WeChatStreamResponse} returns this
+*/
+proto.padlocal.WeChatStreamResponse.prototype.setLonglinkresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.WeChatStreamResponse.oneofGroups_[0], value);
 };
 
 
 /**
- * optional bytes payload = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPayload()`
- * @return {!Uint8Array}
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatStreamResponse} returns this
  */
-proto.padlocal.LongLinkPacketNormal.prototype.getPayload_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getPayload()));
+proto.padlocal.WeChatStreamResponse.prototype.clearLonglinkresponse = function() {
+  return this.setLonglinkresponse(undefined);
 };
 
 
 /**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.padlocal.LongLinkPacketNormal} returns this
+ * Returns whether this field is set.
+ * @return {boolean}
  */
-proto.padlocal.LongLinkPacketNormal.prototype.setPayload = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+proto.padlocal.WeChatStreamResponse.prototype.hasLonglinkresponse = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
+/**
+ * optional WeChatSocketResponse socketResponse = 11;
+ * @return {?proto.padlocal.WeChatSocketResponse}
+ */
+proto.padlocal.WeChatStreamResponse.prototype.getSocketresponse = function() {
+  return /** @type{?proto.padlocal.WeChatSocketResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatSocketResponse, 11));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatSocketResponse|undefined} value
+ * @return {!proto.padlocal.WeChatStreamResponse} returns this
+*/
+proto.padlocal.WeChatStreamResponse.prototype.setSocketresponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 11, proto.padlocal.WeChatStreamResponse.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatStreamResponse} returns this
+ */
+proto.padlocal.WeChatStreamResponse.prototype.clearSocketresponse = function() {
+  return this.setSocketresponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatStreamResponse.prototype.hasSocketresponse = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional WeChatPushSubscribeResponse pushSubscribeResponse = 12;
+ * @return {?proto.padlocal.WeChatPushSubscribeResponse}
+ */
+proto.padlocal.WeChatStreamResponse.prototype.getPushsubscriberesponse = function() {
+  return /** @type{?proto.padlocal.WeChatPushSubscribeResponse} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatPushSubscribeResponse, 12));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatPushSubscribeResponse|undefined} value
+ * @return {!proto.padlocal.WeChatStreamResponse} returns this
+*/
+proto.padlocal.WeChatStreamResponse.prototype.setPushsubscriberesponse = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 12, proto.padlocal.WeChatStreamResponse.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatStreamResponse} returns this
+ */
+proto.padlocal.WeChatStreamResponse.prototype.clearPushsubscriberesponse = function() {
+  return this.setPushsubscriberesponse(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatStreamResponse.prototype.hasPushsubscriberesponse = function() {
+  return jspb.Message.getField(this, 12) != null;
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.padlocal.WeChatStreamResponseReply.oneofGroups_ = [[10,11,12]];
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.WeChatStreamResponseReply.PayloadCase = {
+  PAYLOAD_NOT_SET: 0,
+  LONGLINKRESPONSEREPLY: 10,
+  SOCKETRESPONSEREPLY: 11,
+  PUSHSUBSCRIBERESPONSEREPLY: 12
+};
+
+/**
+ * @return {proto.padlocal.WeChatStreamResponseReply.PayloadCase}
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.getPayloadCase = function() {
+  return /** @type {proto.padlocal.WeChatStreamResponseReply.PayloadCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.WeChatStreamResponseReply.oneofGroups_[0]));
+};
 
 
 
@@ -13225,8 +14274,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.padlocal.LongLinkPacketPush.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.LongLinkPacketPush.toObject(opt_includeInstance, this);
+proto.padlocal.WeChatStreamResponseReply.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.WeChatStreamResponseReply.toObject(opt_includeInstance, this);
 };
 
 
@@ -13235,13 +14284,16 @@ proto.padlocal.LongLinkPacketPush.prototype.toObject = function(opt_includeInsta
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.padlocal.LongLinkPacketPush} msg The msg instance to transform.
+ * @param {!proto.padlocal.WeChatStreamResponseReply} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.LongLinkPacketPush.toObject = function(includeInstance, msg) {
+proto.padlocal.WeChatStreamResponseReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    eof: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    longlinkresponsereply: (f = msg.getLonglinkresponsereply()) && proto.padlocal.WeChatLongLinkStreamResponseReply.toObject(includeInstance, f),
+    socketresponsereply: (f = msg.getSocketresponsereply()) && proto.padlocal.WeChatSocketResponseReply.toObject(includeInstance, f),
+    pushsubscriberesponsereply: (f = msg.getPushsubscriberesponsereply()) && proto.padlocal.WeChatPushSubscribeResponseReply.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -13255,23 +14307,23 @@ proto.padlocal.LongLinkPacketPush.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.LongLinkPacketPush}
+ * @return {!proto.padlocal.WeChatStreamResponseReply}
  */
-proto.padlocal.LongLinkPacketPush.deserializeBinary = function(bytes) {
+proto.padlocal.WeChatStreamResponseReply.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.LongLinkPacketPush;
-  return proto.padlocal.LongLinkPacketPush.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.padlocal.WeChatStreamResponseReply;
+  return proto.padlocal.WeChatStreamResponseReply.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.padlocal.LongLinkPacketPush} msg The message object to deserialize into.
+ * @param {!proto.padlocal.WeChatStreamResponseReply} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.LongLinkPacketPush}
+ * @return {!proto.padlocal.WeChatStreamResponseReply}
  */
-proto.padlocal.LongLinkPacketPush.deserializeBinaryFromReader = function(msg, reader) {
+proto.padlocal.WeChatStreamResponseReply.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -13279,8 +14331,23 @@ proto.padlocal.LongLinkPacketPush.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!proto.padlocal.LongLinkPacketPushType} */ (reader.readEnum());
-      msg.setType(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEof(value);
+      break;
+    case 10:
+      var value = new proto.padlocal.WeChatLongLinkStreamResponseReply;
+      reader.readMessage(value,proto.padlocal.WeChatLongLinkStreamResponseReply.deserializeBinaryFromReader);
+      msg.setLonglinkresponsereply(value);
+      break;
+    case 11:
+      var value = new proto.padlocal.WeChatSocketResponseReply;
+      reader.readMessage(value,proto.padlocal.WeChatSocketResponseReply.deserializeBinaryFromReader);
+      msg.setSocketresponsereply(value);
+      break;
+    case 12:
+      var value = new proto.padlocal.WeChatPushSubscribeResponseReply;
+      reader.readMessage(value,proto.padlocal.WeChatPushSubscribeResponseReply.deserializeBinaryFromReader);
+      msg.setPushsubscriberesponsereply(value);
       break;
     default:
       reader.skipField();
@@ -13295,9 +14362,9 @@ proto.padlocal.LongLinkPacketPush.deserializeBinaryFromReader = function(msg, re
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.padlocal.LongLinkPacketPush.prototype.serializeBinary = function() {
+proto.padlocal.WeChatStreamResponseReply.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.padlocal.LongLinkPacketPush.serializeBinaryToWriter(this, writer);
+  proto.padlocal.WeChatStreamResponseReply.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -13305,37 +14372,172 @@ proto.padlocal.LongLinkPacketPush.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.LongLinkPacketPush} message
+ * @param {!proto.padlocal.WeChatStreamResponseReply} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.padlocal.LongLinkPacketPush.serializeBinaryToWriter = function(message, writer) {
+proto.padlocal.WeChatStreamResponseReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getType();
-  if (f !== 0.0) {
-    writer.writeEnum(
+  f = message.getEof();
+  if (f) {
+    writer.writeBool(
       1,
       f
+    );
+  }
+  f = message.getLonglinkresponsereply();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      proto.padlocal.WeChatLongLinkStreamResponseReply.serializeBinaryToWriter
+    );
+  }
+  f = message.getSocketresponsereply();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto.padlocal.WeChatSocketResponseReply.serializeBinaryToWriter
+    );
+  }
+  f = message.getPushsubscriberesponsereply();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      proto.padlocal.WeChatPushSubscribeResponseReply.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional LongLinkPacketPushType type = 1;
- * @return {!proto.padlocal.LongLinkPacketPushType}
+ * optional bool eof = 1;
+ * @return {boolean}
  */
-proto.padlocal.LongLinkPacketPush.prototype.getType = function() {
-  return /** @type {!proto.padlocal.LongLinkPacketPushType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.padlocal.WeChatStreamResponseReply.prototype.getEof = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
 
 /**
- * @param {!proto.padlocal.LongLinkPacketPushType} value
- * @return {!proto.padlocal.LongLinkPacketPush} returns this
+ * @param {boolean} value
+ * @return {!proto.padlocal.WeChatStreamResponseReply} returns this
  */
-proto.padlocal.LongLinkPacketPush.prototype.setType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 1, value);
+proto.padlocal.WeChatStreamResponseReply.prototype.setEof = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional WeChatLongLinkStreamResponseReply longLinkResponseReply = 10;
+ * @return {?proto.padlocal.WeChatLongLinkStreamResponseReply}
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.getLonglinkresponsereply = function() {
+  return /** @type{?proto.padlocal.WeChatLongLinkStreamResponseReply} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatLongLinkStreamResponseReply, 10));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatLongLinkStreamResponseReply|undefined} value
+ * @return {!proto.padlocal.WeChatStreamResponseReply} returns this
+*/
+proto.padlocal.WeChatStreamResponseReply.prototype.setLonglinkresponsereply = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.WeChatStreamResponseReply.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatStreamResponseReply} returns this
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.clearLonglinkresponsereply = function() {
+  return this.setLonglinkresponsereply(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.hasLonglinkresponsereply = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional WeChatSocketResponseReply socketResponseReply = 11;
+ * @return {?proto.padlocal.WeChatSocketResponseReply}
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.getSocketresponsereply = function() {
+  return /** @type{?proto.padlocal.WeChatSocketResponseReply} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatSocketResponseReply, 11));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatSocketResponseReply|undefined} value
+ * @return {!proto.padlocal.WeChatStreamResponseReply} returns this
+*/
+proto.padlocal.WeChatStreamResponseReply.prototype.setSocketresponsereply = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 11, proto.padlocal.WeChatStreamResponseReply.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatStreamResponseReply} returns this
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.clearSocketresponsereply = function() {
+  return this.setSocketresponsereply(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.hasSocketresponsereply = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional WeChatPushSubscribeResponseReply pushSubscribeResponseReply = 12;
+ * @return {?proto.padlocal.WeChatPushSubscribeResponseReply}
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.getPushsubscriberesponsereply = function() {
+  return /** @type{?proto.padlocal.WeChatPushSubscribeResponseReply} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.WeChatPushSubscribeResponseReply, 12));
+};
+
+
+/**
+ * @param {?proto.padlocal.WeChatPushSubscribeResponseReply|undefined} value
+ * @return {!proto.padlocal.WeChatStreamResponseReply} returns this
+*/
+proto.padlocal.WeChatStreamResponseReply.prototype.setPushsubscriberesponsereply = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 12, proto.padlocal.WeChatStreamResponseReply.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.WeChatStreamResponseReply} returns this
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.clearPushsubscriberesponsereply = function() {
+  return this.setPushsubscriberesponsereply(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.WeChatStreamResponseReply.prototype.hasPushsubscriberesponsereply = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
@@ -14202,8 +15404,7 @@ proto.padlocal.AuthInfo.prototype.toObject = function(opt_includeInstance) {
  */
 proto.padlocal.AuthInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    selfcontact: (f = msg.getSelfcontact()) && proto.padlocal.Contact.toObject(includeInstance, f),
-    longlinkhost: (f = msg.getLonglinkhost()) && proto.padlocal.Host.toObject(includeInstance, f)
+    selfcontact: (f = msg.getSelfcontact()) && proto.padlocal.Contact.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -14245,11 +15446,6 @@ proto.padlocal.AuthInfo.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.padlocal.Contact.deserializeBinaryFromReader);
       msg.setSelfcontact(value);
       break;
-    case 2:
-      var value = new proto.padlocal.Host;
-      reader.readMessage(value,proto.padlocal.Host.deserializeBinaryFromReader);
-      msg.setLonglinkhost(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -14285,14 +15481,6 @@ proto.padlocal.AuthInfo.serializeBinaryToWriter = function(message, writer) {
       1,
       f,
       proto.padlocal.Contact.serializeBinaryToWriter
-    );
-  }
-  f = message.getLonglinkhost();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.padlocal.Host.serializeBinaryToWriter
     );
   }
 };
@@ -14332,43 +15520,6 @@ proto.padlocal.AuthInfo.prototype.clearSelfcontact = function() {
  */
 proto.padlocal.AuthInfo.prototype.hasSelfcontact = function() {
   return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional Host longLinkHost = 2;
- * @return {?proto.padlocal.Host}
- */
-proto.padlocal.AuthInfo.prototype.getLonglinkhost = function() {
-  return /** @type{?proto.padlocal.Host} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.Host, 2));
-};
-
-
-/**
- * @param {?proto.padlocal.Host|undefined} value
- * @return {!proto.padlocal.AuthInfo} returns this
-*/
-proto.padlocal.AuthInfo.prototype.setLonglinkhost = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.padlocal.AuthInfo} returns this
- */
-proto.padlocal.AuthInfo.prototype.clearLonglinkhost = function() {
-  return this.setLonglinkhost(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.padlocal.AuthInfo.prototype.hasLonglinkhost = function() {
-  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -14590,237 +15741,6 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.padlocal.LongLinkHeartBeatRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.LongLinkHeartBeatRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.padlocal.LongLinkHeartBeatRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.LongLinkHeartBeatRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    heartbeatseq: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.LongLinkHeartBeatRequest}
- */
-proto.padlocal.LongLinkHeartBeatRequest.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.LongLinkHeartBeatRequest;
-  return proto.padlocal.LongLinkHeartBeatRequest.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.padlocal.LongLinkHeartBeatRequest} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.LongLinkHeartBeatRequest}
- */
-proto.padlocal.LongLinkHeartBeatRequest.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setHeartbeatseq(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.padlocal.LongLinkHeartBeatRequest.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.padlocal.LongLinkHeartBeatRequest.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.LongLinkHeartBeatRequest} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.LongLinkHeartBeatRequest.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getHeartbeatseq();
-  if (f !== 0) {
-    writer.writeInt64(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional int64 heartBeatSeq = 1;
- * @return {number}
- */
-proto.padlocal.LongLinkHeartBeatRequest.prototype.getHeartbeatseq = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.padlocal.LongLinkHeartBeatRequest} returns this
- */
-proto.padlocal.LongLinkHeartBeatRequest.prototype.setHeartbeatseq = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.padlocal.LongLinkHeartBeatResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.padlocal.LongLinkHeartBeatResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.padlocal.LongLinkHeartBeatResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.LongLinkHeartBeatResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.padlocal.LongLinkHeartBeatResponse}
- */
-proto.padlocal.LongLinkHeartBeatResponse.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.padlocal.LongLinkHeartBeatResponse;
-  return proto.padlocal.LongLinkHeartBeatResponse.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.padlocal.LongLinkHeartBeatResponse} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.padlocal.LongLinkHeartBeatResponse}
- */
-proto.padlocal.LongLinkHeartBeatResponse.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.padlocal.LongLinkHeartBeatResponse.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.padlocal.LongLinkHeartBeatResponse.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.padlocal.LongLinkHeartBeatResponse} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.padlocal.LongLinkHeartBeatResponse.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
 proto.padlocal.LongLinkInitRequest.prototype.toObject = function(opt_includeInstance) {
   return proto.padlocal.LongLinkInitRequest.toObject(opt_includeInstance, this);
 };
@@ -14837,7 +15757,7 @@ proto.padlocal.LongLinkInitRequest.prototype.toObject = function(opt_includeInst
  */
 proto.padlocal.LongLinkInitRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    longlinkid: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -14874,6 +15794,10 @@ proto.padlocal.LongLinkInitRequest.deserializeBinaryFromReader = function(msg, r
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLonglinkid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -14903,6 +15827,31 @@ proto.padlocal.LongLinkInitRequest.prototype.serializeBinary = function() {
  */
 proto.padlocal.LongLinkInitRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getLonglinkid();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string longLinkId = 1;
+ * @return {string}
+ */
+proto.padlocal.LongLinkInitRequest.prototype.getLonglinkid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.LongLinkInitRequest} returns this
+ */
+proto.padlocal.LongLinkInitRequest.prototype.setLonglinkid = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -15003,6 +15952,1261 @@ proto.padlocal.LongLinkInitResponse.prototype.serializeBinary = function() {
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.padlocal.LongLinkInitResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.LongLinkPackRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.LongLinkPackRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.LongLinkPackRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkPackRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    longlinkid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    messageid: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.LongLinkPackRequest}
+ */
+proto.padlocal.LongLinkPackRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.LongLinkPackRequest;
+  return proto.padlocal.LongLinkPackRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.LongLinkPackRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.LongLinkPackRequest}
+ */
+proto.padlocal.LongLinkPackRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLonglinkid(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessageid(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkPackRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.LongLinkPackRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.LongLinkPackRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkPackRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLonglinkid();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getMessageid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string longLinkId = 1;
+ * @return {string}
+ */
+proto.padlocal.LongLinkPackRequest.prototype.getLonglinkid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.LongLinkPackRequest} returns this
+ */
+proto.padlocal.LongLinkPackRequest.prototype.setLonglinkid = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string messageId = 2;
+ * @return {string}
+ */
+proto.padlocal.LongLinkPackRequest.prototype.getMessageid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.LongLinkPackRequest} returns this
+ */
+proto.padlocal.LongLinkPackRequest.prototype.setMessageid = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.LongLinkPackResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.LongLinkPackResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.LongLinkPackResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkPackResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    payload: msg.getPayload_asB64()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.LongLinkPackResponse}
+ */
+proto.padlocal.LongLinkPackResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.LongLinkPackResponse;
+  return proto.padlocal.LongLinkPackResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.LongLinkPackResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.LongLinkPackResponse}
+ */
+proto.padlocal.LongLinkPackResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPayload(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkPackResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.LongLinkPackResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.LongLinkPackResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkPackResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPayload_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * @return {!(string|Uint8Array)}
+ */
+proto.padlocal.LongLinkPackResponse.prototype.getPayload = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {string}
+ */
+proto.padlocal.LongLinkPackResponse.prototype.getPayload_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPayload()));
+};
+
+
+/**
+ * optional bytes payload = 1;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkPackResponse.prototype.getPayload_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPayload()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.padlocal.LongLinkPackResponse} returns this
+ */
+proto.padlocal.LongLinkPackResponse.prototype.setPayload = function(value) {
+  return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.LongLinkUnpackRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.LongLinkUnpackRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.LongLinkUnpackRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkUnpackRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    longlinkid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    payload: msg.getPayload_asB64()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.LongLinkUnpackRequest}
+ */
+proto.padlocal.LongLinkUnpackRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.LongLinkUnpackRequest;
+  return proto.padlocal.LongLinkUnpackRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.LongLinkUnpackRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.LongLinkUnpackRequest}
+ */
+proto.padlocal.LongLinkUnpackRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLonglinkid(value);
+      break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPayload(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkUnpackRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.LongLinkUnpackRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.LongLinkUnpackRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkUnpackRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLonglinkid();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getPayload_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string longLinkId = 1;
+ * @return {string}
+ */
+proto.padlocal.LongLinkUnpackRequest.prototype.getLonglinkid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.LongLinkUnpackRequest} returns this
+ */
+proto.padlocal.LongLinkUnpackRequest.prototype.setLonglinkid = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional bytes payload = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.padlocal.LongLinkUnpackRequest.prototype.getPayload = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes payload = 2;
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {string}
+ */
+proto.padlocal.LongLinkUnpackRequest.prototype.getPayload_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPayload()));
+};
+
+
+/**
+ * optional bytes payload = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPayload()`
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkUnpackRequest.prototype.getPayload_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPayload()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.padlocal.LongLinkUnpackRequest} returns this
+ */
+proto.padlocal.LongLinkUnpackRequest.prototype.setPayload = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.padlocal.LongLinkUnpackResponse.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.LongLinkUnpackResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.LongLinkUnpackResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.LongLinkUnpackResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkUnpackResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    messageList: jspb.Message.toObjectList(msg.getMessageList(),
+    proto.padlocal.LongLinkMessage.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.LongLinkUnpackResponse}
+ */
+proto.padlocal.LongLinkUnpackResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.LongLinkUnpackResponse;
+  return proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.LongLinkUnpackResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.LongLinkUnpackResponse}
+ */
+proto.padlocal.LongLinkUnpackResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.padlocal.LongLinkMessage;
+      reader.readMessage(value,proto.padlocal.LongLinkMessage.deserializeBinaryFromReader);
+      msg.addMessage(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkUnpackResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.LongLinkUnpackResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.LongLinkUnpackResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkUnpackResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getMessageList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.padlocal.LongLinkMessage.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated LongLinkMessage message = 1;
+ * @return {!Array<!proto.padlocal.LongLinkMessage>}
+ */
+proto.padlocal.LongLinkUnpackResponse.prototype.getMessageList = function() {
+  return /** @type{!Array<!proto.padlocal.LongLinkMessage>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.padlocal.LongLinkMessage, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.padlocal.LongLinkMessage>} value
+ * @return {!proto.padlocal.LongLinkUnpackResponse} returns this
+*/
+proto.padlocal.LongLinkUnpackResponse.prototype.setMessageList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.padlocal.LongLinkMessage=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.padlocal.LongLinkMessage}
+ */
+proto.padlocal.LongLinkUnpackResponse.prototype.addMessage = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.padlocal.LongLinkMessage, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.padlocal.LongLinkUnpackResponse} returns this
+ */
+proto.padlocal.LongLinkUnpackResponse.prototype.clearMessageList = function() {
+  return this.setMessageList([]);
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.padlocal.LongLinkMessage.oneofGroups_ = [[10]];
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.LongLinkMessage.PayloadCase = {
+  PAYLOAD_NOT_SET: 0,
+  PUSH: 10
+};
+
+/**
+ * @return {proto.padlocal.LongLinkMessage.PayloadCase}
+ */
+proto.padlocal.LongLinkMessage.prototype.getPayloadCase = function() {
+  return /** @type {proto.padlocal.LongLinkMessage.PayloadCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.LongLinkMessage.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.LongLinkMessage.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.LongLinkMessage.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.LongLinkMessage} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkMessage.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    messageid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    push: (f = msg.getPush()) && proto.padlocal.LongLinkMessagePush.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.LongLinkMessage}
+ */
+proto.padlocal.LongLinkMessage.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.LongLinkMessage;
+  return proto.padlocal.LongLinkMessage.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.LongLinkMessage} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.LongLinkMessage}
+ */
+proto.padlocal.LongLinkMessage.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.padlocal.LongLinkMessageType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMessageid(value);
+      break;
+    case 10:
+      var value = new proto.padlocal.LongLinkMessagePush;
+      reader.readMessage(value,proto.padlocal.LongLinkMessagePush.deserializeBinaryFromReader);
+      msg.setPush(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkMessage.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.LongLinkMessage.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.LongLinkMessage} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkMessage.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getMessageid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getPush();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      proto.padlocal.LongLinkMessagePush.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional LongLinkMessageType type = 1;
+ * @return {!proto.padlocal.LongLinkMessageType}
+ */
+proto.padlocal.LongLinkMessage.prototype.getType = function() {
+  return /** @type {!proto.padlocal.LongLinkMessageType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.padlocal.LongLinkMessageType} value
+ * @return {!proto.padlocal.LongLinkMessage} returns this
+ */
+proto.padlocal.LongLinkMessage.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional string messageId = 2;
+ * @return {string}
+ */
+proto.padlocal.LongLinkMessage.prototype.getMessageid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.LongLinkMessage} returns this
+ */
+proto.padlocal.LongLinkMessage.prototype.setMessageid = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional LongLinkMessagePush push = 10;
+ * @return {?proto.padlocal.LongLinkMessagePush}
+ */
+proto.padlocal.LongLinkMessage.prototype.getPush = function() {
+  return /** @type{?proto.padlocal.LongLinkMessagePush} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.LongLinkMessagePush, 10));
+};
+
+
+/**
+ * @param {?proto.padlocal.LongLinkMessagePush|undefined} value
+ * @return {!proto.padlocal.LongLinkMessage} returns this
+*/
+proto.padlocal.LongLinkMessage.prototype.setPush = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.LongLinkMessage.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.LongLinkMessage} returns this
+ */
+proto.padlocal.LongLinkMessage.prototype.clearPush = function() {
+  return this.setPush(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.LongLinkMessage.prototype.hasPush = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.LongLinkMessagePush.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.LongLinkMessagePush.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.LongLinkMessagePush} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkMessagePush.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.LongLinkMessagePush}
+ */
+proto.padlocal.LongLinkMessagePush.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.LongLinkMessagePush;
+  return proto.padlocal.LongLinkMessagePush.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.LongLinkMessagePush} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.LongLinkMessagePush}
+ */
+proto.padlocal.LongLinkMessagePush.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.padlocal.LongLinkMessagePushType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkMessagePush.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.LongLinkMessagePush.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.LongLinkMessagePush} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkMessagePush.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional LongLinkMessagePushType type = 1;
+ * @return {!proto.padlocal.LongLinkMessagePushType}
+ */
+proto.padlocal.LongLinkMessagePush.prototype.getType = function() {
+  return /** @type {!proto.padlocal.LongLinkMessagePushType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.padlocal.LongLinkMessagePushType} value
+ * @return {!proto.padlocal.LongLinkMessagePush} returns this
+ */
+proto.padlocal.LongLinkMessagePush.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.LongLinkHeartBeatRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.LongLinkHeartBeatRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.LongLinkHeartBeatRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkHeartBeatRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    longlinkid: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.LongLinkHeartBeatRequest}
+ */
+proto.padlocal.LongLinkHeartBeatRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.LongLinkHeartBeatRequest;
+  return proto.padlocal.LongLinkHeartBeatRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.LongLinkHeartBeatRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.LongLinkHeartBeatRequest}
+ */
+proto.padlocal.LongLinkHeartBeatRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLonglinkid(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkHeartBeatRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.LongLinkHeartBeatRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.LongLinkHeartBeatRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkHeartBeatRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLonglinkid();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string longLinkId = 1;
+ * @return {string}
+ */
+proto.padlocal.LongLinkHeartBeatRequest.prototype.getLonglinkid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.LongLinkHeartBeatRequest} returns this
+ */
+proto.padlocal.LongLinkHeartBeatRequest.prototype.setLonglinkid = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.LongLinkHeartBeatResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.LongLinkHeartBeatResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.LongLinkHeartBeatResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkHeartBeatResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.LongLinkHeartBeatResponse}
+ */
+proto.padlocal.LongLinkHeartBeatResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.LongLinkHeartBeatResponse;
+  return proto.padlocal.LongLinkHeartBeatResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.LongLinkHeartBeatResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.LongLinkHeartBeatResponse}
+ */
+proto.padlocal.LongLinkHeartBeatResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.LongLinkHeartBeatResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.LongLinkHeartBeatResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.LongLinkHeartBeatResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.LongLinkHeartBeatResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
 };
 
@@ -31706,6 +33910,187 @@ proto.padlocal.SystemKickOutEvent.prototype.setErrormessage = function(value) {
 
 
 
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.padlocal.SystemLongLinkUpdateEvent.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.padlocal.SystemLongLinkUpdateEvent} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    longlinkhost: (f = msg.getLonglinkhost()) && proto.padlocal.Host.toObject(includeInstance, f),
+    reconnectimmediately: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.padlocal.SystemLongLinkUpdateEvent}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.padlocal.SystemLongLinkUpdateEvent;
+  return proto.padlocal.SystemLongLinkUpdateEvent.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.padlocal.SystemLongLinkUpdateEvent} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.padlocal.SystemLongLinkUpdateEvent}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.padlocal.Host;
+      reader.readMessage(value,proto.padlocal.Host.deserializeBinaryFromReader);
+      msg.setLonglinkhost(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setReconnectimmediately(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.padlocal.SystemLongLinkUpdateEvent.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.padlocal.SystemLongLinkUpdateEvent} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLonglinkhost();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.padlocal.Host.serializeBinaryToWriter
+    );
+  }
+  f = message.getReconnectimmediately();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional Host longLinkHost = 1;
+ * @return {?proto.padlocal.Host}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.getLonglinkhost = function() {
+  return /** @type{?proto.padlocal.Host} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.Host, 1));
+};
+
+
+/**
+ * @param {?proto.padlocal.Host|undefined} value
+ * @return {!proto.padlocal.SystemLongLinkUpdateEvent} returns this
+*/
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.setLonglinkhost = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.SystemLongLinkUpdateEvent} returns this
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.clearLonglinkhost = function() {
+  return this.setLonglinkhost(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.hasLonglinkhost = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional bool reconnectImmediately = 2;
+ * @return {boolean}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.getReconnectimmediately = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.padlocal.SystemLongLinkUpdateEvent} returns this
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.setReconnectimmediately = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+
 /**
  * Oneof group definitions for this message. Each group defines the field
  * numbers belonging to that group. When of these fields' value is set, all
@@ -31714,14 +34099,15 @@ proto.padlocal.SystemKickOutEvent.prototype.setErrormessage = function(value) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.padlocal.SystemEventRequest.oneofGroups_ = [[2]];
+proto.padlocal.SystemEventRequest.oneofGroups_ = [[1,2]];
 
 /**
  * @enum {number}
  */
 proto.padlocal.SystemEventRequest.PayloadCase = {
   PAYLOAD_NOT_SET: 0,
-  KICKOUTEVENT: 2
+  KICKOUTEVENT: 1,
+  LONGLINKUPDATEEVENT: 2
 };
 
 /**
@@ -31762,8 +34148,8 @@ proto.padlocal.SystemEventRequest.prototype.toObject = function(opt_includeInsta
  */
 proto.padlocal.SystemEventRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    kickoutevent: (f = msg.getKickoutevent()) && proto.padlocal.SystemKickOutEvent.toObject(includeInstance, f)
+    kickoutevent: (f = msg.getKickoutevent()) && proto.padlocal.SystemKickOutEvent.toObject(includeInstance, f),
+    longlinkupdateevent: (f = msg.getLonglinkupdateevent()) && proto.padlocal.SystemLongLinkUpdateEvent.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -31801,13 +34187,14 @@ proto.padlocal.SystemEventRequest.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!proto.padlocal.SystemEventType} */ (reader.readEnum());
-      msg.setType(value);
-      break;
-    case 2:
       var value = new proto.padlocal.SystemKickOutEvent;
       reader.readMessage(value,proto.padlocal.SystemKickOutEvent.deserializeBinaryFromReader);
       msg.setKickoutevent(value);
+      break;
+    case 2:
+      var value = new proto.padlocal.SystemLongLinkUpdateEvent;
+      reader.readMessage(value,proto.padlocal.SystemLongLinkUpdateEvent.deserializeBinaryFromReader);
+      msg.setLonglinkupdateevent(value);
       break;
     default:
       reader.skipField();
@@ -31838,49 +34225,32 @@ proto.padlocal.SystemEventRequest.prototype.serializeBinary = function() {
  */
 proto.padlocal.SystemEventRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getType();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      1,
-      f
-    );
-  }
   f = message.getKickoutevent();
   if (f != null) {
     writer.writeMessage(
-      2,
+      1,
       f,
       proto.padlocal.SystemKickOutEvent.serializeBinaryToWriter
     );
   }
+  f = message.getLonglinkupdateevent();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.padlocal.SystemLongLinkUpdateEvent.serializeBinaryToWriter
+    );
+  }
 };
 
 
 /**
- * optional SystemEventType type = 1;
- * @return {!proto.padlocal.SystemEventType}
- */
-proto.padlocal.SystemEventRequest.prototype.getType = function() {
-  return /** @type {!proto.padlocal.SystemEventType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {!proto.padlocal.SystemEventType} value
- * @return {!proto.padlocal.SystemEventRequest} returns this
- */
-proto.padlocal.SystemEventRequest.prototype.setType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-
-/**
- * optional SystemKickOutEvent kickOutEvent = 2;
+ * optional SystemKickOutEvent kickOutEvent = 1;
  * @return {?proto.padlocal.SystemKickOutEvent}
  */
 proto.padlocal.SystemEventRequest.prototype.getKickoutevent = function() {
   return /** @type{?proto.padlocal.SystemKickOutEvent} */ (
-    jspb.Message.getWrapperField(this, proto.padlocal.SystemKickOutEvent, 2));
+    jspb.Message.getWrapperField(this, proto.padlocal.SystemKickOutEvent, 1));
 };
 
 
@@ -31889,7 +34259,7 @@ proto.padlocal.SystemEventRequest.prototype.getKickoutevent = function() {
  * @return {!proto.padlocal.SystemEventRequest} returns this
 */
 proto.padlocal.SystemEventRequest.prototype.setKickoutevent = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.padlocal.SystemEventRequest.oneofGroups_[0], value);
+  return jspb.Message.setOneofWrapperField(this, 1, proto.padlocal.SystemEventRequest.oneofGroups_[0], value);
 };
 
 
@@ -31907,6 +34277,43 @@ proto.padlocal.SystemEventRequest.prototype.clearKickoutevent = function() {
  * @return {boolean}
  */
 proto.padlocal.SystemEventRequest.prototype.hasKickoutevent = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional SystemLongLinkUpdateEvent longLinkUpdateEvent = 2;
+ * @return {?proto.padlocal.SystemLongLinkUpdateEvent}
+ */
+proto.padlocal.SystemEventRequest.prototype.getLonglinkupdateevent = function() {
+  return /** @type{?proto.padlocal.SystemLongLinkUpdateEvent} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.SystemLongLinkUpdateEvent, 2));
+};
+
+
+/**
+ * @param {?proto.padlocal.SystemLongLinkUpdateEvent|undefined} value
+ * @return {!proto.padlocal.SystemEventRequest} returns this
+*/
+proto.padlocal.SystemEventRequest.prototype.setLonglinkupdateevent = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.padlocal.SystemEventRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.SystemEventRequest} returns this
+ */
+proto.padlocal.SystemEventRequest.prototype.clearLonglinkupdateevent = function() {
+  return this.setLonglinkupdateevent(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.SystemEventRequest.prototype.hasLonglinkupdateevent = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -37632,13 +40039,6 @@ proto.padlocal.GetEncryptedFileResponse.prototype.hasFilerequest = function() {
 /**
  * @enum {number}
  */
-proto.padlocal.LongLinkPacketPushType = {
-  NEW_MESSAGE: 0
-};
-
-/**
- * @enum {number}
- */
 proto.padlocal.LoginPolicy = {
   DEFAULT: 0
 };
@@ -37678,6 +40078,22 @@ proto.padlocal.QRCodeStatus = {
 /**
  * @enum {number}
  */
+proto.padlocal.LongLinkMessageType = {
+  NORMAL_MESSAGE: 0,
+  PUSH_MESSAGE: 1
+};
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.LongLinkMessagePushType = {
+  NEW_MESSAGE: 0,
+  LOGIN_STATUS_NOTIFY: 1
+};
+
+/**
+ * @enum {number}
+ */
 proto.padlocal.AddContactScene = {
   MOBILE_PHONE: 0,
   WECHAT_ID: 1,
@@ -37695,14 +40111,6 @@ proto.padlocal.ZombieStatue = {
   STRANGER: 0,
   FRIEND: 1,
   ZOMBIE: 2
-};
-
-/**
- * @enum {number}
- */
-proto.padlocal.SystemEventType = {
-  DID_REFRESH_TOKEN: 0,
-  DID_KICKOUT: 1
 };
 
 /**

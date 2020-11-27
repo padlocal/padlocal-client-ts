@@ -4,7 +4,6 @@ import {
   CLIENT_TYPE_METADATA_KEY,
   CLIENT_VERSION_METADATA_KEY,
   IDEMPOTENT_ID_KEY,
-  LONG_LINK_ID_META_KEY,
   TRACE_ID_METADATA_KEY,
 } from "./utils/Constant";
 import { IPadLocalClient } from "./proto/padlocal_grpc_pb";
@@ -17,9 +16,7 @@ import {
   SystemEventResponse,
   WeChatLongLinkResponse,
   WeChatShortLinkResponse,
-  WeChatSocketRequest,
-  WeChatLongLinkRequest,
-  WeChatShortLinkRequest,
+  WeChatStreamRequest,
 } from "./proto/padlocal_pb";
 import cryptoRandomString from "crypto-random-string";
 import { Message } from "google-protobuf";
@@ -27,10 +24,13 @@ import { getPayload, setPayload } from "./utils/ActionMessageUtils";
 import { logDebug } from "./utils/log";
 import { PromiseCallback } from "./utils/PromiseUtils";
 import { WeChatShortLinkProxy } from "./link/WeChatShortLinkProxy";
-import { WeChatSocketProxy } from "./link/WeChatSocketProxy";
 import VError from "verror";
 import { stringifyPB } from "./utils/Utils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
+import { SocketStreamHandler } from "./link/SocketStreamHandler";
+import { LongLinkStreamHandler } from "./link/LongLinkStreamHandler";
+import { PushStreamHandler } from "./link/PushStreamHandler";
+import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 
 export type OnMessageCallback = (actionMessage: ActionMessage) => void;
 export type OnSystemEventCallback = (systemEventRequest: SystemEventRequest) => void;
@@ -66,11 +66,6 @@ export class GrpcClient extends PadLocalClientPlugin {
     metaData.set(CLIENT_TYPE_METADATA_KEY, "ts");
     metaData.set(CLIENT_VERSION_METADATA_KEY, client.version);
 
-    const longLinkId = client.getLongLinkId();
-    if (longLinkId) {
-      metaData.set(LONG_LINK_ID_META_KEY, longLinkId);
-    }
-
     if (options?.idempotentId) {
       metaData.set(IDEMPOTENT_ID_KEY, options.idempotentId);
     }
@@ -105,8 +100,8 @@ export class GrpcClient extends PadLocalClientPlugin {
   }
 
   async request<REQ extends Message, RES extends Message>(request: REQ): Promise<RES> {
-    const subResponseWrap = (await this.subRequest(request, false)) as SubResponseWrap<RES>;
-    return subResponseWrap.payload;
+    const subResponse = (await this.subRequest(request, false)) as SubResponse<RES>;
+    return subResponse.payload;
   }
 
   /**
@@ -117,7 +112,7 @@ export class GrpcClient extends PadLocalClientPlugin {
   async subRequest<REQ extends Message, RES extends Message>(
     request: REQ,
     sendOnly: boolean
-  ): Promise<SubResponseWrap<RES> | void> {
+  ): Promise<SubResponse<RES> | void> {
     return this._sendMessage(request, sendOnly);
   }
 
@@ -133,15 +128,15 @@ export class GrpcClient extends PadLocalClientPlugin {
   async subReplyAndRequest<REQ extends Message, RES extends Message>(
     ack: number,
     request: REQ
-  ): Promise<SubResponseWrap<RES>> {
-    return (await this._sendMessage(request, false, ack)) as SubResponseWrap<RES>;
+  ): Promise<SubResponse<RES>> {
+    return (await this._sendMessage(request, false, ack)) as SubResponse<RES>;
   }
 
   private async _sendMessage<REQ extends Message, RES extends Message>(
     request: REQ,
     sendOnly: boolean,
     ack?: number
-  ): Promise<SubResponseWrap<RES> | void> {
+  ): Promise<SubResponse<RES> | void> {
     if (sendOnly) {
       this.__sendMessage(request, undefined, ack);
     } else {
@@ -231,19 +226,15 @@ export class GrpcClient extends PadLocalClientPlugin {
       // forward payload to wechat server, and then forward response to our server
       if (serverMessage.getPayloadCase() === ActionMessage.PayloadCase.WECHATREQUEST) {
         try {
-          const weChatRequest = serverMessage.getWechatrequest()!;
-          // socket is handled differently, since socket is more complex than simple req -> res mode
-          if (weChatRequest.getRequestCase() === WeChatRequest.RequestCase.SOCKETREQUEST) {
-            await this._handleSocketRequest(weChatRequest.getSocketrequest()!, seq);
-          } else if (weChatRequest.getRequestCase() === WeChatRequest.RequestCase.LONGLINKREQUEST) {
-            await this._handleLongLinkRequest(weChatRequest.getLonglinkrequest()!, seq);
-          } else if (weChatRequest.getRequestCase() === WeChatRequest.RequestCase.SHORTLINKREQUEST) {
-            await this._handleShortLinkRequest(weChatRequest.getShortlinkrequest()!, seq);
-          } else {
-            throw new Error(`unsupported wechat request case: ${weChatRequest.getRequestCase()}`);
-          }
+          await this._handleNormalRequest(serverMessage.getWechatrequest()!, seq);
         } catch (e) {
-          this.error(new IOError(e, `[tid:${this.traceId}] Exception while forwarding message to wechat`));
+          this.error(new IOError(e, `[tid:${this.traceId}] Exception while handling wechat request`));
+        }
+      } else if (serverMessage.getPayloadCase() === ActionMessage.PayloadCase.WECHATSTREAMREQUEST) {
+        try {
+          await this._handleStreamRequest(serverMessage.getWechatstreamrequest()!, seq);
+        } catch (e) {
+          this.error(new IOError(e, `[tid:${this.traceId}] Exception while handling wechat stream request`));
         }
       } else if (serverMessage.getPayloadCase() === ActionMessage.PayloadCase.SYSTEMEVENTREQUEST) {
         this.subReply(seq, new SystemEventResponse());
@@ -254,42 +245,67 @@ export class GrpcClient extends PadLocalClientPlugin {
     }
   }
 
-  private async _handleSocketRequest(socketRequest: WeChatSocketRequest, ack: number) {
-    const socketProxy = new WeChatSocketProxy(this, socketRequest.getHost()!, ack);
-    await socketProxy.send(Buffer.from(socketRequest.getPayload())).then();
-  }
+  private async _handleStreamRequest(wechatStreamRequest: WeChatStreamRequest, ack: number) {
+    if (wechatStreamRequest.getPayloadCase() == WeChatStreamRequest.PayloadCase.SOCKETREQUEST) {
+      const socketStreamHandler = new SocketStreamHandler(this);
+      await socketStreamHandler.handleRequest(wechatStreamRequest, ack);
+    } else if (wechatStreamRequest.getPayloadCase() == WeChatStreamRequest.PayloadCase.LONGLINKREQUEST) {
+      const longLinkRequest = wechatStreamRequest.getLonglinkrequest()!;
 
-  private async _handleLongLinkRequest(longLinkRequest: WeChatLongLinkRequest, ack: number) {
-    const longlinkProxy = await this.client.getLongLinkProxy();
+      let longLinkProxy: WeChatLongLinkProxy;
+      if (longLinkRequest.getInitphase()) {
+        longLinkProxy = this.client.getLongLinkProxyDirect();
+      } else {
+        longLinkProxy = await this.client.getLongLinkProxy();
+      }
 
-    if (longLinkRequest.getInitmode()) {
-      longlinkProxy.sendInitData(Buffer.from(longLinkRequest.getPayload()), this, ack);
+      const longLinkStreamHandler = new LongLinkStreamHandler(this, longLinkProxy);
+      await longLinkStreamHandler.handleRequest(wechatStreamRequest, ack);
+    } else if (wechatStreamRequest.getPayloadCase() == WeChatStreamRequest.PayloadCase.PUSHSUBSCRIBEREQUEST) {
+      const longLinkProxy = await this.client.getLongLinkProxy();
+      const pushStreamHandler = new PushStreamHandler(this, longLinkProxy);
+      await pushStreamHandler.handleRequest(wechatStreamRequest, ack);
     } else {
-      const responseData = await longlinkProxy.send(
-        longLinkRequest.getSeq(),
-        Buffer.from(longLinkRequest.getPayload())
-      );
-      const weChatResponse = new WeChatResponse().setLonglinkresponse(
-        new WeChatLongLinkResponse().setPayload(responseData)
-      );
-      this.subReply(ack, weChatResponse);
+      throw new Error(`unsupported wechat request case: ${wechatStreamRequest.getPayloadCase()}`);
     }
   }
 
-  private async _handleShortLinkRequest(shortLinkRequest: WeChatShortLinkRequest, ack: number) {
-    const shortLinkProxy = new WeChatShortLinkProxy(
-      shortLinkRequest.getHost()!.getHost(),
-      shortLinkRequest.getHost()!.getPort(),
-      this.traceId
-    );
-    const responseData = await shortLinkProxy.send(
-      shortLinkRequest.getPath(),
-      Buffer.from(shortLinkRequest.getPayload())
-    );
-    const weChatResponse = new WeChatResponse().setShortlinkresponse(
-      new WeChatShortLinkResponse().setPayload(responseData)
-    );
-    this.subReply(ack, weChatResponse);
+  private async _handleNormalRequest(wechatRequest: WeChatRequest, ack: number) {
+    if (wechatRequest.getPayloadCase() === WeChatRequest.PayloadCase.LONGLINKREQUEST) {
+      const longLinkRequest = wechatRequest.getLonglinkrequest()!;
+
+      let longLinkProxy: WeChatLongLinkProxy;
+      if (longLinkRequest.getInitphase()) {
+        longLinkProxy = this.client.getLongLinkProxyDirect();
+      } else {
+        longLinkProxy = await this.client.getLongLinkProxy();
+      }
+
+      await longLinkProxy.sendRequest(longLinkRequest);
+
+      this.subReply(ack, new WeChatResponse().setLonglinkresponse(new WeChatLongLinkResponse()));
+    } else if (wechatRequest.getPayloadCase() === WeChatRequest.PayloadCase.SHORTLINKREQUEST) {
+      const shortLinkRequest = wechatRequest.getShortlinkrequest()!;
+
+      const shortLinkProxy = new WeChatShortLinkProxy(
+        shortLinkRequest.getHost()!.getHost(),
+        shortLinkRequest.getHost()!.getPort(),
+        this.traceId
+      );
+
+      const responseData = await shortLinkProxy.send(
+        shortLinkRequest.getPath(),
+        Buffer.from(shortLinkRequest.getPayload())
+      );
+
+      const weChatResponse = new WeChatResponse().setShortlinkresponse(
+        new WeChatShortLinkResponse().setPayload(responseData)
+      );
+
+      this.subReply(ack, weChatResponse);
+    } else {
+      throw new Error(`unsupported wechat request case: ${wechatRequest.getPayloadCase()}`);
+    }
   }
 
   private _completePendingRequest(ack: number, payload: Message, seq?: number): void {
@@ -303,7 +319,7 @@ export class GrpcClient extends PadLocalClientPlugin {
     p.resolve({
       ack: seq,
       payload,
-    } as SubResponseWrap<Message>);
+    } as SubResponse<Message>);
   }
 
   private _failPendingRequest(ack: number, error: Error): void {
@@ -384,7 +400,7 @@ export class SubRequestCancelError extends VError {
 
 export class IOError extends VError {}
 
-export interface SubResponseWrap<T extends Message> {
+export interface SubResponse<T extends Message> {
   payload: T;
   ack?: number;
 }

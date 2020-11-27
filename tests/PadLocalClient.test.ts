@@ -35,5 +35,5 @@ test(
 
     return new Promise(() => {});
   },
-  Math.pow(2, 20)
+  Math.pow(2, 30)
 );

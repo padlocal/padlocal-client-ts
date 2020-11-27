@@ -2,7 +2,7 @@ import * as padlocal from "./proto/padlocal_grpc_pb";
 import { credentials, Metadata, CallCredentials } from "@grpc/grpc-js";
 import { AUTHORIZATION_METADATA_KEY } from "./utils/Constant";
 import { GrpcClient, Options } from "./GrpcClient";
-import { Host, Contact, SystemEventRequest, SystemEventType, Message } from "./proto/padlocal_pb";
+import { Contact, SystemEventRequest, Message } from "./proto/padlocal_pb";
 import { WeChatLongLinkProxy, HeartBeatEventPayload } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
 import { logDebug, logError, logInfo } from "./utils/log";
@@ -55,16 +55,6 @@ export class PadLocalClient extends EventEmitter {
 
     this._longLinkProxy = new WeChatLongLinkProxy(this);
 
-    this._longLinkProxy.on("heartbeat", async (event: HeartBeatEventPayload) => {
-      try {
-        await this.api.sendLongLinkHeartBeat(event.heartBeatSeq);
-        this._longLinkProxy.onHeartBeatResult(true);
-      } catch (e) {
-        logError(`error to send longlink heartbeat: ${e.stack}`);
-        this._longLinkProxy.onHeartBeatResult(false);
-      }
-    });
-
     this._longLinkProxy.on("message-push", async () => {
       try {
         const syncEvent = await this.api.sync();
@@ -104,10 +94,6 @@ export class PadLocalClient extends EventEmitter {
     return VERSION;
   }
 
-  updateLongLinkHost(longLinkHostInfo: Host) {
-    this._longLinkProxy.updateHostPort(longLinkHostInfo.getHost(), longLinkHostInfo.getPort(), false);
-  }
-
   isSelf(userName: string): boolean {
     return this.selfContact?.getUsername() === userName;
   }
@@ -116,17 +102,27 @@ export class PadLocalClient extends EventEmitter {
     const ret = new GrpcClient(this, this._stub, this._callCredentials, options);
 
     ret.onSystemEventCallback = (systemEventRequest: SystemEventRequest) => {
-      const systemEventType = systemEventRequest.getType();
-      if (systemEventType === SystemEventType.DID_KICKOUT) {
+      if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.KICKOUTEVENT) {
         this._reset();
 
         this.emit("kickout", {
           errorCode: systemEventRequest.getKickoutevent()!.getErrorcode(),
           errorMessage: systemEventRequest.getKickoutevent()!.getErrormessage(),
         });
-      } else if (systemEventType === SystemEventType.DID_REFRESH_TOKEN) {
-        // re-connect longlink after token refresh
-        this.getLongLinkProxy(true).then();
+
+        this._longLinkProxy.shutdown(true);
+      } else if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.LONGLINKUPDATEEVENT) {
+        const longLinkUpdateEvent = systemEventRequest.getLonglinkupdateevent()!;
+        if (longLinkUpdateEvent.getLonglinkhost()) {
+          const longLinkHost = longLinkUpdateEvent.getLonglinkhost()!;
+          this._longLinkProxy.updateHostPort(longLinkHost.getHost(), longLinkHost.getPort());
+        }
+
+        // reconnect only while longlink is not idle or ordered by server
+        if (!this._longLinkProxy.isIdle() || longLinkUpdateEvent.getReconnectimmediately()) {
+          logDebug("reset long link");
+          this.getLongLinkProxy(true).then();
+        }
       }
     };
 
@@ -141,11 +137,16 @@ export class PadLocalClient extends EventEmitter {
   }
 
   async getLongLinkProxy(reset?: boolean): Promise<WeChatLongLinkProxy> {
-    if (this._longLinkProxy.isConnected() && !reset) {
+    if (reset) {
+      await this._longLinkProxy.reconnect();
+      return this._longLinkProxy;
+    } else {
+      await this._longLinkProxy.makeSureConnected();
       return this._longLinkProxy;
     }
+  }
 
-    await this._longLinkProxy.reconnect();
+  getLongLinkProxyDirect() {
     return this._longLinkProxy;
   }
 

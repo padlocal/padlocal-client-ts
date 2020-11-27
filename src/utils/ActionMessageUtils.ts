@@ -8,8 +8,15 @@ import { Message } from "google-protobuf";
 const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.WECHATREQUEST, pb.WeChatRequest],
   [ActionMessage.PayloadCase.WECHATRESPONSE, pb.WeChatResponse],
+  [ActionMessage.PayloadCase.WECHATSTREAMREQUEST, pb.WeChatStreamRequest],
+  [ActionMessage.PayloadCase.WECHATSTREAMRESPONSE, pb.WeChatStreamResponse],
+  [ActionMessage.PayloadCase.WECHATSTREAMRESPONSEREPLY, pb.WeChatStreamResponseReply],
   [ActionMessage.PayloadCase.SYSTEMEVENTREQUEST, pb.SystemEventRequest],
   [ActionMessage.PayloadCase.SYSTEMEVENTRESPONSE, pb.SystemEventResponse],
+  [ActionMessage.PayloadCase.LONGLINKINITREQUEST, pb.LongLinkInitRequest],
+  [ActionMessage.PayloadCase.LONGLINKINITRESPONSE, pb.LongLinkInitResponse],
+  [ActionMessage.PayloadCase.LONGLINKPACKREQUEST, pb.LongLinkPackRequest],
+  [ActionMessage.PayloadCase.LONGLINKPACKRESPONSE, pb.LongLinkPackResponse],
   [ActionMessage.PayloadCase.LONGLINKUNPACKREQUEST, pb.LongLinkUnpackRequest],
   [ActionMessage.PayloadCase.LONGLINKUNPACKRESPONSE, pb.LongLinkUnpackResponse],
   [ActionMessage.PayloadCase.LONGLINKHEARTBEATREQUEST, pb.LongLinkHeartBeatRequest],
@@ -122,7 +129,6 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.QUITCHATROOMRESPONSE, pb.QuitChatRoomResponse],
   [ActionMessage.PayloadCase.SENDCONTACTCARDMESSAGEREQUEST, pb.SendContactCardMessageRequest],
   [ActionMessage.PayloadCase.SENDCONTACTCARDMESSAGERESPONSE, pb.SendContactCardMessageResponse],
-  [ActionMessage.PayloadCase.WECHATSTREAMACK, pb.WeChatStreamAck],
   [ActionMessage.PayloadCase.SENDVOICEMESSAGEREQUEST, pb.SendVoiceMessageRequest],
   [ActionMessage.PayloadCase.SENDVOICEMESSAGERESPONSE, pb.SendVoiceMessageResponse],
   [ActionMessage.PayloadCase.SENDVIDEOMESSAGEREQUEST, pb.SendVideoMessageRequest],
@@ -133,8 +139,6 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.GETMESSAGEMINIPROGRAMTHUMBRESPONSE, pb.GetMessageMiniProgramThumbResponse],
   [ActionMessage.PayloadCase.GETENCRYPTEDFILEREQUEST, pb.GetEncryptedFileRequest],
   [ActionMessage.PayloadCase.GETENCRYPTEDFILERESPONSE, pb.GetEncryptedFileResponse],
-  [ActionMessage.PayloadCase.LONGLINKINITREQUEST, pb.LongLinkInitRequest],
-  [ActionMessage.PayloadCase.LONGLINKINITRESPONSE, pb.LongLinkInitResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

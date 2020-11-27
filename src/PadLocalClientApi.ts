@@ -42,7 +42,6 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
           const authInfo = loginUpdateEvent.getAuthinfo()!;
 
           this.client.selfContact = authInfo.getSelfcontact();
-          this.client.updateLongLinkHost(authInfo.getLonglinkhost()!);
 
           callback.onLoginSuccess(this.client.selfContact!);
         } else if (loginUpdateEvent.getStatus() === pb.LoginStatus.SYNC) {
@@ -52,22 +51,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     };
 
     await grpcClient.request(request);
-
-    // start long link  after login successfully
-    this.client.getLongLinkProxy(true).then();
   }
 
   async logout(): Promise<pb.LogoutResponse> {
     return this.client.grpcRequest(new pb.LogoutRequest());
-  }
-
-  async sendLongLinkHeartBeat(heartBeatSeq: number): Promise<pb.LongLinkHeartBeatResponse> {
-    const request = new pb.LongLinkHeartBeatRequest();
-    request.setHeartbeatseq(heartBeatSeq);
-
-    return this.client.grpcRequest(new pb.LongLinkHeartBeatRequest().setHeartbeatseq(heartBeatSeq), {
-      requestTimeout: 3000, // longlink heart beat require more instantly
-    });
   }
 
   async sync(): Promise<pb.SyncEvent> {
