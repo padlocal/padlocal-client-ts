@@ -4863,6 +4863,27 @@ export namespace SystemLongLinkUpdateEvent {
     }
 }
 
+export class SystemNoticeEvent extends jspb.Message { 
+    getNotice(): string;
+    setNotice(value: string): SystemNoticeEvent;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SystemNoticeEvent.AsObject;
+    static toObject(includeInstance: boolean, msg: SystemNoticeEvent): SystemNoticeEvent.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SystemNoticeEvent, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SystemNoticeEvent;
+    static deserializeBinaryFromReader(message: SystemNoticeEvent, reader: jspb.BinaryReader): SystemNoticeEvent;
+}
+
+export namespace SystemNoticeEvent {
+    export type AsObject = {
+        notice: string,
+    }
+}
+
 export class SystemEventRequest extends jspb.Message { 
 
     hasKickoutevent(): boolean;
@@ -4875,6 +4896,12 @@ export class SystemEventRequest extends jspb.Message {
     clearLonglinkupdateevent(): void;
     getLonglinkupdateevent(): SystemLongLinkUpdateEvent | undefined;
     setLonglinkupdateevent(value?: SystemLongLinkUpdateEvent): SystemEventRequest;
+
+
+    hasNoticeevent(): boolean;
+    clearNoticeevent(): void;
+    getNoticeevent(): SystemNoticeEvent | undefined;
+    setNoticeevent(value?: SystemNoticeEvent): SystemEventRequest;
 
 
     getPayloadCase(): SystemEventRequest.PayloadCase;
@@ -4893,6 +4920,7 @@ export namespace SystemEventRequest {
     export type AsObject = {
         kickoutevent?: SystemKickOutEvent.AsObject,
         longlinkupdateevent?: SystemLongLinkUpdateEvent.AsObject,
+        noticeevent?: SystemNoticeEvent.AsObject,
     }
 
     export enum PayloadCase {
@@ -4901,6 +4929,8 @@ export namespace SystemEventRequest {
     KICKOUTEVENT = 1,
 
     LONGLINKUPDATEEVENT = 2,
+
+    NOTICEEVENT = 3,
 
     }
 

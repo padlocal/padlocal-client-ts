@@ -5,7 +5,7 @@ import { GrpcClient, Options } from "./GrpcClient";
 import { Contact, SystemEventRequest, Message } from "./proto/padlocal_pb";
 import { WeChatLongLinkProxy, HeartBeatEventPayload } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
-import { logDebug, logError, logInfo } from "./utils/log";
+import { logDebug, logError, logInfo, logWarn } from "./utils/log";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
 import * as grpc from "@grpc/grpc-js";
@@ -123,6 +123,9 @@ export class PadLocalClient extends EventEmitter {
           logDebug("reset long link");
           this.getLongLinkProxy(true).then();
         }
+      } else if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.NOTICEEVENT) {
+        const noticeEvent = systemEventRequest.getNoticeevent()!;
+        logWarn(noticeEvent.getNotice());
       }
     };
 

@@ -887,10 +887,15 @@ message SystemLongLinkUpdateEvent {
   bool reconnectImmediately = 2;
 }
 
+message SystemNoticeEvent {
+  string notice = 1;
+}
+
 message SystemEventRequest {
   oneof payload {
     SystemKickOutEvent kickOutEvent = 1;
     SystemLongLinkUpdateEvent longLinkUpdateEvent = 2;
+    SystemNoticeEvent noticeEvent = 3;
   }
 }
 
