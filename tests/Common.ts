@@ -5,7 +5,7 @@ import config from "config";
 import { LogLevel, setLogLevel } from "../src/utils/log";
 import { EnumValues } from "enum-values";
 
-// setLogLevel(LogLevel.DEBUG);
+setLogLevel(LogLevel.DEBUG);
 
 export async function prepareSignedOnClient(): Promise<PadLocalClient> {
   const host: string = config.get("padLocal.host");

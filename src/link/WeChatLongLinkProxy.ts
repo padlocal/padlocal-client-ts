@@ -19,7 +19,7 @@ import {
 } from "../proto/padlocal_pb";
 import VError from "verror";
 import { SerialExecutor } from "../utils/SerialExecutor";
-import { genUUID, stringifyPB } from "../utils/Utils";
+import { genUUID } from "../utils/Utils";
 
 export type WeChatLongLinkProxyEvent = "heartbeat" | "message-push" | "push" | "status";
 
@@ -28,9 +28,6 @@ export class WeChatLongLinkProxy extends EventEmitter {
   private static readonly CONNECT_TIMEOUT = 10 * 1000;
   private static readonly SOCKET_TIMEOUT = 180 * 1000;
   private static readonly HEART_BEAT_INTERVAL = 160 * 1000;
-
-  private readonly _connectRetryStrategy = RetryStrategy.getStrategy(RetryStrategyRule.FAST, Number.MAX_SAFE_INTEGER); // reconnect infinitely
-  private readonly _heartBeatRetryStrategy = RetryStrategy.getStrategy(RetryStrategyRule.FAST, 3);
 
   private _heartBeatTimer?: NodeJS.Timeout;
 
@@ -42,8 +39,9 @@ export class WeChatLongLinkProxy extends EventEmitter {
   private _id?: string;
   private _socketPromise?: Promise<void>;
   private _reconnectDelayTimer?: NodeJS.Timeout;
-  private _requestCallbackMap: Map<string, PromiseCallback> = new Map();
-  private _serialExecutor: SerialExecutor;
+  private readonly _reconnectStrategy = RetryStrategy.getStrategy(RetryStrategyRule.FAST, Number.MAX_SAFE_INTEGER); // reconnect infinitely
+  private readonly _requestCallbackMap: Map<string, PromiseCallback> = new Map();
+  private readonly _serialExecutor: SerialExecutor;
   private _streamCallback?: LongLinkStreamCallback;
 
   private readonly _client: PadLocalClient;
@@ -93,12 +91,12 @@ export class WeChatLongLinkProxy extends EventEmitter {
     this.logDebug("longlink shutdown");
 
     this._clearReconnectTimer();
-    this._connectRetryStrategy.reset();
+    this._reconnectStrategy.reset();
 
-    // call before _resetLongLink, forbid future socket close or error event to trigger reconnect
+    // call before _destroyLongLink, forbid future socket close or error event to trigger reconnect
     this._updateStatus(Status.STOP);
 
-    this._resetLongLink();
+    this._destroyLongLink();
 
     if (clearHost) {
       this._host = undefined;
@@ -214,20 +212,10 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     this._heartBeatTimer = setTimeout(async () => {
       try {
-        await this._client.grpcRequest(new LongLinkHeartBeatRequest().setLonglinkid(this._id!), {
-          requestTimeout: 3000, // longlink heart beat require more instantly
-        });
-
-        this._heartBeatRetryStrategy.reset();
+        await this._client.grpcRequest(new LongLinkHeartBeatRequest().setLonglinkid(this._id!));
         this._resetHeartBeatTimer(true);
       } catch (e) {
-        if (this._heartBeatRetryStrategy.canRetry()) {
-          const delay = this._heartBeatRetryStrategy.nextRetryDelay();
-          this._resetHeartBeatTimer(true, delay);
-          this.logDebug(`retry send heart beat after:${delay}ms`);
-        } else {
-          this._onSocketError(new IOError("send heart beat failed after max retries"));
-        }
+        this._onSocketError(new IOError(e, "send heart beat failed"));
       }
     }, delay || WeChatLongLinkProxy.HEART_BEAT_INTERVAL);
   }
@@ -250,7 +238,6 @@ export class WeChatLongLinkProxy extends EventEmitter {
     this.logDebug("longlink stopHeartbeat");
 
     this._resetHeartBeatTimer(false);
-    this._heartBeatRetryStrategy.reset();
   }
 
   private _clearReconnectTimer(): void {
@@ -285,7 +272,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
     this._requestCallbackMap.clear();
   }
 
-  private _resetLongLink(error?: Error): void {
+  private _destroyLongLink(error?: Error): void {
     if (error) {
       this._notifyAllRequestCallbackWithError(error);
     } else {
@@ -294,12 +281,12 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     this._stopHeartbeat();
 
-    if (this._socket) {
-      if (this._socketConnectTimeout) {
-        clearTimeout(this._socketConnectTimeout!);
-        this._socketConnectTimeout = undefined;
-      }
+    if (this._socketConnectTimeout) {
+      clearTimeout(this._socketConnectTimeout!);
+      this._socketConnectTimeout = undefined;
+    }
 
+    if (this._socket) {
       this._socket.removeAllListeners();
 
       this._socket!.destroy();
@@ -320,7 +307,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     this.logDebug("close connection on error", error);
 
-    this._resetLongLink(error);
+    this._destroyLongLink(error);
     this._updateStatus(Status.ERROR);
 
     this._tryReconnect();
@@ -329,20 +316,20 @@ export class WeChatLongLinkProxy extends EventEmitter {
   private _tryReconnect(): void {
     // already reconnecting
     if (this._reconnectDelayTimer) {
-      this.logDebug("dup reconnect, forbid");
+      this.logDebug("dup reconnect, skip");
       return;
     }
 
-    if (!this._connectRetryStrategy.canRetry()) {
+    if (!this._reconnectStrategy.canRetry()) {
       this.logDebug("reconnect policy failed");
       // 重试失败，关闭
       this.shutdown();
       return;
     }
 
-    const delay = this._connectRetryStrategy.nextRetryDelay();
+    const delay = this._reconnectStrategy.nextRetryDelay();
 
-    this.logDebug(`longlink reconnect [${this._connectRetryStrategy.retryCount}] after delay:${delay}ms`);
+    this.logDebug(`longlink reconnect [${this._reconnectStrategy.retryCount}] after delay:${delay}ms`);
 
     this._reconnectDelayTimer = setTimeout(() => {
       this._clearReconnectTimer();
@@ -400,7 +387,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
               this.logDebug(`longlink init done, cost ${new Date().getTime() - startDate.getTime()}ms`);
 
-              this._connectRetryStrategy.reset();
+              this._reconnectStrategy.reset();
               this._updateStatus(Status.CONNECTED);
 
               resolve();
