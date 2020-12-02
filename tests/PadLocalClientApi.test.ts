@@ -353,7 +353,7 @@ describe("message", () => {
         "test.message.payload.encryptedFile.originalMessageToUserName"
       );
 
-      const fileBinary = await client.api.getEncryptedFile(EncryptedFileType.IMAGE_THUMB, fileId, fileKey, "");
+      const fileBinary = await client.api.getEncryptedFile(EncryptedFileType.IMAGE_THUMB, fileId, fileKey);
       expect(fileBinary).toBeTruthy();
 
       const filePath = `${payloadDir}/encrypted-file-${fileId}`;

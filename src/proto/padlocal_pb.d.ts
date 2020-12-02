@@ -5770,8 +5770,8 @@ export class GetEncryptedFileRequest extends jspb.Message {
     getFiletype(): EncryptedFileType;
     setFiletype(value: EncryptedFileType): GetEncryptedFileRequest;
 
-    getOriginalmessagetousername(): string;
-    setOriginalmessagetousername(value: string): GetEncryptedFileRequest;
+    getIschatroommessage(): boolean;
+    setIschatroommessage(value: boolean): GetEncryptedFileRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -5789,7 +5789,7 @@ export namespace GetEncryptedFileRequest {
         fileid: string,
         filekey: Uint8Array | string,
         filetype: EncryptedFileType,
-        originalmessagetousername: string,
+        ischatroommessage: boolean,
     }
 }
 

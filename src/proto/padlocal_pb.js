@@ -39880,7 +39880,7 @@ proto.padlocal.GetEncryptedFileRequest.toObject = function(includeInstance, msg)
     fileid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     filekey: msg.getFilekey_asB64(),
     filetype: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    originalmessagetousername: jspb.Message.getFieldWithDefault(msg, 4, "")
+    ischatroommessage: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -39930,8 +39930,8 @@ proto.padlocal.GetEncryptedFileRequest.deserializeBinaryFromReader = function(ms
       msg.setFiletype(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOriginalmessagetousername(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIschatroommessage(value);
       break;
     default:
       reader.skipField();
@@ -39983,9 +39983,9 @@ proto.padlocal.GetEncryptedFileRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getOriginalmessagetousername();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getIschatroommessage();
+  if (f) {
+    writer.writeBool(
       4,
       f
     );
@@ -40072,20 +40072,20 @@ proto.padlocal.GetEncryptedFileRequest.prototype.setFiletype = function(value) {
 
 
 /**
- * optional string originalMessageToUserName = 4;
- * @return {string}
+ * optional bool isChatRoomMessage = 4;
+ * @return {boolean}
  */
-proto.padlocal.GetEncryptedFileRequest.prototype.getOriginalmessagetousername = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+proto.padlocal.GetEncryptedFileRequest.prototype.getIschatroommessage = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
 
 /**
- * @param {string} value
+ * @param {boolean} value
  * @return {!proto.padlocal.GetEncryptedFileRequest} returns this
  */
-proto.padlocal.GetEncryptedFileRequest.prototype.setOriginalmessagetousername = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.padlocal.GetEncryptedFileRequest.prototype.setIschatroommessage = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 

@@ -343,20 +343,23 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     fileType: EncryptedFileType,
     fileId: string,
     fileKey: Bytes,
-    originalMessageToUserName: string
+    isChatRoomMessage?: boolean
   ): Promise<Bytes> {
     checkRequiredField(fileId, "fileId");
     checkRequiredField(fileKey.length, "fileKey");
-    checkRequiredField(originalMessageToUserName, "originalMessageToUserName");
+
+    const getEncryptedFileRequest = new pb.GetEncryptedFileRequest()
+      .setFileid(fileId)
+      .setFilekey(fileKey)
+      .setFiletype(fileType);
+
+    if (isChatRoomMessage !== undefined) {
+      getEncryptedFileRequest.setIschatroommessage(isChatRoomMessage);
+    }
 
     const grpcClient = this.client.createGrpcClient();
-    const response: pb.GetEncryptedFileResponse = await grpcClient.request(
-      new pb.GetEncryptedFileRequest()
-        .setFileid(fileId)
-        .setFilekey(fileKey)
-        .setFiletype(fileType)
-        .setOriginalmessagetousername(originalMessageToUserName)
-    );
+
+    const response: pb.GetEncryptedFileResponse = await grpcClient.request(getEncryptedFileRequest);
     return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
   }
 
