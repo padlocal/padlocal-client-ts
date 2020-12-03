@@ -1,5 +1,5 @@
 import { StreamHandler } from "./StreamHandler";
-import { GrpcClient } from "../GrpcClient";
+import { Request } from "../Request";
 import { WeChatLongLinkStreamResponse, WeChatStreamRequest, WeChatStreamResponse } from "../proto/padlocal_pb";
 import { WeChatLongLinkProxy } from "./WeChatLongLinkProxy";
 import { Bytes } from "../utils/ByteUtils";
@@ -7,7 +7,7 @@ import { Bytes } from "../utils/ByteUtils";
 export class LongLinkStreamHandler extends StreamHandler {
   private readonly _longLinkProxy: WeChatLongLinkProxy;
 
-  constructor(grpcClient: GrpcClient, longLinkProxy: WeChatLongLinkProxy) {
+  constructor(grpcClient: Request, longLinkProxy: WeChatLongLinkProxy) {
     super(grpcClient);
     this._longLinkProxy = longLinkProxy;
   }

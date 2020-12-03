@@ -157,7 +157,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
     let packResponse: LongLinkPackResponse;
     try {
       packResponse = await this._serialExecutor.execute(async () => {
-        return this._client.grpcRequest(new LongLinkPackRequest().setLonglinkid(this._id!).setMessageid(messageId));
+        return this._client.request(new LongLinkPackRequest().setLonglinkid(this._id!).setMessageid(messageId));
       });
     } catch (e) {
       this._onSocketError(new IOError(e, "Exception while packing long link data"));
@@ -212,7 +212,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     this._heartBeatTimer = setTimeout(async () => {
       try {
-        await this._client.grpcRequest(new LongLinkHeartBeatRequest().setLonglinkid(this._id!));
+        await this._client.request(new LongLinkHeartBeatRequest().setLonglinkid(this._id!));
         this._resetHeartBeatTimer(true);
       } catch (e) {
         this._onSocketError(new IOError(e, "send heart beat failed"));
@@ -383,7 +383,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
               const startDate = new Date();
               this.logDebug(`longlink start init`);
 
-              await this._client.grpcRequest(new LongLinkInitRequest().setLonglinkid(this._id!));
+              await this._client.request(new LongLinkInitRequest().setLonglinkid(this._id!));
 
               this.logDebug(`longlink init done, cost ${new Date().getTime() - startDate.getTime()}ms`);
 
@@ -446,7 +446,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     try {
       unpackResponse = await this._serialExecutor.execute(async () => {
-        return this._client.grpcRequest(new LongLinkUnpackRequest().setLonglinkid(this._id!).setPayload(data));
+        return this._client.request(new LongLinkUnpackRequest().setLonglinkid(this._id!).setPayload(data));
       });
     } catch (e) {
       // if longlink unpack failed, notify all longlink pending callback with error,

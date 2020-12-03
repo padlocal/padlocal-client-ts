@@ -1,5 +1,5 @@
 import { StreamHandler } from "./StreamHandler";
-import { GrpcClient } from "../GrpcClient";
+import { Request } from "../Request";
 import { WeChatLongLinkProxy } from "./WeChatLongLinkProxy";
 import {
   LongLinkMessage,
@@ -14,7 +14,7 @@ export class PushStreamHandler extends StreamHandler {
   private _pushTypeList?: Array<LongLinkMessagePushType>;
   private readonly _pushHandler: (pushMessageList: LongLinkMessage[]) => void;
 
-  constructor(grpcClient: GrpcClient, longLinkProxy: WeChatLongLinkProxy) {
+  constructor(grpcClient: Request, longLinkProxy: WeChatLongLinkProxy) {
     super(grpcClient);
 
     this._longLinkProxy = longLinkProxy;

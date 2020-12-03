@@ -1,22 +1,20 @@
-import * as padlocal from "./proto/padlocal_grpc_pb";
-import { credentials, Metadata, CallCredentials } from "@grpc/grpc-js";
-import { AUTHORIZATION_METADATA_KEY } from "./utils/Constant";
-import { GrpcClient, Options } from "./GrpcClient";
+import { Request } from "./Request";
 import { Contact, SystemEventRequest, Message } from "./proto/padlocal_pb";
-import { WeChatLongLinkProxy, HeartBeatEventPayload } from "./link/WeChatLongLinkProxy";
+import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
 import { logDebug, logError, logInfo, logWarn } from "./utils/log";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
-import * as grpc from "@grpc/grpc-js";
-import * as fs from "fs";
 import { VERSION } from "./version";
+import { GrpcClient, GrpcOptions } from "./GrpcClient";
+import { getServerInfo } from "./utils/ServerInfo";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
 export class PadLocalClient extends EventEmitter {
-  private readonly _stub: padlocal.PadLocalClient;
-  private readonly _callCredentials: CallCredentials;
+  readonly grpcClient: GrpcClient;
+  readonly token: string;
+
   private readonly _longLinkProxy: WeChatLongLinkProxy;
   selfContact?: Contact;
 
@@ -30,28 +28,20 @@ export class PadLocalClient extends EventEmitter {
     return super.emit(event, ...args);
   }
 
-  constructor(serverAddr: string, token: string, serverCAFilePath?: string, skipPrintVersion: boolean = false) {
+  public static async create(token: string, skipPrintVersion: boolean = false): Promise<PadLocalClient> {
+    const serverInfo = await getServerInfo(token);
+    return new PadLocalClient(
+      `${serverInfo.getHost()!.getHost()}:${serverInfo.getHost()!.getPort()}`,
+      serverInfo.getPdltoken(),
+      Buffer.from(serverInfo.getServerca()),
+      skipPrintVersion
+    );
+  }
+
+  private constructor(serverAddr: string, token: string, serverCA?: Buffer, skipPrintVersion: boolean = false) {
     super();
-
-    let creds: grpc.ChannelCredentials;
-    if (serverCAFilePath) {
-      creds = credentials.createSsl(fs.readFileSync(serverCAFilePath));
-    } else {
-      creds = credentials.createInsecure();
-    }
-
-    // Oops, @grpc/grpc-js does not support retry yet
-    this._stub = new padlocal.PadLocalClient(serverAddr, creds, {
-      "grpc.ssl_target_name_override": "client.pad-local.com",
-      "grpc.default_compression_algorithm": 2,
-      "grpc.default_compression_level": 2,
-    });
-
-    this._callCredentials = credentials.createFromMetadataGenerator((params, callback) => {
-      const metaData = new Metadata();
-      metaData.set(AUTHORIZATION_METADATA_KEY, `Bearer ${token}`);
-      callback(null, metaData);
-    });
+    this.grpcClient = new GrpcClient(serverAddr, token, serverCA);
+    this.token = token;
 
     this._longLinkProxy = new WeChatLongLinkProxy(this);
 
@@ -98,8 +88,8 @@ export class PadLocalClient extends EventEmitter {
     return this.selfContact?.getUsername() === userName;
   }
 
-  createGrpcClient(options?: Partial<Options>): GrpcClient {
-    const ret = new GrpcClient(this, this._stub, this._callCredentials, options);
+  createRequest(options?: Partial<GrpcOptions>): Request {
+    const ret = new Request(this, options);
 
     ret.onSystemEventCallback = (systemEventRequest: SystemEventRequest) => {
       if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.KICKOUTEVENT) {
@@ -132,11 +122,11 @@ export class PadLocalClient extends EventEmitter {
     return ret;
   }
 
-  async grpcRequest<REQ extends GrpcMessage, RES extends GrpcMessage>(
+  async request<REQ extends GrpcMessage, RES extends GrpcMessage>(
     request: REQ,
-    options?: Partial<Options>
+    options?: Partial<GrpcOptions>
   ): Promise<RES> {
-    return this.createGrpcClient(options).request(request);
+    return this.createRequest(options).request(request);
   }
 
   async getLongLinkProxy(reset?: boolean): Promise<WeChatLongLinkProxy> {

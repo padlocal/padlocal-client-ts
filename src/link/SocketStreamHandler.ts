@@ -1,6 +1,6 @@
 import { StreamHandler } from "./StreamHandler";
 import { Host, WeChatSocketResponse, WeChatStreamRequest, WeChatStreamResponse } from "../proto/padlocal_pb";
-import { GrpcClient } from "../GrpcClient";
+import { Request } from "../Request";
 import { SocketClient } from "./SocketClient";
 import { Bytes, joinBytes } from "../utils/ByteUtils";
 import { SerialExecutor } from "../utils/SerialExecutor";
@@ -11,7 +11,7 @@ export class SocketStreamHandler extends StreamHandler {
   private _sendDataBuffer?: Bytes;
   private _callbackExecutor: SerialExecutor;
 
-  public constructor(grpcClient: GrpcClient) {
+  public constructor(grpcClient: Request) {
     super(grpcClient);
     this._callbackExecutor = new SerialExecutor();
   }

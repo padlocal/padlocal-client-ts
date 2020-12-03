@@ -1260,6 +1260,85 @@ export namespace ActionMessage {
 
 }
 
+export class InitRequest extends jspb.Message { 
+    getToken(): string;
+    setToken(value: string): InitRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): InitRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: InitRequest): InitRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: InitRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): InitRequest;
+    static deserializeBinaryFromReader(message: InitRequest, reader: jspb.BinaryReader): InitRequest;
+}
+
+export namespace InitRequest {
+    export type AsObject = {
+        token: string,
+    }
+}
+
+export class ServerInfo extends jspb.Message { 
+
+    hasHost(): boolean;
+    clearHost(): void;
+    getHost(): Host | undefined;
+    setHost(value?: Host): ServerInfo;
+
+    getPdltoken(): string;
+    setPdltoken(value: string): ServerInfo;
+
+    getServerca(): Uint8Array | string;
+    getServerca_asU8(): Uint8Array;
+    getServerca_asB64(): string;
+    setServerca(value: Uint8Array | string): ServerInfo;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ServerInfo.AsObject;
+    static toObject(includeInstance: boolean, msg: ServerInfo): ServerInfo.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ServerInfo, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ServerInfo;
+    static deserializeBinaryFromReader(message: ServerInfo, reader: jspb.BinaryReader): ServerInfo;
+}
+
+export namespace ServerInfo {
+    export type AsObject = {
+        host?: Host.AsObject,
+        pdltoken: string,
+        serverca: Uint8Array | string,
+    }
+}
+
+export class InitResponse extends jspb.Message { 
+
+    hasServerinfo(): boolean;
+    clearServerinfo(): void;
+    getServerinfo(): ServerInfo | undefined;
+    setServerinfo(value?: ServerInfo): InitResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): InitResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: InitResponse): InitResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: InitResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): InitResponse;
+    static deserializeBinaryFromReader(message: InitResponse, reader: jspb.BinaryReader): InitResponse;
+}
+
+export namespace InitResponse {
+    export type AsObject = {
+        serverinfo?: ServerInfo.AsObject,
+    }
+}
+
 export class WeChatLongLinkRequest extends jspb.Message { 
     getMessageid(): string;
     setMessageid(value: string): WeChatLongLinkRequest;

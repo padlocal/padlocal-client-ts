@@ -1,11 +1,11 @@
 import { WeChatStreamRequest, WeChatStreamResponse, WeChatStreamResponseReply } from "../proto/padlocal_pb";
-import { GrpcClient, SubResponse } from "../GrpcClient";
+import { Request, SubResponse } from "../Request";
 
 export abstract class StreamHandler {
-  protected readonly _grpcClient: GrpcClient;
+  protected readonly _grpcClient: Request;
   private _ack?: number;
 
-  protected constructor(grpcClient: GrpcClient) {
+  protected constructor(grpcClient: Request) {
     this._grpcClient = grpcClient;
   }
 

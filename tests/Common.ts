@@ -13,7 +13,11 @@ export async function prepareSignedOnClient(): Promise<PadLocalClient> {
   const token: string = config.get("padLocal.token");
   const tlsEnabled: boolean = config.get("padLocal.tls.enabled");
   const serverCAFilePath: string = config.get("padLocal.tls.serverCAFilePath");
-  const padLocalClient = new PadLocalClient(`${host}:${port}`, token, tlsEnabled ? serverCAFilePath : undefined);
+
+  process.env.PADLOCAL_ENDPOINT = `${host}:${port}`;
+  process.env.PADLOCAL_CA_FILE_PATH = tlsEnabled ? serverCAFilePath : undefined;
+
+  const padLocalClient = await PadLocalClient.create(token);
 
   await padLocalClient.api.login(LoginPolicy.DEFAULT, {
     onLoginStart: (loginType: LoginType) => {
