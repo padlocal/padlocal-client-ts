@@ -20,12 +20,8 @@
 
 当然 padlocal-client-ts 也支持直接单独使用。
 ```
-const host: string = "";              // padlocal server host
-const port: number = 0;               // padlocal server port
 const token: string = "";             // padlocal token
-const serverCAFilePath: string = "";  // padlocal server ca file path
-
-const client = new PadLocalClient(`${host}:${port}`, token, serverCAFilePath);
+const client = await PadLocalClient.create(token);
 
 client.on("message", (messageList: Message[]) => {
   for (const message of messageList) {

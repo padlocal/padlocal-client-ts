@@ -11,11 +11,10 @@ export async function prepareSignedOnClient(): Promise<PadLocalClient> {
   const host: string = config.get("padLocal.host");
   const port: number = config.get("padLocal.port");
   const token: string = config.get("padLocal.token");
-  const tlsEnabled: boolean = config.get("padLocal.tls.enabled");
-  const serverCAFilePath: string = config.get("padLocal.tls.serverCAFilePath");
+  const caFilePath: string = config.get("padLocal.caFilePath");
 
   process.env.PADLOCAL_ENDPOINT = `${host}:${port}`;
-  process.env.PADLOCAL_CA_FILE_PATH = tlsEnabled ? serverCAFilePath : undefined;
+  process.env.PADLOCAL_CA_FILE_PATH = caFilePath;
 
   const padLocalClient = await PadLocalClient.create(token);
 
