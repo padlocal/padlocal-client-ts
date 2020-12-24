@@ -139,6 +139,8 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.GETMESSAGEMINIPROGRAMTHUMBRESPONSE, pb.GetMessageMiniProgramThumbResponse],
   [ActionMessage.PayloadCase.GETENCRYPTEDFILEREQUEST, pb.GetEncryptedFileRequest],
   [ActionMessage.PayloadCase.GETENCRYPTEDFILERESPONSE, pb.GetEncryptedFileResponse],
+  [ActionMessage.PayloadCase.SENDEMOJIMESSAGEREQUEST, pb.SendEmojiMessageRequest],
+  [ActionMessage.PayloadCase.SENDEMOJIMESSAGERESPONSE, pb.SendEmojiMessageResponse],
 ]);
 
 const findPayloadCase = <T extends Message>(payload: T): ActionMessage.PayloadCase => {

@@ -1,5 +1,4 @@
 import * as pb from "./proto/padlocal_pb";
-import { EncryptedFileType, MessageRevokeInfo } from "./proto/padlocal_pb";
 import { Bytes } from "./utils/ByteUtils";
 import { requestFileAndUnpack } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
@@ -168,7 +167,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param link
    * @return
    */
-  async sendAppMessageLink(
+  async sendMessageLink(
     idempotentId: string,
     toUserName: string,
     link: pb.AppMessageLink
@@ -181,7 +180,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     });
   }
 
-  async sendAppMessageMiniProgram(
+  async sendMessageMiniProgram(
     idempotentId: string,
     toUserName: string,
     miniProgram: pb.AppMessageMiniProgram
@@ -211,6 +210,29 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
         idempotentId,
       }
     );
+  }
+
+  async sendMessageEmoji(
+    idempotentId: string,
+    toUserName: string,
+    md5: string,
+    len: number,
+    type?: number,
+    gameExt?: string
+  ): Promise<pb.SendEmojiMessageResponse> {
+    const request = new pb.SendEmojiMessageRequest().setTousername(toUserName).setMd5(md5).setLen(len);
+
+    if (type != undefined) {
+      request.setType(type);
+    }
+
+    if (gameExt != undefined) {
+      request.setGameext(gameExt);
+    }
+
+    return await this.client.request(request, {
+      idempotentId,
+    });
   }
 
   async forwardMessage(
@@ -336,7 +358,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async getEncryptedFile(
-    fileType: EncryptedFileType,
+    fileType: pb.EncryptedFileType,
     fileId: string,
     fileKey: Bytes,
     isChatRoomMessage?: boolean
@@ -363,7 +385,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     msgId: string,
     fromUserName: string,
     toUserName: string,
-    messageRevokeInfo: MessageRevokeInfo
+    messageRevokeInfo: pb.MessageRevokeInfo
   ): Promise<void> {
     checkRequiredField(msgId, "msgId");
     checkRequiredField(fromUserName, "fromUserName");

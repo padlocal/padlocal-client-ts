@@ -125,7 +125,7 @@ describe("message", () => {
     });
 
     test("send link msg", async () => {
-      const msgId = await client.api.sendAppMessageLink(
+      const msgId = await client.api.sendMessageLink(
         genIdempotentId(),
         toChatRoom,
         new pb.AppMessageLink()
@@ -145,7 +145,7 @@ describe("message", () => {
     test("send miniprogram msg", async () => {
       const thumbImageData: Buffer = fs.readFileSync(mpThumbFilePath);
 
-      const msgId = await client.api.sendAppMessageMiniProgram(
+      const msgId = await client.api.sendMessageMiniProgram(
         genIdempotentId(),
         toUserName,
         new pb.AppMessageMiniProgram()
@@ -207,6 +207,28 @@ describe("message", () => {
       const contact = pb.Contact.deserializeBinary(hexStringToBytes(payload));
 
       const response = await client.api.sendContactCardMessage(genIdempotentId(), toChatRoom, contact);
+      expect(response).toBeTruthy();
+      expect(response.getMsgid()).toBeTruthy();
+      expect(response.getMessagerevokeinfo()).toBeTruthy();
+      expect(response.getMessagerevokeinfo()!.getNewclientmsgid()).toBeTruthy();
+      expect(response.getMessagerevokeinfo()!.getCreatetime()).toBeTruthy();
+    });
+
+    test("send emoji message", async () => {
+      const emojiMd5: string = config.get("test.message.send.emoji.md5");
+      const emojiLen: number = config.get("test.message.send.emoji.len");
+      const emojiType: number = config.get("test.message.send.emoji.type");
+      const emojiGameExt: string = config.get("test.message.send.emoji.gameext");
+
+      const response = await client.api.sendMessageEmoji(
+        genIdempotentId(),
+        toUserName,
+        emojiMd5,
+        emojiLen,
+        emojiType,
+        emojiGameExt
+      );
+
       expect(response).toBeTruthy();
       expect(response.getMsgid()).toBeTruthy();
       expect(response.getMessagerevokeinfo()).toBeTruthy();

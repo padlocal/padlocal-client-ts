@@ -77,6 +77,8 @@ message ActionMessage {
     GetMessageMiniProgramThumbResponse getMessageMiniProgramThumbResponse = 331;
     GetEncryptedFileRequest getEncryptedFileRequest = 332;
     GetEncryptedFileResponse getEncryptedFileResponse = 333;
+    SendEmojiMessageRequest sendEmojiMessageRequest = 334;
+    SendEmojiMessageResponse sendEmojiMessageResponse = 335;
 
     SyncContactRequest syncContactRequest = 400;
     SyncContactResponse syncContactResponse = 401;
@@ -1093,4 +1095,17 @@ message GetEncryptedFileRequest {
 
 message GetEncryptedFileResponse {
   FileRequest fileRequest = 1;
+}
+
+message SendEmojiMessageRequest {
+  string toUserName = 1;
+  string md5 = 2;
+  int32 len = 3;
+  int32 type = 4;
+  string gameext = 5;
+}
+
+message SendEmojiMessageResponse {
+  string msgId = 1;
+  MessageRevokeInfo messageRevokeInfo = 2;
 }

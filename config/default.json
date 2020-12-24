@@ -19,7 +19,13 @@
                 "fileFilePath": "",
                 "miniProgramThumbFilePath": "",
                 "miniProgramMessage": "",
-                "contactCard": "PROTOBUF_HEX"
+                "contactCard": "PROTOBUF_HEX",
+                "emoji": {
+                    "md5": "",
+                    "len": 0,
+                    "type": 0,
+                    "gameext": ""
+                }
             },
             "payload": {
                 "outFileDir": "",

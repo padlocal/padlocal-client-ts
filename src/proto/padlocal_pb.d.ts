@@ -381,6 +381,18 @@ export class ActionMessage extends jspb.Message {
     setGetencryptedfileresponse(value?: GetEncryptedFileResponse): ActionMessage;
 
 
+    hasSendemojimessagerequest(): boolean;
+    clearSendemojimessagerequest(): void;
+    getSendemojimessagerequest(): SendEmojiMessageRequest | undefined;
+    setSendemojimessagerequest(value?: SendEmojiMessageRequest): ActionMessage;
+
+
+    hasSendemojimessageresponse(): boolean;
+    clearSendemojimessageresponse(): void;
+    getSendemojimessageresponse(): SendEmojiMessageResponse | undefined;
+    setSendemojimessageresponse(value?: SendEmojiMessageResponse): ActionMessage;
+
+
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
@@ -909,6 +921,8 @@ export namespace ActionMessage {
         getmessageminiprogramthumbresponse?: GetMessageMiniProgramThumbResponse.AsObject,
         getencryptedfilerequest?: GetEncryptedFileRequest.AsObject,
         getencryptedfileresponse?: GetEncryptedFileResponse.AsObject,
+        sendemojimessagerequest?: SendEmojiMessageRequest.AsObject,
+        sendemojimessageresponse?: SendEmojiMessageResponse.AsObject,
         synccontactrequest?: SyncContactRequest.AsObject,
         synccontactresponse?: SyncContactResponse.AsObject,
         acceptuserrequest?: AcceptUserRequest.AsObject,
@@ -1103,6 +1117,10 @@ export namespace ActionMessage {
     GETENCRYPTEDFILEREQUEST = 332,
 
     GETENCRYPTEDFILERESPONSE = 333,
+
+    SENDEMOJIMESSAGEREQUEST = 334,
+
+    SENDEMOJIMESSAGERESPONSE = 335,
 
     SYNCCONTACTREQUEST = 400,
 
@@ -5915,6 +5933,71 @@ export class GetEncryptedFileResponse extends jspb.Message {
 export namespace GetEncryptedFileResponse {
     export type AsObject = {
         filerequest?: FileRequest.AsObject,
+    }
+}
+
+export class SendEmojiMessageRequest extends jspb.Message { 
+    getTousername(): string;
+    setTousername(value: string): SendEmojiMessageRequest;
+
+    getMd5(): string;
+    setMd5(value: string): SendEmojiMessageRequest;
+
+    getLen(): number;
+    setLen(value: number): SendEmojiMessageRequest;
+
+    getType(): number;
+    setType(value: number): SendEmojiMessageRequest;
+
+    getGameext(): string;
+    setGameext(value: string): SendEmojiMessageRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendEmojiMessageRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: SendEmojiMessageRequest): SendEmojiMessageRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendEmojiMessageRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendEmojiMessageRequest;
+    static deserializeBinaryFromReader(message: SendEmojiMessageRequest, reader: jspb.BinaryReader): SendEmojiMessageRequest;
+}
+
+export namespace SendEmojiMessageRequest {
+    export type AsObject = {
+        tousername: string,
+        md5: string,
+        len: number,
+        type: number,
+        gameext: string,
+    }
+}
+
+export class SendEmojiMessageResponse extends jspb.Message { 
+    getMsgid(): string;
+    setMsgid(value: string): SendEmojiMessageResponse;
+
+
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): SendEmojiMessageResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SendEmojiMessageResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: SendEmojiMessageResponse): SendEmojiMessageResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SendEmojiMessageResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SendEmojiMessageResponse;
+    static deserializeBinaryFromReader(message: SendEmojiMessageResponse, reader: jspb.BinaryReader): SendEmojiMessageResponse;
+}
+
+export namespace SendEmojiMessageResponse {
+    export type AsObject = {
+        msgid: string,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
     }
 }
 
