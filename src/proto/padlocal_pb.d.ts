@@ -2638,6 +2638,9 @@ export class SendAppMessageResponse extends jspb.Message {
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendAppMessageResponse;
 
+    getMsgcontent(): string;
+    setMsgcontent(value: string): SendAppMessageResponse;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendAppMessageResponse.AsObject;
@@ -2653,6 +2656,7 @@ export namespace SendAppMessageResponse {
     export type AsObject = {
         msgid: string,
         messagerevokeinfo?: MessageRevokeInfo.AsObject,
+        msgcontent: string,
     }
 }
 
@@ -5493,6 +5497,15 @@ export class ForwardMessageResponse extends jspb.Message {
     setMsgid(value: string): ForwardMessageResponse;
 
 
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): ForwardMessageResponse;
+
+    getMsgcontent(): string;
+    setMsgcontent(value: string): ForwardMessageResponse;
+
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ForwardMessageResponse.AsObject;
     static toObject(includeInstance: boolean, msg: ForwardMessageResponse): ForwardMessageResponse.AsObject;
@@ -5506,6 +5519,8 @@ export class ForwardMessageResponse extends jspb.Message {
 export namespace ForwardMessageResponse {
     export type AsObject = {
         msgid: string,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
+        msgcontent: string,
     }
 }
 

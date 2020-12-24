@@ -1,9 +1,9 @@
 import * as pb from "./proto/padlocal_pb";
+import { EncryptedFileType, MessageRevokeInfo } from "./proto/padlocal_pb";
 import { Bytes } from "./utils/ByteUtils";
 import { requestFileAndUnpack } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { PadLocalClient } from "./PadLocalClient";
-import { EncryptedFileType, MessageRevokeInfo } from "./proto/padlocal_pb";
 
 function checkRequiredField(field: any, fieldName: string) {
   if (!field) {
@@ -168,36 +168,33 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param link
    * @return
    */
-  async sendAppMessageLink(idempotentId: string, toUserName: string, link: pb.AppMessageLink): Promise<string> {
+  async sendAppMessageLink(
+    idempotentId: string,
+    toUserName: string,
+    link: pb.AppMessageLink
+  ): Promise<pb.SendAppMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
 
-    const response: pb.SendAppMessageResponse = await this.client.request(
-      new pb.SendAppMessageRequest().setTousername(toUserName).setLink(link),
-      {
-        idempotentId,
-      }
-    );
-
-    return response.getMsgid();
+    return await this.client.request(new pb.SendAppMessageRequest().setTousername(toUserName).setLink(link), {
+      idempotentId,
+    });
   }
 
   async sendAppMessageMiniProgram(
     idempotentId: string,
     toUserName: string,
     miniProgram: pb.AppMessageMiniProgram
-  ): Promise<string> {
+  ): Promise<pb.SendAppMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
 
-    const response: pb.SendAppMessageResponse = await this.client.request(
+    return await this.client.request(
       new pb.SendAppMessageRequest().setTousername(toUserName).setMiniprogram(miniProgram),
       {
         idempotentId,
       }
     );
-
-    return response.getMsgid();
   }
 
   async sendContactCardMessage(
@@ -222,13 +219,13 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     messageContent: string,
     messageType: number,
     messageToUserName: string
-  ): Promise<string> {
+  ): Promise<pb.ForwardMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
     checkRequiredField(messageContent, "messageContent");
     checkRequiredField(messageToUserName, "messageToUserName");
 
-    const response: pb.ForwardMessageResponse = await this.client.request(
+    return await this.client.request(
       new pb.ForwardMessageRequest()
         .setTousername(toUserName)
         .setMessagetype(messageType)
@@ -238,7 +235,6 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
         idempotentId,
       }
     );
-    return response.getMsgid();
   }
 
   async getMessageImage(

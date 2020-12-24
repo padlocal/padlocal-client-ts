@@ -447,6 +447,7 @@ message AppMessageMiniProgram {
 message SendAppMessageResponse {
   string msgId = 1;
   MessageRevokeInfo messageRevokeInfo = 2;
+  string msgContent = 3;
 }
 
 message AcceptUserRequest {
@@ -1009,6 +1010,8 @@ message ForwardMessageRequest {
 
 message ForwardMessageResponse {
   string msgId = 1;
+  MessageRevokeInfo messageRevokeInfo = 2;
+  string msgContent = 3;
 }
 
 message RevokeMessageRequest {

@@ -19726,7 +19726,8 @@ proto.padlocal.SendAppMessageResponse.prototype.toObject = function(opt_includeI
 proto.padlocal.SendAppMessageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     msgid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    messagerevokeinfo: (f = msg.getMessagerevokeinfo()) && proto.padlocal.MessageRevokeInfo.toObject(includeInstance, f)
+    messagerevokeinfo: (f = msg.getMessagerevokeinfo()) && proto.padlocal.MessageRevokeInfo.toObject(includeInstance, f),
+    msgcontent: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -19772,6 +19773,10 @@ proto.padlocal.SendAppMessageResponse.deserializeBinaryFromReader = function(msg
       reader.readMessage(value,proto.padlocal.MessageRevokeInfo.deserializeBinaryFromReader);
       msg.setMessagerevokeinfo(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMsgcontent(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -19814,6 +19819,13 @@ proto.padlocal.SendAppMessageResponse.serializeBinaryToWriter = function(message
       2,
       f,
       proto.padlocal.MessageRevokeInfo.serializeBinaryToWriter
+    );
+  }
+  f = message.getMsgcontent();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
 };
@@ -19871,6 +19883,24 @@ proto.padlocal.SendAppMessageResponse.prototype.clearMessagerevokeinfo = functio
  */
 proto.padlocal.SendAppMessageResponse.prototype.hasMessagerevokeinfo = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string msgContent = 3;
+ * @return {string}
+ */
+proto.padlocal.SendAppMessageResponse.prototype.getMsgcontent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.SendAppMessageResponse} returns this
+ */
+proto.padlocal.SendAppMessageResponse.prototype.setMsgcontent = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -38180,7 +38210,9 @@ proto.padlocal.ForwardMessageResponse.prototype.toObject = function(opt_includeI
  */
 proto.padlocal.ForwardMessageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msgid: jspb.Message.getFieldWithDefault(msg, 1, "")
+    msgid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    messagerevokeinfo: (f = msg.getMessagerevokeinfo()) && proto.padlocal.MessageRevokeInfo.toObject(includeInstance, f),
+    msgcontent: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -38221,6 +38253,15 @@ proto.padlocal.ForwardMessageResponse.deserializeBinaryFromReader = function(msg
       var value = /** @type {string} */ (reader.readString());
       msg.setMsgid(value);
       break;
+    case 2:
+      var value = new proto.padlocal.MessageRevokeInfo;
+      reader.readMessage(value,proto.padlocal.MessageRevokeInfo.deserializeBinaryFromReader);
+      msg.setMessagerevokeinfo(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMsgcontent(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -38257,6 +38298,21 @@ proto.padlocal.ForwardMessageResponse.serializeBinaryToWriter = function(message
       f
     );
   }
+  f = message.getMessagerevokeinfo();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.padlocal.MessageRevokeInfo.serializeBinaryToWriter
+    );
+  }
+  f = message.getMsgcontent();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -38275,6 +38331,61 @@ proto.padlocal.ForwardMessageResponse.prototype.getMsgid = function() {
  */
 proto.padlocal.ForwardMessageResponse.prototype.setMsgid = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional MessageRevokeInfo messageRevokeInfo = 2;
+ * @return {?proto.padlocal.MessageRevokeInfo}
+ */
+proto.padlocal.ForwardMessageResponse.prototype.getMessagerevokeinfo = function() {
+  return /** @type{?proto.padlocal.MessageRevokeInfo} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.MessageRevokeInfo, 2));
+};
+
+
+/**
+ * @param {?proto.padlocal.MessageRevokeInfo|undefined} value
+ * @return {!proto.padlocal.ForwardMessageResponse} returns this
+*/
+proto.padlocal.ForwardMessageResponse.prototype.setMessagerevokeinfo = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.ForwardMessageResponse} returns this
+ */
+proto.padlocal.ForwardMessageResponse.prototype.clearMessagerevokeinfo = function() {
+  return this.setMessagerevokeinfo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.ForwardMessageResponse.prototype.hasMessagerevokeinfo = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string msgContent = 3;
+ * @return {string}
+ */
+proto.padlocal.ForwardMessageResponse.prototype.getMsgcontent = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.ForwardMessageResponse} returns this
+ */
+proto.padlocal.ForwardMessageResponse.prototype.setMsgcontent = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
