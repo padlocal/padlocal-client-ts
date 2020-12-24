@@ -446,6 +446,7 @@ message AppMessageMiniProgram {
 
 message SendAppMessageResponse {
   string msgId = 1;
+  MessageRevokeInfo messageRevokeInfo = 2;
 }
 
 message AcceptUserRequest {

@@ -2633,6 +2633,12 @@ export class SendAppMessageResponse extends jspb.Message {
     setMsgid(value: string): SendAppMessageResponse;
 
 
+    hasMessagerevokeinfo(): boolean;
+    clearMessagerevokeinfo(): void;
+    getMessagerevokeinfo(): MessageRevokeInfo | undefined;
+    setMessagerevokeinfo(value?: MessageRevokeInfo): SendAppMessageResponse;
+
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendAppMessageResponse.AsObject;
     static toObject(includeInstance: boolean, msg: SendAppMessageResponse): SendAppMessageResponse.AsObject;
@@ -2646,6 +2652,7 @@ export class SendAppMessageResponse extends jspb.Message {
 export namespace SendAppMessageResponse {
     export type AsObject = {
         msgid: string,
+        messagerevokeinfo?: MessageRevokeInfo.AsObject,
     }
 }
 

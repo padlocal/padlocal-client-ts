@@ -19725,7 +19725,8 @@ proto.padlocal.SendAppMessageResponse.prototype.toObject = function(opt_includeI
  */
 proto.padlocal.SendAppMessageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msgid: jspb.Message.getFieldWithDefault(msg, 1, "")
+    msgid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    messagerevokeinfo: (f = msg.getMessagerevokeinfo()) && proto.padlocal.MessageRevokeInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -19766,6 +19767,11 @@ proto.padlocal.SendAppMessageResponse.deserializeBinaryFromReader = function(msg
       var value = /** @type {string} */ (reader.readString());
       msg.setMsgid(value);
       break;
+    case 2:
+      var value = new proto.padlocal.MessageRevokeInfo;
+      reader.readMessage(value,proto.padlocal.MessageRevokeInfo.deserializeBinaryFromReader);
+      msg.setMessagerevokeinfo(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -19802,6 +19808,14 @@ proto.padlocal.SendAppMessageResponse.serializeBinaryToWriter = function(message
       f
     );
   }
+  f = message.getMessagerevokeinfo();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.padlocal.MessageRevokeInfo.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -19820,6 +19834,43 @@ proto.padlocal.SendAppMessageResponse.prototype.getMsgid = function() {
  */
 proto.padlocal.SendAppMessageResponse.prototype.setMsgid = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional MessageRevokeInfo messageRevokeInfo = 2;
+ * @return {?proto.padlocal.MessageRevokeInfo}
+ */
+proto.padlocal.SendAppMessageResponse.prototype.getMessagerevokeinfo = function() {
+  return /** @type{?proto.padlocal.MessageRevokeInfo} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.MessageRevokeInfo, 2));
+};
+
+
+/**
+ * @param {?proto.padlocal.MessageRevokeInfo|undefined} value
+ * @return {!proto.padlocal.SendAppMessageResponse} returns this
+*/
+proto.padlocal.SendAppMessageResponse.prototype.setMessagerevokeinfo = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.SendAppMessageResponse} returns this
+ */
+proto.padlocal.SendAppMessageResponse.prototype.clearMessagerevokeinfo = function() {
+  return this.setMessagerevokeinfo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.SendAppMessageResponse.prototype.hasMessagerevokeinfo = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

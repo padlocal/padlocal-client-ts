@@ -8,14 +8,7 @@ import { EnumValues } from "enum-values";
 // setLogLevel(LogLevel.DEBUG);
 
 export async function prepareSignedOnClient(): Promise<PadLocalClient> {
-  const host: string = config.get("padLocal.host");
-  const port: number = config.get("padLocal.port");
   const token: string = config.get("padLocal.token");
-  const caFilePath: string = config.get("padLocal.caFilePath");
-
-  process.env.PADLOCAL_ENDPOINT = `${host}:${port}`;
-  process.env.PADLOCAL_CA_FILE_PATH = caFilePath;
-
   const padLocalClient = await PadLocalClient.create(token);
 
   await padLocalClient.api.login(LoginPolicy.DEFAULT, {
