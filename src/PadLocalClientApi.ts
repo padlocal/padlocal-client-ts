@@ -524,6 +524,16 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return response.getContact()!;
   }
 
+  async getChatRoomAnnouncement(roomId: string): Promise<string> {
+    checkRequiredField(roomId, "roomId");
+
+    const response: pb.GetChatRoomAnnouncementResponse = await this.client.request(
+      new pb.GetChatRoomAnnouncementRequest().setRoomid(roomId)
+    );
+
+    return response.getAnnouncement();
+  }
+
   async setChatRoomAnnouncement(roomId: string, announcement: string): Promise<void> {
     checkRequiredField(roomId, "roomId");
 

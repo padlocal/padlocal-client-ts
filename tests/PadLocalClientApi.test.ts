@@ -523,6 +523,11 @@ describe("chatroom", () => {
     expect(roomContact.getNickname()).toEqual(newRoomName);
   });
 
+  test("get room announcement", async () => {
+    const announcement = await client.api.getChatRoomAnnouncement(roomId);
+    console.log(`room announcement" ${announcement}`);
+  });
+
   test("set room announcement", async () => {
     const announcement = `new announcement: ${Date.now()}`;
     await client.api.setChatRoomAnnouncement(roomId, announcement);

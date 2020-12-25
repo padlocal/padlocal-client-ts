@@ -123,6 +123,8 @@ message ActionMessage {
     SetChatRoomNameResponse setChatRoomNameResponse = 517;
     QuitChatRoomRequest quitChatRoomRequest = 518;
     QuitChatRoomResponse quitChatRoomResponse = 519;
+    GetChatRoomAnnouncementRequest getChatRoomAnnouncementRequest = 520;
+    GetChatRoomAnnouncementResponse GetChatRoomAnnouncementResponse = 521;
 
     AddLabelRequest addLabelRequest = 600;
     AddLabelResponse addLabelResponse = 601;
@@ -594,6 +596,16 @@ message GetChatRoomMemberRequest {
 
 message GetChatRoomMemberResponse {
   Contact contact = 1;
+}
+
+message GetChatRoomAnnouncementRequest {
+  string roomId = 1;
+}
+
+message GetChatRoomAnnouncementResponse {
+  string announcement = 1;
+  string announcementEditor = 2;
+  int64 announcementPublishTime = 3;
 }
 
 message SetChatRoomAnnouncementRequest {

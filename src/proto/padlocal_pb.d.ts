@@ -645,6 +645,18 @@ export class ActionMessage extends jspb.Message {
     setQuitchatroomresponse(value?: QuitChatRoomResponse): ActionMessage;
 
 
+    hasGetchatroomannouncementrequest(): boolean;
+    clearGetchatroomannouncementrequest(): void;
+    getGetchatroomannouncementrequest(): GetChatRoomAnnouncementRequest | undefined;
+    setGetchatroomannouncementrequest(value?: GetChatRoomAnnouncementRequest): ActionMessage;
+
+
+    hasGetchatroomannouncementresponse(): boolean;
+    clearGetchatroomannouncementresponse(): void;
+    getGetchatroomannouncementresponse(): GetChatRoomAnnouncementResponse | undefined;
+    setGetchatroomannouncementresponse(value?: GetChatRoomAnnouncementResponse): ActionMessage;
+
+
     hasAddlabelrequest(): boolean;
     clearAddlabelrequest(): void;
     getAddlabelrequest(): AddLabelRequest | undefined;
@@ -965,6 +977,8 @@ export namespace ActionMessage {
         setchatroomnameresponse?: SetChatRoomNameResponse.AsObject,
         quitchatroomrequest?: QuitChatRoomRequest.AsObject,
         quitchatroomresponse?: QuitChatRoomResponse.AsObject,
+        getchatroomannouncementrequest?: GetChatRoomAnnouncementRequest.AsObject,
+        getchatroomannouncementresponse?: GetChatRoomAnnouncementResponse.AsObject,
         addlabelrequest?: AddLabelRequest.AsObject,
         addlabelresponse?: AddLabelResponse.AsObject,
         removelabelrequest?: RemoveLabelRequest.AsObject,
@@ -1205,6 +1219,10 @@ export namespace ActionMessage {
     QUITCHATROOMREQUEST = 518,
 
     QUITCHATROOMRESPONSE = 519,
+
+    GETCHATROOMANNOUNCEMENTREQUEST = 520,
+
+    GETCHATROOMANNOUNCEMENTRESPONSE = 521,
 
     ADDLABELREQUEST = 600,
 
@@ -3349,6 +3367,56 @@ export class GetChatRoomMemberResponse extends jspb.Message {
 export namespace GetChatRoomMemberResponse {
     export type AsObject = {
         contact?: Contact.AsObject,
+    }
+}
+
+export class GetChatRoomAnnouncementRequest extends jspb.Message { 
+    getRoomid(): string;
+    setRoomid(value: string): GetChatRoomAnnouncementRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetChatRoomAnnouncementRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetChatRoomAnnouncementRequest): GetChatRoomAnnouncementRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetChatRoomAnnouncementRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetChatRoomAnnouncementRequest;
+    static deserializeBinaryFromReader(message: GetChatRoomAnnouncementRequest, reader: jspb.BinaryReader): GetChatRoomAnnouncementRequest;
+}
+
+export namespace GetChatRoomAnnouncementRequest {
+    export type AsObject = {
+        roomid: string,
+    }
+}
+
+export class GetChatRoomAnnouncementResponse extends jspb.Message { 
+    getAnnouncement(): string;
+    setAnnouncement(value: string): GetChatRoomAnnouncementResponse;
+
+    getAnnouncementeditor(): string;
+    setAnnouncementeditor(value: string): GetChatRoomAnnouncementResponse;
+
+    getAnnouncementpublishtime(): number;
+    setAnnouncementpublishtime(value: number): GetChatRoomAnnouncementResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetChatRoomAnnouncementResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetChatRoomAnnouncementResponse): GetChatRoomAnnouncementResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetChatRoomAnnouncementResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetChatRoomAnnouncementResponse;
+    static deserializeBinaryFromReader(message: GetChatRoomAnnouncementResponse, reader: jspb.BinaryReader): GetChatRoomAnnouncementResponse;
+}
+
+export namespace GetChatRoomAnnouncementResponse {
+    export type AsObject = {
+        announcement: string,
+        announcementeditor: string,
+        announcementpublishtime: number,
     }
 }
 
