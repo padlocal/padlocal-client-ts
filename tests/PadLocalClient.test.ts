@@ -10,7 +10,12 @@ test("login", async () => {
   expect(client.isOnline).toBeTruthy();
 
   client.shutdown();
-}, 600000);
+}, 6000000);
+
+test("logout", async () => {
+  const client = await prepareSignedOnClient();
+  await client.api.logout();
+});
 
 test(
   "receive push",

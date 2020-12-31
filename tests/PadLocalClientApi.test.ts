@@ -58,7 +58,7 @@ describe("message", () => {
       const response: SendTextMessageResponse = await client.api.sendTextMessage(
         genIdempotentId(),
         toChatRoom,
-        `text message: ${new Date().toString()}`,
+        `@xxx text message: ${new Date().toString()}`,
         atUserList.slice(0, 1)
       );
       console.log(`send text message to ${toChatRoom}, return message: ${response.toObject()}`);
