@@ -55,11 +55,12 @@ export class PadLocalClient extends EventEmitter {
           }`
         );
 
-        if (syncEvent.getContactList().length > 0) {
-          this.emit("contact", syncEvent.getContactList());
-        }
         if (syncEvent.getMessageList().length > 0) {
           this.emit("message", syncEvent.getMessageList());
+        }
+
+        if (syncEvent.getContactList().length > 0) {
+          this.emit("contact", syncEvent.getContactList());
         }
       } catch (e) {
         logError(`error while syncing onpush: ${e.stack}`);
