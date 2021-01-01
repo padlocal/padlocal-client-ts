@@ -122,7 +122,7 @@ describe("message", () => {
       expect(response.getMsgid()).toBeTruthy();
       expect(response.getMessagerevokeinfo()).toBeTruthy();
       expect(response.getMessagerevokeinfo()!.getClientmsgid()).toBeTruthy();
-    });
+    }, 60000);
 
     test("send link msg", async () => {
       const msgId = await client.api.sendMessageLink(

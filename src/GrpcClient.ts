@@ -15,6 +15,7 @@ import { VERSION } from "./version";
 
 export class GrpcClient {
   static readonly DEFAULT_REQUEST_TIMEOUT = 60 * 1000;
+  static readonly MAX_REQ_RES_SIZE = 20 * 1024 * 1024;
   readonly stub: IPadLocalClient;
 
   private readonly _callCredentials: CallCredentials;
@@ -32,6 +33,8 @@ export class GrpcClient {
       "grpc.ssl_target_name_override": "client.pad-local.com",
       "grpc.default_compression_algorithm": 2,
       "grpc.default_compression_level": 2,
+      "grpc.max_send_message_length": GrpcClient.MAX_REQ_RES_SIZE,
+      "grpc.max_receive_message_length": GrpcClient.MAX_REQ_RES_SIZE,
     });
 
     this._callCredentials = credentials.createFromMetadataGenerator((params, callback) => {
