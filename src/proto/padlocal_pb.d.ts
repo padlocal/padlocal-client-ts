@@ -2834,6 +2834,9 @@ export class GetContactRequest extends jspb.Message {
     getUsername(): string;
     setUsername(value: string): GetContactRequest;
 
+    getTicket(): string;
+    setTicket(value: string): GetContactRequest;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetContactRequest.AsObject;
@@ -2848,6 +2851,7 @@ export class GetContactRequest extends jspb.Message {
 export namespace GetContactRequest {
     export type AsObject = {
         username: string,
+        ticket: string,
     }
 }
 

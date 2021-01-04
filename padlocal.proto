@@ -492,6 +492,7 @@ message DeleteContactResponse {
 
 message GetContactRequest {
   string userName = 1;
+  string ticket = 2;
 }
 
 message GetContactResponse {

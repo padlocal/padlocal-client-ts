@@ -447,10 +447,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     await this.client.request(new pb.DeleteContactRequest().setUsername(userName));
   }
 
-  async getContact(userName: string): Promise<pb.Contact> {
+  async getContact(userName: string, ticket?: string): Promise<pb.Contact> {
     checkRequiredField(userName, "userName");
 
-    const response: pb.GetContactResponse = await this.client.request(new pb.GetContactRequest().setUsername(userName));
+    const request = new pb.GetContactRequest().setUsername(userName);
+    if (ticket) {
+      request.setTicket(ticket);
+    }
+
+    const response: pb.GetContactResponse = await this.client.request(request);
     return response.getContact()!;
   }
 

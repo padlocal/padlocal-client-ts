@@ -21075,7 +21075,8 @@ proto.padlocal.GetContactRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.padlocal.GetContactRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    username: jspb.Message.getFieldWithDefault(msg, 1, "")
+    username: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    ticket: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -21116,6 +21117,10 @@ proto.padlocal.GetContactRequest.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setUsername(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTicket(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -21152,6 +21157,13 @@ proto.padlocal.GetContactRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
+  f = message.getTicket();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -21170,6 +21182,24 @@ proto.padlocal.GetContactRequest.prototype.getUsername = function() {
  */
 proto.padlocal.GetContactRequest.prototype.setUsername = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string ticket = 2;
+ * @return {string}
+ */
+proto.padlocal.GetContactRequest.prototype.getTicket = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.GetContactRequest} returns this
+ */
+proto.padlocal.GetContactRequest.prototype.setTicket = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
