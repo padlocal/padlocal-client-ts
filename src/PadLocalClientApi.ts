@@ -420,11 +420,16 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     await grpcClient.request(new pb.SyncContactRequest());
   }
 
-  async acceptUser(stranger: string, ticket: string): Promise<void> {
-    checkRequiredField(stranger, "stranger");
+  async acceptUser(userName: string, ticket: string, stranger?: string): Promise<void> {
+    checkRequiredField(userName, "userName");
     checkRequiredField(ticket, "ticket");
 
-    await this.client.request(new pb.AcceptUserRequest().setStranger(stranger).setTicket(ticket));
+    const request = new pb.AcceptUserRequest().setUsername(userName).setTicket(ticket);
+    if (stranger) {
+      request.setStranger(stranger);
+    }
+
+    await this.client.request(request);
   }
 
   async addContact(stranger: string, ticket: string, scene: pb.AddContactScene, hello: string): Promise<void> {

@@ -20233,7 +20233,8 @@ proto.padlocal.AcceptUserRequest.prototype.toObject = function(opt_includeInstan
 proto.padlocal.AcceptUserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     stranger: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    ticket: jspb.Message.getFieldWithDefault(msg, 2, "")
+    ticket: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    username: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -20278,6 +20279,10 @@ proto.padlocal.AcceptUserRequest.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setTicket(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUsername(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -20321,6 +20326,13 @@ proto.padlocal.AcceptUserRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
+  f = message.getUsername();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -20357,6 +20369,24 @@ proto.padlocal.AcceptUserRequest.prototype.getTicket = function() {
  */
 proto.padlocal.AcceptUserRequest.prototype.setTicket = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string userName = 3;
+ * @return {string}
+ */
+proto.padlocal.AcceptUserRequest.prototype.getUsername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.AcceptUserRequest} returns this
+ */
+proto.padlocal.AcceptUserRequest.prototype.setUsername = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

@@ -457,6 +457,7 @@ message SendAppMessageResponse {
 message AcceptUserRequest {
   string stranger = 1;
   string ticket = 2;
+  string userName = 3;
 }
 
 message AcceptUserResponse {
