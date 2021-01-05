@@ -42095,7 +42095,8 @@ proto.padlocal.SendEmojiMessageResponse.prototype.hasMessagerevokeinfo = functio
  * @enum {number}
  */
 proto.padlocal.LoginPolicy = {
-  DEFAULT: 0
+  DEFAULT: 0,
+  SKIP_ONE_CLICK: 1
 };
 
 /**

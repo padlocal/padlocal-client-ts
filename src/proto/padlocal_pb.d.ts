@@ -6079,6 +6079,7 @@ export namespace SendEmojiMessageResponse {
 
 export enum LoginPolicy {
     DEFAULT = 0,
+    SKIP_ONE_CLICK = 1,
 }
 
 export enum LoginStatus {

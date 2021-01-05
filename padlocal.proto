@@ -278,6 +278,7 @@ message WeChatStreamResponseReply {
 
 enum LoginPolicy {
   DEFAULT = 0;
+  SKIP_ONE_CLICK = 1;
 }
 
 message LoginRequest {
