@@ -4,6 +4,8 @@ import { FileUnpacker } from "./FileUnpacker";
 import { SocketClient } from "../link/SocketClient";
 import { log } from "brolog";
 
+const LOGPRE = "[FileUtils]";
+
 async function _sendFileRequest(fileRequest: FileRequest, traceId: string): Promise<FileUnpacker> {
   const host = fileRequest.getHost()!;
 
@@ -11,10 +13,12 @@ async function _sendFileRequest(fileRequest: FileRequest, traceId: string): Prom
 
   const startDate = new Date();
   log.verbose(
+    LOGPRE,
     `[tid:${traceId}] send file request, host:\"${fileRequest
       .getHost()!
       .getHost()}:${fileRequest.getHost()!.getPort()}\" payload: ${bytesToHexString(
-      fromBytes(fileRequest.getPayload())
+      fromBytes(fileRequest.getPayload()),
+      1024
     )}`
   );
 
@@ -33,6 +37,7 @@ async function _sendFileRequest(fileRequest: FileRequest, traceId: string): Prom
   const responseEndDate = new Date();
 
   log.verbose(
+    LOGPRE,
     `[tid:${traceId}] [${
       responseEndDate.getTime() - startDate.getTime()
     }ms] received file response: ${fileUnpacker.toString()}`
@@ -50,7 +55,10 @@ export async function requestFileAndUnpack(fileRequest: FileRequest, traceId: st
 
   const endDate = new Date();
 
-  log.verbose(`[tid:${traceId}] decrypt out data len: ${ret.length}[${endDate.getTime() - startDate.getTime()}ms]`);
+  log.verbose(
+    LOGPRE,
+    `[tid:${traceId}] decrypt out data len: ${ret.length}[${endDate.getTime() - startDate.getTime()}ms]`
+  );
 
   return ret;
 }

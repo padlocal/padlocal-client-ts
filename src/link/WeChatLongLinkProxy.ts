@@ -136,7 +136,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
       this._streamCallback = streamCallback;
     }
 
-    this.logDebug(`socket send:${bytesToHexString(data)}`);
+    this.logDebug(`socket send:${bytesToHexString(data, 1024)}`);
     this._socket!.write(data);
   }
 
@@ -168,7 +168,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
     const buffer: Bytes = Buffer.from(packResponse.getPayload());
 
     return new Promise(async (resolve, reject) => {
-      this.logDebug(`socket send:${bytesToHexString(buffer)}`);
+      this.logDebug(`socket send:${bytesToHexString(buffer, 1024)}`);
 
       this._socket!.write(buffer, (error) => {
         if (!error) {
@@ -400,7 +400,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
         );
 
         socket.on("data", (data) => {
-          this.logDebug(`socket recv:${bytesToHexString(data)}`);
+          this.logDebug(`socket recv:${bytesToHexString(data, 1024)}`);
 
           // stream mode
           if (this._streamCallback) {
@@ -478,7 +478,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
   }
 
   private logDebug(...args: any[]): void {
-    log.verbose(`[LONGLINK][${this._id}]`, ...args);
+    log.verbose(`[LongLink] [${this._id}]`, ...args);
   }
 }
 

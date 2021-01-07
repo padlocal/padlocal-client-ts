@@ -4,6 +4,8 @@ import http from "http";
 import VError from "verror";
 import { log } from "brolog";
 
+const LOGPRE = "[ShortLink]";
+
 export class WeChatShortLinkProxy {
   private static readonly REQ_TIMEOUT = 10 * 1000;
 
@@ -31,7 +33,8 @@ export class WeChatShortLinkProxy {
 
       if (!this.retryStrategy.canRetry()) {
         const message = `[tid:${this.traceId}] Fail to request short link for path:${path}, data: ${bytesToHexString(
-          data
+          data,
+          1024
         )}, after max retry:${this.retryStrategy.retryCount}`;
         throw new IOError(e, message);
       }
@@ -39,9 +42,10 @@ export class WeChatShortLinkProxy {
       const delay = this.retryStrategy.nextRetryDelay();
 
       log.verbose(
+        LOGPRE,
         `[tid:${this.traceId}] short link #${
           this.retryStrategy.retryCount
-        } retry request, after delay: ${delay}ms, path: ${path} data: ${bytesToHexString(data)}`
+        } retry request, after delay: ${delay}ms, path: ${path} data: ${bytesToHexString(data, 1024)}`
       );
 
       return new Promise((resolve, reject) => {
@@ -59,7 +63,11 @@ export class WeChatShortLinkProxy {
 
   private async _sendImpl(path: string, data: Bytes): Promise<Bytes> {
     log.verbose(
-      `[tid:${this.traceId}] short link send, ${this.host}:${this.port}${path}, request: ${bytesToHexString(data)}`
+      LOGPRE,
+      `[tid:${this.traceId}] short link send, ${this.host}:${this.port}${path}, request: ${bytesToHexString(
+        data,
+        1024
+      )}`
     );
 
     return new Promise((resolve, reject) => {
@@ -90,7 +98,10 @@ export class WeChatShortLinkProxy {
           });
 
           res.on("end", () => {
-            log.verbose(`[tid:${this.traceId}] short link receive, response: ${bytesToHexString(responseBuffer)}`);
+            log.verbose(
+              LOGPRE,
+              `[tid:${this.traceId}] short link receive, response: ${bytesToHexString(responseBuffer, 1024)}`
+            );
 
             resolve(responseBuffer);
           });

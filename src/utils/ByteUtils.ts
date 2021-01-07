@@ -1,7 +1,18 @@
 export type Bytes = Buffer;
 
-export function bytesToHexString(bytes: Bytes): string {
-  return Buffer.from(bytes).toString("hex");
+export function bytesToHexString(bytes: Bytes, maxLen?: number): string {
+  let truncatedLen = 0;
+  if (maxLen !== undefined && bytes.length > maxLen) {
+    truncatedLen = bytes.length - maxLen;
+    bytes = subBytes(bytes, 0, maxLen);
+  }
+
+  let ret = Buffer.from(bytes).toString("hex");
+  if (truncatedLen) {
+    ret += `[TRUNCATED:${truncatedLen}]`;
+  }
+
+  return ret;
 }
 
 export function hexStringToBytes(hexString: string): Bytes {

@@ -11,6 +11,8 @@ import { log } from "brolog";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
+const LOGPRE = "[PadLocalClient]";
+
 export class PadLocalClient extends EventEmitter {
   readonly grpcClient: GrpcClient;
   readonly token: string;
@@ -50,6 +52,7 @@ export class PadLocalClient extends EventEmitter {
         const syncEvent = await this.api.sync();
 
         log.verbose(
+          LOGPRE,
           `on push notification, contact count:${syncEvent.getContactList().length}, message count:${
             syncEvent.getMessageList().length
           }`
@@ -63,17 +66,19 @@ export class PadLocalClient extends EventEmitter {
           this.emit("contact", syncEvent.getContactList());
         }
       } catch (e) {
-        log.error(`error while syncing onpush: ${e.stack}`);
+        log.error(LOGPRE, `error while syncing onpush: ${e.stack}`);
       }
     });
 
     if (!skipPrintVersion) {
-      log.info(`
+      log.info(
+        `
       ============================================================
                     Welcome to padlocal-client-ts !
                            version: ${this.version}
       ============================================================
-     `);
+     `
+      );
     }
   }
 
@@ -111,12 +116,12 @@ export class PadLocalClient extends EventEmitter {
 
         // reconnect only while longlink is not idle or ordered by server
         if (!this._longLinkProxy.isIdle() || longLinkUpdateEvent.getReconnectimmediately()) {
-          log.verbose("reset long link");
+          log.verbose(LOGPRE, "reset long link");
           this.getLongLinkProxy(true).then();
         }
       } else if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.NOTICEEVENT) {
         const noticeEvent = systemEventRequest.getNoticeevent()!;
-        log.warn(noticeEvent.getNotice());
+        log.warn(LOGPRE, noticeEvent.getNotice());
       }
     };
 

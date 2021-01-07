@@ -28,6 +28,8 @@ import { log } from "brolog";
 export type OnMessageCallback = (actionMessage: ActionMessage) => void;
 export type OnSystemEventCallback = (systemEventRequest: SystemEventRequest) => void;
 
+const LOGPRE = "[Request]";
+
 export class Request extends PadLocalClientPlugin {
   private _status: Status;
   private _seqId: number = 0;
@@ -171,10 +173,12 @@ export class Request extends PadLocalClientPlugin {
     setPayload(actionMessage, payload);
 
     log.verbose(
-      `tid:[${
+      LOGPRE,
+      `[tid:${
         this.traceId
       }] send event to server, seq:${seq}, ack:${ack}, type: ${actionMessage.getPayloadCase()}, payload: ${stringifyPB(
-        payload
+        payload,
+        1024
       )}`
     );
 
@@ -188,10 +192,12 @@ export class Request extends PadLocalClientPlugin {
     const payload = getPayload(serverMessage);
 
     log.verbose(
+      LOGPRE,
       `[tid:${
         this.traceId
       }] receive event from server, seq:${seq} ack:${ack}, type:${serverMessage.getPayloadCase()}, payload:${stringifyPB(
-        payload
+        payload,
+        1024
       )}`
     );
 
