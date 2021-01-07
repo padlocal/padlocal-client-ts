@@ -67,8 +67,9 @@ console.log("login done");
 你也可以查阅本项目的测试用例，里面有大量的详细使用示例：https://github.com/padlocal/padlocal-client-ts/tree/master/tests 。
 可以特别关注如下文件：
 * Common.ts
-* PadLocalClient.test.ts
-* PadLocalClientApi.test.ts
+* PadLocalClient-login.test.ts
+* PadLocalClient-push.test.ts
+* PadLocalClient-api.test.ts
 
 ## API
 所有支持的 API 请参见:
