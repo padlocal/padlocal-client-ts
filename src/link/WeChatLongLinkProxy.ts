@@ -1,7 +1,6 @@
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
 import { PromiseCallback } from "../utils/PromiseUtils";
 import { PadLocalClient } from "../PadLocalClient";
-import { logDebug } from "../utils/log";
 import { EventEmitter } from "events";
 import { Socket } from "net";
 import { Bytes, bytesToHexString } from "../utils/ByteUtils";
@@ -20,6 +19,7 @@ import {
 import VError from "verror";
 import { SerialExecutor } from "../utils/SerialExecutor";
 import { genUUID } from "../utils/Utils";
+import { log } from "brolog";
 
 export type WeChatLongLinkProxyEvent = "heartbeat" | "message-push" | "push" | "status";
 
@@ -418,13 +418,13 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
         socket.on("close", () => {
           this._serialExecutor.execute(async () => {
-            await this._onSocketError(new IOError("socket is closed"));
+            await this._onSocketError(new IOError("longlink socket is closed"));
           });
         });
 
         socket.on("timeout", () => {
           this._serialExecutor.execute(async () => {
-            await this._onSocketError(new IOError("socket is read-write timeout"));
+            await this._onSocketError(new IOError("longlink socket is read-write timeout"));
           });
         });
 
@@ -478,7 +478,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
   }
 
   private logDebug(...args: any[]): void {
-    logDebug(`[LONGLINK][${this._id}]`, ...args);
+    log.verbose(`[LONGLINK][${this._id}]`, ...args);
   }
 }
 

@@ -13,7 +13,6 @@ import {
 } from "./proto/padlocal_pb";
 import { Message } from "google-protobuf";
 import { getPayload, setPayload } from "./utils/ActionMessageUtils";
-import { logDebug } from "./utils/log";
 import { PromiseCallback } from "./utils/PromiseUtils";
 import { WeChatShortLinkProxy } from "./link/WeChatShortLinkProxy";
 import VError from "verror";
@@ -24,6 +23,7 @@ import { PushStreamHandler } from "./link/PushStreamHandler";
 import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { GrpcClient, GrpcOptions, IOError } from "./GrpcClient";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
+import { log } from "brolog";
 
 export type OnMessageCallback = (actionMessage: ActionMessage) => void;
 export type OnSystemEventCallback = (systemEventRequest: SystemEventRequest) => void;
@@ -170,7 +170,7 @@ export class Request extends PadLocalClientPlugin {
     actionMessage.setHeader(actionMessageHeader);
     setPayload(actionMessage, payload);
 
-    logDebug(
+    log.verbose(
       `tid:[${
         this.traceId
       }] send event to server, seq:${seq}, ack:${ack}, type: ${actionMessage.getPayloadCase()}, payload: ${stringifyPB(
@@ -187,7 +187,7 @@ export class Request extends PadLocalClientPlugin {
 
     const payload = getPayload(serverMessage);
 
-    logDebug(
+    log.verbose(
       `[tid:${
         this.traceId
       }] receive event from server, seq:${seq} ack:${ack}, type:${serverMessage.getPayloadCase()}, payload:${stringifyPB(

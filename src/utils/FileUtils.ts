@@ -1,8 +1,8 @@
 import { Bytes, bytesToHexString, fromBytes } from "./ByteUtils";
 import { FileRequest } from "../proto/padlocal_pb";
 import { FileUnpacker } from "./FileUnpacker";
-import { logDebug } from "./log";
 import { SocketClient } from "../link/SocketClient";
+import { log } from "brolog";
 
 async function _sendFileRequest(fileRequest: FileRequest, traceId: string): Promise<FileUnpacker> {
   const host = fileRequest.getHost()!;
@@ -10,7 +10,7 @@ async function _sendFileRequest(fileRequest: FileRequest, traceId: string): Prom
   const fileUnpacker = new FileUnpacker(fromBytes(fileRequest.getUnpackaeskey()));
 
   const startDate = new Date();
-  logDebug(
+  log.verbose(
     `[tid:${traceId}] send file request, host:\"${fileRequest
       .getHost()!
       .getHost()}:${fileRequest.getHost()!.getPort()}\" payload: ${bytesToHexString(
@@ -32,7 +32,7 @@ async function _sendFileRequest(fileRequest: FileRequest, traceId: string): Prom
 
   const responseEndDate = new Date();
 
-  logDebug(
+  log.verbose(
     `[tid:${traceId}] [${
       responseEndDate.getTime() - startDate.getTime()
     }ms] received file response: ${fileUnpacker.toString()}`
@@ -50,7 +50,7 @@ export async function requestFileAndUnpack(fileRequest: FileRequest, traceId: st
 
   const endDate = new Date();
 
-  logDebug(`[tid:${traceId}] decrypt out data len: ${ret.length}[${endDate.getTime() - startDate.getTime()}ms]`);
+  log.verbose(`[tid:${traceId}] decrypt out data len: ${ret.length}[${endDate.getTime() - startDate.getTime()}ms]`);
 
   return ret;
 }

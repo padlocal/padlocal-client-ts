@@ -1,8 +1,8 @@
-import { logDebug, logWarn } from "../utils/log";
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
 import { Bytes, bytesToHexString, joinBytes, newBytes } from "../utils/ByteUtils";
 import http from "http";
 import VError from "verror";
+import { log } from "brolog";
 
 export class WeChatShortLinkProxy {
   private static readonly REQ_TIMEOUT = 10 * 1000;
@@ -38,7 +38,7 @@ export class WeChatShortLinkProxy {
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      logDebug(
+      log.verbose(
         `[tid:${this.traceId}] short link #${
           this.retryStrategy.retryCount
         } retry request, after delay: ${delay}ms, path: ${path} data: ${bytesToHexString(data)}`
@@ -58,7 +58,7 @@ export class WeChatShortLinkProxy {
   }
 
   private async _sendImpl(path: string, data: Bytes): Promise<Bytes> {
-    logDebug(
+    log.verbose(
       `[tid:${this.traceId}] short link send, ${this.host}:${this.port}${path}, request: ${bytesToHexString(data)}`
     );
 
@@ -90,7 +90,7 @@ export class WeChatShortLinkProxy {
           });
 
           res.on("end", () => {
-            logDebug(`[tid:${this.traceId}] short link receive, response: ${bytesToHexString(responseBuffer)}`);
+            log.verbose(`[tid:${this.traceId}] short link receive, response: ${bytesToHexString(responseBuffer)}`);
 
             resolve(responseBuffer);
           });

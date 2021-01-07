@@ -2,12 +2,12 @@ import { Request } from "./Request";
 import { Contact, SystemEventRequest, Message } from "./proto/padlocal_pb";
 import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
-import { logDebug, logError, logInfo, logWarn } from "./utils/log";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
 import { VERSION } from "./version";
 import { GrpcClient, GrpcOptions } from "./GrpcClient";
 import { getServerInfo } from "./utils/ServerInfo";
+import { log } from "brolog";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
@@ -49,7 +49,7 @@ export class PadLocalClient extends EventEmitter {
       try {
         const syncEvent = await this.api.sync();
 
-        logDebug(
+        log.verbose(
           `on push notification, contact count:${syncEvent.getContactList().length}, message count:${
             syncEvent.getMessageList().length
           }`
@@ -63,12 +63,12 @@ export class PadLocalClient extends EventEmitter {
           this.emit("contact", syncEvent.getContactList());
         }
       } catch (e) {
-        logError(`error while syncing onpush: ${e.stack}`);
+        log.error(`error while syncing onpush: ${e.stack}`);
       }
     });
 
     if (!skipPrintVersion) {
-      logInfo(`
+      log.info(`
       ============================================================
                     Welcome to padlocal-client-ts !
                            version: ${this.version}
@@ -111,12 +111,12 @@ export class PadLocalClient extends EventEmitter {
 
         // reconnect only while longlink is not idle or ordered by server
         if (!this._longLinkProxy.isIdle() || longLinkUpdateEvent.getReconnectimmediately()) {
-          logDebug("reset long link");
+          log.verbose("reset long link");
           this.getLongLinkProxy(true).then();
         }
       } else if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.NOTICEEVENT) {
         const noticeEvent = systemEventRequest.getNoticeevent()!;
-        logWarn(noticeEvent.getNotice());
+        log.warn(noticeEvent.getNotice());
       }
     };
 

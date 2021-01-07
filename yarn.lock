@@ -1278,6 +1278,11 @@ braces@^3.0.1:
   dependencies:
     fill-range "^7.0.1"
 
+brolog@^1.12.4:
+  version "1.12.4"
+  resolved "https://registry.npm.taobao.org/brolog/download/brolog-1.12.4.tgz#db6a71a4bcc760cbe1e28be95cc0a1a785d7b8ce"
+  integrity sha1-22pxpLzHYMvh4ovpXMChp4XXuM4=
+
 browser-process-hrtime@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/browser-process-hrtime/download/browser-process-hrtime-1.0.0.tgz#3c9b4b7d782c8121e56f10106d84c0d0ffc94626"

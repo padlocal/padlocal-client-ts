@@ -2,6 +2,7 @@ import { prepareSignedOnClient } from "./Common";
 import { stringifyPB } from "../src/utils/Utils";
 import { bytesToHexString, fromBytes } from "../src/utils/ByteUtils";
 import { Contact, Message } from "../src/proto/padlocal_pb";
+import { log } from "brolog";
 
 test("login", async () => {
   const client = await prepareSignedOnClient();
@@ -22,19 +23,19 @@ test(
   async () => {
     const client = await prepareSignedOnClient();
     client.on("message", (messageList: Message[]) => {
-      console.log("on message:");
+      log.info("on message:");
       for (const message of messageList) {
-        console.log(stringifyPB(message));
-        console.log(bytesToHexString(fromBytes(message.serializeBinary())));
+        log.info(stringifyPB(message));
+        log.info(bytesToHexString(fromBytes(message.serializeBinary())));
       }
     });
 
     client.on("contact", (contactList: Contact[]) => {
-      console.log("on contact");
+      log.info("on contact");
 
       for (const contact of contactList) {
-        console.log(stringifyPB(contact));
-        console.log(bytesToHexString(fromBytes(contact.serializeBinary())));
+        log.info(stringifyPB(contact));
+        log.info(bytesToHexString(fromBytes(contact.serializeBinary())));
       }
     });
 

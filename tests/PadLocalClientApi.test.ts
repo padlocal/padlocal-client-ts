@@ -6,6 +6,7 @@ import * as fs from "fs";
 import * as pb from "../src/proto/padlocal_pb";
 import { EncryptedFileType, MessageRevokeInfo, SendTextMessageResponse, ZombieStatue } from "../src/proto/padlocal_pb";
 import { Bytes, hexStringToBytes } from "../src/utils/ByteUtils";
+import { log } from "brolog";
 
 let client: PadLocalClient;
 
@@ -19,7 +20,7 @@ afterAll(() => {
 
 test("sync", async () => {
   const syncEvent = await client.api.sync();
-  console.log(`sync result: ${stringifyPB(syncEvent)}`);
+  log.info(`sync result: ${stringifyPB(syncEvent)}`);
 
   expect(syncEvent).not.toBeNull();
 });
@@ -38,7 +39,7 @@ describe("message", () => {
         toUserName,
         `text message: ${new Date().toString()}`
       );
-      console.log(`send text message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
+      log.info(`send text message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
 
       expect(response.getMsgid()).toBeTruthy();
     });
@@ -49,7 +50,7 @@ describe("message", () => {
         toChatRoom,
         `text message: ${new Date().toString()}`
       );
-      console.log(`send text message to ${toChatRoom}, return message: ${JSON.stringify(response.toObject())}`);
+      log.info(`send text message to ${toChatRoom}, return message: ${JSON.stringify(response.toObject())}`);
 
       expect(response.getMsgid()).toBeTruthy();
     });
@@ -61,7 +62,7 @@ describe("message", () => {
         `@xxx text message: ${new Date().toString()}`,
         atUserList.slice(0, 1)
       );
-      console.log(`send text message to ${toChatRoom}, return message: ${response.toObject()}`);
+      log.info(`send text message to ${toChatRoom}, return message: ${response.toObject()}`);
 
       expect(response.getMsgid()).toBeTruthy();
     });
@@ -73,7 +74,7 @@ describe("message", () => {
         `text message: ${new Date().toString()}`,
         atUserList
       );
-      console.log(`send text message to ${toChatRoom}, return msgId: ${response.toObject()}`);
+      log.info(`send text message to ${toChatRoom}, return msgId: ${response.toObject()}`);
 
       expect(response.getMsgid()).toBeTruthy();
     });
@@ -83,7 +84,7 @@ describe("message", () => {
 
       const response = await client.api.sendImageMessage(genIdempotentId(), toUserName, imageData);
 
-      console.log(`send image message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
+      log.info(`send image message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
 
       expect(response.getMsgid()).toBeTruthy();
     });
@@ -96,7 +97,7 @@ describe("message", () => {
 
       const response = await client.api.sendVoiceMessage(genIdempotentId(), toUserName, voiceData, voiceLength);
 
-      console.log(`send voice message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
+      log.info(`send voice message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
 
       expect(response.getMsgid()).toBeTruthy();
     });
@@ -106,7 +107,7 @@ describe("message", () => {
       const videoData: Buffer = fs.readFileSync(sendVideoFilePath);
       const response = await client.api.sendVideoMessage(genIdempotentId(), toUserName, videoData);
 
-      console.log(`send video message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
+      log.info(`send video message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
 
       expect(response.getMsgid()).toBeTruthy();
     });
@@ -117,7 +118,7 @@ describe("message", () => {
       const fileName: string = sendFileFilePath.replace(/^.*[\\\/]/, "");
       const response = await client.api.sendFileMessage(genIdempotentId(), toUserName, fileData, fileName);
 
-      console.log(`send file message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
+      log.info(`send file message to ${toUserName}, return message: ${JSON.stringify(response.toObject())}`);
 
       expect(response.getMsgid()).toBeTruthy();
       expect(response.getMessagerevokeinfo()).toBeTruthy();
@@ -137,7 +138,7 @@ describe("message", () => {
           )
       );
 
-      console.log(`send link message to ${toUserName}, return msgId: ${msgId}`);
+      log.info(`send link message to ${toUserName}, return msgId: ${msgId}`);
 
       expect(msgId).toBeTruthy();
     });
@@ -164,7 +165,7 @@ describe("message", () => {
           .setThumbimage(thumbImageData)
       );
 
-      console.log(`send miniprogram message to ${toUserName}, return msg id: ${msgId}`);
+      log.info(`send miniprogram message to ${toUserName}, return msg id: ${msgId}`);
 
       expect(msgId).toBeTruthy();
     });
@@ -181,7 +182,7 @@ describe("message", () => {
         originalMessage.getTousername()
       );
 
-      console.log(`forward miniprogram message to ${toChatRoom}, return msg id: ${msgId}`);
+      log.info(`forward miniprogram message to ${toChatRoom}, return msg id: ${msgId}`);
 
       expect(msgId).toBeTruthy();
     });
@@ -259,7 +260,7 @@ describe("message", () => {
 
       const normalFilePath = `${payloadDir}/${message.getId()}-${imageResult.imageType}.jpg`;
       fs.writeFileSync(normalFilePath, imageResult.imageData);
-      console.log(`write image to ${normalFilePath}`);
+      log.info(`write image to ${normalFilePath}`);
 
       const hdImageResult = await client.api.getMessageImage(
         message.getContent(),
@@ -283,7 +284,7 @@ describe("message", () => {
 
       const normalFilePath = `${payloadDir}/${message.getId()}-${imageResult.imageType}.jpg`;
       fs.writeFileSync(normalFilePath, imageResult.imageData);
-      console.log(`write image to ${normalFilePath}`);
+      log.info(`write image to ${normalFilePath}`);
 
       const hdImageResult = await client.api.getMessageImage(
         message.getContent(),
@@ -295,7 +296,7 @@ describe("message", () => {
 
       const hdFilePath = `${payloadDir}/${message.getId()}-${hdImageResult.imageType}.jpg`;
       fs.writeFileSync(hdFilePath, hdImageResult.imageData);
-      console.log(`write image to ${hdFilePath}`);
+      log.info(`write image to ${hdFilePath}`);
     });
 
     test("get message voice", async () => {
@@ -310,7 +311,7 @@ describe("message", () => {
 
       const filePath = `${payloadDir}/${message.getId()}-voice.slk`;
       fs.writeFileSync(filePath, voiceData);
-      console.log(`write voice to ${filePath}`);
+      log.info(`write voice to ${filePath}`);
     });
 
     test("get message videoThumb", async () => {
@@ -321,7 +322,7 @@ describe("message", () => {
 
       const filePath = `${payloadDir}/${message.getId()}-video-thumb.jpg`;
       fs.writeFileSync(filePath, videoThumbData);
-      console.log(`write video thumb to ${filePath}`);
+      log.info(`write video thumb to ${filePath}`);
     });
 
     test("get message video", async () => {
@@ -332,7 +333,7 @@ describe("message", () => {
 
       const filePath = `${payloadDir}/${message.getId()}-video.mp4`;
       fs.writeFileSync(filePath, videoData);
-      console.log(`write video to ${filePath}`);
+      log.info(`write video to ${filePath}`);
     });
 
     test("get message attach", async () => {
@@ -343,7 +344,7 @@ describe("message", () => {
 
       const filePath = `${payloadDir}/${message.getId()}-file`;
       fs.writeFileSync(filePath, fileData);
-      console.log(`write file to ${filePath}`);
+      log.info(`write file to ${filePath}`);
     });
 
     test("get message attach thumb", async () => {
@@ -353,7 +354,7 @@ describe("message", () => {
 
       const filePath = `${payloadDir}/${message.getId()}-thumb`;
       fs.writeFileSync(filePath, thumbData);
-      console.log(`write file to ${filePath}`);
+      log.info(`write file to ${filePath}`);
     });
 
     test("get miniprogram message thumb", async () => {
@@ -365,7 +366,7 @@ describe("message", () => {
 
       const filePath = `${payloadDir}/${message.getId()}-thumb`;
       fs.writeFileSync(filePath, thumbData);
-      console.log(`write file to ${filePath}`);
+      log.info(`write file to ${filePath}`);
     });
 
     test("get encrypted file", async () => {
@@ -380,7 +381,7 @@ describe("message", () => {
 
       const filePath = `${payloadDir}/encrypted-file-${fileId}`;
       fs.writeFileSync(filePath, fileBinary);
-      console.log(`write file to ${filePath}`);
+      log.info(`write file to ${filePath}`);
     });
   });
 });
@@ -391,21 +392,21 @@ describe("contact", () => {
     const ticket: string = config.get("test.contact.accept.ticket");
     await client.api.acceptUser(stranger, ticket);
 
-    console.log("accept success");
+    log.info("accept success");
   });
 
   test("delete contact", async () => {
     const userName: string = config.get("test.contact.userName");
     await client.api.deleteContact(userName);
 
-    console.log("delete contact success");
+    log.info("delete contact success");
   });
 
   test("add contact", async () => {
     const userName: string = config.get("test.contact.search");
     const searchRes = await client.api.searchContact(userName);
 
-    console.log(`search contact: ${stringifyPB(searchRes)}`);
+    log.info(`search contact: ${stringifyPB(searchRes)}`);
 
     expect(searchRes.getContact()).toBeTruthy();
     expect(searchRes.getAntispamticket()).toBeTruthy();
@@ -418,21 +419,21 @@ describe("contact", () => {
       "hello i'm padlocal"
     );
 
-    console.log("add contact success");
+    log.info("add contact success");
   });
 
   test("search contact", async () => {
     const userName: string = config.get("test.contact.search");
     const searchRes = await client.api.searchContact(userName);
 
-    console.log(`search contact: ${stringifyPB(searchRes)}`);
+    log.info(`search contact: ${stringifyPB(searchRes)}`);
   });
 
   test("get contact", async () => {
     const userName: string = config.get("test.contact.userName");
     const contact = await client.api.getContact(userName);
 
-    console.log(`get contact: ${stringifyPB(contact)}`);
+    log.info(`get contact: ${stringifyPB(contact)}`);
 
     expect(contact).not.toBeFalsy();
     expect(contact.getUsername()).not.toBeFalsy();
@@ -446,7 +447,7 @@ describe("contact", () => {
 
     const outFilePath: string = config.get("test.contact.qrImageOutFilePath");
     fs.writeFileSync(outFilePath, response.getQrcode_asU8());
-    console.log(`write qr image to: ${outFilePath}`);
+    log.info(`write qr image to: ${outFilePath}`);
   });
 
   test("update self nickname", async () => {
@@ -482,7 +483,7 @@ describe("chatroom", () => {
 
     const res = await client.api.createChatRoom(genIdempotentId(), memberUseNameList);
 
-    console.log(`create room success: ${stringifyPB(res)}`);
+    log.info(`create room success: ${stringifyPB(res)}`);
 
     expect(res).toBeTruthy();
     expect(res.getRoomid()).toBeTruthy();
@@ -491,7 +492,7 @@ describe("chatroom", () => {
   test("get room member list", async () => {
     const memberList = await client.api.getChatRoomMembers(roomId);
 
-    console.log(`get room: ${roomId}, memberList:${stringifyPB(memberList)}`);
+    log.info(`get room: ${roomId}, memberList:${stringifyPB(memberList)}`);
 
     expect(memberList.length).toBeGreaterThan(0);
   });
@@ -500,7 +501,7 @@ describe("chatroom", () => {
     const userName = client.selfContact!.getUsername();
     const member = await client.api.getChatRoomMember(roomId, userName);
 
-    console.log(`get room: ${roomId}, member:${userName} result: ${stringifyPB(member)}`);
+    log.info(`get room: ${roomId}, member:${userName} result: ${stringifyPB(member)}`);
 
     expect(member.getUsername()).toEqual(userName);
   });
@@ -512,7 +513,7 @@ describe("chatroom", () => {
     const outFilePath: string = config.get("test.room.qrImageOutFilePath");
     fs.writeFileSync(outFilePath, res.getQrcode_asU8());
 
-    console.log(`write chatroom qr to file: ${outFilePath}`);
+    log.info(`write chatroom qr to file: ${outFilePath}`);
   });
 
   test("set room name", async () => {
@@ -525,7 +526,7 @@ describe("chatroom", () => {
 
   test("get room announcement", async () => {
     const announcement = await client.api.getChatRoomAnnouncement(roomId);
-    console.log(`room announcement" ${announcement}`);
+    log.info(`room announcement" ${announcement}`);
   });
 
   test("set room announcement", async () => {
@@ -572,7 +573,7 @@ describe("chatroom", () => {
 describe("label", () => {
   test("get label list", async () => {
     const labelList = await client.api.getLabelList();
-    console.log(`get label list: ${stringifyPB(labelList)}`);
+    log.info(`get label list: ${stringifyPB(labelList)}`);
   });
 
   describe("add and remove label", () => {
@@ -648,7 +649,7 @@ describe("sns", () => {
   describe("sns get", () => {
     test("get timeline", async () => {
       const page0MomentList = await client.api.snsGetTimeline();
-      console.log(`get page 0 moments: ${stringifyPB(page0MomentList)}`);
+      log.info(`get page 0 moments: ${stringifyPB(page0MomentList)}`);
 
       if (page0MomentList.length === 0) {
         return;
@@ -657,14 +658,14 @@ describe("sns", () => {
       const page1MaxId = page0MomentList[page0MomentList.length - 1].getId();
       const page1MomentList = await client.api.snsGetTimeline(page1MaxId);
 
-      console.log(`get page 1 moments: ${stringifyPB(page1MomentList)}`);
+      log.info(`get page 1 moments: ${stringifyPB(page1MomentList)}`);
     });
 
     test("get user page", async () => {
       const userName: string = config.get("test.sns.userName");
 
       const page0MomentList = await client.api.snsGetUserPage(userName);
-      console.log(`get user page 0 moments: ${stringifyPB(page0MomentList)}`);
+      log.info(`get user page 0 moments: ${stringifyPB(page0MomentList)}`);
 
       if (page0MomentList.length === 0) {
         return;
@@ -672,13 +673,13 @@ describe("sns", () => {
 
       const page1MaxId = page0MomentList[page0MomentList.length - 1].getId();
       const page1MomentList = await client.api.snsGetUserPage(userName, page1MaxId);
-      console.log(`get user page 1 moments: ${stringifyPB(page1MomentList)}`);
+      log.info(`get user page 1 moments: ${stringifyPB(page1MomentList)}`);
     });
 
     test("get moment detail", async () => {
       const momentId: string = config.get("test.sns.momentId");
       const moment = await client.api.snsGetMoment(momentId);
-      console.log(`get moment detail: ${stringifyPB(moment)}`);
+      log.info(`get moment detail: ${stringifyPB(moment)}`);
     });
   });
 
@@ -693,7 +694,7 @@ describe("sns", () => {
 
         const des = i === 0 ? description : undefined;
         const imageUploadRes = await client.api.snsUploadImage(imageData, des);
-        console.log(`upload image response: ${stringifyPB(imageUploadRes)}`);
+        log.info(`upload image response: ${stringifyPB(imageUploadRes)}`);
 
         expect(imageUploadRes.getUrl()).toBeTruthy();
 
@@ -705,7 +706,7 @@ describe("sns", () => {
 
     test("send public text moment", async () => {
       const moment = await client.api.snsSendMoment(genIdempotentId(), new pb.SnsSendMomentText().setText("1"));
-      console.log(`send text moment: ${stringifyPB(moment)}`);
+      log.info(`send text moment: ${stringifyPB(moment)}`);
     });
 
     test("send private text moment", async () => {
@@ -714,7 +715,7 @@ describe("sns", () => {
         new pb.SnsSendMomentText().setText("2"),
         new pb.SnsSendMomentOptions().setIsprivate(true)
       );
-      console.log(`send text moment: ${stringifyPB(moment)}`);
+      log.info(`send text moment: ${stringifyPB(moment)}`);
     });
 
     test("send text with can see user", async () => {
@@ -724,7 +725,7 @@ describe("sns", () => {
         new pb.SnsSendMomentText().setText("can"),
         new pb.SnsSendMomentOptions().setCanseeusernameList(canSeeUserList)
       );
-      console.log(`send text moment: ${stringifyPB(moment)}`);
+      log.info(`send text moment: ${stringifyPB(moment)}`);
     });
 
     test("send text with can not see user", async () => {
@@ -734,7 +735,7 @@ describe("sns", () => {
         new pb.SnsSendMomentText().setText("can not"),
         new pb.SnsSendMomentOptions().setCannotseeusernameList(canNotSeeUserList)
       );
-      console.log(`send text moment: ${stringifyPB(moment)}`);
+      log.info(`send text moment: ${stringifyPB(moment)}`);
     });
 
     test("send text with at user list", async () => {
@@ -744,7 +745,7 @@ describe("sns", () => {
         new pb.SnsSendMomentText().setText("(｡ŏ_ŏ)"),
         new pb.SnsSendMomentOptions().setAtusernameList(atUserList)
       );
-      console.log(`send text moment: ${stringifyPB(moment)}`);
+      log.info(`send text moment: ${stringifyPB(moment)}`);
     });
 
     test("send one image moment", async () => {
@@ -755,7 +756,7 @@ describe("sns", () => {
         new pb.SnsSendMomentImages().setText(description).setImageurlList(imageUrlList),
         new pb.SnsSendMomentOptions().setIsprivate(true)
       );
-      console.log(`send text moment: ${stringifyPB(moment)}`);
+      log.info(`send text moment: ${stringifyPB(moment)}`);
     });
 
     test("send multiple images moment", async () => {
@@ -766,7 +767,7 @@ describe("sns", () => {
         new pb.SnsSendMomentImages().setText(description).setImageurlList(imageUrlList),
         new pb.SnsSendMomentOptions().setIsprivate(true)
       );
-      console.log(`send text moment: ${stringifyPB(moment)}`);
+      log.info(`send text moment: ${stringifyPB(moment)}`);
     }, 60000);
 
     test("send link", async () => {
@@ -784,7 +785,7 @@ describe("sns", () => {
         new pb.SnsSendMomentOptions().setIsprivate(true)
       );
 
-      console.log(`send link moment: ${stringifyPB(moment)}`);
+      log.info(`send link moment: ${stringifyPB(moment)}`);
     });
 
     test("forward text moment", async () => {
@@ -796,7 +797,7 @@ describe("sns", () => {
         new pb.SnsSendMomentOptions().setIsprivate(true)
       );
 
-      console.log(`forward text moment: ${stringifyPB(moment)}`);
+      log.info(`forward text moment: ${stringifyPB(moment)}`);
     });
 
     test("forward image moment", async () => {
@@ -808,7 +809,7 @@ describe("sns", () => {
         new pb.SnsSendMomentOptions().setIsprivate(true)
       );
 
-      console.log(`forward image moment: ${stringifyPB(moment)}`);
+      log.info(`forward image moment: ${stringifyPB(moment)}`);
     });
 
     test("forward link moment", async () => {
@@ -820,7 +821,7 @@ describe("sns", () => {
         new pb.SnsSendMomentOptions().setIsprivate(true)
       );
 
-      console.log(`forward link moment: ${stringifyPB(moment)}`);
+      log.info(`forward link moment: ${stringifyPB(moment)}`);
     });
 
     test("forward moment with poi", async () => {
@@ -834,7 +835,7 @@ describe("sns", () => {
         new pb.SnsSendMomentOptions().setCanseeusernameList(canSeeUserList)
       );
 
-      console.log(`forward moment with poi: ${stringifyPB(moment)}`);
+      log.info(`forward moment with poi: ${stringifyPB(moment)}`);
     });
   });
 
@@ -849,7 +850,7 @@ describe("sns", () => {
         momentOwnerUserName,
         `comment-${Date.now()}`
       );
-      console.log(`send comment response: ${stringifyPB(moment)}`);
+      log.info(`send comment response: ${stringifyPB(moment)}`);
     });
 
     test("send comment reply", async () => {
@@ -867,12 +868,12 @@ describe("sns", () => {
           .setCommentnickname(replyCommentNickName)
           .setCommentusername(replyCommentUsername)
       );
-      console.log(`send comment reply response: ${stringifyPB(moment)}`);
+      log.info(`send comment reply response: ${stringifyPB(moment)}`);
     });
 
     test("like", async () => {
       const moment = await client.api.snsLikeMoment(momentId, momentOwnerUserName);
-      console.log(`like moment: ${stringifyPB(moment)}`);
+      log.info(`like moment: ${stringifyPB(moment)}`);
     });
 
     test("unlike", async () => {

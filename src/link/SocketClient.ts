@@ -1,9 +1,9 @@
 import { Socket } from "net";
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
 import { Bytes, bytesToHexString } from "../utils/ByteUtils";
-import { logDebug, logWarn } from "../utils/log";
 import VError from "verror";
 import { SerialExecutor } from "../utils/SerialExecutor";
+import { log } from "brolog";
 
 export class SocketClient {
   private static readonly CONNECT_TIMEOUT = 10 * 1000;
@@ -44,7 +44,7 @@ export class SocketClient {
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      logDebug(
+      log.verbose(
         `[tid:${this.traceId}] socket #${this.retryStrategy.retryCount} retry send, after delay: ${delay}ms, addr:\"${
           this.host
         }:${this.port}\" data:${bytesToHexString(data)}`
@@ -80,7 +80,7 @@ export class SocketClient {
 
   private async _sendImpl(sendData: Bytes): Promise<void> {
     if (this._socket) {
-      logWarn("can not send again while socket is working");
+      log.warn("can not send again while socket is working");
       return;
     }
 
@@ -95,7 +95,7 @@ export class SocketClient {
             await this._callback?.onError?.(error);
           });
 
-          logWarn(`socket on error: ${error}`);
+          log.warn(`socket on error: ${error}`);
 
           this._retryOnError = retryOnError;
 
@@ -113,7 +113,7 @@ export class SocketClient {
       this._socket = socket;
 
       const connectTimeout = setTimeout(() => {
-        onSocketFinish(new IOError("socket connect timeout"));
+        onSocketFinish(new IOError("[SocketClient] socket connect timeout"));
       }, SocketClient.CONNECT_TIMEOUT);
 
       socket.connect(
@@ -159,11 +159,11 @@ export class SocketClient {
       });
 
       socket.on("timeout", () => {
-        onSocketFinish(new IOError("socket is read-write timeout"));
+        onSocketFinish(new IOError("[SocketClient] socket is read-write timeout"));
       });
 
       socket.on("error", (error: Error) => {
-        onSocketFinish(new IOError(error, "socket error"));
+        onSocketFinish(new IOError(error, "[SocketClient] socket error"));
       });
     });
   }
