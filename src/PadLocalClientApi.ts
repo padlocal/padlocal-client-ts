@@ -1,6 +1,6 @@
 import * as pb from "./proto/padlocal_pb";
 import { Bytes } from "./utils/ByteUtils";
-import { requestFileAndUnpack } from "./utils/FileUtils";
+import { downloadFile } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { PadLocalClient } from "./PadLocalClient";
 
@@ -275,7 +275,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
         .setMessagetousername(messageToUserName)
     );
 
-    const imageData: Bytes = await requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+    const imageData: Bytes = await downloadFile(response.getFilerequest()!, grpcClient.traceId);
 
     return {
       imageType: response.getImagetype(),
@@ -307,7 +307,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       new pb.GetMessageVideoThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
-    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async getMessageVideo(messageContent: string, messageToUserName: string): Promise<Bytes> {
@@ -319,7 +319,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       new pb.GetMessageVideoRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
-    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async getMessageAttach(messageContent: string, messageToUserName: string): Promise<Bytes> {
@@ -330,7 +330,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     const response: pb.GetMessageAttachResponse = await grpcClient.request(
       new pb.GetMessageAttachRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
-    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async getMessageAttachThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
@@ -341,7 +341,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     const response: pb.GetMessageAttachThumbResponse = await grpcClient.request(
       new pb.GetMessageAttachThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
-    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async getMessageMiniProgramThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
@@ -354,7 +354,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
         .setMessagecontent(messageContent)
         .setMessagetousername(messageToUserName)
     );
-    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async getEncryptedFile(
@@ -378,7 +378,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     const grpcClient = this.client.createRequest();
 
     const response: pb.GetEncryptedFileResponse = await grpcClient.request(getEncryptedFileRequest);
-    return requestFileAndUnpack(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
   }
 
   async revokeMessage(

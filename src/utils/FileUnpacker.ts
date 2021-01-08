@@ -3,9 +3,9 @@ import { ebcDecrypt } from "./AES";
 import VError from "verror";
 
 export class FileUnpacker {
+  private static readonly HEADER_MIN_LEN = 25;
   private readonly _aesKey: Bytes;
-  private _header?: FileResponseHeader;
-  private _headerData?: Bytes;
+
   private _buffer: Bytes = newBytes();
 
   constructor(aesKey: Bytes) {
@@ -18,52 +18,32 @@ export class FileUnpacker {
    * @param data:
    * @return true, finish unpack all data
    */
-  update(data: Bytes): boolean {
+  update(data: Bytes): FileResponse | null {
     this._buffer = joinBytes(this._buffer, data);
-
-    if (!this._header) {
-      if (this._buffer.length > 25) {
-        this._header = this._unpackHeader();
-      }
-    }
-
-    if (this._header && this._buffer.length >= this._header.bodyLen) {
-      // acceptable max len: header.bodyLen
-      if (this._buffer.length > this._header.bodyLen) {
-        this._buffer = subBytes(this._buffer, 0, this._header.bodyLen);
-      }
-
-      return true;
-    }
-
-    return false;
-  }
-
-  getDecryptedFileData(): Bytes | null {
-    if (!this._header || this._buffer.length < this._header.bodyLen) {
+    if (this._buffer.length < FileUnpacker.HEADER_MIN_LEN) {
       return null;
     }
 
-    const body = FileUnpacker._unpackResponseBody(this._buffer);
-    if (body.retCode !== 0) {
-      throw new UnpackError(`retcode is not zero: ${body.retCode}`);
+    const header = this._unpackHeader();
+    const responseLen = header.headerLen + header.bodyLen;
+    if (this._buffer.length < responseLen) {
+      return null;
     }
 
-    const encryptedFileData = body.fileData;
+    const bodyData = subBytes(this._buffer, header.headerLen, responseLen);
+    const body = this._unpackResponseBody(bodyData);
+
+    this._buffer = subBytes(this._buffer, responseLen, this._buffer.length);
+
+    return new FileResponse(header, body);
+  }
+
+  getDecryptedFileData(fileResponse: FileResponse): Bytes {
+    const encryptedFileData = fileResponse.body.fileData;
     return ebcDecrypt(this._aesKey, encryptedFileData!);
   }
 
-  getRawResponseData(): Bytes | null {
-    if (!this._header || this._buffer.length < this._header.bodyLen) {
-      return null;
-    }
-
-    return joinBytes(this._headerData!, this._buffer);
-  }
-
   reset(): void {
-    this._header = undefined;
-    this._headerData = undefined;
     this._buffer = newBytes();
   }
 
@@ -80,56 +60,37 @@ export class FileUnpacker {
 
     const bodyLen = reader.readUInt();
     const headerLen = totalLen - bodyLen;
-    if (headerLen > reader.cursor) {
-      reader.skip(headerLen - reader.cursor);
-    }
-
-    this._headerData = subBytes(this._buffer, 0, reader.cursor);
-    this._buffer = subBytes(this._buffer, reader.cursor, this._buffer.length);
 
     return new FileResponseHeader(headerLen, bodyLen);
   }
 
-  private static _unpackResponseBody(buff: Bytes): FileResponseBody {
-    const m: Map<string, Buffer | undefined> = FileUnpacker._unpackRawResponse(buff);
+  private _unpackResponseBody(buff: Bytes): FileResponseBody {
+    const unpackRawResponseBody = (buff: Bytes): Map<string, Bytes | undefined> => {
+      const ret: Map<string, Bytes | undefined> = new Map<string, Bytes | undefined>();
 
-    const ret = new FileResponseBody();
-    ret.ver = FileUnpacker._unpackInteger(m.get("ver"));
-    ret.seq = FileUnpacker._unpackInteger(m.get("seq"));
-    ret.videoFormat = FileUnpacker._unpackInteger(m.get("videoformat"));
-    ret.rspPicFormat = FileUnpacker._unpackInteger(m.get("rsppicformat"));
-    ret.rangeStart = FileUnpacker._unpackInteger(m.get("rangestart"));
-    ret.rangeEnd = FileUnpacker._unpackInteger(m.get("rangeend"));
-    ret.totalSize = FileUnpacker._unpackInteger(m.get("totalsize"));
-    ret.srcSize = FileUnpacker._unpackInteger(m.get("srcsize"));
-    ret.retCode = FileUnpacker._unpackInteger(m.get("retcode"));
-    ret.substituteFType = FileUnpacker._unpackInteger(m.get("substituteftype"));
-    ret.retrySec = FileUnpacker._unpackInteger(m.get("retrysec"));
-    ret.isRetry = FileUnpacker._unpackInteger(m.get("isretry"));
-    ret.isOverload = FileUnpacker._unpackInteger(m.get("isoverload"));
-    ret.isGetCdn = FileUnpacker._unpackInteger(m.get("isgetcdn"));
-    ret.xClientIp = FileUnpacker._unpackString(m.get("x-ClientIp"));
-    ret.fileData = m.get("filedata");
+      const reader = new BytesReader(buff, true);
+      while (reader.available() > 4) {
+        const fieldNameLen = reader.readUInt();
+        const fieldName = reader.readBytes(fieldNameLen).toString();
 
-    return ret;
-  }
+        const fieldValueLen = reader.readUInt();
+        let fieldValue: Bytes | undefined;
+        if (fieldValueLen > 0) {
+          fieldValue = reader.readBytes(fieldValueLen);
+        }
 
-  private static _unpackRawResponse(buff: Bytes): Map<string, Bytes | undefined> {
-    const ret: Map<string, Bytes | undefined> = new Map<string, Bytes | undefined>();
-
-    const reader = new BytesReader(buff, true);
-    while (reader.available() > 4) {
-      const fieldNameLen = reader.readUInt();
-      const fieldName = reader.readBytes(fieldNameLen).toString();
-
-      const fieldValueLen = reader.readUInt();
-      let fieldValue: Bytes | undefined;
-      if (fieldValueLen > 0) {
-        fieldValue = reader.readBytes(fieldValueLen);
+        ret.set(fieldName, fieldValue);
       }
 
-      ret.set(fieldName, fieldValue);
-    }
+      return ret;
+    };
+
+    const m: Map<string, Buffer | undefined> = unpackRawResponseBody(buff);
+
+    const ret = new FileResponseBody();
+
+    ret.retCode = FileUnpacker._unpackInteger(m.get("retcode"));
+    ret.fileData = m.get("filedata");
 
     return ret;
   }
@@ -169,20 +130,16 @@ export class FileResponseHeader {
 }
 
 export class FileResponseBody {
-  ver?: number;
-  seq?: number;
-  videoFormat?: number;
-  rspPicFormat?: number;
-  rangeStart?: number;
-  rangeEnd?: number;
-  totalSize?: number;
-  srcSize?: number;
   retCode?: number;
-  substituteFType?: number;
-  retrySec?: number;
-  isRetry?: number;
-  isOverload?: number;
-  isGetCdn?: number;
-  xClientIp?: string;
   fileData?: Bytes;
+}
+
+export class FileResponse {
+  readonly header: FileResponseHeader;
+  readonly body: FileResponseBody;
+
+  constructor(header: FileResponseHeader, body: FileResponseBody) {
+    this.header = header;
+    this.body = body;
+  }
 }
