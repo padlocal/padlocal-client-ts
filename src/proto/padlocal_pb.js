@@ -137,6 +137,7 @@ goog.exportSymbol('proto.padlocal.SendImageMessageResponse', null, global);
 goog.exportSymbol('proto.padlocal.SendTextMessageRequest', null, global);
 goog.exportSymbol('proto.padlocal.SendTextMessageResponse', null, global);
 goog.exportSymbol('proto.padlocal.SendVideoMessageRequest', null, global);
+goog.exportSymbol('proto.padlocal.SendVideoMessageRequest.PayloadCase', null, global);
 goog.exportSymbol('proto.padlocal.SendVideoMessageResponse', null, global);
 goog.exportSymbol('proto.padlocal.SendVoiceMessageRequest', null, global);
 goog.exportSymbol('proto.padlocal.SendVoiceMessageResponse', null, global);
@@ -4040,7 +4041,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.padlocal.SendVideoMessageRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.SendVideoMessageRequest.oneofGroups_);
 };
 goog.inherits(proto.padlocal.SendVideoMessageRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -43150,6 +43151,32 @@ proto.padlocal.SendVoiceMessageResponse.prototype.hasMessagerevokeinfo = functio
 
 
 
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.padlocal.SendVideoMessageRequest.oneofGroups_ = [[2,3]];
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.SendVideoMessageRequest.PayloadCase = {
+  PAYLOAD_NOT_SET: 0,
+  VIDEO: 2,
+  VIDEOPARAMS: 3
+};
+
+/**
+ * @return {proto.padlocal.SendVideoMessageRequest.PayloadCase}
+ */
+proto.padlocal.SendVideoMessageRequest.prototype.getPayloadCase = function() {
+  return /** @type {proto.padlocal.SendVideoMessageRequest.PayloadCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.SendVideoMessageRequest.oneofGroups_[0]));
+};
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -43182,7 +43209,8 @@ proto.padlocal.SendVideoMessageRequest.prototype.toObject = function(opt_include
 proto.padlocal.SendVideoMessageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     tousername: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    video: msg.getVideo_asB64()
+    video: msg.getVideo_asB64(),
+    videoparams: (f = msg.getVideoparams()) && proto.padlocal.FileUploadVideoParams.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -43227,6 +43255,11 @@ proto.padlocal.SendVideoMessageRequest.deserializeBinaryFromReader = function(ms
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setVideo(value);
       break;
+    case 3:
+      var value = new proto.padlocal.FileUploadVideoParams;
+      reader.readMessage(value,proto.padlocal.FileUploadVideoParams.deserializeBinaryFromReader);
+      msg.setVideoparams(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -43263,11 +43296,19 @@ proto.padlocal.SendVideoMessageRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getVideo_asU8();
-  if (f.length > 0) {
+  f = /** @type {!(string|Uint8Array)} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
     writer.writeBytes(
       2,
       f
+    );
+  }
+  f = message.getVideoparams();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.padlocal.FileUploadVideoParams.serializeBinaryToWriter
     );
   }
 };
@@ -43329,7 +43370,62 @@ proto.padlocal.SendVideoMessageRequest.prototype.getVideo_asU8 = function() {
  * @return {!proto.padlocal.SendVideoMessageRequest} returns this
  */
 proto.padlocal.SendVideoMessageRequest.prototype.setVideo = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+  return jspb.Message.setOneofField(this, 2, proto.padlocal.SendVideoMessageRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.padlocal.SendVideoMessageRequest} returns this
+ */
+proto.padlocal.SendVideoMessageRequest.prototype.clearVideo = function() {
+  return jspb.Message.setOneofField(this, 2, proto.padlocal.SendVideoMessageRequest.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.SendVideoMessageRequest.prototype.hasVideo = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional FileUploadVideoParams videoParams = 3;
+ * @return {?proto.padlocal.FileUploadVideoParams}
+ */
+proto.padlocal.SendVideoMessageRequest.prototype.getVideoparams = function() {
+  return /** @type{?proto.padlocal.FileUploadVideoParams} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.FileUploadVideoParams, 3));
+};
+
+
+/**
+ * @param {?proto.padlocal.FileUploadVideoParams|undefined} value
+ * @return {!proto.padlocal.SendVideoMessageRequest} returns this
+*/
+proto.padlocal.SendVideoMessageRequest.prototype.setVideoparams = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.padlocal.SendVideoMessageRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.SendVideoMessageRequest} returns this
+ */
+proto.padlocal.SendVideoMessageRequest.prototype.clearVideoparams = function() {
+  return this.setVideoparams(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.SendVideoMessageRequest.prototype.hasVideoparams = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 

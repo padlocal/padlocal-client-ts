@@ -1,6 +1,6 @@
 import * as pb from "./proto/padlocal_pb";
 import { Bytes } from "./utils/ByteUtils";
-import { downloadFile, prepareImageUpload } from "./utils/FileUtils";
+import { downloadFile, prepareImageUpload, prepareVideoUpload } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { PadLocalClient } from "./PadLocalClient";
 
@@ -165,7 +165,11 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     );
   }
 
-  async sendVideoMessage(idempotentId: string, toUserName: string, video: Bytes): Promise<pb.SendVideoMessageResponse> {
+  async _sendVideoMessage(
+    idempotentId: string,
+    toUserName: string,
+    video: Bytes
+  ): Promise<pb.SendVideoMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
     checkRequiredField(video.length, "video");
@@ -173,6 +177,28 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return await this.client.request(new pb.SendVideoMessageRequest().setTousername(toUserName).setVideo(video), {
       idempotentId,
     });
+  }
+
+  async sendVideoMessage(idempotentId: string, toUserName: string, video: Bytes): Promise<pb.SendVideoMessageResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+    checkRequiredField(video.length, "video");
+    const videoUpload = await prepareVideoUpload(video);
+
+    const request = this.client.createRequest({
+      idempotentId,
+    });
+
+    request.extraData = {
+      fileUploadStreamHandlerParams: {
+        aesKey: videoUpload.aesKey,
+        dataBag: videoUpload.dataBag,
+      },
+    };
+
+    return await request.request(
+      new pb.SendVideoMessageRequest().setTousername(toUserName).setVideoparams(videoUpload.params)
+    );
   }
 
   async sendFileMessage(

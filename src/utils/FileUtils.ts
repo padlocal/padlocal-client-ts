@@ -5,6 +5,8 @@ import {
   FileUploadEncryptedDataMeta,
   FileUploadImageMeta,
   FileUploadImageParams,
+  FileUploadVideoMeta,
+  FileUploadVideoParams,
 } from "../proto/padlocal_pb";
 import { FileResponse, FileUnpacker } from "./FileUnpacker";
 import { SocketClient } from "../link/SocketClient";
@@ -12,7 +14,7 @@ import { log } from "brolog";
 import { stringifyPB } from "./Utils";
 import { AesEcbEncrypt, AesGenKey } from "./crypto";
 import { adler32, md5 } from "./crypto";
-import { createImageThumb, getImageSize } from "./MediaUtils";
+import { createImageThumb, createVideoThumb, getImageSize, getVideoDurationSeconds } from "./MediaUtils";
 
 const LOGPRE = "[FileUtils]";
 
@@ -131,6 +133,27 @@ async function generateUploadImageMeta(
   };
 }
 
+async function generateUploadVideoMeta(
+  videoData: Bytes
+): Promise<{
+  videoMeta: FileUploadVideoMeta;
+  encryptedVideoData: Bytes;
+}> {
+  const videoEncryptedRet = encryptUploadData(videoData);
+
+  const videoMeta = new FileUploadVideoMeta();
+  videoMeta.setPlaindatameta(videoEncryptedRet.plainDataMeta);
+  videoMeta.setEncrypteddatameta(videoEncryptedRet.encryptedDataMeta);
+
+  const videoDuration = await getVideoDurationSeconds(videoData);
+  videoMeta.setDuration(videoDuration);
+
+  return {
+    videoMeta,
+    encryptedVideoData: videoEncryptedRet.encryptedData,
+  };
+}
+
 export async function prepareImageUpload(
   imageData: Bytes
 ): Promise<{
@@ -152,6 +175,31 @@ export async function prepareImageUpload(
     dataBag: {
       [uploadImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadImageMeta.encryptedImageData,
       [uploadThumbImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadThumbImageMeta.encryptedImageData,
+    },
+  };
+}
+
+export async function prepareVideoUpload(
+  videoData: Bytes
+): Promise<{
+  params: FileUploadVideoParams;
+  aesKey: Bytes;
+  dataBag: { [key: string]: Bytes };
+}> {
+  const uploadVideoMeta = await generateUploadVideoMeta(videoData);
+  const aesKey = Buffer.from(uploadVideoMeta.videoMeta.getEncrypteddatameta()?.getAeskey()!);
+
+  const thumbImageData = await createVideoThumb(videoData, 360);
+  const uploadThumbImageData = await generateUploadImageMeta(thumbImageData, aesKey);
+
+  return {
+    params: new FileUploadVideoParams()
+      .setVideometa(uploadVideoMeta.videoMeta)
+      .setThumbimagemeta(uploadThumbImageData.imageMeta),
+    aesKey,
+    dataBag: {
+      [uploadVideoMeta.videoMeta.getEncrypteddatameta()?.getMd5()!]: uploadVideoMeta.encryptedVideoData,
+      [uploadThumbImageData.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadThumbImageData.encryptedImageData,
     },
   };
 }

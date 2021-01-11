@@ -1136,7 +1136,10 @@ message SendVoiceMessageResponse {
 
 message SendVideoMessageRequest {
   string toUserName = 1;
-  bytes video = 2;
+  oneof payload {
+    bytes video = 2;
+    FileUploadVideoParams videoParams = 3;
+  }
 }
 
 message SendVideoMessageResponse {

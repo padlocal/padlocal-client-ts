@@ -6219,11 +6219,22 @@ export class SendVideoMessageRequest extends jspb.Message {
     getTousername(): string;
     setTousername(value: string): SendVideoMessageRequest;
 
+
+    hasVideo(): boolean;
+    clearVideo(): void;
     getVideo(): Uint8Array | string;
     getVideo_asU8(): Uint8Array;
     getVideo_asB64(): string;
     setVideo(value: Uint8Array | string): SendVideoMessageRequest;
 
+
+    hasVideoparams(): boolean;
+    clearVideoparams(): void;
+    getVideoparams(): FileUploadVideoParams | undefined;
+    setVideoparams(value?: FileUploadVideoParams): SendVideoMessageRequest;
+
+
+    getPayloadCase(): SendVideoMessageRequest.PayloadCase;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendVideoMessageRequest.AsObject;
@@ -6239,7 +6250,18 @@ export namespace SendVideoMessageRequest {
     export type AsObject = {
         tousername: string,
         video: Uint8Array | string,
+        videoparams?: FileUploadVideoParams.AsObject,
     }
+
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
+    
+    VIDEO = 2,
+
+    VIDEOPARAMS = 3,
+
+    }
+
 }
 
 export class SendVideoMessageResponse extends jspb.Message { 
