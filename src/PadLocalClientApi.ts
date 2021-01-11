@@ -1,6 +1,6 @@
 import * as pb from "./proto/padlocal_pb";
 import { Bytes } from "./utils/ByteUtils";
-import { downloadFile } from "./utils/FileUtils";
+import { downloadFile, prepareImageUpload } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { PadLocalClient } from "./PadLocalClient";
 
@@ -20,15 +20,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async login(loginPolicy: pb.LoginPolicy, callback: LoginCallback): Promise<void> {
-    const request = new pb.LoginRequest();
-    request.setPolicy(loginPolicy);
+    const loginRequest = new pb.LoginRequest();
+    loginRequest.setPolicy(loginPolicy);
 
     // 10 min timeout
-    const grpcClient = this.client.createRequest({
+    const request = this.client.createRequest({
       requestTimeout: 10 * 60 * 1000,
     });
 
-    grpcClient.onMessageCallback = (actionMessage: pb.ActionMessage) => {
+    request.onMessageCallback = (actionMessage: pb.ActionMessage) => {
       if (actionMessage.getPayloadCase() === pb.ActionMessage.PayloadCase.LOGINUPDATEEVENT) {
         const loginUpdateEvent = actionMessage.getLoginupdateevent()!;
         if (loginUpdateEvent.getStatus() === pb.LoginStatus.START) {
@@ -49,7 +49,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       }
     };
 
-    await grpcClient.request(request);
+    await request.request(loginRequest);
   }
 
   async logout(): Promise<pb.LogoutResponse> {
@@ -101,9 +101,22 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     checkRequiredField(toUserName, "toUserName");
     checkRequiredField(image.length, "image");
 
-    return await this.client.request(new pb.SendImageMessageRequest().setTousername(toUserName).setImage(image), {
+    const imageUpload = await prepareImageUpload(image);
+
+    const request = this.client.createRequest({
       idempotentId,
     });
+
+    request.extraData = {
+      fileUploadStreamHandlerParams: {
+        aesKey: imageUpload.aesKey,
+        dataBag: imageUpload.dataBag,
+      },
+    };
+
+    return await request.request(
+      new pb.SendImageMessageRequest().setTousername(toUserName).setImageparams(imageUpload.params)
+    );
   }
 
   /**
@@ -267,15 +280,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     checkRequiredField(messageContent, "messageContent");
     checkRequiredField(messageToUserName, "messageToUserName");
 
-    const grpcClient = this.client.createRequest();
-    const response: pb.GetMessageImageResponse = await grpcClient.request(
+    const request = this.client.createRequest();
+    const response: pb.GetMessageImageResponse = await request.request(
       new pb.GetMessageImageRequest()
         .setImagetype(imageType)
         .setMessagecontent(messageContent)
         .setMessagetousername(messageToUserName)
     );
 
-    const imageData: Bytes = await downloadFile(response.getFilerequest()!, grpcClient.traceId);
+    const imageData: Bytes = await downloadFile(response.getFiledownloadrequest()!, request.traceId);
 
     return {
       imageType: response.getImagetype(),
@@ -302,59 +315,59 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     checkRequiredField(messageContent, "messageContent");
     checkRequiredField(messageToUserName, "messageToUserName");
 
-    const grpcClient = this.client.createRequest();
-    const response: pb.GetMessageVideoThumbResponse = await grpcClient.request(
+    const request = this.client.createRequest();
+    const response: pb.GetMessageVideoThumbResponse = await request.request(
       new pb.GetMessageVideoThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
-    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFiledownloadrequest()!, request.traceId);
   }
 
   async getMessageVideo(messageContent: string, messageToUserName: string): Promise<Bytes> {
     checkRequiredField(messageContent, "messageContent");
     checkRequiredField(messageToUserName, "messageToUserName");
 
-    const grpcClient = this.client.createRequest();
-    const response: pb.GetMessageVideoResponse = await grpcClient.request(
+    const request = this.client.createRequest();
+    const response: pb.GetMessageVideoResponse = await request.request(
       new pb.GetMessageVideoRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
 
-    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFiledownloadrequest()!, request.traceId);
   }
 
   async getMessageAttach(messageContent: string, messageToUserName: string): Promise<Bytes> {
     checkRequiredField(messageContent, "messageContent");
     checkRequiredField(messageToUserName, "messageToUserName");
 
-    const grpcClient = this.client.createRequest();
-    const response: pb.GetMessageAttachResponse = await grpcClient.request(
+    const request = this.client.createRequest();
+    const response: pb.GetMessageAttachResponse = await request.request(
       new pb.GetMessageAttachRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
-    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFiledownloadrequest()!, request.traceId);
   }
 
   async getMessageAttachThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
     checkRequiredField(messageContent, "messageContent");
     checkRequiredField(messageToUserName, "messageToUserName");
 
-    const grpcClient = this.client.createRequest();
-    const response: pb.GetMessageAttachThumbResponse = await grpcClient.request(
+    const request = this.client.createRequest();
+    const response: pb.GetMessageAttachThumbResponse = await request.request(
       new pb.GetMessageAttachThumbRequest().setMessagecontent(messageContent).setMessagetousername(messageToUserName)
     );
-    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFiledownloadrequest()!, request.traceId);
   }
 
   async getMessageMiniProgramThumb(messageContent: string, messageToUserName: string): Promise<Bytes> {
     checkRequiredField(messageContent, "messageContent");
     checkRequiredField(messageToUserName, "messageToUserName");
 
-    const grpcClient = this.client.createRequest();
-    const response: pb.GetMessageMiniProgramThumbResponse = await grpcClient.request(
+    const request = this.client.createRequest();
+    const response: pb.GetMessageMiniProgramThumbResponse = await request.request(
       new pb.GetMessageMiniProgramThumbRequest()
         .setMessagecontent(messageContent)
         .setMessagetousername(messageToUserName)
     );
-    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
+    return downloadFile(response.getFiledownloadrequest()!, request.traceId);
   }
 
   async getEncryptedFile(
@@ -375,10 +388,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       getEncryptedFileRequest.setIschatroommessage(isChatRoomMessage);
     }
 
-    const grpcClient = this.client.createRequest();
+    const request = this.client.createRequest();
 
-    const response: pb.GetEncryptedFileResponse = await grpcClient.request(getEncryptedFileRequest);
-    return downloadFile(response.getFilerequest()!, grpcClient.traceId);
+    const response: pb.GetEncryptedFileResponse = await request.request(getEncryptedFileRequest);
+    return downloadFile(response.getFiledownloadrequest()!, request.traceId);
   }
 
   async revokeMessage(
@@ -406,18 +419,18 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    */
   async syncContact(callback: SyncContactCallback): Promise<void> {
     // 10 min timeout
-    const grpcClient = this.client.createRequest({
+    const request = this.client.createRequest({
       requestTimeout: 10 * 60 * 1000,
     });
 
-    grpcClient.onMessageCallback = (actionMessage: pb.ActionMessage) => {
+    request.onMessageCallback = (actionMessage: pb.ActionMessage) => {
       if (actionMessage.getPayloadCase() === pb.ActionMessage.PayloadCase.SYNCEVENT) {
         const syncEvent = actionMessage.getSyncevent()!;
         callback.onSync(syncEvent.getContactList());
       }
     };
 
-    await grpcClient.request(new pb.SyncContactRequest());
+    await request.request(new pb.SyncContactRequest());
   }
 
   async acceptUser(userName: string, ticket: string, stranger?: string): Promise<void> {

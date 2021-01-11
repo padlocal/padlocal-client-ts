@@ -238,6 +238,71 @@ message WeChatSocketResponse {
 message WeChatSocketResponseReply {
 }
 
+message FileUploadDataMeta {
+  int32 size = 1;
+  string md5 = 2;
+  int64 checksum = 3;
+}
+
+message FileUploadEncryptedDataMeta {
+  int32 size = 1;
+  string md5 = 2;
+  int64 checksum = 3;
+  bytes aesKey = 4;
+}
+
+message FileUploadImageMeta {
+  FileUploadDataMeta plainDataMeta = 1;
+  FileUploadEncryptedDataMeta encryptedDataMeta = 2;
+  int32 width = 3;
+  int32 height = 4;
+}
+
+message FileUploadVideoMeta {
+  FileUploadDataMeta plainDataMeta = 1;
+  FileUploadEncryptedDataMeta encryptedDataMeta = 2;
+  int32 duration = 4;
+}
+
+message FileUploadImageParams {
+  FileUploadImageMeta imageMeta = 1;
+  FileUploadImageMeta thumbImageMeta = 2;
+}
+
+message FileUploadVideoParams {
+  FileUploadVideoMeta videoMeta = 1;
+  FileUploadImageMeta thumbImageMeta = 2;
+}
+
+message FileUploadFileParams {
+  FileUploadDataMeta plainDataMeta = 1;
+  FileUploadEncryptedDataMeta encryptedDataMeta = 2;
+}
+
+message FileUploadPayloadFragment {
+  oneof payload {
+    bytes binary = 1;
+    string placeHolderBinaryMd5 = 2;
+  }
+}
+
+message FileUploadPayload {
+  repeated FileUploadPayloadFragment fragment = 1;
+}
+
+message WeChatFileUploadRequest {
+  Host host = 1;
+  FileUploadPayload payload = 2;
+  repeated string requireResponseField = 3;
+}
+
+message WeChatFileUploadResponse {
+  map<string, bytes> response = 1;
+}
+
+message WeChatFileUploadResponseReply {
+}
+
 message WeChatPushSubscribeRequest {
   repeated LongLinkMessagePushType pushType = 1;
 }
@@ -255,6 +320,7 @@ message WeChatStreamRequest {
     WeChatLongLinkStreamRequest longLinkRequest = 10;
     WeChatSocketRequest socketRequest = 11;
     WeChatPushSubscribeRequest pushSubscribeRequest = 12;
+    WeChatFileUploadRequest fileUploadRequest = 13;
   }
 }
 
@@ -264,6 +330,7 @@ message WeChatStreamResponse {
     WeChatLongLinkStreamResponse longLinkResponse = 10;
     WeChatSocketResponse socketResponse = 11;
     WeChatPushSubscribeResponse pushSubscribeResponse = 12;
+    WeChatFileUploadResponse fileUploadResponse = 13;
   }
 }
 
@@ -273,6 +340,7 @@ message WeChatStreamResponseReply {
     WeChatLongLinkStreamResponseReply longLinkResponseReply = 10;
     WeChatSocketResponseReply socketResponseReply = 11;
     WeChatPushSubscribeResponseReply pushSubscribeResponseReply = 12;
+    WeChatFileUploadResponseReply fileUploadResponseReply = 13;
   }
 }
 
@@ -413,7 +481,10 @@ message SendTextMessageResponse {
 
 message SendImageMessageRequest {
   string toUserName = 1;
-  bytes image = 2;
+  oneof payload {
+    bytes image = 2;
+    FileUploadImageParams imageParams = 3;
+  }
 }
 
 message SendImageMessageResponse {
@@ -956,11 +1027,11 @@ enum ImageType {
 }
 
 message GetMessageImageResponse {
-  FileRequest fileRequest = 1;
+  FileDownloadRequest fileDownloadRequest = 1;
   ImageType imageType = 2;
 }
 
-message FileRequest {
+message FileDownloadRequest {
   Host host = 1;
   bytes payload = 2;
   bytes unpackAesKey = 3;
@@ -988,7 +1059,7 @@ message GetMessageVideoThumbRequest {
 }
 
 message GetMessageVideoThumbResponse {
-  FileRequest fileRequest = 1;
+  FileDownloadRequest fileDownloadRequest = 1;
 }
 
 message GetMessageVideoRequest {
@@ -997,7 +1068,7 @@ message GetMessageVideoRequest {
 }
 
 message GetMessageVideoResponse {
-  FileRequest fileRequest = 1;
+  FileDownloadRequest fileDownloadRequest = 1;
 }
 
 message GetMessageAttachRequest {
@@ -1006,7 +1077,7 @@ message GetMessageAttachRequest {
 }
 
 message GetMessageAttachResponse {
-  FileRequest fileRequest = 1;
+  FileDownloadRequest fileDownloadRequest = 1;
 }
 
 message GetMessageAttachThumbRequest {
@@ -1015,7 +1086,7 @@ message GetMessageAttachThumbRequest {
 }
 
 message GetMessageAttachThumbResponse {
-  FileRequest fileRequest = 1;
+  FileDownloadRequest fileDownloadRequest = 1;
 }
 
 message ForwardMessageRequest {
@@ -1090,7 +1161,7 @@ message GetMessageMiniProgramThumbRequest {
 }
 
 message GetMessageMiniProgramThumbResponse {
-  FileRequest fileRequest = 1;
+  FileDownloadRequest fileDownloadRequest = 1;
 }
 
 enum EncryptedFileType {
@@ -1109,7 +1180,7 @@ message GetEncryptedFileRequest {
 }
 
 message GetEncryptedFileResponse {
-  FileRequest fileRequest = 1;
+  FileDownloadRequest fileDownloadRequest = 1;
 }
 
 message SendEmojiMessageRequest {

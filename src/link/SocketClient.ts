@@ -83,7 +83,7 @@ export class SocketClient {
       if (!this._retryOnError || !this.retryStrategy.canRetry()) {
         const des = `[tid:${this.traceId}] Fail to send socket to:\"${this.host}:${
           this.port
-        }\", data:${bytesToHexString(data, 1024)}, after max retry:${this.retryStrategy.retryCount}`;
+        }\", data:${bytesToHexString(data, 4096)}, after max retry:${this.retryStrategy.retryCount}`;
         throw new IOError(error, des);
       }
 
@@ -93,7 +93,7 @@ export class SocketClient {
         this.LOGPRE,
         `[tid:${this.traceId}] socket #${this.retryStrategy.retryCount} retry send, after delay: ${delay}ms, addr:\"${
           this.host
-        }:${this.port}\" data:${bytesToHexString(data, 1024)}`
+        }:${this.port}\" data:${bytesToHexString(data, 4096)}`
       );
 
       return new Promise(async (resolve, reject) => {
@@ -139,7 +139,7 @@ export class SocketClient {
 
       const block = dataQueue.getNextDataBlock();
 
-      log.verbose(this.LOGPRE, `socket send:${bytesToHexString(block, 1024)}`);
+      log.verbose(this.LOGPRE, `socket send:${bytesToHexString(block, 4096)}`);
 
       socket.write(block, (err) => {
         if (err) {
@@ -209,7 +209,7 @@ export class SocketClient {
       );
 
       socket.on("data", (data) => {
-        log.verbose(this.LOGPRE, `socket recv:${bytesToHexString(data, 1024)}`);
+        log.verbose(this.LOGPRE, `socket recv:${bytesToHexString(data, 4096)}`);
 
         this._callbackExecutor.execute(async () => {
           try {

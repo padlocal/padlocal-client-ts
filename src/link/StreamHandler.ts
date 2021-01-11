@@ -2,11 +2,11 @@ import { WeChatStreamRequest, WeChatStreamResponse, WeChatStreamResponseReply } 
 import { Request, SubResponse } from "../Request";
 
 export abstract class StreamHandler {
-  protected readonly _grpcClient: Request;
+  protected readonly _request: Request;
   private _ack?: number;
 
-  protected constructor(grpcClient: Request) {
-    this._grpcClient = grpcClient;
+  protected constructor(request: Request) {
+    this._request = request;
   }
 
   public async handleRequest(wechatStreamRequest: WeChatStreamRequest, ack: number): Promise<void> {
@@ -19,7 +19,7 @@ export abstract class StreamHandler {
         break;
       }
 
-      const response: SubResponse<WeChatStreamRequest> = await this._grpcClient.subReplyAndRequest(
+      const response: SubResponse<WeChatStreamRequest> = await this._request.subReplyAndRequest(
         this._ack!,
         new WeChatStreamResponse()
       );
@@ -34,7 +34,7 @@ export abstract class StreamHandler {
    * @param wechatStreamResponse
    */
   public async sendResponse(wechatStreamResponse: WeChatStreamResponse): Promise<WeChatStreamResponseReply> {
-    const response: SubResponse<WeChatStreamResponseReply> = await this._grpcClient.subReplyAndRequest(
+    const response: SubResponse<WeChatStreamResponseReply> = await this._request.subReplyAndRequest(
       this._ack!,
       wechatStreamResponse
     );

@@ -14,7 +14,7 @@ interface IPadLocalService extends grpc.ServiceDefinition<grpc.UntypedServiceImp
 }
 
 interface IPadLocalService_Iaction extends grpc.MethodDefinition<padlocal_pb.ActionMessage, padlocal_pb.ActionMessage> {
-    path: string; // "/padlocal.PadLocal/action"
+    path: "/padlocal.PadLocal/action";
     requestStream: true;
     responseStream: true;
     requestSerialize: grpc.serialize<padlocal_pb.ActionMessage>;
@@ -23,7 +23,7 @@ interface IPadLocalService_Iaction extends grpc.MethodDefinition<padlocal_pb.Act
     responseDeserialize: grpc.deserialize<padlocal_pb.ActionMessage>;
 }
 interface IPadLocalService_Iinit extends grpc.MethodDefinition<padlocal_pb.InitRequest, padlocal_pb.InitResponse> {
-    path: string; // "/padlocal.PadLocal/init"
+    path: "/padlocal.PadLocal/init";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<padlocal_pb.InitRequest>;

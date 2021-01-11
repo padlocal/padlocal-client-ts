@@ -14,8 +14,8 @@ export class PushStreamHandler extends StreamHandler {
   private _pushTypeList?: Array<LongLinkMessagePushType>;
   private readonly _pushHandler: (pushMessageList: LongLinkMessage[]) => void;
 
-  constructor(grpcClient: Request, longLinkProxy: WeChatLongLinkProxy) {
-    super(grpcClient);
+  constructor(request: Request, longLinkProxy: WeChatLongLinkProxy) {
+    super(request);
 
     this._longLinkProxy = longLinkProxy;
 

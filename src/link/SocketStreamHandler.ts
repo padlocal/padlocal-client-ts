@@ -11,8 +11,8 @@ export class SocketStreamHandler extends StreamHandler {
   private _sendDataBuffer?: Bytes;
   private _callbackExecutor: SerialExecutor;
 
-  public constructor(grpcClient: Request) {
-    super(grpcClient);
+  public constructor(request: Request) {
+    super(request);
     this._callbackExecutor = new SerialExecutor();
   }
 
@@ -30,7 +30,7 @@ export class SocketStreamHandler extends StreamHandler {
     }
 
     if (wechatStreamRequest.getEof()) {
-      this._socketClient = new SocketClient(this._host!.getHost(), this._host!.getPort(), this._grpcClient.traceId, {
+      this._socketClient = new SocketClient(this._host!.getHost(), this._host!.getPort(), this._request.traceId, {
         onConnect: async () => {
           await this._callbackExecutor.execute(async () => {
             await this.sendResponse(

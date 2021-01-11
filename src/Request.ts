@@ -22,11 +22,15 @@ import { LongLinkStreamHandler } from "./link/LongLinkStreamHandler";
 import { PushStreamHandler } from "./link/PushStreamHandler";
 import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { GrpcClient, GrpcOptions, IOError } from "./GrpcClient";
-import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { log } from "brolog";
+import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
+import { FileUploadStreamHandler, FileUploadStreamHandlerParams } from "./link/FileUploadStreamHandler";
 
 export type OnMessageCallback = (actionMessage: ActionMessage) => void;
 export type OnSystemEventCallback = (systemEventRequest: SystemEventRequest) => void;
+export type RequestExtraData = {
+  fileUploadStreamHandlerParams?: FileUploadStreamHandlerParams;
+};
 
 const LOGPRE = "[Request]";
 
@@ -41,6 +45,7 @@ export class Request extends PadLocalClientPlugin {
 
   onMessageCallback?: OnMessageCallback;
   onSystemEventCallback?: OnSystemEventCallback;
+  extraData?: RequestExtraData;
 
   constructor(client: PadLocalClient, options?: Partial<GrpcOptions>) {
     super(client);
@@ -178,7 +183,7 @@ export class Request extends PadLocalClientPlugin {
         this.traceId
       }] send event to server, seq:${seq}, ack:${ack}, type: ${actionMessage.getPayloadCase()}, payload: ${stringifyPB(
         payload,
-        1024
+        4096
       )}`
     );
 
@@ -197,7 +202,7 @@ export class Request extends PadLocalClientPlugin {
         this.traceId
       }] receive event from server, seq:${seq} ack:${ack}, type:${serverMessage.getPayloadCase()}, payload:${stringifyPB(
         payload,
-        1024
+        4096
       )}`
     );
 
@@ -247,6 +252,9 @@ export class Request extends PadLocalClientPlugin {
       const longLinkProxy = await this.client.getLongLinkProxy();
       const pushStreamHandler = new PushStreamHandler(this, longLinkProxy);
       await pushStreamHandler.handleRequest(wechatStreamRequest, ack);
+    } else if (wechatStreamRequest.getPayloadCase() == WeChatStreamRequest.PayloadCase.FILEUPLOADREQUEST) {
+      const fileUploadStreamHandler = new FileUploadStreamHandler(this, this.extraData!.fileUploadStreamHandlerParams!);
+      await fileUploadStreamHandler.handleRequest(wechatStreamRequest, ack);
     } else {
       throw new Error(`unsupported wechat request case: ${wechatStreamRequest.getPayloadCase()}`);
     }
@@ -379,5 +387,3 @@ export interface SubResponse<T extends Message> {
   payload: T;
   ack?: number;
 }
-
-export interface Options {}

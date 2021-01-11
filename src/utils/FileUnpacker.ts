@@ -1,6 +1,5 @@
 import { Bytes, BytesReader, joinBytes, newBytes, subBytes } from "./ByteUtils";
-import { ebcDecrypt } from "./AES";
-import VError from "verror";
+import { AesEcbDecrypt } from "./crypto";
 
 export class FileUnpacker {
   private static readonly HEADER_MIN_LEN = 25;
@@ -31,7 +30,7 @@ export class FileUnpacker {
     }
 
     const bodyData = subBytes(this._buffer, header.headerLen, responseLen);
-    const body = this._unpackResponseBody(bodyData);
+    const body = FileUnpacker._unpackResponseBody(bodyData);
 
     this._buffer = subBytes(this._buffer, responseLen, this._buffer.length);
 
@@ -39,8 +38,8 @@ export class FileUnpacker {
   }
 
   getDecryptedFileData(fileResponse: FileResponse): Bytes {
-    const encryptedFileData = fileResponse.body.fileData;
-    return ebcDecrypt(this._aesKey, encryptedFileData!);
+    const encryptedFileData = fileResponse.body["filedata"];
+    return AesEcbDecrypt(this._aesKey, encryptedFileData!);
   }
 
   reset(): void {
@@ -52,7 +51,7 @@ export class FileUnpacker {
 
     const protocolByte = reader.readUByte();
     if (protocolByte !== 0xab) {
-      throw new UnpackError("response is not file protocol");
+      throw new Error("response is not file protocol");
     }
 
     const totalLen = reader.readUInt();
@@ -64,58 +63,24 @@ export class FileUnpacker {
     return new FileResponseHeader(headerLen, bodyLen);
   }
 
-  private _unpackResponseBody(buff: Bytes): FileResponseBody {
-    const unpackRawResponseBody = (buff: Bytes): Map<string, Bytes | undefined> => {
-      const ret: Map<string, Bytes | undefined> = new Map<string, Bytes | undefined>();
+  private static _unpackResponseBody(buff: Bytes): FileResponseBody {
+    const ret: FileResponseBody = {};
 
-      const reader = new BytesReader(buff, true);
-      while (reader.available() > 4) {
-        const fieldNameLen = reader.readUInt();
-        const fieldName = reader.readBytes(fieldNameLen).toString();
+    const reader = new BytesReader(buff, true);
+    while (reader.available() > 4) {
+      const fieldNameLen = reader.readUInt();
+      const fieldName = reader.readBytes(fieldNameLen).toString();
 
-        const fieldValueLen = reader.readUInt();
-        let fieldValue: Bytes | undefined;
-        if (fieldValueLen > 0) {
-          fieldValue = reader.readBytes(fieldValueLen);
-        }
-
-        ret.set(fieldName, fieldValue);
+      const fieldValueLen = reader.readUInt();
+      let fieldValue: Bytes | undefined;
+      if (fieldValueLen > 0) {
+        fieldValue = reader.readBytes(fieldValueLen);
       }
 
-      return ret;
-    };
-
-    const m: Map<string, Buffer | undefined> = unpackRawResponseBody(buff);
-
-    const ret = new FileResponseBody();
-
-    ret.retCode = FileUnpacker._unpackInteger(m.get("retcode"));
-    ret.fileData = m.get("filedata");
+      ret[fieldName] = fieldValue;
+    }
 
     return ret;
-  }
-
-  private static _unpackInteger(data?: Bytes): number | undefined {
-    if (data) {
-      return parseInt(data.toString(), 10);
-    } else {
-      return undefined;
-    }
-  }
-
-  private static _unpackString(data?: Bytes): string | undefined {
-    if (data) {
-      return data.toString();
-    } else {
-      return undefined;
-    }
-  }
-}
-
-export class UnpackError extends VError {
-  constructor(message: string);
-  constructor(message: string, cause?: Error) {
-    super(message, cause);
   }
 }
 
@@ -129,10 +94,7 @@ export class FileResponseHeader {
   }
 }
 
-export class FileResponseBody {
-  retCode?: number;
-  fileData?: Bytes;
-}
+export type FileResponseBody = { [key: string]: Bytes | undefined };
 
 export class FileResponse {
   readonly header: FileResponseHeader;
@@ -141,5 +103,21 @@ export class FileResponse {
   constructor(header: FileResponseHeader, body: FileResponseBody) {
     this.header = header;
     this.body = body;
+  }
+
+  public static unpackInteger(data?: Bytes): number | undefined {
+    if (data) {
+      return parseInt(data.toString(), 10);
+    } else {
+      return undefined;
+    }
+  }
+
+  public static unpackString(data?: Bytes): string | undefined {
+    if (data) {
+      return data.toString();
+    } else {
+      return undefined;
+    }
   }
 }

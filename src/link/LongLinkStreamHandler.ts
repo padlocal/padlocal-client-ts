@@ -7,8 +7,8 @@ import { Bytes } from "../utils/ByteUtils";
 export class LongLinkStreamHandler extends StreamHandler {
   private readonly _longLinkProxy: WeChatLongLinkProxy;
 
-  constructor(grpcClient: Request, longLinkProxy: WeChatLongLinkProxy) {
-    super(grpcClient);
+  constructor(request: Request, longLinkProxy: WeChatLongLinkProxy) {
+    super(request);
     this._longLinkProxy = longLinkProxy;
   }
 

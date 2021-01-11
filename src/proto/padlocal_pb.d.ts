@@ -1715,6 +1715,382 @@ export namespace WeChatSocketResponseReply {
     }
 }
 
+export class FileUploadDataMeta extends jspb.Message { 
+    getSize(): number;
+    setSize(value: number): FileUploadDataMeta;
+
+    getMd5(): string;
+    setMd5(value: string): FileUploadDataMeta;
+
+    getChecksum(): number;
+    setChecksum(value: number): FileUploadDataMeta;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadDataMeta.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadDataMeta): FileUploadDataMeta.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadDataMeta, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadDataMeta;
+    static deserializeBinaryFromReader(message: FileUploadDataMeta, reader: jspb.BinaryReader): FileUploadDataMeta;
+}
+
+export namespace FileUploadDataMeta {
+    export type AsObject = {
+        size: number,
+        md5: string,
+        checksum: number,
+    }
+}
+
+export class FileUploadEncryptedDataMeta extends jspb.Message { 
+    getSize(): number;
+    setSize(value: number): FileUploadEncryptedDataMeta;
+
+    getMd5(): string;
+    setMd5(value: string): FileUploadEncryptedDataMeta;
+
+    getChecksum(): number;
+    setChecksum(value: number): FileUploadEncryptedDataMeta;
+
+    getAeskey(): Uint8Array | string;
+    getAeskey_asU8(): Uint8Array;
+    getAeskey_asB64(): string;
+    setAeskey(value: Uint8Array | string): FileUploadEncryptedDataMeta;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadEncryptedDataMeta.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadEncryptedDataMeta): FileUploadEncryptedDataMeta.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadEncryptedDataMeta, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadEncryptedDataMeta;
+    static deserializeBinaryFromReader(message: FileUploadEncryptedDataMeta, reader: jspb.BinaryReader): FileUploadEncryptedDataMeta;
+}
+
+export namespace FileUploadEncryptedDataMeta {
+    export type AsObject = {
+        size: number,
+        md5: string,
+        checksum: number,
+        aeskey: Uint8Array | string,
+    }
+}
+
+export class FileUploadImageMeta extends jspb.Message { 
+
+    hasPlaindatameta(): boolean;
+    clearPlaindatameta(): void;
+    getPlaindatameta(): FileUploadDataMeta | undefined;
+    setPlaindatameta(value?: FileUploadDataMeta): FileUploadImageMeta;
+
+
+    hasEncrypteddatameta(): boolean;
+    clearEncrypteddatameta(): void;
+    getEncrypteddatameta(): FileUploadEncryptedDataMeta | undefined;
+    setEncrypteddatameta(value?: FileUploadEncryptedDataMeta): FileUploadImageMeta;
+
+    getWidth(): number;
+    setWidth(value: number): FileUploadImageMeta;
+
+    getHeight(): number;
+    setHeight(value: number): FileUploadImageMeta;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadImageMeta.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadImageMeta): FileUploadImageMeta.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadImageMeta, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadImageMeta;
+    static deserializeBinaryFromReader(message: FileUploadImageMeta, reader: jspb.BinaryReader): FileUploadImageMeta;
+}
+
+export namespace FileUploadImageMeta {
+    export type AsObject = {
+        plaindatameta?: FileUploadDataMeta.AsObject,
+        encrypteddatameta?: FileUploadEncryptedDataMeta.AsObject,
+        width: number,
+        height: number,
+    }
+}
+
+export class FileUploadVideoMeta extends jspb.Message { 
+
+    hasPlaindatameta(): boolean;
+    clearPlaindatameta(): void;
+    getPlaindatameta(): FileUploadDataMeta | undefined;
+    setPlaindatameta(value?: FileUploadDataMeta): FileUploadVideoMeta;
+
+
+    hasEncrypteddatameta(): boolean;
+    clearEncrypteddatameta(): void;
+    getEncrypteddatameta(): FileUploadEncryptedDataMeta | undefined;
+    setEncrypteddatameta(value?: FileUploadEncryptedDataMeta): FileUploadVideoMeta;
+
+    getDuration(): number;
+    setDuration(value: number): FileUploadVideoMeta;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadVideoMeta.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadVideoMeta): FileUploadVideoMeta.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadVideoMeta, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadVideoMeta;
+    static deserializeBinaryFromReader(message: FileUploadVideoMeta, reader: jspb.BinaryReader): FileUploadVideoMeta;
+}
+
+export namespace FileUploadVideoMeta {
+    export type AsObject = {
+        plaindatameta?: FileUploadDataMeta.AsObject,
+        encrypteddatameta?: FileUploadEncryptedDataMeta.AsObject,
+        duration: number,
+    }
+}
+
+export class FileUploadImageParams extends jspb.Message { 
+
+    hasImagemeta(): boolean;
+    clearImagemeta(): void;
+    getImagemeta(): FileUploadImageMeta | undefined;
+    setImagemeta(value?: FileUploadImageMeta): FileUploadImageParams;
+
+
+    hasThumbimagemeta(): boolean;
+    clearThumbimagemeta(): void;
+    getThumbimagemeta(): FileUploadImageMeta | undefined;
+    setThumbimagemeta(value?: FileUploadImageMeta): FileUploadImageParams;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadImageParams.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadImageParams): FileUploadImageParams.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadImageParams, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadImageParams;
+    static deserializeBinaryFromReader(message: FileUploadImageParams, reader: jspb.BinaryReader): FileUploadImageParams;
+}
+
+export namespace FileUploadImageParams {
+    export type AsObject = {
+        imagemeta?: FileUploadImageMeta.AsObject,
+        thumbimagemeta?: FileUploadImageMeta.AsObject,
+    }
+}
+
+export class FileUploadVideoParams extends jspb.Message { 
+
+    hasVideometa(): boolean;
+    clearVideometa(): void;
+    getVideometa(): FileUploadVideoMeta | undefined;
+    setVideometa(value?: FileUploadVideoMeta): FileUploadVideoParams;
+
+
+    hasThumbimagemeta(): boolean;
+    clearThumbimagemeta(): void;
+    getThumbimagemeta(): FileUploadImageMeta | undefined;
+    setThumbimagemeta(value?: FileUploadImageMeta): FileUploadVideoParams;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadVideoParams.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadVideoParams): FileUploadVideoParams.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadVideoParams, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadVideoParams;
+    static deserializeBinaryFromReader(message: FileUploadVideoParams, reader: jspb.BinaryReader): FileUploadVideoParams;
+}
+
+export namespace FileUploadVideoParams {
+    export type AsObject = {
+        videometa?: FileUploadVideoMeta.AsObject,
+        thumbimagemeta?: FileUploadImageMeta.AsObject,
+    }
+}
+
+export class FileUploadFileParams extends jspb.Message { 
+
+    hasPlaindatameta(): boolean;
+    clearPlaindatameta(): void;
+    getPlaindatameta(): FileUploadDataMeta | undefined;
+    setPlaindatameta(value?: FileUploadDataMeta): FileUploadFileParams;
+
+
+    hasEncrypteddatameta(): boolean;
+    clearEncrypteddatameta(): void;
+    getEncrypteddatameta(): FileUploadEncryptedDataMeta | undefined;
+    setEncrypteddatameta(value?: FileUploadEncryptedDataMeta): FileUploadFileParams;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadFileParams.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadFileParams): FileUploadFileParams.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadFileParams, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadFileParams;
+    static deserializeBinaryFromReader(message: FileUploadFileParams, reader: jspb.BinaryReader): FileUploadFileParams;
+}
+
+export namespace FileUploadFileParams {
+    export type AsObject = {
+        plaindatameta?: FileUploadDataMeta.AsObject,
+        encrypteddatameta?: FileUploadEncryptedDataMeta.AsObject,
+    }
+}
+
+export class FileUploadPayloadFragment extends jspb.Message { 
+
+    hasBinary(): boolean;
+    clearBinary(): void;
+    getBinary(): Uint8Array | string;
+    getBinary_asU8(): Uint8Array;
+    getBinary_asB64(): string;
+    setBinary(value: Uint8Array | string): FileUploadPayloadFragment;
+
+
+    hasPlaceholderbinarymd5(): boolean;
+    clearPlaceholderbinarymd5(): void;
+    getPlaceholderbinarymd5(): string;
+    setPlaceholderbinarymd5(value: string): FileUploadPayloadFragment;
+
+
+    getPayloadCase(): FileUploadPayloadFragment.PayloadCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadPayloadFragment.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadPayloadFragment): FileUploadPayloadFragment.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadPayloadFragment, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadPayloadFragment;
+    static deserializeBinaryFromReader(message: FileUploadPayloadFragment, reader: jspb.BinaryReader): FileUploadPayloadFragment;
+}
+
+export namespace FileUploadPayloadFragment {
+    export type AsObject = {
+        binary: Uint8Array | string,
+        placeholderbinarymd5: string,
+    }
+
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
+    
+    BINARY = 1,
+
+    PLACEHOLDERBINARYMD5 = 2,
+
+    }
+
+}
+
+export class FileUploadPayload extends jspb.Message { 
+    clearFragmentList(): void;
+    getFragmentList(): Array<FileUploadPayloadFragment>;
+    setFragmentList(value: Array<FileUploadPayloadFragment>): FileUploadPayload;
+    addFragment(value?: FileUploadPayloadFragment, index?: number): FileUploadPayloadFragment;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): FileUploadPayload.AsObject;
+    static toObject(includeInstance: boolean, msg: FileUploadPayload): FileUploadPayload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: FileUploadPayload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileUploadPayload;
+    static deserializeBinaryFromReader(message: FileUploadPayload, reader: jspb.BinaryReader): FileUploadPayload;
+}
+
+export namespace FileUploadPayload {
+    export type AsObject = {
+        fragmentList: Array<FileUploadPayloadFragment.AsObject>,
+    }
+}
+
+export class WeChatFileUploadRequest extends jspb.Message { 
+
+    hasHost(): boolean;
+    clearHost(): void;
+    getHost(): Host | undefined;
+    setHost(value?: Host): WeChatFileUploadRequest;
+
+
+    hasPayload(): boolean;
+    clearPayload(): void;
+    getPayload(): FileUploadPayload | undefined;
+    setPayload(value?: FileUploadPayload): WeChatFileUploadRequest;
+
+    clearRequireresponsefieldList(): void;
+    getRequireresponsefieldList(): Array<string>;
+    setRequireresponsefieldList(value: Array<string>): WeChatFileUploadRequest;
+    addRequireresponsefield(value: string, index?: number): string;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatFileUploadRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatFileUploadRequest): WeChatFileUploadRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatFileUploadRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatFileUploadRequest;
+    static deserializeBinaryFromReader(message: WeChatFileUploadRequest, reader: jspb.BinaryReader): WeChatFileUploadRequest;
+}
+
+export namespace WeChatFileUploadRequest {
+    export type AsObject = {
+        host?: Host.AsObject,
+        payload?: FileUploadPayload.AsObject,
+        requireresponsefieldList: Array<string>,
+    }
+}
+
+export class WeChatFileUploadResponse extends jspb.Message { 
+
+    getResponseMap(): jspb.Map<string, Uint8Array | string>;
+    clearResponseMap(): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatFileUploadResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatFileUploadResponse): WeChatFileUploadResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatFileUploadResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatFileUploadResponse;
+    static deserializeBinaryFromReader(message: WeChatFileUploadResponse, reader: jspb.BinaryReader): WeChatFileUploadResponse;
+}
+
+export namespace WeChatFileUploadResponse {
+    export type AsObject = {
+
+        responseMap: Array<[string, Uint8Array | string]>,
+    }
+}
+
+export class WeChatFileUploadResponseReply extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatFileUploadResponseReply.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatFileUploadResponseReply): WeChatFileUploadResponseReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatFileUploadResponseReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatFileUploadResponseReply;
+    static deserializeBinaryFromReader(message: WeChatFileUploadResponseReply, reader: jspb.BinaryReader): WeChatFileUploadResponseReply;
+}
+
+export namespace WeChatFileUploadResponseReply {
+    export type AsObject = {
+    }
+}
+
 export class WeChatPushSubscribeRequest extends jspb.Message { 
     clearPushtypeList(): void;
     getPushtypeList(): Array<LongLinkMessagePushType>;
@@ -1801,6 +2177,12 @@ export class WeChatStreamRequest extends jspb.Message {
     setPushsubscriberequest(value?: WeChatPushSubscribeRequest): WeChatStreamRequest;
 
 
+    hasFileuploadrequest(): boolean;
+    clearFileuploadrequest(): void;
+    getFileuploadrequest(): WeChatFileUploadRequest | undefined;
+    setFileuploadrequest(value?: WeChatFileUploadRequest): WeChatStreamRequest;
+
+
     getPayloadCase(): WeChatStreamRequest.PayloadCase;
 
     serializeBinary(): Uint8Array;
@@ -1819,6 +2201,7 @@ export namespace WeChatStreamRequest {
         longlinkrequest?: WeChatLongLinkStreamRequest.AsObject,
         socketrequest?: WeChatSocketRequest.AsObject,
         pushsubscriberequest?: WeChatPushSubscribeRequest.AsObject,
+        fileuploadrequest?: WeChatFileUploadRequest.AsObject,
     }
 
     export enum PayloadCase {
@@ -1829,6 +2212,8 @@ export namespace WeChatStreamRequest {
     SOCKETREQUEST = 11,
 
     PUSHSUBSCRIBEREQUEST = 12,
+
+    FILEUPLOADREQUEST = 13,
 
     }
 
@@ -1857,6 +2242,12 @@ export class WeChatStreamResponse extends jspb.Message {
     setPushsubscriberesponse(value?: WeChatPushSubscribeResponse): WeChatStreamResponse;
 
 
+    hasFileuploadresponse(): boolean;
+    clearFileuploadresponse(): void;
+    getFileuploadresponse(): WeChatFileUploadResponse | undefined;
+    setFileuploadresponse(value?: WeChatFileUploadResponse): WeChatStreamResponse;
+
+
     getPayloadCase(): WeChatStreamResponse.PayloadCase;
 
     serializeBinary(): Uint8Array;
@@ -1875,6 +2266,7 @@ export namespace WeChatStreamResponse {
         longlinkresponse?: WeChatLongLinkStreamResponse.AsObject,
         socketresponse?: WeChatSocketResponse.AsObject,
         pushsubscriberesponse?: WeChatPushSubscribeResponse.AsObject,
+        fileuploadresponse?: WeChatFileUploadResponse.AsObject,
     }
 
     export enum PayloadCase {
@@ -1885,6 +2277,8 @@ export namespace WeChatStreamResponse {
     SOCKETRESPONSE = 11,
 
     PUSHSUBSCRIBERESPONSE = 12,
+
+    FILEUPLOADRESPONSE = 13,
 
     }
 
@@ -1913,6 +2307,12 @@ export class WeChatStreamResponseReply extends jspb.Message {
     setPushsubscriberesponsereply(value?: WeChatPushSubscribeResponseReply): WeChatStreamResponseReply;
 
 
+    hasFileuploadresponsereply(): boolean;
+    clearFileuploadresponsereply(): void;
+    getFileuploadresponsereply(): WeChatFileUploadResponseReply | undefined;
+    setFileuploadresponsereply(value?: WeChatFileUploadResponseReply): WeChatStreamResponseReply;
+
+
     getPayloadCase(): WeChatStreamResponseReply.PayloadCase;
 
     serializeBinary(): Uint8Array;
@@ -1931,6 +2331,7 @@ export namespace WeChatStreamResponseReply {
         longlinkresponsereply?: WeChatLongLinkStreamResponseReply.AsObject,
         socketresponsereply?: WeChatSocketResponseReply.AsObject,
         pushsubscriberesponsereply?: WeChatPushSubscribeResponseReply.AsObject,
+        fileuploadresponsereply?: WeChatFileUploadResponseReply.AsObject,
     }
 
     export enum PayloadCase {
@@ -1941,6 +2342,8 @@ export namespace WeChatStreamResponseReply {
     SOCKETRESPONSEREPLY = 11,
 
     PUSHSUBSCRIBERESPONSEREPLY = 12,
+
+    FILEUPLOADRESPONSEREPLY = 13,
 
     }
 
@@ -2472,11 +2875,22 @@ export class SendImageMessageRequest extends jspb.Message {
     getTousername(): string;
     setTousername(value: string): SendImageMessageRequest;
 
+
+    hasImage(): boolean;
+    clearImage(): void;
     getImage(): Uint8Array | string;
     getImage_asU8(): Uint8Array;
     getImage_asB64(): string;
     setImage(value: Uint8Array | string): SendImageMessageRequest;
 
+
+    hasImageparams(): boolean;
+    clearImageparams(): void;
+    getImageparams(): FileUploadImageParams | undefined;
+    setImageparams(value?: FileUploadImageParams): SendImageMessageRequest;
+
+
+    getPayloadCase(): SendImageMessageRequest.PayloadCase;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendImageMessageRequest.AsObject;
@@ -2492,7 +2906,18 @@ export namespace SendImageMessageRequest {
     export type AsObject = {
         tousername: string,
         image: Uint8Array | string,
+        imageparams?: FileUploadImageParams.AsObject,
     }
+
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
+    
+    IMAGE = 2,
+
+    IMAGEPARAMS = 3,
+
+    }
+
 }
 
 export class SendImageMessageResponse extends jspb.Message { 
@@ -5209,10 +5634,10 @@ export namespace GetMessageImageRequest {
 
 export class GetMessageImageResponse extends jspb.Message { 
 
-    hasFilerequest(): boolean;
-    clearFilerequest(): void;
-    getFilerequest(): FileRequest | undefined;
-    setFilerequest(value?: FileRequest): GetMessageImageResponse;
+    hasFiledownloadrequest(): boolean;
+    clearFiledownloadrequest(): void;
+    getFiledownloadrequest(): FileDownloadRequest | undefined;
+    setFiledownloadrequest(value?: FileDownloadRequest): GetMessageImageResponse;
 
     getImagetype(): ImageType;
     setImagetype(value: ImageType): GetMessageImageResponse;
@@ -5230,40 +5655,40 @@ export class GetMessageImageResponse extends jspb.Message {
 
 export namespace GetMessageImageResponse {
     export type AsObject = {
-        filerequest?: FileRequest.AsObject,
+        filedownloadrequest?: FileDownloadRequest.AsObject,
         imagetype: ImageType,
     }
 }
 
-export class FileRequest extends jspb.Message { 
+export class FileDownloadRequest extends jspb.Message { 
 
     hasHost(): boolean;
     clearHost(): void;
     getHost(): Host | undefined;
-    setHost(value?: Host): FileRequest;
+    setHost(value?: Host): FileDownloadRequest;
 
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
-    setPayload(value: Uint8Array | string): FileRequest;
+    setPayload(value: Uint8Array | string): FileDownloadRequest;
 
     getUnpackaeskey(): Uint8Array | string;
     getUnpackaeskey_asU8(): Uint8Array;
     getUnpackaeskey_asB64(): string;
-    setUnpackaeskey(value: Uint8Array | string): FileRequest;
+    setUnpackaeskey(value: Uint8Array | string): FileDownloadRequest;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): FileRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: FileRequest): FileRequest.AsObject;
+    toObject(includeInstance?: boolean): FileDownloadRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: FileDownloadRequest): FileDownloadRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: FileRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): FileRequest;
-    static deserializeBinaryFromReader(message: FileRequest, reader: jspb.BinaryReader): FileRequest;
+    static serializeBinaryToWriter(message: FileDownloadRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): FileDownloadRequest;
+    static deserializeBinaryFromReader(message: FileDownloadRequest, reader: jspb.BinaryReader): FileDownloadRequest;
 }
 
-export namespace FileRequest {
+export namespace FileDownloadRequest {
     export type AsObject = {
         host?: Host.AsObject,
         payload: Uint8Array | string,
@@ -5384,10 +5809,10 @@ export namespace GetMessageVideoThumbRequest {
 
 export class GetMessageVideoThumbResponse extends jspb.Message { 
 
-    hasFilerequest(): boolean;
-    clearFilerequest(): void;
-    getFilerequest(): FileRequest | undefined;
-    setFilerequest(value?: FileRequest): GetMessageVideoThumbResponse;
+    hasFiledownloadrequest(): boolean;
+    clearFiledownloadrequest(): void;
+    getFiledownloadrequest(): FileDownloadRequest | undefined;
+    setFiledownloadrequest(value?: FileDownloadRequest): GetMessageVideoThumbResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -5402,7 +5827,7 @@ export class GetMessageVideoThumbResponse extends jspb.Message {
 
 export namespace GetMessageVideoThumbResponse {
     export type AsObject = {
-        filerequest?: FileRequest.AsObject,
+        filedownloadrequest?: FileDownloadRequest.AsObject,
     }
 }
 
@@ -5433,10 +5858,10 @@ export namespace GetMessageVideoRequest {
 
 export class GetMessageVideoResponse extends jspb.Message { 
 
-    hasFilerequest(): boolean;
-    clearFilerequest(): void;
-    getFilerequest(): FileRequest | undefined;
-    setFilerequest(value?: FileRequest): GetMessageVideoResponse;
+    hasFiledownloadrequest(): boolean;
+    clearFiledownloadrequest(): void;
+    getFiledownloadrequest(): FileDownloadRequest | undefined;
+    setFiledownloadrequest(value?: FileDownloadRequest): GetMessageVideoResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -5451,7 +5876,7 @@ export class GetMessageVideoResponse extends jspb.Message {
 
 export namespace GetMessageVideoResponse {
     export type AsObject = {
-        filerequest?: FileRequest.AsObject,
+        filedownloadrequest?: FileDownloadRequest.AsObject,
     }
 }
 
@@ -5482,10 +5907,10 @@ export namespace GetMessageAttachRequest {
 
 export class GetMessageAttachResponse extends jspb.Message { 
 
-    hasFilerequest(): boolean;
-    clearFilerequest(): void;
-    getFilerequest(): FileRequest | undefined;
-    setFilerequest(value?: FileRequest): GetMessageAttachResponse;
+    hasFiledownloadrequest(): boolean;
+    clearFiledownloadrequest(): void;
+    getFiledownloadrequest(): FileDownloadRequest | undefined;
+    setFiledownloadrequest(value?: FileDownloadRequest): GetMessageAttachResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -5500,7 +5925,7 @@ export class GetMessageAttachResponse extends jspb.Message {
 
 export namespace GetMessageAttachResponse {
     export type AsObject = {
-        filerequest?: FileRequest.AsObject,
+        filedownloadrequest?: FileDownloadRequest.AsObject,
     }
 }
 
@@ -5531,10 +5956,10 @@ export namespace GetMessageAttachThumbRequest {
 
 export class GetMessageAttachThumbResponse extends jspb.Message { 
 
-    hasFilerequest(): boolean;
-    clearFilerequest(): void;
-    getFilerequest(): FileRequest | undefined;
-    setFilerequest(value?: FileRequest): GetMessageAttachThumbResponse;
+    hasFiledownloadrequest(): boolean;
+    clearFiledownloadrequest(): void;
+    getFiledownloadrequest(): FileDownloadRequest | undefined;
+    setFiledownloadrequest(value?: FileDownloadRequest): GetMessageAttachThumbResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -5549,7 +5974,7 @@ export class GetMessageAttachThumbResponse extends jspb.Message {
 
 export namespace GetMessageAttachThumbResponse {
     export type AsObject = {
-        filerequest?: FileRequest.AsObject,
+        filedownloadrequest?: FileDownloadRequest.AsObject,
     }
 }
 
@@ -5931,10 +6356,10 @@ export namespace GetMessageMiniProgramThumbRequest {
 
 export class GetMessageMiniProgramThumbResponse extends jspb.Message { 
 
-    hasFilerequest(): boolean;
-    clearFilerequest(): void;
-    getFilerequest(): FileRequest | undefined;
-    setFilerequest(value?: FileRequest): GetMessageMiniProgramThumbResponse;
+    hasFiledownloadrequest(): boolean;
+    clearFiledownloadrequest(): void;
+    getFiledownloadrequest(): FileDownloadRequest | undefined;
+    setFiledownloadrequest(value?: FileDownloadRequest): GetMessageMiniProgramThumbResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -5949,7 +6374,7 @@ export class GetMessageMiniProgramThumbResponse extends jspb.Message {
 
 export namespace GetMessageMiniProgramThumbResponse {
     export type AsObject = {
-        filerequest?: FileRequest.AsObject,
+        filedownloadrequest?: FileDownloadRequest.AsObject,
     }
 }
 
@@ -5990,10 +6415,10 @@ export namespace GetEncryptedFileRequest {
 
 export class GetEncryptedFileResponse extends jspb.Message { 
 
-    hasFilerequest(): boolean;
-    clearFilerequest(): void;
-    getFilerequest(): FileRequest | undefined;
-    setFilerequest(value?: FileRequest): GetEncryptedFileResponse;
+    hasFiledownloadrequest(): boolean;
+    clearFiledownloadrequest(): void;
+    getFiledownloadrequest(): FileDownloadRequest | undefined;
+    setFiledownloadrequest(value?: FileDownloadRequest): GetEncryptedFileResponse;
 
 
     serializeBinary(): Uint8Array;
@@ -6008,7 +6433,7 @@ export class GetEncryptedFileResponse extends jspb.Message {
 
 export namespace GetEncryptedFileResponse {
     export type AsObject = {
-        filerequest?: FileRequest.AsObject,
+        filedownloadrequest?: FileDownloadRequest.AsObject,
     }
 }
 
