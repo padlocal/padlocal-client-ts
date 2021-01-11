@@ -138,18 +138,20 @@ export async function prepareImageUpload(
   aesKey: Bytes;
   dataBag: { [key: string]: Bytes };
 }> {
-  const imageMeta = await generateUploadImageMeta(imageData);
-  const aesKey = Buffer.from(imageMeta.imageMeta.getEncrypteddatameta()?.getAeskey()!);
+  const uploadImageMeta = await generateUploadImageMeta(imageData);
+  const aesKey = Buffer.from(uploadImageMeta.imageMeta.getEncrypteddatameta()?.getAeskey()!);
 
   const thumbImageData = await createImageThumb(imageData, 120);
-  const thumbImageMeta = await generateUploadImageMeta(thumbImageData, aesKey);
+  const uploadThumbImageMeta = await generateUploadImageMeta(thumbImageData, aesKey);
 
   return {
-    params: new FileUploadImageParams().setImagemeta(imageMeta.imageMeta).setThumbimagemeta(thumbImageMeta.imageMeta),
-    aesKey: Buffer.from(imageMeta.imageMeta.getEncrypteddatameta()?.getAeskey()!),
+    params: new FileUploadImageParams()
+      .setImagemeta(uploadImageMeta.imageMeta)
+      .setThumbimagemeta(uploadThumbImageMeta.imageMeta),
+    aesKey,
     dataBag: {
-      [imageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: imageMeta.encryptedImageData,
-      [thumbImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: thumbImageMeta.encryptedImageData,
+      [uploadImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadImageMeta.encryptedImageData,
+      [uploadThumbImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadThumbImageMeta.encryptedImageData,
     },
   };
 }
