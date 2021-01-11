@@ -130,6 +130,7 @@ goog.exportSymbol('proto.padlocal.SendContactCardMessageResponse', null, global)
 goog.exportSymbol('proto.padlocal.SendEmojiMessageRequest', null, global);
 goog.exportSymbol('proto.padlocal.SendEmojiMessageResponse', null, global);
 goog.exportSymbol('proto.padlocal.SendFileMessageRequest', null, global);
+goog.exportSymbol('proto.padlocal.SendFileMessageRequest.PayloadCase', null, global);
 goog.exportSymbol('proto.padlocal.SendFileMessageResponse', null, global);
 goog.exportSymbol('proto.padlocal.SendImageMessageRequest', null, global);
 goog.exportSymbol('proto.padlocal.SendImageMessageRequest.PayloadCase', null, global);
@@ -4083,7 +4084,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.padlocal.SendFileMessageRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.SendFileMessageRequest.oneofGroups_);
 };
 goog.inherits(proto.padlocal.SendFileMessageRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -43611,6 +43612,32 @@ proto.padlocal.SendVideoMessageResponse.prototype.hasMessagerevokeinfo = functio
 
 
 
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.padlocal.SendFileMessageRequest.oneofGroups_ = [[3,4]];
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.SendFileMessageRequest.PayloadCase = {
+  PAYLOAD_NOT_SET: 0,
+  FILE: 3,
+  FILEPARAMS: 4
+};
+
+/**
+ * @return {proto.padlocal.SendFileMessageRequest.PayloadCase}
+ */
+proto.padlocal.SendFileMessageRequest.prototype.getPayloadCase = function() {
+  return /** @type {proto.padlocal.SendFileMessageRequest.PayloadCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.SendFileMessageRequest.oneofGroups_[0]));
+};
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -43643,8 +43670,9 @@ proto.padlocal.SendFileMessageRequest.prototype.toObject = function(opt_includeI
 proto.padlocal.SendFileMessageRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     tousername: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    filename: jspb.Message.getFieldWithDefault(msg, 2, ""),
     file: msg.getFile_asB64(),
-    filename: jspb.Message.getFieldWithDefault(msg, 3, "")
+    fileparams: (f = msg.getFileparams()) && proto.padlocal.FileUploadFileParams.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -43686,12 +43714,17 @@ proto.padlocal.SendFileMessageRequest.deserializeBinaryFromReader = function(msg
       msg.setTousername(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFilename(value);
+      break;
+    case 3:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setFile(value);
       break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFilename(value);
+    case 4:
+      var value = new proto.padlocal.FileUploadFileParams;
+      reader.readMessage(value,proto.padlocal.FileUploadFileParams.deserializeBinaryFromReader);
+      msg.setFileparams(value);
       break;
     default:
       reader.skipField();
@@ -43729,18 +43762,26 @@ proto.padlocal.SendFileMessageRequest.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getFile_asU8();
+  f = message.getFilename();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       2,
       f
     );
   }
-  f = message.getFilename();
-  if (f.length > 0) {
-    writer.writeString(
+  f = /** @type {!(string|Uint8Array)} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeBytes(
       3,
       f
+    );
+  }
+  f = message.getFileparams();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.padlocal.FileUploadFileParams.serializeBinaryToWriter
     );
   }
 };
@@ -43765,16 +43806,34 @@ proto.padlocal.SendFileMessageRequest.prototype.setTousername = function(value) 
 
 
 /**
- * optional bytes file = 2;
- * @return {!(string|Uint8Array)}
+ * optional string fileName = 2;
+ * @return {string}
  */
-proto.padlocal.SendFileMessageRequest.prototype.getFile = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.padlocal.SendFileMessageRequest.prototype.getFilename = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * optional bytes file = 2;
+ * @param {string} value
+ * @return {!proto.padlocal.SendFileMessageRequest} returns this
+ */
+proto.padlocal.SendFileMessageRequest.prototype.setFilename = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bytes file = 3;
+ * @return {!(string|Uint8Array)}
+ */
+proto.padlocal.SendFileMessageRequest.prototype.getFile = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * optional bytes file = 3;
  * This is a type-conversion wrapper around `getFile()`
  * @return {string}
  */
@@ -43785,7 +43844,7 @@ proto.padlocal.SendFileMessageRequest.prototype.getFile_asB64 = function() {
 
 
 /**
- * optional bytes file = 2;
+ * optional bytes file = 3;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getFile()`
@@ -43802,25 +43861,62 @@ proto.padlocal.SendFileMessageRequest.prototype.getFile_asU8 = function() {
  * @return {!proto.padlocal.SendFileMessageRequest} returns this
  */
 proto.padlocal.SendFileMessageRequest.prototype.setFile = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+  return jspb.Message.setOneofField(this, 3, proto.padlocal.SendFileMessageRequest.oneofGroups_[0], value);
 };
 
 
 /**
- * optional string fileName = 3;
- * @return {string}
- */
-proto.padlocal.SendFileMessageRequest.prototype.getFilename = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
+ * Clears the field making it undefined.
  * @return {!proto.padlocal.SendFileMessageRequest} returns this
  */
-proto.padlocal.SendFileMessageRequest.prototype.setFilename = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.padlocal.SendFileMessageRequest.prototype.clearFile = function() {
+  return jspb.Message.setOneofField(this, 3, proto.padlocal.SendFileMessageRequest.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.SendFileMessageRequest.prototype.hasFile = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional FileUploadFileParams fileParams = 4;
+ * @return {?proto.padlocal.FileUploadFileParams}
+ */
+proto.padlocal.SendFileMessageRequest.prototype.getFileparams = function() {
+  return /** @type{?proto.padlocal.FileUploadFileParams} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.FileUploadFileParams, 4));
+};
+
+
+/**
+ * @param {?proto.padlocal.FileUploadFileParams|undefined} value
+ * @return {!proto.padlocal.SendFileMessageRequest} returns this
+*/
+proto.padlocal.SendFileMessageRequest.prototype.setFileparams = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.padlocal.SendFileMessageRequest.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.SendFileMessageRequest} returns this
+ */
+proto.padlocal.SendFileMessageRequest.prototype.clearFileparams = function() {
+  return this.setFileparams(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.SendFileMessageRequest.prototype.hasFileparams = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

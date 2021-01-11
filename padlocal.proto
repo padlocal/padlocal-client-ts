@@ -1149,8 +1149,11 @@ message SendVideoMessageResponse {
 
 message SendFileMessageRequest {
   string toUserName = 1;
-  bytes file = 2;
-  string fileName = 3;
+  string fileName = 2;
+  oneof payload {
+    bytes file = 3;
+    FileUploadFileParams fileParams = 4;
+  }
 }
 
 message SendFileMessageResponse {

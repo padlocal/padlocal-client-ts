@@ -1,6 +1,6 @@
 import * as pb from "./proto/padlocal_pb";
 import { Bytes } from "./utils/ByteUtils";
-import { downloadFile, prepareImageUpload, prepareVideoUpload } from "./utils/FileUtils";
+import { downloadFile, prepareFileUpload, prepareImageUpload, prepareVideoUpload } from "./utils/FileUtils";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { PadLocalClient } from "./PadLocalClient";
 
@@ -96,11 +96,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async _sendImageMessage(
-    idempotentId: string,
-    toUserName: string,
-    image: Bytes
-  ): Promise<pb.SendImageMessageResponse> {
+  async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<pb.SendImageMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
     checkRequiredField(image.length, "image");
@@ -116,7 +112,11 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<pb.SendImageMessageResponse> {
+  async _sendImageMessage(
+    idempotentId: string,
+    toUserName: string,
+    image: Bytes
+  ): Promise<pb.SendImageMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
     checkRequiredField(image.length, "image");
@@ -201,7 +201,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     );
   }
 
-  async sendFileMessage(
+  async _sendFileMessage(
     idempotentId: string,
     toUserName: string,
     file: Bytes,
@@ -217,6 +217,35 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       {
         idempotentId,
       }
+    );
+  }
+
+  async sendFileMessage(
+    idempotentId: string,
+    toUserName: string,
+    file: Bytes,
+    fileName: string
+  ): Promise<pb.SendFileMessageResponse> {
+    checkRequiredField(idempotentId, "idempotentId");
+    checkRequiredField(toUserName, "toUserName");
+    checkRequiredField(file.length, "file");
+    checkRequiredField(fileName, "fileName");
+
+    const fileUpload = await prepareFileUpload(file);
+
+    const request = this.client.createRequest({
+      idempotentId,
+    });
+
+    request.extraData = {
+      fileUploadStreamHandlerParams: {
+        aesKey: fileUpload.aesKey,
+        dataBag: fileUpload.dataBag,
+      },
+    };
+
+    return await request.request(
+      new pb.SendFileMessageRequest().setTousername(toUserName).setFileparams(fileUpload.params).setFilename(fileName)
     );
   }
 

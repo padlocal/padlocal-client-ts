@@ -6296,14 +6296,25 @@ export class SendFileMessageRequest extends jspb.Message {
     getTousername(): string;
     setTousername(value: string): SendFileMessageRequest;
 
+    getFilename(): string;
+    setFilename(value: string): SendFileMessageRequest;
+
+
+    hasFile(): boolean;
+    clearFile(): void;
     getFile(): Uint8Array | string;
     getFile_asU8(): Uint8Array;
     getFile_asB64(): string;
     setFile(value: Uint8Array | string): SendFileMessageRequest;
 
-    getFilename(): string;
-    setFilename(value: string): SendFileMessageRequest;
 
+    hasFileparams(): boolean;
+    clearFileparams(): void;
+    getFileparams(): FileUploadFileParams | undefined;
+    setFileparams(value?: FileUploadFileParams): SendFileMessageRequest;
+
+
+    getPayloadCase(): SendFileMessageRequest.PayloadCase;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendFileMessageRequest.AsObject;
@@ -6318,9 +6329,20 @@ export class SendFileMessageRequest extends jspb.Message {
 export namespace SendFileMessageRequest {
     export type AsObject = {
         tousername: string,
-        file: Uint8Array | string,
         filename: string,
+        file: Uint8Array | string,
+        fileparams?: FileUploadFileParams.AsObject,
     }
+
+    export enum PayloadCase {
+        PAYLOAD_NOT_SET = 0,
+    
+    FILE = 3,
+
+    FILEPARAMS = 4,
+
+    }
+
 }
 
 export class SendFileMessageResponse extends jspb.Message { 

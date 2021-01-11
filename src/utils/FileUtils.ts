@@ -3,6 +3,7 @@ import {
   FileDownloadRequest,
   FileUploadDataMeta,
   FileUploadEncryptedDataMeta,
+  FileUploadFileParams,
   FileUploadImageMeta,
   FileUploadImageParams,
   FileUploadVideoMeta,
@@ -154,6 +155,23 @@ async function generateUploadVideoMeta(
   };
 }
 
+function generateUploadFileMeta(
+  fileData: Bytes
+): {
+  plainDataMeta: FileUploadDataMeta;
+  encryptedDataMeta: FileUploadEncryptedDataMeta;
+  encryptedData: Bytes;
+} {
+  const fileEncryptedRet = encryptUploadData(fileData);
+  fileEncryptedRet.encryptedDataMeta;
+
+  return {
+    plainDataMeta: fileEncryptedRet.plainDataMeta,
+    encryptedDataMeta: fileEncryptedRet.encryptedDataMeta,
+    encryptedData: fileEncryptedRet.encryptedData,
+  };
+}
+
 export async function prepareImageUpload(
   imageData: Bytes
 ): Promise<{
@@ -200,6 +218,27 @@ export async function prepareVideoUpload(
     dataBag: {
       [uploadVideoMeta.videoMeta.getEncrypteddatameta()?.getMd5()!]: uploadVideoMeta.encryptedVideoData,
       [uploadThumbImageData.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadThumbImageData.encryptedImageData,
+    },
+  };
+}
+
+export function prepareFileUpload(
+  fileData: Bytes
+): {
+  params: FileUploadFileParams;
+  aesKey: Bytes;
+  dataBag: { [key: string]: Bytes };
+} {
+  const uploadFileMeta = generateUploadFileMeta(fileData);
+  const aesKey = Buffer.from(uploadFileMeta.encryptedDataMeta.getAeskey()!);
+
+  return {
+    params: new FileUploadFileParams()
+      .setPlaindatameta(uploadFileMeta.plainDataMeta)
+      .setEncrypteddatameta(uploadFileMeta.encryptedDataMeta),
+    aesKey,
+    dataBag: {
+      [uploadFileMeta.encryptedDataMeta.getMd5()!]: uploadFileMeta.encryptedData,
     },
   };
 }
