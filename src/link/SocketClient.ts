@@ -163,7 +163,7 @@ export class SocketClient {
             await this._callback?.onError?.(error);
           });
 
-          log.verbose(this.LOGPRE, `socket on error: ${error}`);
+          log.verbose(this.LOGPRE, `socket on error: ${error}, retryOnError:${retryOnError}`);
 
           this._retryOnError = retryOnError;
 

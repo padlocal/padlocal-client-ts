@@ -1,6 +1,6 @@
 export type Bytes = Buffer;
 
-export const MAX_LOG_BYTES_LEN = 4096;
+export const MAX_LOG_BYTES_LEN = 2048;
 
 export function bytesToHexString(bytes: Bytes, maxLen?: number): string {
   let truncatedLen = 0;

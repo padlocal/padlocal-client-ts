@@ -96,7 +96,11 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<pb.SendImageMessageResponse> {
+  async _sendImageMessage(
+    idempotentId: string,
+    toUserName: string,
+    image: Bytes
+  ): Promise<pb.SendImageMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
     checkRequiredField(image.length, "image");
@@ -112,11 +116,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async _sendImageMessage(
-    idempotentId: string,
-    toUserName: string,
-    image: Bytes
-  ): Promise<pb.SendImageMessageResponse> {
+  async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<pb.SendImageMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
     checkRequiredField(image.length, "image");
