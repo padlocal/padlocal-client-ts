@@ -25,6 +25,7 @@ import { GrpcClient, GrpcOptions, IOError } from "./GrpcClient";
 import { log } from "brolog";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { FileUploadStreamHandler, FileUploadStreamHandlerParams } from "./link/FileUploadStreamHandler";
+import { MAX_LOG_BYTES_LEN } from "./utils/ByteUtils";
 
 export type OnMessageCallback = (actionMessage: ActionMessage) => void;
 export type OnSystemEventCallback = (systemEventRequest: SystemEventRequest) => void;
@@ -183,7 +184,7 @@ export class Request extends PadLocalClientPlugin {
         this.traceId
       }] send event to server, seq:${seq}, ack:${ack}, type: ${actionMessage.getPayloadCase()}, payload: ${stringifyPB(
         payload,
-        4096
+        MAX_LOG_BYTES_LEN
       )}`
     );
 
@@ -202,7 +203,7 @@ export class Request extends PadLocalClientPlugin {
         this.traceId
       }] receive event from server, seq:${seq} ack:${ack}, type:${serverMessage.getPayloadCase()}, payload:${stringifyPB(
         payload,
-        4096
+        MAX_LOG_BYTES_LEN
       )}`
     );
 

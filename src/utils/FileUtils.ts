@@ -1,4 +1,4 @@
-import { Bytes, bytesToHexString, fromBytes } from "./ByteUtils";
+import { Bytes, bytesToHexString, fromBytes, MAX_LOG_BYTES_LEN } from "./ByteUtils";
 import {
   FileDownloadRequest,
   FileUploadDataMeta,
@@ -30,7 +30,7 @@ export async function downloadFile(fileDownloadRequest: FileDownloadRequest, tra
       .getHost()!
       .getHost()}:${fileDownloadRequest.getHost()!.getPort()}\" payload: ${bytesToHexString(
       fromBytes(fileDownloadRequest.getPayload()),
-      4096
+      MAX_LOG_BYTES_LEN
     )}`
   );
 

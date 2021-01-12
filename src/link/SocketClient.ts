@@ -1,6 +1,6 @@
 import { Socket } from "net";
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
-import { Bytes, bytesToHexString, subBytes } from "../utils/ByteUtils";
+import { Bytes, bytesToHexString, MAX_LOG_BYTES_LEN, subBytes } from "../utils/ByteUtils";
 import VError from "verror";
 import { SerialExecutor } from "../utils/SerialExecutor";
 import { log } from "brolog";
@@ -83,7 +83,7 @@ export class SocketClient {
       if (!this._retryOnError || !this.retryStrategy.canRetry()) {
         const des = `[tid:${this.traceId}] Fail to send socket to:\"${this.host}:${
           this.port
-        }\", data:${bytesToHexString(data, 4096)}, after max retry:${this.retryStrategy.retryCount}`;
+        }\", data:${bytesToHexString(data, MAX_LOG_BYTES_LEN)}, after max retry:${this.retryStrategy.retryCount}`;
         throw new IOError(error, des);
       }
 
@@ -93,7 +93,7 @@ export class SocketClient {
         this.LOGPRE,
         `[tid:${this.traceId}] socket #${this.retryStrategy.retryCount} retry send, after delay: ${delay}ms, addr:\"${
           this.host
-        }:${this.port}\" data:${bytesToHexString(data, 4096)}`
+        }:${this.port}\" data:${bytesToHexString(data, MAX_LOG_BYTES_LEN)}`
       );
 
       return new Promise(async (resolve, reject) => {
@@ -139,7 +139,7 @@ export class SocketClient {
 
       const block = dataQueue.getNextDataBlock();
 
-      log.verbose(this.LOGPRE, `socket send:${bytesToHexString(block, 4096)}`);
+      log.verbose(this.LOGPRE, `socket send:${bytesToHexString(block, MAX_LOG_BYTES_LEN)}`);
 
       socket.write(block, (err) => {
         if (err) {
@@ -209,7 +209,7 @@ export class SocketClient {
       );
 
       socket.on("data", (data) => {
-        log.verbose(this.LOGPRE, `socket recv:${bytesToHexString(data, 4096)}`);
+        log.verbose(this.LOGPRE, `socket recv:${bytesToHexString(data, MAX_LOG_BYTES_LEN)}`);
 
         this._callbackExecutor.execute(async () => {
           try {

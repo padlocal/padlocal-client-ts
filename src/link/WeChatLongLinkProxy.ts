@@ -3,7 +3,7 @@ import { PromiseCallback } from "../utils/PromiseUtils";
 import { PadLocalClient } from "../PadLocalClient";
 import { EventEmitter } from "events";
 import { Socket } from "net";
-import { Bytes, bytesToHexString } from "../utils/ByteUtils";
+import { Bytes, bytesToHexString, MAX_LOG_BYTES_LEN } from "../utils/ByteUtils";
 import {
   LongLinkHeartBeatRequest,
   LongLinkInitRequest,
@@ -136,7 +136,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
       this._streamCallback = streamCallback;
     }
 
-    this.logDebug(`socket send:${bytesToHexString(data, 4096)}`);
+    this.logDebug(`socket send:${bytesToHexString(data, MAX_LOG_BYTES_LEN)}`);
     this._socket!.write(data);
   }
 
@@ -168,7 +168,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
     const buffer: Bytes = Buffer.from(packResponse.getPayload());
 
     return new Promise(async (resolve, reject) => {
-      this.logDebug(`socket send:${bytesToHexString(buffer, 4096)}`);
+      this.logDebug(`socket send:${bytesToHexString(buffer, MAX_LOG_BYTES_LEN)}`);
 
       this._socket!.write(buffer, (error) => {
         if (!error) {
@@ -400,7 +400,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
         );
 
         socket.on("data", (data) => {
-          this.logDebug(`socket recv:${bytesToHexString(data, 4096)}`);
+          this.logDebug(`socket recv:${bytesToHexString(data, MAX_LOG_BYTES_LEN)}`);
 
           // stream mode
           if (this._streamCallback) {
