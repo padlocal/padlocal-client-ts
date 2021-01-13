@@ -17,7 +17,6 @@
                 "voiceLength": 0,
                 "videoFilePath": "",
                 "fileFilePath": "",
-                "miniProgramThumbFilePath": "",
                 "miniProgramMessage": "",
                 "contactCard": "PROTOBUF_HEX",
                 "emoji": {
@@ -31,6 +30,16 @@
                     "description": "",
                     "url": "",
                     "thumbImageUrl": ""
+                },
+                "miniProgram": {
+                    "title": "",
+                    "url": "https://mp.weixin.qq.com/mp/waerrpage?appid=wx123456&amp;type=upgrade&amp;upgradetype=3#wechat_redirect",
+                    "thumbFilePath": "",
+                    "mpAppUserName": "gh_123456",
+                    "mpAppName": "",
+                    "mpAppId": "wx123456",
+                    "mpAppIconUrl": "",
+                    "mpAppPath": "pages/home/index.html?utm_medium=userid_123456"
                 }
             },
             "payload": {

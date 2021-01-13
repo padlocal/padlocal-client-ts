@@ -32,7 +32,6 @@ describe("message", () => {
     const toChatRoom: string = config.get("test.message.send.toChatRoom");
     const atUserList: string[] = config.get("test.message.send.atUserNameList");
     const sendImageFilePath: string = config.get("test.message.send.imageFilePath");
-    const mpThumbFilePath: string = config.get("test.message.send.miniProgramThumbFilePath");
 
     test("send to user", async () => {
       const response: SendTextMessageResponse = await client.api.sendTextMessage(
@@ -154,25 +153,29 @@ describe("message", () => {
       await sendLinkMessage(true);
     });
 
-    test("send miniprogram msg", async () => {
-      const thumbImageData: Buffer = fs.readFileSync(mpThumbFilePath);
+    test("send miniprogram message", async () => {
+      const title: string = config.get("test.message.send.miniProgram.title");
+      const url: string = config.get("test.message.send.miniProgram.url");
+      const thumbFilePath: string = config.get("test.message.send.miniProgram.thumbFilePath");
+      const mpAppUserName: string = config.get("test.message.send.miniProgram.mpAppUserName");
+      const mpAppName: string = config.get("test.message.send.miniProgram.mpAppName");
+      const mpAppId: string = config.get("test.message.send.miniProgram.mpAppId");
+      const mpAppIconUrl: string = config.get("test.message.send.miniProgram.mpAppIconUrl");
+      const mpAppPath: string = config.get("test.message.send.miniProgram.mpAppPath");
+
+      const thumbImageData: Buffer = fs.readFileSync(thumbFilePath);
 
       const msgId = await client.api.sendMessageMiniProgram(
         genIdempotentId(),
         toUserName,
         new pb.AppMessageMiniProgram()
-          .setTitle("Chatbot solution")
-          .setDescription("will not show")
-          .setUrl(
-            "https://mp.weixin.qq.com/mp/waerrpage?appid=wx123456&amp;type=upgrade&amp;upgradetype=3#wechat_redirect"
-          )
-          .setMpappusername("gh_123456")
-          .setMpappname("PadLocal")
-          .setMpappid("wx123456")
-          .setMpappiconurl(
-            "https://avatars0.githubusercontent.com/u/64943823?s=460&u=cf5d8d7c1927983e7d14d318f452628a9f926b2c&v=4"
-          )
-          .setMpapppath("pages/home/index.html?utm_medium=userid_123456")
+          .setTitle(title)
+          .setUrl(url)
+          .setMpappusername(mpAppUserName)
+          .setMpappname(mpAppName)
+          .setMpappid(mpAppId)
+          .setMpappiconurl(mpAppIconUrl)
+          .setMpapppath(mpAppPath)
           .setThumbimage(thumbImageData)
       );
 
