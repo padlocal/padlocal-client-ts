@@ -7,6 +7,7 @@ import * as pb from "../src/proto/padlocal_pb";
 import { EncryptedFileType, MessageRevokeInfo, SendTextMessageResponse, ZombieStatue } from "../src/proto/padlocal_pb";
 import { Bytes, hexStringToBytes } from "../src/utils/ByteUtils";
 import { log } from "brolog";
+import { FileBox } from "file-box";
 
 let client: PadLocalClient;
 
@@ -125,22 +126,32 @@ describe("message", () => {
       expect(response.getMessagerevokeinfo()!.getClientmsgid()).toBeTruthy();
     }, 300000);
 
-    test("send link msg", async () => {
-      const msgId = await client.api.sendMessageLink(
-        genIdempotentId(),
-        toChatRoom,
-        new pb.AppMessageLink()
-          .setTitle("PadLocal")
-          .setDescription("Chatbot solution")
-          .setUrl("https://github.com/padlocal")
-          .setThumburl(
-            "https://avatars0.githubusercontent.com/u/64943823?s=460&u=cf5d8d7c1927983e7d14d318f452628a9f926b2c&v=4"
-          )
-      );
+    test("send link message", async () => {
+      const title: string = `[${Date.now()}]` + config.get("test.message.send.link.title");
+      const description: string = config.get("test.message.send.link.description");
+      const url: string = config.get("test.message.send.link.url");
+      const thumbImageUrl: string = config.get("test.message.send.link.thumbImageUrl");
 
-      log.info(`send link message to ${toUserName}, return msgId: ${msgId}`);
+      const sendLinkMessage = async (useThumbBinary: boolean = false) => {
+        const appMessageLink = new pb.AppMessageLink().setTitle(title).setDescription(description).setUrl(url);
 
-      expect(msgId).toBeTruthy();
+        if (useThumbBinary) {
+          const fileBox = FileBox.fromUrl(thumbImageUrl);
+          const imageBinary = await fileBox.toBuffer();
+          appMessageLink.setThumbimage(imageBinary);
+        } else {
+          appMessageLink.setThumburl(thumbImageUrl);
+        }
+
+        const msgId = await client.api.sendMessageLink(genIdempotentId(), toChatRoom, appMessageLink);
+
+        log.info(`send link message to ${toUserName}, return msgId: ${msgId}`);
+
+        expect(msgId).toBeTruthy();
+      };
+
+      await sendLinkMessage(false);
+      await sendLinkMessage(true);
     });
 
     test("send miniprogram msg", async () => {
