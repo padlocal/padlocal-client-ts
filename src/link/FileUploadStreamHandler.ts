@@ -47,9 +47,11 @@ export class FileUploadStreamHandler extends StreamHandler {
 
             const fileUploadResponse = new WeChatFileUploadResponse();
             const responseMap = fileUploadResponse.getResponseMap();
-            responseRequiredFieldList.forEach((f) => {
-              responseMap.set(f, response.body[f]!);
-            });
+
+            for (const key of Object.keys(response.body)) {
+              const value = response.body[key];
+              value && fileUploadResponse.getResponseMap().set(key, value);
+            }
 
             const responseReply = await this.sendResponse(
               new WeChatStreamResponse().setFileuploadresponse(fileUploadResponse)
