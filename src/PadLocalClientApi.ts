@@ -11,6 +11,8 @@ function checkRequiredField(field: any, fieldName: string) {
 }
 
 export class PadLocalClientApi extends PadLocalClientPlugin {
+  private static readonly FILE_UPLOAD_REQUEST_TIMEOUT = 5 * 60 * 1000; // 5 min
+
   private _revokeMessageSeq: number;
 
   constructor(client: PadLocalClient) {
@@ -107,6 +109,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
     return await this.client.request(new pb.SendImageMessageRequest().setTousername(toUserName).setImage(image), {
       idempotentId,
+      requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
     });
   }
 
@@ -125,6 +128,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
     const request = this.client.createRequest({
       idempotentId,
+      requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
     });
 
     request.extraData = {
@@ -176,6 +180,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
     return await this.client.request(new pb.SendVideoMessageRequest().setTousername(toUserName).setVideo(video), {
       idempotentId,
+      requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
     });
   }
 
@@ -187,6 +192,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
     const request = this.client.createRequest({
       idempotentId,
+      requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
     });
 
     request.extraData = {
@@ -216,6 +222,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
       new pb.SendFileMessageRequest().setTousername(toUserName).setFile(file).setFilename(fileName),
       {
         idempotentId,
+        requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
       }
     );
   }
@@ -235,6 +242,7 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
     const request = this.client.createRequest({
       idempotentId,
+      requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
     });
 
     request.extraData = {
