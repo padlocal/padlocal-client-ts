@@ -1,6 +1,6 @@
 {
   "name": "padlocal-client-ts",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "Padlocal ts client",
   "keywords": [
     "padlocal",
@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "clean": "rm -fr dist/*",
-    "dist": "npm run clean && npm run gen-version && tsc && cp -R src/proto/ dist/proto/",
+    "dist": "npm run clean && npm run gen-version && tsc && cp -R src/proto/ dist/proto/ && cp src/utils/ffmpeg-mp4.js dist/utils/ffmpeg-mp4.js",
     "lint": "tslint --project tsconfig.json",
     "gen-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/proto --grpc_out=grpc_js:src/proto --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --plugin=protoc-gen-ts=node_modules/.bin/protoc-gen-ts --ts_out=generate_package_definition:src/proto padlocal.proto",
     "gen-version": "bash scripts/generate-version.sh",
