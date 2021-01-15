@@ -15,21 +15,6 @@ export async function getImageSize(data: Bytes): Promise<ImageSize> {
   };
 }
 
-export async function minImage(data: Bytes): Promise<Bytes> {
-  const imagemin = require("imagemin");
-  const imageminJpegOptim = require("imagemin-jpegoptim");
-  const imageminPngquant = require("imagemin-pngquant");
-
-  return imagemin.buffer(data, {
-    plugins: [
-      imageminJpegOptim(),
-      imageminPngquant({
-        quality: [0.6, 0.8],
-      }),
-    ],
-  });
-}
-
 export async function createImageThumb(data: Bytes, maxWH: number): Promise<Bytes> {
   const jimp = require("jimp");
   const image = await jimp.read(data);
@@ -43,8 +28,7 @@ export async function createImageThumb(data: Bytes, maxWH: number): Promise<Byte
   }
 
   await image.quality(40);
-  const thumbData = await image.getBufferAsync(jimp.MIME_JPEG);
-  return minImage(thumbData);
+  return await image.getBufferAsync(jimp.MIME_JPEG);
 }
 
 let globalFFMpeg: Function | undefined = undefined;
@@ -76,8 +60,7 @@ export async function createVideoThumb(data: Bytes, maxWH: number): Promise<Buff
   });
 
   const out = result.MEMFS[0];
-  const thumbData = Buffer.from(out.data);
-  return minImage(thumbData);
+  return Buffer.from(out.data);
 }
 
 export function getVideoDurationSeconds(data: Bytes): number {
