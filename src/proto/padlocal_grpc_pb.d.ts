@@ -34,7 +34,7 @@ interface IPadLocalService_Iinit extends grpc.MethodDefinition<padlocal_pb.InitR
 
 export const PadLocalService: IPadLocalService;
 
-export interface IPadLocalServer {
+export interface IPadLocalServer extends grpc.UntypedServiceImplementation {
     action: grpc.handleBidiStreamingCall<padlocal_pb.ActionMessage, padlocal_pb.ActionMessage>;
     init: grpc.handleUnaryCall<padlocal_pb.InitRequest, padlocal_pb.InitResponse>;
 }
