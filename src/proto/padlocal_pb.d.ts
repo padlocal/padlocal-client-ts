@@ -657,6 +657,18 @@ export class ActionMessage extends jspb.Message {
     setGetchatroomannouncementresponse(value?: GetChatRoomAnnouncementResponse): ActionMessage;
 
 
+    hasAcceptchatroominvitationrequest(): boolean;
+    clearAcceptchatroominvitationrequest(): void;
+    getAcceptchatroominvitationrequest(): AcceptChatRoomInvitationRequest | undefined;
+    setAcceptchatroominvitationrequest(value?: AcceptChatRoomInvitationRequest): ActionMessage;
+
+
+    hasAcceptchatroominvitationresponse(): boolean;
+    clearAcceptchatroominvitationresponse(): void;
+    getAcceptchatroominvitationresponse(): AcceptChatRoomInvitationResponse | undefined;
+    setAcceptchatroominvitationresponse(value?: AcceptChatRoomInvitationResponse): ActionMessage;
+
+
     hasAddlabelrequest(): boolean;
     clearAddlabelrequest(): void;
     getAddlabelrequest(): AddLabelRequest | undefined;
@@ -979,6 +991,8 @@ export namespace ActionMessage {
         quitchatroomresponse?: QuitChatRoomResponse.AsObject,
         getchatroomannouncementrequest?: GetChatRoomAnnouncementRequest.AsObject,
         getchatroomannouncementresponse?: GetChatRoomAnnouncementResponse.AsObject,
+        acceptchatroominvitationrequest?: AcceptChatRoomInvitationRequest.AsObject,
+        acceptchatroominvitationresponse?: AcceptChatRoomInvitationResponse.AsObject,
         addlabelrequest?: AddLabelRequest.AsObject,
         addlabelresponse?: AddLabelResponse.AsObject,
         removelabelrequest?: RemoveLabelRequest.AsObject,
@@ -1223,6 +1237,10 @@ export namespace ActionMessage {
     GETCHATROOMANNOUNCEMENTREQUEST = 520,
 
     GETCHATROOMANNOUNCEMENTRESPONSE = 521,
+
+    ACCEPTCHATROOMINVITATIONREQUEST = 522,
+
+    ACCEPTCHATROOMINVITATIONRESPONSE = 523,
 
     ADDLABELREQUEST = 600,
 
@@ -1478,6 +1496,80 @@ export namespace WeChatShortLinkResponse {
     }
 }
 
+export class WeChatHttpRequest extends jspb.Message { 
+    getUrl(): string;
+    setUrl(value: string): WeChatHttpRequest;
+
+    getMethod(): string;
+    setMethod(value: string): WeChatHttpRequest;
+
+
+    getHeadersMap(): jspb.Map<string, string>;
+    clearHeadersMap(): void;
+
+    getPayload(): Uint8Array | string;
+    getPayload_asU8(): Uint8Array;
+    getPayload_asB64(): string;
+    setPayload(value: Uint8Array | string): WeChatHttpRequest;
+
+    getTimeout(): number;
+    setTimeout(value: number): WeChatHttpRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatHttpRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatHttpRequest): WeChatHttpRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatHttpRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatHttpRequest;
+    static deserializeBinaryFromReader(message: WeChatHttpRequest, reader: jspb.BinaryReader): WeChatHttpRequest;
+}
+
+export namespace WeChatHttpRequest {
+    export type AsObject = {
+        url: string,
+        method: string,
+
+        headersMap: Array<[string, string]>,
+        payload: Uint8Array | string,
+        timeout: number,
+    }
+}
+
+export class WeChatHttpResponse extends jspb.Message { 
+    getStatuscode(): number;
+    setStatuscode(value: number): WeChatHttpResponse;
+
+
+    getHeadersMap(): jspb.Map<string, string>;
+    clearHeadersMap(): void;
+
+    getPayload(): Uint8Array | string;
+    getPayload_asU8(): Uint8Array;
+    getPayload_asB64(): string;
+    setPayload(value: Uint8Array | string): WeChatHttpResponse;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WeChatHttpResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: WeChatHttpResponse): WeChatHttpResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WeChatHttpResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WeChatHttpResponse;
+    static deserializeBinaryFromReader(message: WeChatHttpResponse, reader: jspb.BinaryReader): WeChatHttpResponse;
+}
+
+export namespace WeChatHttpResponse {
+    export type AsObject = {
+        statuscode: number,
+
+        headersMap: Array<[string, string]>,
+        payload: Uint8Array | string,
+    }
+}
+
 export class WeChatRequest extends jspb.Message { 
 
     hasLonglinkrequest(): boolean;
@@ -1490,6 +1582,12 @@ export class WeChatRequest extends jspb.Message {
     clearShortlinkrequest(): void;
     getShortlinkrequest(): WeChatShortLinkRequest | undefined;
     setShortlinkrequest(value?: WeChatShortLinkRequest): WeChatRequest;
+
+
+    hasHttprequest(): boolean;
+    clearHttprequest(): void;
+    getHttprequest(): WeChatHttpRequest | undefined;
+    setHttprequest(value?: WeChatHttpRequest): WeChatRequest;
 
 
     getPayloadCase(): WeChatRequest.PayloadCase;
@@ -1508,6 +1606,7 @@ export namespace WeChatRequest {
     export type AsObject = {
         longlinkrequest?: WeChatLongLinkRequest.AsObject,
         shortlinkrequest?: WeChatShortLinkRequest.AsObject,
+        httprequest?: WeChatHttpRequest.AsObject,
     }
 
     export enum PayloadCase {
@@ -1516,6 +1615,8 @@ export namespace WeChatRequest {
     LONGLINKREQUEST = 10,
 
     SHORTLINKREQUEST = 11,
+
+    HTTPREQUEST = 12,
 
     }
 
@@ -1535,6 +1636,12 @@ export class WeChatResponse extends jspb.Message {
     setShortlinkresponse(value?: WeChatShortLinkResponse): WeChatResponse;
 
 
+    hasHttpresponse(): boolean;
+    clearHttpresponse(): void;
+    getHttpresponse(): WeChatHttpResponse | undefined;
+    setHttpresponse(value?: WeChatHttpResponse): WeChatResponse;
+
+
     getPayloadCase(): WeChatResponse.PayloadCase;
 
     serializeBinary(): Uint8Array;
@@ -1551,6 +1658,7 @@ export namespace WeChatResponse {
     export type AsObject = {
         longlinkresponse?: WeChatLongLinkResponse.AsObject,
         shortlinkresponse?: WeChatShortLinkResponse.AsObject,
+        httpresponse?: WeChatHttpResponse.AsObject,
     }
 
     export enum PayloadCase {
@@ -1559,6 +1667,8 @@ export namespace WeChatResponse {
     LONGLINKRESPONSE = 10,
 
     SHORTLINKRESPONSE = 11,
+
+    HTTPRESPONSE = 12,
 
     }
 
@@ -4097,6 +4207,48 @@ export class QuitChatRoomResponse extends jspb.Message {
 }
 
 export namespace QuitChatRoomResponse {
+    export type AsObject = {
+    }
+}
+
+export class AcceptChatRoomInvitationRequest extends jspb.Message { 
+    getInviterid(): string;
+    setInviterid(value: string): AcceptChatRoomInvitationRequest;
+
+    getInvitationurl(): string;
+    setInvitationurl(value: string): AcceptChatRoomInvitationRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AcceptChatRoomInvitationRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: AcceptChatRoomInvitationRequest): AcceptChatRoomInvitationRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AcceptChatRoomInvitationRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AcceptChatRoomInvitationRequest;
+    static deserializeBinaryFromReader(message: AcceptChatRoomInvitationRequest, reader: jspb.BinaryReader): AcceptChatRoomInvitationRequest;
+}
+
+export namespace AcceptChatRoomInvitationRequest {
+    export type AsObject = {
+        inviterid: string,
+        invitationurl: string,
+    }
+}
+
+export class AcceptChatRoomInvitationResponse extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AcceptChatRoomInvitationResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: AcceptChatRoomInvitationResponse): AcceptChatRoomInvitationResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AcceptChatRoomInvitationResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AcceptChatRoomInvitationResponse;
+    static deserializeBinaryFromReader(message: AcceptChatRoomInvitationResponse, reader: jspb.BinaryReader): AcceptChatRoomInvitationResponse;
+}
+
+export namespace AcceptChatRoomInvitationResponse {
     export type AsObject = {
     }
 }

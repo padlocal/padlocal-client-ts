@@ -82,6 +82,10 @@
             "modifyMember": "",
             "quit": {
                 "id": "xxx@chatroom"
+            },
+            "invitation": {
+                "inviterId": "",
+                "inviterURL": ""
             }
         },
 

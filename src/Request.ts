@@ -5,6 +5,7 @@ import {
   ActionMessageHeader,
   SystemEventRequest,
   SystemEventResponse,
+  WeChatHttpResponse,
   WeChatLongLinkResponse,
   WeChatRequest,
   WeChatResponse,
@@ -26,6 +27,7 @@ import { log } from "brolog";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { FileUploadStreamHandler, FileUploadStreamHandlerParams } from "./link/FileUploadStreamHandler";
 import { MAX_LOG_BYTES_LEN } from "./utils/ByteUtils";
+import { WeChatHttpProxy } from "./link/WeChatHttpProxy";
 
 export type OnMessageCallback = (actionMessage: ActionMessage) => void;
 export type OnSystemEventCallback = (systemEventRequest: SystemEventRequest) => void;
@@ -294,6 +296,14 @@ export class Request extends PadLocalClientPlugin {
       );
 
       this.subReply(ack, weChatResponse);
+    } else if (wechatRequest.getPayloadCase() === WeChatRequest.PayloadCase.HTTPREQUEST) {
+      const httpRequest = wechatRequest.getHttprequest()!;
+
+      const httpProxy = new WeChatHttpProxy(this.traceId, httpRequest);
+      const httpResponse: WeChatHttpResponse = await httpProxy.send();
+
+      const wechatResponse = new WeChatResponse().setHttpresponse(httpResponse);
+      this.subReply(ack, wechatResponse);
     } else {
       throw new Error(`unsupported wechat request case: ${wechatRequest.getPayloadCase()}`);
     }

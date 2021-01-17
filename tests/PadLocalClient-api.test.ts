@@ -582,6 +582,13 @@ describe("chatroom", () => {
     const roomId: string = config.get("test.room.quit.id");
     await client.api.quitChatRoom(roomId);
   });
+
+  test("accept room invitation", async () => {
+    const inviterId: string = config.get("test.room.invitation.inviterId");
+    const invitationURL: string = config.get("test.room.invitation.inviterURL");
+
+    await client.api.acceptChatRoomInvitation(inviterId, invitationURL);
+  });
 });
 
 describe("label", () => {

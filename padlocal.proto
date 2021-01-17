@@ -124,7 +124,9 @@ message ActionMessage {
     QuitChatRoomRequest quitChatRoomRequest = 518;
     QuitChatRoomResponse quitChatRoomResponse = 519;
     GetChatRoomAnnouncementRequest getChatRoomAnnouncementRequest = 520;
-    GetChatRoomAnnouncementResponse GetChatRoomAnnouncementResponse = 521;
+    GetChatRoomAnnouncementResponse getChatRoomAnnouncementResponse = 521;
+    AcceptChatRoomInvitationRequest acceptChatRoomInvitationRequest = 522;
+    AcceptChatRoomInvitationResponse acceptChatRoomInvitationResponse = 523;
 
     AddLabelRequest addLabelRequest = 600;
     AddLabelResponse addLabelResponse = 601;
@@ -197,10 +199,25 @@ message WeChatShortLinkResponse {
   bytes payload = 1;
 }
 
+message WeChatHttpRequest  {
+  string url = 1;
+  string method = 2;
+  map<string, string> headers = 3;
+  bytes payload = 4;
+  int32 timeout = 5;
+}
+
+message WeChatHttpResponse {
+  int32 statusCode = 1;
+  map<string, string> headers = 2;
+  bytes payload = 3;
+}
+
 message WeChatRequest {
   oneof payload {
     WeChatLongLinkRequest longLinkRequest = 10;
     WeChatShortLinkRequest shortLinkRequest = 11;
+    WeChatHttpRequest httpRequest = 12;
   }
 }
 
@@ -208,6 +225,7 @@ message WeChatResponse {
   oneof payload {
     WeChatLongLinkResponse longLinkResponse = 10;
     WeChatShortLinkResponse shortLinkResponse = 11;
+    WeChatHttpResponse httpResponse = 12;
   }
 }
 
@@ -728,6 +746,14 @@ message QuitChatRoomRequest {
 
 message QuitChatRoomResponse {
 
+}
+
+message AcceptChatRoomInvitationRequest {
+  string inviterId = 1;
+  string invitationUrl = 2;
+}
+
+message AcceptChatRoomInvitationResponse {
 }
 
 message SnsSendMomentRequest {

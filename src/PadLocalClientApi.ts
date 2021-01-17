@@ -679,6 +679,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     await this.client.request(new pb.QuitChatRoomRequest().setRoomid(roomId));
   }
 
+  async acceptChatRoomInvitation(inviterUserName: string, invitationURL: string): Promise<void> {
+    checkRequiredField(inviterUserName, "inviterUserName");
+    checkRequiredField(invitationURL, "invitationURL");
+
+    await this.client.request(
+      new pb.AcceptChatRoomInvitationRequest().setInviterid(inviterUserName).setInvitationurl(invitationURL)
+    );
+  }
+
   async getLabelList(): Promise<pb.Label[]> {
     const response: pb.GetLabelListResponse = await this.client.request(new pb.GetLabelListRequest());
     return response.getLabelList();

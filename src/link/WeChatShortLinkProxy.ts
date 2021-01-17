@@ -1,8 +1,8 @@
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
 import { Bytes, bytesToHexString, joinBytes, MAX_LOG_BYTES_LEN, newBytes } from "../utils/ByteUtils";
 import http from "http";
-import VError from "verror";
 import { log } from "brolog";
+import { HttpError, IOError } from "./erros";
 
 const LOGPRE = "[ShortLink]";
 
@@ -132,7 +132,3 @@ export class WeChatShortLinkProxy {
     });
   }
 }
-
-export class IOError extends VError {}
-
-export class HttpError extends VError {}
