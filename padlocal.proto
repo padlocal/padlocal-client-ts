@@ -548,6 +548,7 @@ message AcceptUserRequest {
   string stranger = 1;
   string ticket = 2;
   string userName = 3;
+  int32 scene = 4;
 }
 
 message AcceptUserResponse {

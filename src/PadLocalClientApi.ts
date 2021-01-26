@@ -516,14 +516,15 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     await request.request(new pb.SyncContactRequest());
   }
 
-  async acceptUser(userName: string, ticket: string, stranger?: string): Promise<void> {
+  async acceptUser(userName: string, ticket: string, stranger: string, scene: number): Promise<void> {
     checkRequiredField(userName, "userName");
     checkRequiredField(ticket, "ticket");
 
-    const request = new pb.AcceptUserRequest().setUsername(userName).setTicket(ticket);
-    if (stranger) {
-      request.setStranger(stranger);
-    }
+    const request = new pb.AcceptUserRequest()
+      .setUsername(userName)
+      .setTicket(ticket)
+      .setStranger(stranger)
+      .setScene(scene);
 
     await this.client.request(request);
   }

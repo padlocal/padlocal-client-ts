@@ -23979,7 +23979,8 @@ proto.padlocal.AcceptUserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     stranger: jspb.Message.getFieldWithDefault(msg, 1, ""),
     ticket: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    username: jspb.Message.getFieldWithDefault(msg, 3, "")
+    username: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    scene: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -24028,6 +24029,10 @@ proto.padlocal.AcceptUserRequest.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setUsername(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setScene(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -24075,6 +24080,13 @@ proto.padlocal.AcceptUserRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getScene();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
       f
     );
   }
@@ -24132,6 +24144,24 @@ proto.padlocal.AcceptUserRequest.prototype.getUsername = function() {
  */
 proto.padlocal.AcceptUserRequest.prototype.setUsername = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional int32 scene = 4;
+ * @return {number}
+ */
+proto.padlocal.AcceptUserRequest.prototype.getScene = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.padlocal.AcceptUserRequest} returns this
+ */
+proto.padlocal.AcceptUserRequest.prototype.setScene = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 

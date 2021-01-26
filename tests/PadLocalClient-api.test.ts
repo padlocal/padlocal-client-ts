@@ -402,9 +402,11 @@ describe("message", () => {
 
 describe("contact", () => {
   test("accept user", async () => {
+    const userName: string = config.get("test.contact.accept.userName");
     const stranger: string = config.get("test.contact.accept.stranger");
     const ticket: string = config.get("test.contact.accept.ticket");
-    await client.api.acceptUser(stranger, ticket);
+    const scene: number = config.get("test.contact.accept.scene");
+    await client.api.acceptUser(userName, ticket, stranger, scene);
 
     log.info("accept success");
   });

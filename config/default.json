@@ -60,8 +60,10 @@
 
         "contact": {
             "accept": {
+                "userName": "",
                 "stranger": "v3_xxx@stranger",
-                "ticket": "v4_xxx@stranger"
+                "ticket": "v4_xxx@stranger",
+                "scene": 0
             },
             "userName": "",
             "search": "",

@@ -3241,6 +3241,9 @@ export class AcceptUserRequest extends jspb.Message {
     getUsername(): string;
     setUsername(value: string): AcceptUserRequest;
 
+    getScene(): number;
+    setScene(value: number): AcceptUserRequest;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AcceptUserRequest.AsObject;
@@ -3257,6 +3260,7 @@ export namespace AcceptUserRequest {
         stranger: string,
         ticket: string,
         username: string,
+        scene: number,
     }
 }
 
