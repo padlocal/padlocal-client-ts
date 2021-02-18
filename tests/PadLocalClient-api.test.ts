@@ -4,7 +4,13 @@ import { genIdempotentId, stringifyPB } from "../src/utils/Utils";
 import config from "config";
 import * as fs from "fs";
 import * as pb from "../src/proto/padlocal_pb";
-import { EncryptedFileType, MessageRevokeInfo, SendTextMessageResponse, ZombieStatue } from "../src/proto/padlocal_pb";
+import {
+  AddChatRoomMemberType,
+  EncryptedFileType,
+  MessageRevokeInfo,
+  SendTextMessageResponse,
+  ZombieStatue,
+} from "../src/proto/padlocal_pb";
 import { Bytes, hexStringToBytes } from "../src/utils/ByteUtils";
 import { log } from "brolog";
 import { FileBox } from "file-box";
@@ -551,16 +557,26 @@ describe("chatroom", () => {
   });
 
   test("add room member", async () => {
-    const memberUserName: string = config.get("test.room.modifyMember");
+    const roomId: string = config.get("test.room.addRoomMember.roomId");
+    const memberUserName: string = config.get("test.room.addRoomMember.userName");
 
     const beforeMemberList = await client.api.getChatRoomMembers(roomId);
 
-    await client.api.addChatRoomMember(roomId, memberUserName);
+    const addType = await client.api.addChatRoomMember(roomId, memberUserName);
+    expect(addType).toEqual(AddChatRoomMemberType.ADD);
 
     const afterMemberList = await client.api.getChatRoomMembers(roomId);
 
     expect(afterMemberList.length).toEqual(beforeMemberList.length + 1);
   });
+
+  test("invite room member", async () => {
+    const roomId: string = config.get("test.room.inviteRoomMember.roomId");
+    const memberUserName: string = config.get("test.room.inviteRoomMember.userName");
+
+    const addType = await client.api.addChatRoomMember(roomId, memberUserName);
+    expect(addType).toEqual(AddChatRoomMemberType.INVITE);
+  }, 600000);
 
   test("delete room member", async () => {
     const memberUserName: string = config.get("test.room.modifyMember");
@@ -572,12 +588,6 @@ describe("chatroom", () => {
     const afterMemberList = await client.api.getChatRoomMembers(roomId);
 
     expect(afterMemberList.length).toEqual(beforeMemberList.length - 1);
-  });
-
-  test("invite room member", async () => {
-    const memberUserName: string = config.get("test.room.modifyMember");
-
-    await client.api.inviteChatRoomMember(roomId, memberUserName);
   });
 
   test("quit room", async () => {

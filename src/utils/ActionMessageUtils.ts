@@ -75,8 +75,6 @@ const payloadCaseCtorMap = new Map<ActionMessage.PayloadCase, new () => any>([
   [ActionMessage.PayloadCase.SETCHATROOMANNOUNCEMENTRESPONSE, pb.SetChatRoomAnnouncementResponse],
   [ActionMessage.PayloadCase.ADDCHATROOMMEMBERREQUEST, pb.AddChatRoomMemberRequest],
   [ActionMessage.PayloadCase.ADDCHATROOMMEMBERRESPONSE, pb.AddChatRoomMemberResponse],
-  [ActionMessage.PayloadCase.INVITECHATROOMMEMBERREQUEST, pb.InviteChatRoomMemberRequest],
-  [ActionMessage.PayloadCase.INVITECHATROOMMEMBERRESPONSE, pb.InviteChatRoomMemberResponse],
   [ActionMessage.PayloadCase.DELETECHATROOMMEMBERREQUEST, pb.DeleteChatRoomMemberRequest],
   [ActionMessage.PayloadCase.DELETECHATROOMMEMBERRESPONSE, pb.DeleteChatRoomMemberResponse],
   [ActionMessage.PayloadCase.SETCHATROOMNAMEREQUEST, pb.SetChatRoomNameRequest],

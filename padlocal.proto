@@ -115,8 +115,6 @@ message ActionMessage {
     SetChatRoomAnnouncementResponse setChatRoomAnnouncementResponse = 509;
     AddChatRoomMemberRequest addChatRoomMemberRequest = 510;
     AddChatRoomMemberResponse addChatRoomMemberResponse = 511;
-    InviteChatRoomMemberRequest inviteChatRoomMemberRequest = 512;
-    InviteChatRoomMemberResponse inviteChatRoomMemberResponse = 513;
     DeleteChatRoomMemberRequest deleteChatRoomMemberRequest = 514;
     DeleteChatRoomMemberResponse deleteChatRoomMemberResponse = 515;
     SetChatRoomNameRequest setChatRoomNameRequest = 516;
@@ -714,15 +712,14 @@ message AddChatRoomMemberRequest {
   string userName = 2;
 }
 
+enum AddChatRoomMemberType {
+  ALREADY_IN_ROOM = 0;
+  ADD = 1;
+  INVITE = 2;
+}
+
 message AddChatRoomMemberResponse {
-}
-
-message InviteChatRoomMemberRequest {
-  string roomId = 1;
-  string userName = 2;
-}
-
-message InviteChatRoomMemberResponse {
+  AddChatRoomMemberType addType = 1;
 }
 
 message DeleteChatRoomMemberRequest {

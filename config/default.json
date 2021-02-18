@@ -88,6 +88,14 @@
             "invitation": {
                 "inviterId": "",
                 "inviterURL": ""
+            },
+            "addRoomMember": {
+                "roomId": "xxx@chatroom",
+                "userName": ""
+            },
+            "inviteRoomMember": {
+                "roomId": "xxx@chatroom",
+                "userName": ""
             }
         },
 

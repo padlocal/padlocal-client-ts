@@ -597,18 +597,6 @@ export class ActionMessage extends jspb.Message {
     setAddchatroommemberresponse(value?: AddChatRoomMemberResponse): ActionMessage;
 
 
-    hasInvitechatroommemberrequest(): boolean;
-    clearInvitechatroommemberrequest(): void;
-    getInvitechatroommemberrequest(): InviteChatRoomMemberRequest | undefined;
-    setInvitechatroommemberrequest(value?: InviteChatRoomMemberRequest): ActionMessage;
-
-
-    hasInvitechatroommemberresponse(): boolean;
-    clearInvitechatroommemberresponse(): void;
-    getInvitechatroommemberresponse(): InviteChatRoomMemberResponse | undefined;
-    setInvitechatroommemberresponse(value?: InviteChatRoomMemberResponse): ActionMessage;
-
-
     hasDeletechatroommemberrequest(): boolean;
     clearDeletechatroommemberrequest(): void;
     getDeletechatroommemberrequest(): DeleteChatRoomMemberRequest | undefined;
@@ -981,8 +969,6 @@ export namespace ActionMessage {
         setchatroomannouncementresponse?: SetChatRoomAnnouncementResponse.AsObject,
         addchatroommemberrequest?: AddChatRoomMemberRequest.AsObject,
         addchatroommemberresponse?: AddChatRoomMemberResponse.AsObject,
-        invitechatroommemberrequest?: InviteChatRoomMemberRequest.AsObject,
-        invitechatroommemberresponse?: InviteChatRoomMemberResponse.AsObject,
         deletechatroommemberrequest?: DeleteChatRoomMemberRequest.AsObject,
         deletechatroommemberresponse?: DeleteChatRoomMemberResponse.AsObject,
         setchatroomnamerequest?: SetChatRoomNameRequest.AsObject,
@@ -1217,10 +1203,6 @@ export namespace ActionMessage {
     ADDCHATROOMMEMBERREQUEST = 510,
 
     ADDCHATROOMMEMBERRESPONSE = 511,
-
-    INVITECHATROOMMEMBERREQUEST = 512,
-
-    INVITECHATROOMMEMBERRESPONSE = 513,
 
     DELETECHATROOMMEMBERREQUEST = 514,
 
@@ -4035,6 +4017,9 @@ export namespace AddChatRoomMemberRequest {
 }
 
 export class AddChatRoomMemberResponse extends jspb.Message { 
+    getAddtype(): AddChatRoomMemberType;
+    setAddtype(value: AddChatRoomMemberType): AddChatRoomMemberResponse;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddChatRoomMemberResponse.AsObject;
@@ -4048,48 +4033,7 @@ export class AddChatRoomMemberResponse extends jspb.Message {
 
 export namespace AddChatRoomMemberResponse {
     export type AsObject = {
-    }
-}
-
-export class InviteChatRoomMemberRequest extends jspb.Message { 
-    getRoomid(): string;
-    setRoomid(value: string): InviteChatRoomMemberRequest;
-
-    getUsername(): string;
-    setUsername(value: string): InviteChatRoomMemberRequest;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): InviteChatRoomMemberRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: InviteChatRoomMemberRequest): InviteChatRoomMemberRequest.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: InviteChatRoomMemberRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): InviteChatRoomMemberRequest;
-    static deserializeBinaryFromReader(message: InviteChatRoomMemberRequest, reader: jspb.BinaryReader): InviteChatRoomMemberRequest;
-}
-
-export namespace InviteChatRoomMemberRequest {
-    export type AsObject = {
-        roomid: string,
-        username: string,
-    }
-}
-
-export class InviteChatRoomMemberResponse extends jspb.Message { 
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): InviteChatRoomMemberResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: InviteChatRoomMemberResponse): InviteChatRoomMemberResponse.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: InviteChatRoomMemberResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): InviteChatRoomMemberResponse;
-    static deserializeBinaryFromReader(message: InviteChatRoomMemberResponse, reader: jspb.BinaryReader): InviteChatRoomMemberResponse;
-}
-
-export namespace InviteChatRoomMemberResponse {
-    export type AsObject = {
+        addtype: AddChatRoomMemberType,
     }
 }
 
@@ -6754,6 +6698,12 @@ export enum ZombieStatue {
     STRANGER = 0,
     FRIEND = 1,
     ZOMBIE = 2,
+}
+
+export enum AddChatRoomMemberType {
+    ALREADY_IN_ROOM = 0,
+    ADD = 1,
+    INVITE = 2,
 }
 
 export enum ImageType {
