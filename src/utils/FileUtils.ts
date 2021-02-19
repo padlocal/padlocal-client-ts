@@ -42,8 +42,14 @@ export async function downloadFile(fileDownloadRequest: FileDownloadRequest, tra
     },
 
     onReceive: async (data: Bytes): Promise<boolean> => {
-      response = fileUnpacker.update(data);
-      return response !== null;
+      const responseList = fileUnpacker.update(data);
+
+      if (responseList.length) {
+        response = responseList[0];
+        return true;
+      } else {
+        return false;
+      }
     },
   });
 

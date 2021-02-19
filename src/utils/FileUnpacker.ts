@@ -17,8 +17,33 @@ export class FileUnpacker {
    * @param data:
    * @return true, finish unpack all data
    */
-  update(data: Bytes): FileResponse | null {
+  update(data: Bytes): Array<FileResponse> {
     this._buffer = joinBytes(this._buffer, data);
+
+    const ret: Array<FileResponse> = [];
+
+    while (true) {
+      const response = this._unpackResponse();
+      if (!response) {
+        break;
+      }
+
+      ret.push(response);
+    }
+
+    return ret;
+  }
+
+  getDecryptedFileData(fileResponse: FileResponse): Bytes {
+    const encryptedFileData = fileResponse.body["filedata"];
+    return AesEcbDecrypt(this._aesKey, encryptedFileData!);
+  }
+
+  reset(): void {
+    this._buffer = newBytes();
+  }
+
+  private _unpackResponse(): FileResponse | null {
     if (this._buffer.length < FileUnpacker.HEADER_MIN_LEN) {
       return null;
     }
@@ -30,20 +55,10 @@ export class FileUnpacker {
     }
 
     const bodyData = subBytes(this._buffer, header.headerLen, responseLen);
-    const body = FileUnpacker._unpackResponseBody(bodyData);
-
     this._buffer = subBytes(this._buffer, responseLen, this._buffer.length);
 
+    const body = FileUnpacker._unpackResponseBody(bodyData);
     return new FileResponse(header, body);
-  }
-
-  getDecryptedFileData(fileResponse: FileResponse): Bytes {
-    const encryptedFileData = fileResponse.body["filedata"];
-    return AesEcbDecrypt(this._aesKey, encryptedFileData!);
-  }
-
-  reset(): void {
-    this._buffer = newBytes();
   }
 
   private _unpackHeader(): FileResponseHeader {

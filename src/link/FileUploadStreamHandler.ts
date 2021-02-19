@@ -36,20 +36,24 @@ export class FileUploadStreamHandler extends StreamHandler {
           unpacker.reset();
         },
         onReceive: async (data: Bytes): Promise<boolean> => {
-          const response = unpacker.update(data);
-          if (response) {
+          const responseList = unpacker.update(data);
+
+          if (responseList.length) {
             const responseRequiredFieldList = fileUploadRequest.getRequireresponsefieldList();
 
-            const notMatch = responseRequiredFieldList.some((f) => !response.body[f]);
-            if (notMatch) {
+            const matchedResponse = responseList.find((res) => {
+              const notMatch = responseRequiredFieldList.some((f) => !res.body[f]);
+              return !notMatch;
+            });
+
+            if (!matchedResponse) {
               return false;
             }
 
             const fileUploadResponse = new WeChatFileUploadResponse();
-            const responseMap = fileUploadResponse.getResponseMap();
 
-            for (const key of Object.keys(response.body)) {
-              const value = response.body[key];
+            for (const key of Object.keys(matchedResponse.body)) {
+              const value = matchedResponse.body[key];
               value && fileUploadResponse.getResponseMap().set(key, value);
             }
 
