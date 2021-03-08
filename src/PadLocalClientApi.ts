@@ -224,25 +224,29 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     idempotentId: string,
     toUserName: string,
     miniProgram: pb.AppMessageMiniProgram,
-    thumbImage: Bytes
+    thumbImage: Bytes | null
   ): Promise<pb.SendAppMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
-
-    const imageUpload = await prepareImageUpload(thumbImage, false);
-    miniProgram.setThumbparams(imageUpload.params);
 
     const request = this.client.createRequest({
       idempotentId,
       requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
     });
 
-    request.extraData = {
-      fileUploadStreamHandlerParams: {
-        aesKey: imageUpload.aesKey,
-        dataBag: imageUpload.dataBag,
-      },
-    };
+    if (thumbImage) {
+      const imageUpload = await prepareImageUpload(thumbImage, false);
+      miniProgram.setThumbparams(imageUpload.params);
+
+      request.extraData = {
+        fileUploadStreamHandlerParams: {
+          aesKey: imageUpload.aesKey,
+          dataBag: imageUpload.dataBag,
+        },
+      };
+    } else {
+      miniProgram.setThumbimage(new Buffer(0));
+    }
 
     return await request.request(new pb.SendAppMessageRequest().setTousername(toUserName).setMiniprogram(miniProgram));
   }
