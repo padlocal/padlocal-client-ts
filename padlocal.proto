@@ -533,7 +533,10 @@ message AppMessageMiniProgram {
   string mpAppId = 6;
   string mpAppIconURL = 7;
   string mpAppPath = 8;
-  bytes thumbImage = 9;
+  oneof AppMessageMiniProgramThumb {
+    bytes thumbImage = 9;
+    FileUploadImageParams thumbParams = 10;
+  }
 }
 
 message SendAppMessageResponse {

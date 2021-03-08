@@ -179,7 +179,8 @@ function generateUploadFileMeta(
 }
 
 export async function prepareImageUpload(
-  imageData: Bytes
+  imageData: Bytes,
+  useThumb: boolean = true
 ): Promise<{
   params: FileUploadImageParams;
   aesKey: Bytes;
@@ -188,18 +189,23 @@ export async function prepareImageUpload(
   const uploadImageMeta = await generateUploadImageMeta(imageData);
   const aesKey = Buffer.from(uploadImageMeta.imageMeta.getEncrypteddatameta()?.getAeskey()!);
 
-  const thumbImageData = await createImageThumb(imageData, 120);
-  const uploadThumbImageMeta = await generateUploadImageMeta(thumbImageData, aesKey);
+  const params = new FileUploadImageParams().setImagemeta(uploadImageMeta.imageMeta);
+  const dataBag = {
+    [uploadImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadImageMeta.encryptedImageData,
+  };
+
+  if (useThumb) {
+    const thumbImageData = await createImageThumb(imageData, 120);
+    const uploadThumbImageMeta = await generateUploadImageMeta(thumbImageData, aesKey);
+    params.setThumbimagemeta(uploadThumbImageMeta.imageMeta);
+
+    dataBag[uploadThumbImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!] = uploadThumbImageMeta.encryptedImageData;
+  }
 
   return {
-    params: new FileUploadImageParams()
-      .setImagemeta(uploadImageMeta.imageMeta)
-      .setThumbimagemeta(uploadThumbImageMeta.imageMeta),
+    params,
     aesKey,
-    dataBag: {
-      [uploadImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadImageMeta.encryptedImageData,
-      [uploadThumbImageMeta.imageMeta.getEncrypteddatameta()?.getMd5()!]: uploadThumbImageMeta.encryptedImageData,
-    },
+    dataBag,
   };
 }
 

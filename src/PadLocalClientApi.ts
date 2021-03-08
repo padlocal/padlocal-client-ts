@@ -98,27 +98,6 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
    * @param idempotentId: id used to forbidden idempotent problem caused by retry.
    * @return
    */
-  async _sendImageMessage(
-    idempotentId: string,
-    toUserName: string,
-    image: Bytes
-  ): Promise<pb.SendImageMessageResponse> {
-    checkRequiredField(idempotentId, "idempotentId");
-    checkRequiredField(toUserName, "toUserName");
-    checkRequiredField(image.length, "image");
-
-    return await this.client.request(new pb.SendImageMessageRequest().setTousername(toUserName).setImage(image), {
-      idempotentId,
-      requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
-    });
-  }
-
-  /**
-   * @param toUserName
-   * @param image
-   * @param idempotentId: id used to forbidden idempotent problem caused by retry.
-   * @return
-   */
   async sendImageMessage(idempotentId: string, toUserName: string, image: Bytes): Promise<pb.SendImageMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
@@ -169,21 +148,6 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     );
   }
 
-  async _sendVideoMessage(
-    idempotentId: string,
-    toUserName: string,
-    video: Bytes
-  ): Promise<pb.SendVideoMessageResponse> {
-    checkRequiredField(idempotentId, "idempotentId");
-    checkRequiredField(toUserName, "toUserName");
-    checkRequiredField(video.length, "video");
-
-    return await this.client.request(new pb.SendVideoMessageRequest().setTousername(toUserName).setVideo(video), {
-      idempotentId,
-      requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
-    });
-  }
-
   async sendVideoMessage(idempotentId: string, toUserName: string, video: Bytes): Promise<pb.SendVideoMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
@@ -204,26 +168,6 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
     return await request.request(
       new pb.SendVideoMessageRequest().setTousername(toUserName).setVideoparams(videoUpload.params)
-    );
-  }
-
-  async _sendFileMessage(
-    idempotentId: string,
-    toUserName: string,
-    file: Bytes,
-    fileName: string
-  ): Promise<pb.SendFileMessageResponse> {
-    checkRequiredField(idempotentId, "idempotentId");
-    checkRequiredField(toUserName, "toUserName");
-    checkRequiredField(file.length, "file");
-    checkRequiredField(fileName, "fileName");
-
-    return await this.client.request(
-      new pb.SendFileMessageRequest().setTousername(toUserName).setFile(file).setFilename(fileName),
-      {
-        idempotentId,
-        requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
-      }
     );
   }
 
@@ -279,17 +223,28 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   async sendMessageMiniProgram(
     idempotentId: string,
     toUserName: string,
-    miniProgram: pb.AppMessageMiniProgram
+    miniProgram: pb.AppMessageMiniProgram,
+    thumbImage: Bytes
   ): Promise<pb.SendAppMessageResponse> {
     checkRequiredField(idempotentId, "idempotentId");
     checkRequiredField(toUserName, "toUserName");
 
-    return await this.client.request(
-      new pb.SendAppMessageRequest().setTousername(toUserName).setMiniprogram(miniProgram),
-      {
-        idempotentId,
-      }
-    );
+    const imageUpload = await prepareImageUpload(thumbImage, false);
+    miniProgram.setThumbparams(imageUpload.params);
+
+    const request = this.client.createRequest({
+      idempotentId,
+      requestTimeout: PadLocalClientApi.FILE_UPLOAD_REQUEST_TIMEOUT,
+    });
+
+    request.extraData = {
+      fileUploadStreamHandlerParams: {
+        aesKey: imageUpload.aesKey,
+        dataBag: imageUpload.dataBag,
+      },
+    };
+
+    return await request.request(new pb.SendAppMessageRequest().setTousername(toUserName).setMiniprogram(miniProgram));
   }
 
   async sendContactCardMessage(

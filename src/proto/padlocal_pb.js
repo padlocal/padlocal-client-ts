@@ -31,6 +31,7 @@ goog.exportSymbol('proto.padlocal.AddLabelRequest', null, global);
 goog.exportSymbol('proto.padlocal.AddLabelResponse', null, global);
 goog.exportSymbol('proto.padlocal.AppMessageLink', null, global);
 goog.exportSymbol('proto.padlocal.AppMessageMiniProgram', null, global);
+goog.exportSymbol('proto.padlocal.AppMessageMiniProgram.AppmessageminiprogramthumbCase', null, global);
 goog.exportSymbol('proto.padlocal.AuthInfo', null, global);
 goog.exportSymbol('proto.padlocal.ChatRoomMember', null, global);
 goog.exportSymbol('proto.padlocal.Contact', null, global);
@@ -1525,7 +1526,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.padlocal.AppMessageMiniProgram = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.padlocal.AppMessageMiniProgram.oneofGroups_);
 };
 goog.inherits(proto.padlocal.AppMessageMiniProgram, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -23194,6 +23195,32 @@ proto.padlocal.AppMessageLink.prototype.setThumburl = function(value) {
 
 
 
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.padlocal.AppMessageMiniProgram.oneofGroups_ = [[9,10]];
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.AppMessageMiniProgram.AppmessageminiprogramthumbCase = {
+  APPMESSAGEMINIPROGRAMTHUMB_NOT_SET: 0,
+  THUMBIMAGE: 9,
+  THUMBPARAMS: 10
+};
+
+/**
+ * @return {proto.padlocal.AppMessageMiniProgram.AppmessageminiprogramthumbCase}
+ */
+proto.padlocal.AppMessageMiniProgram.prototype.getAppmessageminiprogramthumbCase = function() {
+  return /** @type {proto.padlocal.AppMessageMiniProgram.AppmessageminiprogramthumbCase} */(jspb.Message.computeOneofCase(this, proto.padlocal.AppMessageMiniProgram.oneofGroups_[0]));
+};
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -23233,7 +23260,8 @@ proto.padlocal.AppMessageMiniProgram.toObject = function(includeInstance, msg) {
     mpappid: jspb.Message.getFieldWithDefault(msg, 6, ""),
     mpappiconurl: jspb.Message.getFieldWithDefault(msg, 7, ""),
     mpapppath: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    thumbimage: msg.getThumbimage_asB64()
+    thumbimage: msg.getThumbimage_asB64(),
+    thumbparams: (f = msg.getThumbparams()) && proto.padlocal.FileUploadImageParams.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -23305,6 +23333,11 @@ proto.padlocal.AppMessageMiniProgram.deserializeBinaryFromReader = function(msg,
     case 9:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setThumbimage(value);
+      break;
+    case 10:
+      var value = new proto.padlocal.FileUploadImageParams;
+      reader.readMessage(value,proto.padlocal.FileUploadImageParams.deserializeBinaryFromReader);
+      msg.setThumbparams(value);
       break;
     default:
       reader.skipField();
@@ -23391,11 +23424,19 @@ proto.padlocal.AppMessageMiniProgram.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getThumbimage_asU8();
-  if (f.length > 0) {
+  f = /** @type {!(string|Uint8Array)} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
     writer.writeBytes(
       9,
       f
+    );
+  }
+  f = message.getThumbparams();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      proto.padlocal.FileUploadImageParams.serializeBinaryToWriter
     );
   }
 };
@@ -23583,7 +23624,62 @@ proto.padlocal.AppMessageMiniProgram.prototype.getThumbimage_asU8 = function() {
  * @return {!proto.padlocal.AppMessageMiniProgram} returns this
  */
 proto.padlocal.AppMessageMiniProgram.prototype.setThumbimage = function(value) {
-  return jspb.Message.setProto3BytesField(this, 9, value);
+  return jspb.Message.setOneofField(this, 9, proto.padlocal.AppMessageMiniProgram.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.padlocal.AppMessageMiniProgram} returns this
+ */
+proto.padlocal.AppMessageMiniProgram.prototype.clearThumbimage = function() {
+  return jspb.Message.setOneofField(this, 9, proto.padlocal.AppMessageMiniProgram.oneofGroups_[0], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.AppMessageMiniProgram.prototype.hasThumbimage = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional FileUploadImageParams thumbParams = 10;
+ * @return {?proto.padlocal.FileUploadImageParams}
+ */
+proto.padlocal.AppMessageMiniProgram.prototype.getThumbparams = function() {
+  return /** @type{?proto.padlocal.FileUploadImageParams} */ (
+    jspb.Message.getWrapperField(this, proto.padlocal.FileUploadImageParams, 10));
+};
+
+
+/**
+ * @param {?proto.padlocal.FileUploadImageParams|undefined} value
+ * @return {!proto.padlocal.AppMessageMiniProgram} returns this
+*/
+proto.padlocal.AppMessageMiniProgram.prototype.setThumbparams = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 10, proto.padlocal.AppMessageMiniProgram.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.padlocal.AppMessageMiniProgram} returns this
+ */
+proto.padlocal.AppMessageMiniProgram.prototype.clearThumbparams = function() {
+  return this.setThumbparams(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.padlocal.AppMessageMiniProgram.prototype.hasThumbparams = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 

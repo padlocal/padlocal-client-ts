@@ -3151,11 +3151,22 @@ export class AppMessageMiniProgram extends jspb.Message {
     getMpapppath(): string;
     setMpapppath(value: string): AppMessageMiniProgram;
 
+
+    hasThumbimage(): boolean;
+    clearThumbimage(): void;
     getThumbimage(): Uint8Array | string;
     getThumbimage_asU8(): Uint8Array;
     getThumbimage_asB64(): string;
     setThumbimage(value: Uint8Array | string): AppMessageMiniProgram;
 
+
+    hasThumbparams(): boolean;
+    clearThumbparams(): void;
+    getThumbparams(): FileUploadImageParams | undefined;
+    setThumbparams(value?: FileUploadImageParams): AppMessageMiniProgram;
+
+
+    getAppMessageMiniProgramThumbCase(): AppMessageMiniProgram.AppMessageMiniProgramThumbCase;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AppMessageMiniProgram.AsObject;
@@ -3178,7 +3189,18 @@ export namespace AppMessageMiniProgram {
         mpappiconurl: string,
         mpapppath: string,
         thumbimage: Uint8Array | string,
+        thumbparams?: FileUploadImageParams.AsObject,
     }
+
+    export enum AppMessageMiniProgramThumbCase {
+        APPMESSAGEMINIPROGRAMTHUMB_NOT_SET = 0,
+    
+    THUMBIMAGE = 9,
+
+    THUMBPARAMS = 10,
+
+    }
+
 }
 
 export class SendAppMessageResponse extends jspb.Message { 

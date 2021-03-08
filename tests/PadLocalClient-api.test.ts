@@ -181,8 +181,8 @@ describe("message", () => {
           .setMpappname(mpAppName)
           .setMpappid(mpAppId)
           .setMpappiconurl(mpAppIconUrl)
-          .setMpapppath(mpAppPath)
-          .setThumbimage(thumbImageData)
+          .setMpapppath(mpAppPath),
+        thumbImageData
       );
 
       log.info(`send miniprogram message to ${toUserName}, return msg id: ${msgId}`);
