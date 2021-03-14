@@ -5308,6 +5308,14 @@ export class Contact extends jspb.Message {
     getStranger(): boolean;
     setStranger(value: boolean): Contact;
 
+    getEncryptusername(): string;
+    setEncryptusername(value: string): Contact;
+
+    clearPhoneList(): void;
+    getPhoneList(): Array<string>;
+    setPhoneList(value: Array<string>): Contact;
+    addPhone(value: string, index?: number): string;
+
     getChatroomownerusername(): string;
     setChatroomownerusername(value: string): Contact;
 
@@ -5345,6 +5353,8 @@ export namespace Contact {
         country: string,
         contactaddscene: number,
         stranger: boolean,
+        encryptusername: string,
+        phoneList: Array<string>,
         chatroomownerusername: string,
         chatroommaxcount: number,
         chatroommemberList: Array<ChatRoomMember.AsObject>,

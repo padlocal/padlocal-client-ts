@@ -963,6 +963,8 @@ message Contact {
   string country = 11;
   int32 contactAddScene = 12;
   bool stranger = 13;
+  string encryptUserName = 14;
+  repeated string phone = 15;
 
   string chatRoomOwnerUserName = 100;
   int32 chatRoomMaxCount = 101;

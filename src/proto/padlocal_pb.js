@@ -36895,7 +36895,7 @@ proto.padlocal.SyncEvent.prototype.clearMessageList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.padlocal.Contact.repeatedFields_ = [102];
+proto.padlocal.Contact.repeatedFields_ = [15,102];
 
 
 
@@ -36941,6 +36941,8 @@ proto.padlocal.Contact.toObject = function(includeInstance, msg) {
     country: jspb.Message.getFieldWithDefault(msg, 11, ""),
     contactaddscene: jspb.Message.getFieldWithDefault(msg, 12, 0),
     stranger: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
+    encryptusername: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    phoneList: (f = jspb.Message.getRepeatedField(msg, 15)) == null ? undefined : f,
     chatroomownerusername: jspb.Message.getFieldWithDefault(msg, 100, ""),
     chatroommaxcount: jspb.Message.getFieldWithDefault(msg, 101, 0),
     chatroommemberList: jspb.Message.toObjectList(msg.getChatroommemberList(),
@@ -37032,6 +37034,14 @@ proto.padlocal.Contact.deserializeBinaryFromReader = function(msg, reader) {
     case 13:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setStranger(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEncryptusername(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPhone(value);
       break;
     case 100:
       var value = /** @type {string} */ (reader.readString());
@@ -37163,6 +37173,20 @@ proto.padlocal.Contact.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       13,
+      f
+    );
+  }
+  f = message.getEncryptusername();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
+      f
+    );
+  }
+  f = message.getPhoneList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      15,
       f
     );
   }
@@ -37422,6 +37446,61 @@ proto.padlocal.Contact.prototype.getStranger = function() {
  */
 proto.padlocal.Contact.prototype.setStranger = function(value) {
   return jspb.Message.setProto3BooleanField(this, 13, value);
+};
+
+
+/**
+ * optional string encryptUserName = 14;
+ * @return {string}
+ */
+proto.padlocal.Contact.prototype.getEncryptusername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.Contact} returns this
+ */
+proto.padlocal.Contact.prototype.setEncryptusername = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * repeated string phone = 15;
+ * @return {!Array<string>}
+ */
+proto.padlocal.Contact.prototype.getPhoneList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 15));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.padlocal.Contact} returns this
+ */
+proto.padlocal.Contact.prototype.setPhoneList = function(value) {
+  return jspb.Message.setField(this, 15, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.padlocal.Contact} returns this
+ */
+proto.padlocal.Contact.prototype.addPhone = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 15, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.padlocal.Contact} returns this
+ */
+proto.padlocal.Contact.prototype.clearPhoneList = function() {
+  return this.setPhoneList([]);
 };
 
 
