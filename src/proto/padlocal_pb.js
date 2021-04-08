@@ -46374,7 +46374,8 @@ proto.padlocal.ZombieStatue = {
 proto.padlocal.AddChatRoomMemberType = {
   ALREADY_IN_ROOM: 0,
   ADD: 1,
-  INVITE: 2
+  INVITE: 2,
+  NEED_ADMIN_APPROVE: 3
 };
 
 /**
