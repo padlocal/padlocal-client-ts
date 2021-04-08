@@ -843,6 +843,10 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
 
     await this.client.request(new pb.SnsRemoveMomentRequest().setMomentid(momentId));
   }
+
+  async sendClientStopSignal(): Promise<void> {
+    await this.client.request(new pb.SystemEventRequest().setClientstopevent(new pb.ClientStopEvent()));
+  }
 }
 
 export interface LoginCallback {

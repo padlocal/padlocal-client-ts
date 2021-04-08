@@ -1,5 +1,5 @@
 import { Request } from "./Request";
-import { Contact, SystemEventRequest, Message } from "./proto/padlocal_pb";
+import { Contact, Message, SystemEventRequest } from "./proto/padlocal_pb";
 import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
 import { PadLocalClientApi } from "./PadLocalClientApi";
@@ -155,6 +155,11 @@ export class PadLocalClient extends EventEmitter {
 
   public shutdown() {
     this._reset();
+
+    this.api
+      .sendClientStopSignal()
+      .then()
+      .catch(() => {});
   }
 
   private _reset(): void {

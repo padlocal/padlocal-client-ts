@@ -5625,6 +5625,23 @@ export namespace SystemNoticeEvent {
     }
 }
 
+export class ClientStopEvent extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ClientStopEvent.AsObject;
+    static toObject(includeInstance: boolean, msg: ClientStopEvent): ClientStopEvent.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ClientStopEvent, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ClientStopEvent;
+    static deserializeBinaryFromReader(message: ClientStopEvent, reader: jspb.BinaryReader): ClientStopEvent;
+}
+
+export namespace ClientStopEvent {
+    export type AsObject = {
+    }
+}
+
 export class SystemEventRequest extends jspb.Message { 
 
     hasKickoutevent(): boolean;
@@ -5645,6 +5662,12 @@ export class SystemEventRequest extends jspb.Message {
     setNoticeevent(value?: SystemNoticeEvent): SystemEventRequest;
 
 
+    hasClientstopevent(): boolean;
+    clearClientstopevent(): void;
+    getClientstopevent(): ClientStopEvent | undefined;
+    setClientstopevent(value?: ClientStopEvent): SystemEventRequest;
+
+
     getPayloadCase(): SystemEventRequest.PayloadCase;
 
     serializeBinary(): Uint8Array;
@@ -5662,6 +5685,7 @@ export namespace SystemEventRequest {
         kickoutevent?: SystemKickOutEvent.AsObject,
         longlinkupdateevent?: SystemLongLinkUpdateEvent.AsObject,
         noticeevent?: SystemNoticeEvent.AsObject,
+        clientstopevent?: ClientStopEvent.AsObject,
     }
 
     export enum PayloadCase {
@@ -5672,6 +5696,8 @@ export namespace SystemEventRequest {
     LONGLINKUPDATEEVENT = 2,
 
     NOTICEEVENT = 3,
+
+    CLIENTSTOPEVENT = 4,
 
     }
 
