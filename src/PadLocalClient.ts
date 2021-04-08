@@ -153,10 +153,10 @@ export class PadLocalClient extends EventEmitter {
     return this._longLinkProxy.getId();
   }
 
-  public shutdown() {
+  public async shutdown() {
     this._reset();
 
-    this.api
+    await this.api
       .sendClientStopSignal()
       .then()
       .catch(() => {});

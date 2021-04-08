@@ -845,7 +845,9 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
   }
 
   async sendClientStopSignal(): Promise<void> {
-    await this.client.request(new pb.SystemEventRequest().setClientstopevent(new pb.ClientStopEvent()));
+    await this.client.request(new pb.SystemEventRequest().setClientstopevent(new pb.ClientStopEvent()), {
+      requestTimeout: 1000,
+    });
   }
 }
 
