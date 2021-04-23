@@ -180,7 +180,7 @@ export class Request extends PadLocalClientPlugin {
     actionMessage.setHeader(actionMessageHeader);
     setPayload(actionMessage, payload);
 
-    log.verbose(
+    log.silly(
       LOGPRE,
       `[tid:${
         this.traceId
@@ -199,7 +199,7 @@ export class Request extends PadLocalClientPlugin {
 
     const payload = getPayload(serverMessage);
 
-    log.verbose(
+    log.silly(
       LOGPRE,
       `[tid:${
         this.traceId

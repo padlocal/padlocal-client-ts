@@ -478,7 +478,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
   }
 
   private logDebug(...args: any[]): void {
-    log.verbose(`[LongLink] [${this._id}]`, ...args);
+    log.silly(`[LongLink] [${this._id}]`, ...args);
   }
 }
 

@@ -41,7 +41,7 @@ export class WeChatShortLinkProxy {
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      log.verbose(
+      log.silly(
         LOGPRE,
         `[tid:${this.traceId}] short link #${
           this.retryStrategy.retryCount
@@ -62,7 +62,7 @@ export class WeChatShortLinkProxy {
   }
 
   private async _sendImpl(path: string, data: Bytes): Promise<Bytes> {
-    log.verbose(
+    log.silly(
       LOGPRE,
       `[tid:${this.traceId}] short link send, ${this.host}:${this.port}${path}, request: ${bytesToHexString(
         data,
@@ -98,7 +98,7 @@ export class WeChatShortLinkProxy {
           });
 
           res.on("end", () => {
-            log.verbose(
+            log.silly(
               LOGPRE,
               `[tid:${this.traceId}] short link receive, response: ${bytesToHexString(
                 responseBuffer,

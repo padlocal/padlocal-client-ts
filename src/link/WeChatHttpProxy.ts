@@ -37,7 +37,7 @@ export class WeChatHttpProxy {
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      log.verbose(
+      log.silly(
         LOGPRE,
         `[tid:${this.traceId}] http #${
           this.retryStrategy.retryCount
@@ -58,7 +58,7 @@ export class WeChatHttpProxy {
   }
 
   private async _sendImpl(): Promise<WeChatHttpResponse> {
-    log.verbose(LOGPRE, `[tid:${this.traceId}] http send, [${this.request.getMethod()}]${this.request.getUrl()}`);
+    log.silly(LOGPRE, `[tid:${this.traceId}] http send, [${this.request.getMethod()}]${this.request.getUrl()}`);
 
     return new Promise((resolve, reject) => {
       let responseDataBuffer = newBytes();
@@ -93,7 +93,7 @@ export class WeChatHttpProxy {
           });
 
           res.on("end", () => {
-            log.verbose(
+            log.silly(
               LOGPRE,
               `[tid:${this.traceId}] http receive, response: ${bytesToHexString(responseDataBuffer, MAX_LOG_BYTES_LEN)}`
             );

@@ -51,7 +51,7 @@ export class PadLocalClient extends EventEmitter {
       try {
         const syncEvent = await this.api.sync();
 
-        log.verbose(
+        log.silly(
           LOGPRE,
           `on push notification, contact count:${syncEvent.getContactList().length}, message count:${
             syncEvent.getMessageList().length
@@ -116,7 +116,7 @@ export class PadLocalClient extends EventEmitter {
 
         // reconnect only while longlink is not idle or ordered by server
         if (!this._longLinkProxy.isIdle() || longLinkUpdateEvent.getReconnectimmediately()) {
-          log.verbose(LOGPRE, "reset long link");
+          log.silly(LOGPRE, "reset long link");
           this.getLongLinkProxy(true).then();
         }
       } else if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.NOTICEEVENT) {

@@ -24,7 +24,7 @@ export async function downloadFile(fileDownloadRequest: FileDownloadRequest, tra
   const fileUnpacker = new FileUnpacker(fromBytes(fileDownloadRequest.getUnpackaeskey()));
 
   const socketStartDate = new Date();
-  log.verbose(
+  log.silly(
     LOGPRE,
     `[tid:${traceId}] send file request, host:\"${fileDownloadRequest
       .getHost()!
@@ -76,7 +76,7 @@ export async function downloadFile(fileDownloadRequest: FileDownloadRequest, tra
   }
 
   const fileData = response!.body["filedata"];
-  log.verbose(
+  log.silly(
     LOGPRE,
     `[tid:${traceId}] [${downloadCostTime}ms] received response: ${retCode}, encrypted file len: ${
       fileData ? fileData.length : "null"
@@ -87,7 +87,7 @@ export async function downloadFile(fileDownloadRequest: FileDownloadRequest, tra
 
   const decryptCostTime = new Date().getTime() - socketEndDate.getTime();
 
-  log.verbose(LOGPRE, `[tid:${traceId}] [${decryptCostTime}ms] decrypted file data len: ${ret.length}`);
+  log.silly(LOGPRE, `[tid:${traceId}] [${decryptCostTime}ms] decrypted file data len: ${ret.length}`);
 
   return ret;
 }
