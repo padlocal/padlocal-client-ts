@@ -18,50 +18,54 @@
 
 ### 直接使用
 
-当然 padlocal-client-ts 也支持直接单独使用。
+当然 padlocal-client-ts 也支持直接单独使用。我们为你提供了一个可以快速开始的 [demo 项目](https://github.com/padlocal/padlocal-client-ts-demo)。
+
+1. 安装 node https://nodejs.org/en/
+2. 下载 demo 项目并安装依赖
+```sh
+$ git clone git@github.com:padlocal/padlocal-client-ts-demo.git
+
+$ cd padlocal-client-ts-demo
+$ npm install
 ```
-const token: string = "";             // padlocal token
-const client = await PadLocalClient.create(token);
+将你的 PadLocal token 配置在代码 `main.ts` 中
+```ts
+  ////////////////// 在这里填入你的 PadLocal Token //////////////////
+  const token: string = "puppet_padlocal_xxx";
+  ////////////////////////////////////////////////////////////////
+```
+3. 运行 demo
 
-client.on("message", (messageList: Message[]) => {
-  for (const message of messageList) {
-    console.log("on message: ", JSON.stringify(message.toObject()));
-  }
-});
+```sh
+$ npm run demo
+```
+命令行中则会出现二维码，然后扫码登录即可。
+```
+00:00:00 INFO
+      ============================================================
+                    Welcome to padlocal-client-ts !
+                           version: 0.2.32
+      ============================================================
 
-client.on("contact", (contactList: Contact[]) => {
-  for (const contact of contactList) {
-    console.log("on contact: ", JSON.stringify(contact.toObject()));
-  }
-});
+start login
+start login with type:  0
 
-console.log("start login");
+▼▼▼ Please scan following qr code to login ▼▼▼
 
-await client.api.login(LoginPolicy.DEFAULT, {
-  onLoginStart: (loginType: LoginType) => {
-    console.log("start login with type: ", loginType);
-  },
-  onOneClickEvent: (oneClickEvent: QRCodeEvent) => {
-    console.log("on one click event: ", JSON.stringify(oneClickEvent.toObject()));
-  },
-  onQrCodeEvent: (qrCodeEvent: QRCodeEvent) => {
-    console.log("on qr code event: ", JSON.stringify(qrCodeEvent.toObject()));
-  },
-  onLoginSuccess(contact: Contact) {
-    console.log("on login success: ", JSON.stringify(contact.toObject()));
-  },
-  onSync: (syncEvent: SyncEvent) => {
-    for (const contact of syncEvent.getContactList()) {
-      console.log("login on sync contact: ", JSON.stringify(contact.toObject()));
-    }
-
-    for (const message of syncEvent.getMessageList()) {
-      console.log("login on sync message: ", JSON.stringify(message.toObject()));
-    }
-  },
-});
-
-console.log("login done");
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▄▄████ █▄▄ ▄▀█ ▄▄▄▄▄ █
+█ █   █ █ ▀█ ▄ ▀  █▄ ▀█ █   █ █
+█ █▄▄▄█ █▄ ▄▄▀ ██ ██ ▀█ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄▀▄▀▄█▄▀▄▀ ▀▄█▄▄▄▄▄▄▄█
+█▄▄ ▄██▄█ ▀████▀█▀▄ ▀█ ▀▀ ▄▄█ █
+█▄▄ █▀ ▄▀ ██▀▀  █▀▄▀▀▀▄▄█▀▀▄▄▀█
+█ █ ▀█▀▄ ▀ ▀ █▄█▄  ▀ █▄▀██▄▄▀▀█
+█▄ ▄▀█▀▄█▄ ██ ▄█▀▀██   ▀██▄▄ ▄█
+█▄ █▀  ▄▀▄  ▄▀ █ ██▀▄  █▀▄█▀ ██
+█ ▄▄▄▄▄ ██▄ ▄▄▀▄████▄ █▄█ ▄█ ██
+█ █   █ █▀▀ ▀ ▀▄█▀▀▀█▄ ▄    ▄ █
+█ █▄▄▄█ █  ▄ ██ ▀▄▄▀█  █ ▀▀▄▀▄█
+█▄▄▄▄▄▄▄█▄█▄███▄▄█▄▄█▄▄█████▄██
 ```
 
 你也可以查阅本项目的测试用例，里面有大量的详细使用示例：https://github.com/padlocal/padlocal-client-ts/tree/master/tests 。
