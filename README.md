@@ -76,4 +76,4 @@ console.log("login done");
 * PadLocalClientApi.ts
 
 ## How to apply token
-[TOKEN 申请方法](https://github.com/padlocal/wechaty-puppet-padlocal/wiki/TOKEN-%E7%94%B3%E8%AF%B7%E6%96%B9%E6%B3%95)
+[TOKEN 申请方法](https://github.com/padlocal/wechaty-puppet-padlocal/wiki/How-to-Apply-Token)
