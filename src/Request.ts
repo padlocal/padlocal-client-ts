@@ -164,7 +164,7 @@ export class Request extends PadLocalClientPlugin {
         this.traceId,
         this._status,
         undefined,
-        "can not send message while stream status is not illegal"
+        "can not send message while stream status is illegal"
       );
     }
 

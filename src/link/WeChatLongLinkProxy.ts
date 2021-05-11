@@ -37,6 +37,8 @@ export class WeChatLongLinkProxy extends EventEmitter {
   private _socket?: Socket;
   private _socketConnectTimeout?: NodeJS.Timeout;
   private _id?: string;
+  private readonly _instanceId: string;
+
   private _socketPromise?: Promise<void>;
   private _reconnectDelayTimer?: NodeJS.Timeout;
   private readonly _reconnectStrategy = RetryStrategy.getStrategy(RetryStrategyRule.FAST, Number.MAX_SAFE_INTEGER); // reconnect infinitely
@@ -60,6 +62,8 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
     this._client = client;
     this._serialExecutor = new SerialExecutor();
+
+    this._instanceId = genUUID();
   }
 
   updateHostPort(host: string, port: number): boolean {
@@ -352,7 +356,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
         socket.setTimeout(WeChatLongLinkProxy.SOCKET_TIMEOUT);
 
         this._socket = socket;
-        this._id = genUUID();
+        this._id = `${this._instanceId.substr(0, 2)}:${genUUID().substr(0, 4)}`;
 
         // node socket doesn't support connect timeout natively, so implement our own version.
         this._socketConnectTimeout = setTimeout(() => {
