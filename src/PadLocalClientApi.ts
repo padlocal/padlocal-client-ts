@@ -58,8 +58,11 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     return this.client.request(new pb.LogoutRequest());
   }
 
-  async sync(): Promise<pb.SyncEvent> {
-    const response: pb.SyncResponse = await this.client.request(new pb.SyncRequest());
+  async sync(scene: pb.SyncRequestScene): Promise<pb.SyncEvent> {
+    const request = new pb.SyncRequest();
+    request.setScene(scene);
+
+    const response: pb.SyncResponse = await this.client.request(request);
     return response.getPayload()!;
   }
 

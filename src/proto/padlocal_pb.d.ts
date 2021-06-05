@@ -5721,6 +5721,9 @@ export namespace SystemEventResponse {
 }
 
 export class SyncRequest extends jspb.Message { 
+    getScene(): SyncRequestScene;
+    setScene(value: SyncRequestScene): SyncRequest;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SyncRequest.AsObject;
@@ -5734,6 +5737,7 @@ export class SyncRequest extends jspb.Message {
 
 export namespace SyncRequest {
     export type AsObject = {
+        scene: SyncRequestScene,
     }
 }
 
@@ -6763,6 +6767,11 @@ export enum AddChatRoomMemberType {
     ADD = 1,
     INVITE = 2,
     NEED_ADMIN_APPROVE = 3,
+}
+
+export enum SyncRequestScene {
+    ON_PUSH = 0,
+    LONGLINK_INIT = 1,
 }
 
 export enum ImageType {

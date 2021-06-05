@@ -9,6 +9,7 @@ import {
   EncryptedFileType,
   MessageRevokeInfo,
   SendTextMessageResponse,
+  SyncRequestScene,
   ZombieStatue,
 } from "../src/proto/padlocal_pb";
 import { Bytes, hexStringToBytes } from "../src/utils/ByteUtils";
@@ -26,7 +27,7 @@ afterAll(() => {
 });
 
 test("sync", async () => {
-  const syncEvent = await client.api.sync();
+  const syncEvent = await client.api.sync(SyncRequestScene.ON_PUSH);
   log.info(`sync result: ${stringifyPB(syncEvent)}`);
 
   expect(syncEvent).not.toBeNull();

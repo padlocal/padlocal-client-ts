@@ -191,6 +191,7 @@ goog.exportSymbol('proto.padlocal.SyncContactRequest', null, global);
 goog.exportSymbol('proto.padlocal.SyncContactResponse', null, global);
 goog.exportSymbol('proto.padlocal.SyncEvent', null, global);
 goog.exportSymbol('proto.padlocal.SyncRequest', null, global);
+goog.exportSymbol('proto.padlocal.SyncRequestScene', null, global);
 goog.exportSymbol('proto.padlocal.SyncResponse', null, global);
 goog.exportSymbol('proto.padlocal.SystemEventRequest', null, global);
 goog.exportSymbol('proto.padlocal.SystemEventRequest.PayloadCase', null, global);
@@ -40003,7 +40004,7 @@ proto.padlocal.SyncRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.padlocal.SyncRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    scene: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -40040,6 +40041,10 @@ proto.padlocal.SyncRequest.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {!proto.padlocal.SyncRequestScene} */ (reader.readEnum());
+      msg.setScene(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -40069,6 +40074,31 @@ proto.padlocal.SyncRequest.prototype.serializeBinary = function() {
  */
 proto.padlocal.SyncRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getScene();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional SyncRequestScene scene = 1;
+ * @return {!proto.padlocal.SyncRequestScene}
+ */
+proto.padlocal.SyncRequest.prototype.getScene = function() {
+  return /** @type {!proto.padlocal.SyncRequestScene} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.padlocal.SyncRequestScene} value
+ * @return {!proto.padlocal.SyncRequest} returns this
+ */
+proto.padlocal.SyncRequest.prototype.setScene = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -46376,6 +46406,14 @@ proto.padlocal.AddChatRoomMemberType = {
   ADD: 1,
   INVITE: 2,
   NEED_ADMIN_APPROVE: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.padlocal.SyncRequestScene = {
+  ON_PUSH: 0,
+  LONGLINK_INIT: 1
 };
 
 /**

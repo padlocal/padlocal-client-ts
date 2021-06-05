@@ -1,6 +1,6 @@
 import { Request } from "./Request";
-import { Contact, Message, SystemEventRequest } from "./proto/padlocal_pb";
-import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
+import { Contact, Message, SyncEvent, SyncRequestScene, SystemEventRequest } from "./proto/padlocal_pb";
+import { Status, StatusEventPayload, WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
 import { PadLocalClientApi } from "./PadLocalClientApi";
 import { Message as GrpcMessage } from "google-protobuf";
@@ -49,24 +49,22 @@ export class PadLocalClient extends EventEmitter {
 
     this._longLinkProxy.on("message-push", async () => {
       try {
-        const syncEvent = await this.api.sync();
+        const syncEvent = await this.api.sync(SyncRequestScene.ON_PUSH);
 
-        log.silly(
-          LOGPRE,
-          `on push notification, contact count:${syncEvent.getContactList().length}, message count:${
-            syncEvent.getMessageList().length
-          }`
-        );
-
-        if (syncEvent.getMessageList().length > 0) {
-          this.emit("message", syncEvent.getMessageList());
-        }
-
-        if (syncEvent.getContactList().length > 0) {
-          this.emit("contact", syncEvent.getContactList());
-        }
+        this._processSyncResponse(syncEvent);
       } catch (e) {
         log.error(LOGPRE, `error while syncing onpush: ${e.stack}`);
+      }
+    });
+
+    this._longLinkProxy.on("status", async (detail: StatusEventPayload) => {
+      if (detail.newStatus == Status.CONNECTED) {
+        try {
+          const syncEvent = await this.api.sync(SyncRequestScene.LONGLINK_INIT);
+          this._processSyncResponse(syncEvent);
+        } catch (e) {
+          log.error(LOGPRE, `error while syncing after longlink connected: ${e.stack}`);
+        }
       }
     });
 
@@ -165,6 +163,23 @@ export class PadLocalClient extends EventEmitter {
   private _reset(): void {
     this.selfContact = undefined;
     this._longLinkProxy.shutdown(true);
+  }
+
+  private _processSyncResponse(syncEvent: SyncEvent): void {
+    log.silly(
+      LOGPRE,
+      `on push notification, contact count:${syncEvent.getContactList().length}, message count:${
+        syncEvent.getMessageList().length
+      }`
+    );
+
+    if (syncEvent.getMessageList().length > 0) {
+      this.emit("message", syncEvent.getMessageList());
+    }
+
+    if (syncEvent.getContactList().length > 0) {
+      this.emit("contact", syncEvent.getContactList());
+    }
   }
 }
 
