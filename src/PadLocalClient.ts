@@ -59,11 +59,13 @@ export class PadLocalClient extends EventEmitter {
 
     this._longLinkProxy.on("status", async (detail: StatusEventPayload) => {
       if (detail.newStatus == Status.CONNECTED) {
-        try {
-          const syncEvent = await this.api.sync(SyncRequestScene.LONGLINK_INIT);
-          this._processSyncResponse(syncEvent);
-        } catch (e) {
-          log.error(LOGPRE, `error while syncing after longlink connected: ${e.stack}`);
+        if (this.isOnline) {
+          try {
+            const syncEvent = await this.api.sync(SyncRequestScene.LONGLINK_INIT);
+            this._processSyncResponse(syncEvent);
+          } catch (e) {
+            log.error(LOGPRE, `error while syncing after longlink connected: ${e.stack}`);
+          }
         }
       }
     });
