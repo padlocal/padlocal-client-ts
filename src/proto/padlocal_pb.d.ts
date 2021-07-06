@@ -3298,6 +3298,12 @@ export class AddContactRequest extends jspb.Message {
     getContent(): string;
     setContent(value: string): AddContactRequest;
 
+    getRoomid(): string;
+    setRoomid(value: string): AddContactRequest;
+
+    getContactid(): string;
+    setContactid(value: string): AddContactRequest;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddContactRequest.AsObject;
@@ -3315,6 +3321,8 @@ export namespace AddContactRequest {
         ticket: string,
         scene: AddContactScene,
         content: string,
+        roomid: string,
+        contactid: string,
     }
 }
 

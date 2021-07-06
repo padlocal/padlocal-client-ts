@@ -572,6 +572,8 @@ message AddContactRequest {
   string ticket = 2;
   AddContactScene scene = 3;
   string content = 4;
+  string roomId = 5;
+  string contactId = 6;
 }
 
 message AddContactResponse {

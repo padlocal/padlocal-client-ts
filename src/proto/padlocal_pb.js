@@ -24273,7 +24273,9 @@ proto.padlocal.AddContactRequest.toObject = function(includeInstance, msg) {
     stranger: jspb.Message.getFieldWithDefault(msg, 1, ""),
     ticket: jspb.Message.getFieldWithDefault(msg, 2, ""),
     scene: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    content: jspb.Message.getFieldWithDefault(msg, 4, "")
+    content: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    roomid: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    contactid: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -24325,6 +24327,14 @@ proto.padlocal.AddContactRequest.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setContent(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRoomid(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setContactid(value);
       break;
     default:
       reader.skipField();
@@ -24380,6 +24390,20 @@ proto.padlocal.AddContactRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getRoomid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getContactid();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -24455,6 +24479,42 @@ proto.padlocal.AddContactRequest.prototype.getContent = function() {
  */
 proto.padlocal.AddContactRequest.prototype.setContent = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string roomId = 5;
+ * @return {string}
+ */
+proto.padlocal.AddContactRequest.prototype.getRoomid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.AddContactRequest} returns this
+ */
+proto.padlocal.AddContactRequest.prototype.setRoomid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string contactId = 6;
+ * @return {string}
+ */
+proto.padlocal.AddContactRequest.prototype.getContactid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.padlocal.AddContactRequest} returns this
+ */
+proto.padlocal.AddContactRequest.prototype.setContactid = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 

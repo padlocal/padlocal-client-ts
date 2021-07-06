@@ -491,13 +491,32 @@ export class PadLocalClientApi extends PadLocalClientPlugin {
     await this.client.request(request);
   }
 
-  async addContact(stranger: string, ticket: string, scene: pb.AddContactScene, hello: string): Promise<void> {
+  async addContact(
+    stranger: string,
+    ticket: string,
+    scene: pb.AddContactScene,
+    hello: string,
+    roomId?: string,
+    contactId?: string
+  ): Promise<void> {
     checkRequiredField(stranger, "stranger");
     checkRequiredField(ticket, "ticket");
 
-    await this.client.request(
-      new pb.AddContactRequest().setStranger(stranger).setTicket(ticket).setScene(scene).setContent(hello)
-    );
+    const request: pb.AddContactRequest = new pb.AddContactRequest()
+      .setStranger(stranger)
+      .setTicket(ticket)
+      .setScene(scene)
+      .setContent(hello);
+
+    if (roomId) {
+      request.setRoomid(roomId);
+    }
+
+    if (contactId) {
+      request.setContactid(contactId);
+    }
+
+    await this.client.request(request);
   }
 
   async deleteContact(userName: string): Promise<void> {
