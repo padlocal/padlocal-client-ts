@@ -1,6 +1,6 @@
 {
   "name": "padlocal-client-ts",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Padlocal ts client",
   "keywords": [
     "padlocal",
