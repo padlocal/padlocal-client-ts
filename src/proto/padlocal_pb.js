@@ -3481,7 +3481,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.padlocal.SystemLongLinkUpdateEvent = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.padlocal.SystemLongLinkUpdateEvent.repeatedFields_, null);
 };
 goog.inherits(proto.padlocal.SystemLongLinkUpdateEvent, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -39188,6 +39188,13 @@ proto.padlocal.SystemKickOutEvent.prototype.setErrormessage = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -39220,7 +39227,9 @@ proto.padlocal.SystemLongLinkUpdateEvent.prototype.toObject = function(opt_inclu
 proto.padlocal.SystemLongLinkUpdateEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
     longlinkhost: (f = msg.getLonglinkhost()) && proto.padlocal.Host.toObject(includeInstance, f),
-    reconnectimmediately: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    reconnectimmediately: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    longlinkhostlistList: jspb.Message.toObjectList(msg.getLonglinkhostlistList(),
+    proto.padlocal.Host.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -39266,6 +39275,11 @@ proto.padlocal.SystemLongLinkUpdateEvent.deserializeBinaryFromReader = function(
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setReconnectimmediately(value);
       break;
+    case 3:
+      var value = new proto.padlocal.Host;
+      reader.readMessage(value,proto.padlocal.Host.deserializeBinaryFromReader);
+      msg.addLonglinkhostlist(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -39308,6 +39322,14 @@ proto.padlocal.SystemLongLinkUpdateEvent.serializeBinaryToWriter = function(mess
     writer.writeBool(
       2,
       f
+    );
+  }
+  f = message.getLonglinkhostlistList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.padlocal.Host.serializeBinaryToWriter
     );
   }
 };
@@ -39365,6 +39387,44 @@ proto.padlocal.SystemLongLinkUpdateEvent.prototype.getReconnectimmediately = fun
  */
 proto.padlocal.SystemLongLinkUpdateEvent.prototype.setReconnectimmediately = function(value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * repeated Host longLinkHostList = 3;
+ * @return {!Array<!proto.padlocal.Host>}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.getLonglinkhostlistList = function() {
+  return /** @type{!Array<!proto.padlocal.Host>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.padlocal.Host, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.padlocal.Host>} value
+ * @return {!proto.padlocal.SystemLongLinkUpdateEvent} returns this
+*/
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.setLonglinkhostlistList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.padlocal.Host=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.padlocal.Host}
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.addLonglinkhostlist = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.padlocal.Host, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.padlocal.SystemLongLinkUpdateEvent} returns this
+ */
+proto.padlocal.SystemLongLinkUpdateEvent.prototype.clearLonglinkhostlistList = function() {
+  return this.setLonglinkhostlistList([]);
 };
 
 

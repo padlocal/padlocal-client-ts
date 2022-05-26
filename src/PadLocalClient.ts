@@ -8,6 +8,7 @@ import { VERSION } from "./version";
 import { GrpcClient, GrpcOptions } from "./GrpcClient";
 import { getServerInfo } from "./utils/ServerInfo";
 import { log } from "brolog";
+import {HostResolver} from "./utils/Host";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
@@ -109,9 +110,9 @@ export class PadLocalClient extends EventEmitter {
         this._longLinkProxy.shutdown(true);
       } else if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.LONGLINKUPDATEEVENT) {
         const longLinkUpdateEvent = systemEventRequest.getLonglinkupdateevent()!;
-        if (longLinkUpdateEvent.getLonglinkhost()) {
-          const longLinkHost = longLinkUpdateEvent.getLonglinkhost()!;
-          this._longLinkProxy.updateHostPort(longLinkHost.getHost(), longLinkHost.getPort());
+        if (longLinkUpdateEvent.getLonglinkhostlistList()?.length) {
+          const hostList = HostResolver.hostListFromPBHost(longLinkUpdateEvent.getLonglinkhostlistList());
+          this._longLinkProxy.updateHostList(hostList);
         }
 
         // reconnect only while longlink is not idle or ordered by server

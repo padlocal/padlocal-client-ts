@@ -1024,6 +1024,7 @@ message SystemKickOutEvent {
 message SystemLongLinkUpdateEvent {
   Host longLinkHost = 1;
   bool reconnectImmediately = 2;
+  repeated Host longLinkHostList = 3;
 }
 
 message SystemNoticeEvent {

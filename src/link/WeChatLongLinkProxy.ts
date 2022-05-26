@@ -20,6 +20,7 @@ import VError from "verror";
 import { SerialExecutor } from "../utils/SerialExecutor";
 import { genUUID } from "../utils/Utils";
 import { log } from "brolog";
+import {Host, HostResolver} from "../utils/Host";
 
 export type WeChatLongLinkProxyEvent = "heartbeat" | "message-push" | "push" | "status";
 
@@ -31,8 +32,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
   private _heartBeatTimer?: NodeJS.Timeout;
 
-  private _host?: string;
-  private _port?: number;
+  private _hostList?: Array<Host>;
   private _status = Status.IDLE;
   private _socket?: Socket;
   private _socketConnectTimeout?: NodeJS.Timeout;
@@ -66,15 +66,14 @@ export class WeChatLongLinkProxy extends EventEmitter {
     this._instanceId = genUUID();
   }
 
-  updateHostPort(host: string, port: number): boolean {
-    if (this._host === host && this._port === port) {
+  updateHostList(hostList: Array<Host>): boolean {
+    if (!hostList || hostList.length === 0) {
       return false;
     }
 
-    this._host = host;
-    this._port = port;
+    this._hostList = hostList;
 
-    this.logDebug(`update longlink host: ${host}, port: ${port}`);
+    this.logDebug(`update longlink host: ${JSON.stringify(hostList)}`);
 
     return true;
   }
@@ -103,8 +102,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
     this._destroyLongLink();
 
     if (clearHost) {
-      this._host = undefined;
-      this._port = undefined;
+      this._hostList = undefined;
     }
   }
 
@@ -131,7 +129,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
     try {
       await this._connect();
     } catch (e) {
-      throw new IOError(e, `longlink fail to connect, host:${this._host}, port:${this._port}`);
+      throw new IOError(e, `longlink fail to connect`);
     }
   }
 
@@ -342,7 +340,8 @@ export class WeChatLongLinkProxy extends EventEmitter {
   }
 
   private async _connect(): Promise<void> {
-    if (!this._host || !this._port) {
+    const host = HostResolver.selectBestHostFromList(this._hostList!);
+    if (!host) {
       throw new Error("longlink host port is not configured yet");
     }
 
@@ -350,7 +349,8 @@ export class WeChatLongLinkProxy extends EventEmitter {
       this._socketPromise = new Promise((resolve, reject) => {
         const startDate = new Date();
 
-        this.logDebug(`longlink start connect: ${this._host}:${this._port}`);
+
+        this.logDebug(`longlink start connect: ${host.host}:${host.port}`);
 
         const socket = new Socket();
         socket.setTimeout(WeChatLongLinkProxy.SOCKET_TIMEOUT);
@@ -360,7 +360,9 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
         // node socket doesn't support connect timeout natively, so implement our own version.
         this._socketConnectTimeout = setTimeout(() => {
-          this.logDebug(`longlink socket[${this._host}:${this._port}] connect timeout`);
+          this.logDebug(`longlink socket[${host.host}:${host.port}] connect timeout`);
+
+          HostResolver.adjustHostQuality(host, false);
 
           const error = new IOError("longlink socket connect timeout");
           this._onSocketError(error);
@@ -369,14 +371,17 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
         this._updateStatus(Status.CONNECTING);
 
+
         socket.connect(
           {
-            host: this._host!,
-            port: this._port!,
+            host: host.host,
+            port: host.port,
           },
           async () => {
             const endDate = new Date();
             this.logDebug(`longlink connect success, cost ${endDate.getTime() - startDate.getTime()}ms`);
+
+            HostResolver.adjustHostQuality(host, true);
 
             clearTimeout(this._socketConnectTimeout!);
             this._socketConnectTimeout = undefined;
@@ -454,7 +459,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
       });
     } catch (e) {
       // if longlink unpack failed, notify all longlink pending callback with error,
-      // bcz we don't known which request corresponding to current unpackResponse exactly.
+      // bcz we don't know which request corresponding to current unpackResponse exactly.
       this._onSocketError(new IOError(e, "Exception while unpacking long link data"));
 
       throw e;

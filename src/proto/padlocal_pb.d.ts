@@ -9,10 +9,8 @@ import * as jspb from "google-protobuf";
 export class ActionMessageHeader extends jspb.Message { 
     getSeq(): number;
     setSeq(value: number): ActionMessageHeader;
-
     getAck(): number;
     setAck(value: number): ActionMessageHeader;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ActionMessageHeader.AsObject;
@@ -38,828 +36,690 @@ export class ActionMessage extends jspb.Message {
     getHeader(): ActionMessageHeader | undefined;
     setHeader(value?: ActionMessageHeader): ActionMessage;
 
-
     hasWechatrequest(): boolean;
     clearWechatrequest(): void;
     getWechatrequest(): WeChatRequest | undefined;
     setWechatrequest(value?: WeChatRequest): ActionMessage;
-
 
     hasWechatresponse(): boolean;
     clearWechatresponse(): void;
     getWechatresponse(): WeChatResponse | undefined;
     setWechatresponse(value?: WeChatResponse): ActionMessage;
 
-
     hasWechatstreamrequest(): boolean;
     clearWechatstreamrequest(): void;
     getWechatstreamrequest(): WeChatStreamRequest | undefined;
     setWechatstreamrequest(value?: WeChatStreamRequest): ActionMessage;
-
 
     hasWechatstreamresponse(): boolean;
     clearWechatstreamresponse(): void;
     getWechatstreamresponse(): WeChatStreamResponse | undefined;
     setWechatstreamresponse(value?: WeChatStreamResponse): ActionMessage;
 
-
     hasWechatstreamresponsereply(): boolean;
     clearWechatstreamresponsereply(): void;
     getWechatstreamresponsereply(): WeChatStreamResponseReply | undefined;
     setWechatstreamresponsereply(value?: WeChatStreamResponseReply): ActionMessage;
-
 
     hasSystemeventrequest(): boolean;
     clearSystemeventrequest(): void;
     getSystemeventrequest(): SystemEventRequest | undefined;
     setSystemeventrequest(value?: SystemEventRequest): ActionMessage;
 
-
     hasSystemeventresponse(): boolean;
     clearSystemeventresponse(): void;
     getSystemeventresponse(): SystemEventResponse | undefined;
     setSystemeventresponse(value?: SystemEventResponse): ActionMessage;
-
 
     hasLonglinkinitrequest(): boolean;
     clearLonglinkinitrequest(): void;
     getLonglinkinitrequest(): LongLinkInitRequest | undefined;
     setLonglinkinitrequest(value?: LongLinkInitRequest): ActionMessage;
 
-
     hasLonglinkinitresponse(): boolean;
     clearLonglinkinitresponse(): void;
     getLonglinkinitresponse(): LongLinkInitResponse | undefined;
     setLonglinkinitresponse(value?: LongLinkInitResponse): ActionMessage;
-
 
     hasLonglinkpackrequest(): boolean;
     clearLonglinkpackrequest(): void;
     getLonglinkpackrequest(): LongLinkPackRequest | undefined;
     setLonglinkpackrequest(value?: LongLinkPackRequest): ActionMessage;
 
-
     hasLonglinkpackresponse(): boolean;
     clearLonglinkpackresponse(): void;
     getLonglinkpackresponse(): LongLinkPackResponse | undefined;
     setLonglinkpackresponse(value?: LongLinkPackResponse): ActionMessage;
-
 
     hasLonglinkunpackrequest(): boolean;
     clearLonglinkunpackrequest(): void;
     getLonglinkunpackrequest(): LongLinkUnpackRequest | undefined;
     setLonglinkunpackrequest(value?: LongLinkUnpackRequest): ActionMessage;
 
-
     hasLonglinkunpackresponse(): boolean;
     clearLonglinkunpackresponse(): void;
     getLonglinkunpackresponse(): LongLinkUnpackResponse | undefined;
     setLonglinkunpackresponse(value?: LongLinkUnpackResponse): ActionMessage;
-
 
     hasLonglinkheartbeatrequest(): boolean;
     clearLonglinkheartbeatrequest(): void;
     getLonglinkheartbeatrequest(): LongLinkHeartBeatRequest | undefined;
     setLonglinkheartbeatrequest(value?: LongLinkHeartBeatRequest): ActionMessage;
 
-
     hasLonglinkheartbeatresponse(): boolean;
     clearLonglinkheartbeatresponse(): void;
     getLonglinkheartbeatresponse(): LongLinkHeartBeatResponse | undefined;
     setLonglinkheartbeatresponse(value?: LongLinkHeartBeatResponse): ActionMessage;
-
 
     hasSyncrequest(): boolean;
     clearSyncrequest(): void;
     getSyncrequest(): SyncRequest | undefined;
     setSyncrequest(value?: SyncRequest): ActionMessage;
 
-
     hasSyncresponse(): boolean;
     clearSyncresponse(): void;
     getSyncresponse(): SyncResponse | undefined;
     setSyncresponse(value?: SyncResponse): ActionMessage;
-
 
     hasSyncevent(): boolean;
     clearSyncevent(): void;
     getSyncevent(): SyncEvent | undefined;
     setSyncevent(value?: SyncEvent): ActionMessage;
 
-
     hasLoginrequest(): boolean;
     clearLoginrequest(): void;
     getLoginrequest(): LoginRequest | undefined;
     setLoginrequest(value?: LoginRequest): ActionMessage;
-
 
     hasLoginupdateevent(): boolean;
     clearLoginupdateevent(): void;
     getLoginupdateevent(): LoginUpdateEvent | undefined;
     setLoginupdateevent(value?: LoginUpdateEvent): ActionMessage;
 
-
     hasLoginresponse(): boolean;
     clearLoginresponse(): void;
     getLoginresponse(): LoginResponse | undefined;
     setLoginresponse(value?: LoginResponse): ActionMessage;
-
 
     hasLogoutrequest(): boolean;
     clearLogoutrequest(): void;
     getLogoutrequest(): LogoutRequest | undefined;
     setLogoutrequest(value?: LogoutRequest): ActionMessage;
 
-
     hasLogoutresponse(): boolean;
     clearLogoutresponse(): void;
     getLogoutresponse(): LogoutResponse | undefined;
     setLogoutresponse(value?: LogoutResponse): ActionMessage;
-
 
     hasSendtextmessagerequest(): boolean;
     clearSendtextmessagerequest(): void;
     getSendtextmessagerequest(): SendTextMessageRequest | undefined;
     setSendtextmessagerequest(value?: SendTextMessageRequest): ActionMessage;
 
-
     hasSendtextmessageresponse(): boolean;
     clearSendtextmessageresponse(): void;
     getSendtextmessageresponse(): SendTextMessageResponse | undefined;
     setSendtextmessageresponse(value?: SendTextMessageResponse): ActionMessage;
-
 
     hasSendimagemessagerequest(): boolean;
     clearSendimagemessagerequest(): void;
     getSendimagemessagerequest(): SendImageMessageRequest | undefined;
     setSendimagemessagerequest(value?: SendImageMessageRequest): ActionMessage;
 
-
     hasSendimagemessageresponse(): boolean;
     clearSendimagemessageresponse(): void;
     getSendimagemessageresponse(): SendImageMessageResponse | undefined;
     setSendimagemessageresponse(value?: SendImageMessageResponse): ActionMessage;
-
 
     hasSendappmessagerequest(): boolean;
     clearSendappmessagerequest(): void;
     getSendappmessagerequest(): SendAppMessageRequest | undefined;
     setSendappmessagerequest(value?: SendAppMessageRequest): ActionMessage;
 
-
     hasSendappmessageresponse(): boolean;
     clearSendappmessageresponse(): void;
     getSendappmessageresponse(): SendAppMessageResponse | undefined;
     setSendappmessageresponse(value?: SendAppMessageResponse): ActionMessage;
-
 
     hasGetmessageimagerequest(): boolean;
     clearGetmessageimagerequest(): void;
     getGetmessageimagerequest(): GetMessageImageRequest | undefined;
     setGetmessageimagerequest(value?: GetMessageImageRequest): ActionMessage;
 
-
     hasGetmessageimageresponse(): boolean;
     clearGetmessageimageresponse(): void;
     getGetmessageimageresponse(): GetMessageImageResponse | undefined;
     setGetmessageimageresponse(value?: GetMessageImageResponse): ActionMessage;
-
 
     hasGetmessagevoicerequest(): boolean;
     clearGetmessagevoicerequest(): void;
     getGetmessagevoicerequest(): GetMessageVoiceRequest | undefined;
     setGetmessagevoicerequest(value?: GetMessageVoiceRequest): ActionMessage;
 
-
     hasGetmessagevoiceresponse(): boolean;
     clearGetmessagevoiceresponse(): void;
     getGetmessagevoiceresponse(): GetMessageVoiceResponse | undefined;
     setGetmessagevoiceresponse(value?: GetMessageVoiceResponse): ActionMessage;
-
 
     hasGetmessagevideothumbrequest(): boolean;
     clearGetmessagevideothumbrequest(): void;
     getGetmessagevideothumbrequest(): GetMessageVideoThumbRequest | undefined;
     setGetmessagevideothumbrequest(value?: GetMessageVideoThumbRequest): ActionMessage;
 
-
     hasGetmessagevideothumbresponse(): boolean;
     clearGetmessagevideothumbresponse(): void;
     getGetmessagevideothumbresponse(): GetMessageVideoThumbResponse | undefined;
     setGetmessagevideothumbresponse(value?: GetMessageVideoThumbResponse): ActionMessage;
-
 
     hasGetmessagevideorequest(): boolean;
     clearGetmessagevideorequest(): void;
     getGetmessagevideorequest(): GetMessageVideoRequest | undefined;
     setGetmessagevideorequest(value?: GetMessageVideoRequest): ActionMessage;
 
-
     hasGetmessagevideoresponse(): boolean;
     clearGetmessagevideoresponse(): void;
     getGetmessagevideoresponse(): GetMessageVideoResponse | undefined;
     setGetmessagevideoresponse(value?: GetMessageVideoResponse): ActionMessage;
-
 
     hasGetmessageattachrequest(): boolean;
     clearGetmessageattachrequest(): void;
     getGetmessageattachrequest(): GetMessageAttachRequest | undefined;
     setGetmessageattachrequest(value?: GetMessageAttachRequest): ActionMessage;
 
-
     hasGetmessageattachresponse(): boolean;
     clearGetmessageattachresponse(): void;
     getGetmessageattachresponse(): GetMessageAttachResponse | undefined;
     setGetmessageattachresponse(value?: GetMessageAttachResponse): ActionMessage;
-
 
     hasForwardmessagerequest(): boolean;
     clearForwardmessagerequest(): void;
     getForwardmessagerequest(): ForwardMessageRequest | undefined;
     setForwardmessagerequest(value?: ForwardMessageRequest): ActionMessage;
 
-
     hasForwardmessageresponse(): boolean;
     clearForwardmessageresponse(): void;
     getForwardmessageresponse(): ForwardMessageResponse | undefined;
     setForwardmessageresponse(value?: ForwardMessageResponse): ActionMessage;
-
 
     hasGetmessageattachthumbrequest(): boolean;
     clearGetmessageattachthumbrequest(): void;
     getGetmessageattachthumbrequest(): GetMessageAttachThumbRequest | undefined;
     setGetmessageattachthumbrequest(value?: GetMessageAttachThumbRequest): ActionMessage;
 
-
     hasGetmessageattachthumbresponse(): boolean;
     clearGetmessageattachthumbresponse(): void;
     getGetmessageattachthumbresponse(): GetMessageAttachThumbResponse | undefined;
     setGetmessageattachthumbresponse(value?: GetMessageAttachThumbResponse): ActionMessage;
-
 
     hasRevokemessagerequest(): boolean;
     clearRevokemessagerequest(): void;
     getRevokemessagerequest(): RevokeMessageRequest | undefined;
     setRevokemessagerequest(value?: RevokeMessageRequest): ActionMessage;
 
-
     hasRevokemessageresponse(): boolean;
     clearRevokemessageresponse(): void;
     getRevokemessageresponse(): RevokeMessageResponse | undefined;
     setRevokemessageresponse(value?: RevokeMessageResponse): ActionMessage;
-
 
     hasSendcontactcardmessagerequest(): boolean;
     clearSendcontactcardmessagerequest(): void;
     getSendcontactcardmessagerequest(): SendContactCardMessageRequest | undefined;
     setSendcontactcardmessagerequest(value?: SendContactCardMessageRequest): ActionMessage;
 
-
     hasSendcontactcardmessageresponse(): boolean;
     clearSendcontactcardmessageresponse(): void;
     getSendcontactcardmessageresponse(): SendContactCardMessageResponse | undefined;
     setSendcontactcardmessageresponse(value?: SendContactCardMessageResponse): ActionMessage;
-
 
     hasSendvoicemessagerequest(): boolean;
     clearSendvoicemessagerequest(): void;
     getSendvoicemessagerequest(): SendVoiceMessageRequest | undefined;
     setSendvoicemessagerequest(value?: SendVoiceMessageRequest): ActionMessage;
 
-
     hasSendvoicemessageresponse(): boolean;
     clearSendvoicemessageresponse(): void;
     getSendvoicemessageresponse(): SendVoiceMessageResponse | undefined;
     setSendvoicemessageresponse(value?: SendVoiceMessageResponse): ActionMessage;
-
 
     hasSendvideomessagerequest(): boolean;
     clearSendvideomessagerequest(): void;
     getSendvideomessagerequest(): SendVideoMessageRequest | undefined;
     setSendvideomessagerequest(value?: SendVideoMessageRequest): ActionMessage;
 
-
     hasSendvideomessageresponse(): boolean;
     clearSendvideomessageresponse(): void;
     getSendvideomessageresponse(): SendVideoMessageResponse | undefined;
     setSendvideomessageresponse(value?: SendVideoMessageResponse): ActionMessage;
-
 
     hasSendfilemessagerequest(): boolean;
     clearSendfilemessagerequest(): void;
     getSendfilemessagerequest(): SendFileMessageRequest | undefined;
     setSendfilemessagerequest(value?: SendFileMessageRequest): ActionMessage;
 
-
     hasSendfilemessageresponse(): boolean;
     clearSendfilemessageresponse(): void;
     getSendfilemessageresponse(): SendFileMessageResponse | undefined;
     setSendfilemessageresponse(value?: SendFileMessageResponse): ActionMessage;
-
 
     hasGetmessageminiprogramthumbrequest(): boolean;
     clearGetmessageminiprogramthumbrequest(): void;
     getGetmessageminiprogramthumbrequest(): GetMessageMiniProgramThumbRequest | undefined;
     setGetmessageminiprogramthumbrequest(value?: GetMessageMiniProgramThumbRequest): ActionMessage;
 
-
     hasGetmessageminiprogramthumbresponse(): boolean;
     clearGetmessageminiprogramthumbresponse(): void;
     getGetmessageminiprogramthumbresponse(): GetMessageMiniProgramThumbResponse | undefined;
     setGetmessageminiprogramthumbresponse(value?: GetMessageMiniProgramThumbResponse): ActionMessage;
-
 
     hasGetencryptedfilerequest(): boolean;
     clearGetencryptedfilerequest(): void;
     getGetencryptedfilerequest(): GetEncryptedFileRequest | undefined;
     setGetencryptedfilerequest(value?: GetEncryptedFileRequest): ActionMessage;
 
-
     hasGetencryptedfileresponse(): boolean;
     clearGetencryptedfileresponse(): void;
     getGetencryptedfileresponse(): GetEncryptedFileResponse | undefined;
     setGetencryptedfileresponse(value?: GetEncryptedFileResponse): ActionMessage;
-
 
     hasSendemojimessagerequest(): boolean;
     clearSendemojimessagerequest(): void;
     getSendemojimessagerequest(): SendEmojiMessageRequest | undefined;
     setSendemojimessagerequest(value?: SendEmojiMessageRequest): ActionMessage;
 
-
     hasSendemojimessageresponse(): boolean;
     clearSendemojimessageresponse(): void;
     getSendemojimessageresponse(): SendEmojiMessageResponse | undefined;
     setSendemojimessageresponse(value?: SendEmojiMessageResponse): ActionMessage;
-
 
     hasSynccontactrequest(): boolean;
     clearSynccontactrequest(): void;
     getSynccontactrequest(): SyncContactRequest | undefined;
     setSynccontactrequest(value?: SyncContactRequest): ActionMessage;
 
-
     hasSynccontactresponse(): boolean;
     clearSynccontactresponse(): void;
     getSynccontactresponse(): SyncContactResponse | undefined;
     setSynccontactresponse(value?: SyncContactResponse): ActionMessage;
-
 
     hasAcceptuserrequest(): boolean;
     clearAcceptuserrequest(): void;
     getAcceptuserrequest(): AcceptUserRequest | undefined;
     setAcceptuserrequest(value?: AcceptUserRequest): ActionMessage;
 
-
     hasAcceptuserresponse(): boolean;
     clearAcceptuserresponse(): void;
     getAcceptuserresponse(): AcceptUserResponse | undefined;
     setAcceptuserresponse(value?: AcceptUserResponse): ActionMessage;
-
 
     hasAddcontactrequest(): boolean;
     clearAddcontactrequest(): void;
     getAddcontactrequest(): AddContactRequest | undefined;
     setAddcontactrequest(value?: AddContactRequest): ActionMessage;
 
-
     hasAddcontactresponse(): boolean;
     clearAddcontactresponse(): void;
     getAddcontactresponse(): AddContactResponse | undefined;
     setAddcontactresponse(value?: AddContactResponse): ActionMessage;
-
 
     hasDeletecontactrequest(): boolean;
     clearDeletecontactrequest(): void;
     getDeletecontactrequest(): DeleteContactRequest | undefined;
     setDeletecontactrequest(value?: DeleteContactRequest): ActionMessage;
 
-
     hasDeletecontactresponse(): boolean;
     clearDeletecontactresponse(): void;
     getDeletecontactresponse(): DeleteContactResponse | undefined;
     setDeletecontactresponse(value?: DeleteContactResponse): ActionMessage;
-
 
     hasGetcontactrequest(): boolean;
     clearGetcontactrequest(): void;
     getGetcontactrequest(): GetContactRequest | undefined;
     setGetcontactrequest(value?: GetContactRequest): ActionMessage;
 
-
     hasGetcontactresponse(): boolean;
     clearGetcontactresponse(): void;
     getGetcontactresponse(): GetContactResponse | undefined;
     setGetcontactresponse(value?: GetContactResponse): ActionMessage;
-
 
     hasGetcontactqrcoderequest(): boolean;
     clearGetcontactqrcoderequest(): void;
     getGetcontactqrcoderequest(): GetContactQRCodeRequest | undefined;
     setGetcontactqrcoderequest(value?: GetContactQRCodeRequest): ActionMessage;
 
-
     hasGetcontactqrcoderesponse(): boolean;
     clearGetcontactqrcoderesponse(): void;
     getGetcontactqrcoderesponse(): GetContactQRCodeResponse | undefined;
     setGetcontactqrcoderesponse(value?: GetContactQRCodeResponse): ActionMessage;
-
 
     hasSearchcontactrequest(): boolean;
     clearSearchcontactrequest(): void;
     getSearchcontactrequest(): SearchContactRequest | undefined;
     setSearchcontactrequest(value?: SearchContactRequest): ActionMessage;
 
-
     hasSearchcontactresponse(): boolean;
     clearSearchcontactresponse(): void;
     getSearchcontactresponse(): SearchContactResponse | undefined;
     setSearchcontactresponse(value?: SearchContactResponse): ActionMessage;
-
 
     hasUpdateselfnicknamerequest(): boolean;
     clearUpdateselfnicknamerequest(): void;
     getUpdateselfnicknamerequest(): UpdateSelfNickNameRequest | undefined;
     setUpdateselfnicknamerequest(value?: UpdateSelfNickNameRequest): ActionMessage;
 
-
     hasUpdateselfnicknameresponse(): boolean;
     clearUpdateselfnicknameresponse(): void;
     getUpdateselfnicknameresponse(): UpdateSelfNickNameResponse | undefined;
     setUpdateselfnicknameresponse(value?: UpdateSelfNickNameResponse): ActionMessage;
-
 
     hasUpdateselfsignaturerequest(): boolean;
     clearUpdateselfsignaturerequest(): void;
     getUpdateselfsignaturerequest(): UpdateSelfSignatureRequest | undefined;
     setUpdateselfsignaturerequest(value?: UpdateSelfSignatureRequest): ActionMessage;
 
-
     hasUpdateselfsignatureresponse(): boolean;
     clearUpdateselfsignatureresponse(): void;
     getUpdateselfsignatureresponse(): UpdateSelfSignatureResponse | undefined;
     setUpdateselfsignatureresponse(value?: UpdateSelfSignatureResponse): ActionMessage;
-
 
     hasZombietestrequest(): boolean;
     clearZombietestrequest(): void;
     getZombietestrequest(): ZombieTestRequest | undefined;
     setZombietestrequest(value?: ZombieTestRequest): ActionMessage;
 
-
     hasZombietestresponse(): boolean;
     clearZombietestresponse(): void;
     getZombietestresponse(): ZombieTestResponse | undefined;
     setZombietestresponse(value?: ZombieTestResponse): ActionMessage;
-
 
     hasUpdatecontactremarkrequest(): boolean;
     clearUpdatecontactremarkrequest(): void;
     getUpdatecontactremarkrequest(): UpdateContactRemarkRequest | undefined;
     setUpdatecontactremarkrequest(value?: UpdateContactRemarkRequest): ActionMessage;
 
-
     hasUpdatecontactremarkresponse(): boolean;
     clearUpdatecontactremarkresponse(): void;
     getUpdatecontactremarkresponse(): UpdateContactRemarkResponse | undefined;
     setUpdatecontactremarkresponse(value?: UpdateContactRemarkResponse): ActionMessage;
-
 
     hasCreatechatroomrequest(): boolean;
     clearCreatechatroomrequest(): void;
     getCreatechatroomrequest(): CreateChatRoomRequest | undefined;
     setCreatechatroomrequest(value?: CreateChatRoomRequest): ActionMessage;
 
-
     hasCreatechatroomresponse(): boolean;
     clearCreatechatroomresponse(): void;
     getCreatechatroomresponse(): CreateChatRoomResponse | undefined;
     setCreatechatroomresponse(value?: CreateChatRoomResponse): ActionMessage;
-
 
     hasGetchatroommembersrequest(): boolean;
     clearGetchatroommembersrequest(): void;
     getGetchatroommembersrequest(): GetChatRoomMembersRequest | undefined;
     setGetchatroommembersrequest(value?: GetChatRoomMembersRequest): ActionMessage;
 
-
     hasGetchatroommembersresponse(): boolean;
     clearGetchatroommembersresponse(): void;
     getGetchatroommembersresponse(): GetChatRoomMembersResponse | undefined;
     setGetchatroommembersresponse(value?: GetChatRoomMembersResponse): ActionMessage;
-
 
     hasGetchatroomqrcoderequest(): boolean;
     clearGetchatroomqrcoderequest(): void;
     getGetchatroomqrcoderequest(): GetChatRoomQrCodeRequest | undefined;
     setGetchatroomqrcoderequest(value?: GetChatRoomQrCodeRequest): ActionMessage;
 
-
     hasGetchatroomqrcoderesponse(): boolean;
     clearGetchatroomqrcoderesponse(): void;
     getGetchatroomqrcoderesponse(): GetChatRoomQrCodeResponse | undefined;
     setGetchatroomqrcoderesponse(value?: GetChatRoomQrCodeResponse): ActionMessage;
-
 
     hasGetchatroommemberrequest(): boolean;
     clearGetchatroommemberrequest(): void;
     getGetchatroommemberrequest(): GetChatRoomMemberRequest | undefined;
     setGetchatroommemberrequest(value?: GetChatRoomMemberRequest): ActionMessage;
 
-
     hasGetchatroommemberresponse(): boolean;
     clearGetchatroommemberresponse(): void;
     getGetchatroommemberresponse(): GetChatRoomMemberResponse | undefined;
     setGetchatroommemberresponse(value?: GetChatRoomMemberResponse): ActionMessage;
-
 
     hasSetchatroomannouncementrequest(): boolean;
     clearSetchatroomannouncementrequest(): void;
     getSetchatroomannouncementrequest(): SetChatRoomAnnouncementRequest | undefined;
     setSetchatroomannouncementrequest(value?: SetChatRoomAnnouncementRequest): ActionMessage;
 
-
     hasSetchatroomannouncementresponse(): boolean;
     clearSetchatroomannouncementresponse(): void;
     getSetchatroomannouncementresponse(): SetChatRoomAnnouncementResponse | undefined;
     setSetchatroomannouncementresponse(value?: SetChatRoomAnnouncementResponse): ActionMessage;
-
 
     hasAddchatroommemberrequest(): boolean;
     clearAddchatroommemberrequest(): void;
     getAddchatroommemberrequest(): AddChatRoomMemberRequest | undefined;
     setAddchatroommemberrequest(value?: AddChatRoomMemberRequest): ActionMessage;
 
-
     hasAddchatroommemberresponse(): boolean;
     clearAddchatroommemberresponse(): void;
     getAddchatroommemberresponse(): AddChatRoomMemberResponse | undefined;
     setAddchatroommemberresponse(value?: AddChatRoomMemberResponse): ActionMessage;
-
 
     hasDeletechatroommemberrequest(): boolean;
     clearDeletechatroommemberrequest(): void;
     getDeletechatroommemberrequest(): DeleteChatRoomMemberRequest | undefined;
     setDeletechatroommemberrequest(value?: DeleteChatRoomMemberRequest): ActionMessage;
 
-
     hasDeletechatroommemberresponse(): boolean;
     clearDeletechatroommemberresponse(): void;
     getDeletechatroommemberresponse(): DeleteChatRoomMemberResponse | undefined;
     setDeletechatroommemberresponse(value?: DeleteChatRoomMemberResponse): ActionMessage;
-
 
     hasSetchatroomnamerequest(): boolean;
     clearSetchatroomnamerequest(): void;
     getSetchatroomnamerequest(): SetChatRoomNameRequest | undefined;
     setSetchatroomnamerequest(value?: SetChatRoomNameRequest): ActionMessage;
 
-
     hasSetchatroomnameresponse(): boolean;
     clearSetchatroomnameresponse(): void;
     getSetchatroomnameresponse(): SetChatRoomNameResponse | undefined;
     setSetchatroomnameresponse(value?: SetChatRoomNameResponse): ActionMessage;
-
 
     hasQuitchatroomrequest(): boolean;
     clearQuitchatroomrequest(): void;
     getQuitchatroomrequest(): QuitChatRoomRequest | undefined;
     setQuitchatroomrequest(value?: QuitChatRoomRequest): ActionMessage;
 
-
     hasQuitchatroomresponse(): boolean;
     clearQuitchatroomresponse(): void;
     getQuitchatroomresponse(): QuitChatRoomResponse | undefined;
     setQuitchatroomresponse(value?: QuitChatRoomResponse): ActionMessage;
-
 
     hasGetchatroomannouncementrequest(): boolean;
     clearGetchatroomannouncementrequest(): void;
     getGetchatroomannouncementrequest(): GetChatRoomAnnouncementRequest | undefined;
     setGetchatroomannouncementrequest(value?: GetChatRoomAnnouncementRequest): ActionMessage;
 
-
     hasGetchatroomannouncementresponse(): boolean;
     clearGetchatroomannouncementresponse(): void;
     getGetchatroomannouncementresponse(): GetChatRoomAnnouncementResponse | undefined;
     setGetchatroomannouncementresponse(value?: GetChatRoomAnnouncementResponse): ActionMessage;
-
 
     hasAcceptchatroominvitationrequest(): boolean;
     clearAcceptchatroominvitationrequest(): void;
     getAcceptchatroominvitationrequest(): AcceptChatRoomInvitationRequest | undefined;
     setAcceptchatroominvitationrequest(value?: AcceptChatRoomInvitationRequest): ActionMessage;
 
-
     hasAcceptchatroominvitationresponse(): boolean;
     clearAcceptchatroominvitationresponse(): void;
     getAcceptchatroominvitationresponse(): AcceptChatRoomInvitationResponse | undefined;
     setAcceptchatroominvitationresponse(value?: AcceptChatRoomInvitationResponse): ActionMessage;
-
 
     hasAddlabelrequest(): boolean;
     clearAddlabelrequest(): void;
     getAddlabelrequest(): AddLabelRequest | undefined;
     setAddlabelrequest(value?: AddLabelRequest): ActionMessage;
 
-
     hasAddlabelresponse(): boolean;
     clearAddlabelresponse(): void;
     getAddlabelresponse(): AddLabelResponse | undefined;
     setAddlabelresponse(value?: AddLabelResponse): ActionMessage;
-
 
     hasRemovelabelrequest(): boolean;
     clearRemovelabelrequest(): void;
     getRemovelabelrequest(): RemoveLabelRequest | undefined;
     setRemovelabelrequest(value?: RemoveLabelRequest): ActionMessage;
 
-
     hasRemovelabelresponse(): boolean;
     clearRemovelabelresponse(): void;
     getRemovelabelresponse(): RemoveLabelResponse | undefined;
     setRemovelabelresponse(value?: RemoveLabelResponse): ActionMessage;
-
 
     hasGetlabellistrequest(): boolean;
     clearGetlabellistrequest(): void;
     getGetlabellistrequest(): GetLabelListRequest | undefined;
     setGetlabellistrequest(value?: GetLabelListRequest): ActionMessage;
 
-
     hasGetlabellistresponse(): boolean;
     clearGetlabellistresponse(): void;
     getGetlabellistresponse(): GetLabelListResponse | undefined;
     setGetlabellistresponse(value?: GetLabelListResponse): ActionMessage;
-
 
     hasSetcontactlabelrequest(): boolean;
     clearSetcontactlabelrequest(): void;
     getSetcontactlabelrequest(): SetContactLabelRequest | undefined;
     setSetcontactlabelrequest(value?: SetContactLabelRequest): ActionMessage;
 
-
     hasSetcontactlabelresponse(): boolean;
     clearSetcontactlabelresponse(): void;
     getSetcontactlabelresponse(): SetContactLabelResponse | undefined;
     setSetcontactlabelresponse(value?: SetContactLabelResponse): ActionMessage;
-
 
     hasSnssendmomentrequest(): boolean;
     clearSnssendmomentrequest(): void;
     getSnssendmomentrequest(): SnsSendMomentRequest | undefined;
     setSnssendmomentrequest(value?: SnsSendMomentRequest): ActionMessage;
 
-
     hasSnssendmomentresponse(): boolean;
     clearSnssendmomentresponse(): void;
     getSnssendmomentresponse(): SnsSendMomentResponse | undefined;
     setSnssendmomentresponse(value?: SnsSendMomentResponse): ActionMessage;
-
 
     hasSnsforwardmomentrequest(): boolean;
     clearSnsforwardmomentrequest(): void;
     getSnsforwardmomentrequest(): SnsForwardMomentRequest | undefined;
     setSnsforwardmomentrequest(value?: SnsForwardMomentRequest): ActionMessage;
 
-
     hasSnsforwardmomentresponse(): boolean;
     clearSnsforwardmomentresponse(): void;
     getSnsforwardmomentresponse(): SnsForwardMomentResponse | undefined;
     setSnsforwardmomentresponse(value?: SnsForwardMomentResponse): ActionMessage;
-
 
     hasSnsgetuserpagerequest(): boolean;
     clearSnsgetuserpagerequest(): void;
     getSnsgetuserpagerequest(): SnsGetUserPageRequest | undefined;
     setSnsgetuserpagerequest(value?: SnsGetUserPageRequest): ActionMessage;
 
-
     hasSnsgetuserpageresponse(): boolean;
     clearSnsgetuserpageresponse(): void;
     getSnsgetuserpageresponse(): SnsGetUserPageResponse | undefined;
     setSnsgetuserpageresponse(value?: SnsGetUserPageResponse): ActionMessage;
-
 
     hasSnsgettimelinerequest(): boolean;
     clearSnsgettimelinerequest(): void;
     getSnsgettimelinerequest(): SnsGetTimelineRequest | undefined;
     setSnsgettimelinerequest(value?: SnsGetTimelineRequest): ActionMessage;
 
-
     hasSnsgettimelineresponse(): boolean;
     clearSnsgettimelineresponse(): void;
     getSnsgettimelineresponse(): SnsGetTimelineResponse | undefined;
     setSnsgettimelineresponse(value?: SnsGetTimelineResponse): ActionMessage;
-
 
     hasSnsgetmomentrequest(): boolean;
     clearSnsgetmomentrequest(): void;
     getSnsgetmomentrequest(): SnsGetMomentRequest | undefined;
     setSnsgetmomentrequest(value?: SnsGetMomentRequest): ActionMessage;
 
-
     hasSnsgetmomentresponse(): boolean;
     clearSnsgetmomentresponse(): void;
     getSnsgetmomentresponse(): SnsGetMomentResponse | undefined;
     setSnsgetmomentresponse(value?: SnsGetMomentResponse): ActionMessage;
-
 
     hasSnssendcommentrequest(): boolean;
     clearSnssendcommentrequest(): void;
     getSnssendcommentrequest(): SnsSendCommentRequest | undefined;
     setSnssendcommentrequest(value?: SnsSendCommentRequest): ActionMessage;
 
-
     hasSnssendcommentresponse(): boolean;
     clearSnssendcommentresponse(): void;
     getSnssendcommentresponse(): SnsSendCommentResponse | undefined;
     setSnssendcommentresponse(value?: SnsSendCommentResponse): ActionMessage;
-
 
     hasSnsuploadimagerequest(): boolean;
     clearSnsuploadimagerequest(): void;
     getSnsuploadimagerequest(): SnsUploadImageRequest | undefined;
     setSnsuploadimagerequest(value?: SnsUploadImageRequest): ActionMessage;
 
-
     hasSnsuploadimageresponse(): boolean;
     clearSnsuploadimageresponse(): void;
     getSnsuploadimageresponse(): SnsUploadImageResponse | undefined;
     setSnsuploadimageresponse(value?: SnsUploadImageResponse): ActionMessage;
-
 
     hasSnslikemomentrequest(): boolean;
     clearSnslikemomentrequest(): void;
     getSnslikemomentrequest(): SnsLikeMomentRequest | undefined;
     setSnslikemomentrequest(value?: SnsLikeMomentRequest): ActionMessage;
 
-
     hasSnslikemomentresponse(): boolean;
     clearSnslikemomentresponse(): void;
     getSnslikemomentresponse(): SnsLikeMomentResponse | undefined;
     setSnslikemomentresponse(value?: SnsLikeMomentResponse): ActionMessage;
-
 
     hasSnsunlikemomentrequest(): boolean;
     clearSnsunlikemomentrequest(): void;
     getSnsunlikemomentrequest(): SnsUnlikeMomentRequest | undefined;
     setSnsunlikemomentrequest(value?: SnsUnlikeMomentRequest): ActionMessage;
 
-
     hasSnsunlikemomentresponse(): boolean;
     clearSnsunlikemomentresponse(): void;
     getSnsunlikemomentresponse(): SnsUnlikeMomentResponse | undefined;
     setSnsunlikemomentresponse(value?: SnsUnlikeMomentResponse): ActionMessage;
-
 
     hasSnsremovemomentcommentrequest(): boolean;
     clearSnsremovemomentcommentrequest(): void;
     getSnsremovemomentcommentrequest(): SnsRemoveMomentCommentRequest | undefined;
     setSnsremovemomentcommentrequest(value?: SnsRemoveMomentCommentRequest): ActionMessage;
 
-
     hasSnsremovemomentcommentresponse(): boolean;
     clearSnsremovemomentcommentresponse(): void;
     getSnsremovemomentcommentresponse(): SnsRemoveMomentCommentResponse | undefined;
     setSnsremovemomentcommentresponse(value?: SnsRemoveMomentCommentResponse): ActionMessage;
-
 
     hasSnsmakemomentprivaterequest(): boolean;
     clearSnsmakemomentprivaterequest(): void;
     getSnsmakemomentprivaterequest(): SnsMakeMomentPrivateRequest | undefined;
     setSnsmakemomentprivaterequest(value?: SnsMakeMomentPrivateRequest): ActionMessage;
 
-
     hasSnsmakemomentprivateresponse(): boolean;
     clearSnsmakemomentprivateresponse(): void;
     getSnsmakemomentprivateresponse(): SnsMakeMomentPrivateResponse | undefined;
     setSnsmakemomentprivateresponse(value?: SnsMakeMomentPrivateResponse): ActionMessage;
-
 
     hasSnsmakemomentpublicrequest(): boolean;
     clearSnsmakemomentpublicrequest(): void;
     getSnsmakemomentpublicrequest(): SnsMakeMomentPublicRequest | undefined;
     setSnsmakemomentpublicrequest(value?: SnsMakeMomentPublicRequest): ActionMessage;
 
-
     hasSnsmakemomentpublicresponse(): boolean;
     clearSnsmakemomentpublicresponse(): void;
     getSnsmakemomentpublicresponse(): SnsMakeMomentPublicResponse | undefined;
     setSnsmakemomentpublicresponse(value?: SnsMakeMomentPublicResponse): ActionMessage;
-
 
     hasSnsremovemomentrequest(): boolean;
     clearSnsremovemomentrequest(): void;
     getSnsremovemomentrequest(): SnsRemoveMomentRequest | undefined;
     setSnsremovemomentrequest(value?: SnsRemoveMomentRequest): ActionMessage;
 
-
     hasSnsremovemomentresponse(): boolean;
     clearSnsremovemomentresponse(): void;
     getSnsremovemomentresponse(): SnsRemoveMomentResponse | undefined;
     setSnsremovemomentresponse(value?: SnsRemoveMomentResponse): ActionMessage;
-
 
     getPayloadCase(): ActionMessage.PayloadCase;
 
@@ -1017,281 +877,143 @@ export namespace ActionMessage {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    WECHATREQUEST = 10,
-
-    WECHATRESPONSE = 11,
-
-    WECHATSTREAMREQUEST = 12,
-
-    WECHATSTREAMRESPONSE = 13,
-
-    WECHATSTREAMRESPONSEREPLY = 14,
-
-    SYSTEMEVENTREQUEST = 15,
-
-    SYSTEMEVENTRESPONSE = 16,
-
-    LONGLINKINITREQUEST = 80,
-
-    LONGLINKINITRESPONSE = 81,
-
-    LONGLINKPACKREQUEST = 82,
-
-    LONGLINKPACKRESPONSE = 83,
-
-    LONGLINKUNPACKREQUEST = 84,
-
-    LONGLINKUNPACKRESPONSE = 85,
-
-    LONGLINKHEARTBEATREQUEST = 86,
-
-    LONGLINKHEARTBEATRESPONSE = 87,
-
-    SYNCREQUEST = 100,
-
-    SYNCRESPONSE = 101,
-
-    SYNCEVENT = 102,
-
-    LOGINREQUEST = 200,
-
-    LOGINUPDATEEVENT = 201,
-
-    LOGINRESPONSE = 202,
-
-    LOGOUTREQUEST = 203,
-
-    LOGOUTRESPONSE = 204,
-
-    SENDTEXTMESSAGEREQUEST = 300,
-
-    SENDTEXTMESSAGERESPONSE = 301,
-
-    SENDIMAGEMESSAGEREQUEST = 302,
-
-    SENDIMAGEMESSAGERESPONSE = 303,
-
-    SENDAPPMESSAGEREQUEST = 304,
-
-    SENDAPPMESSAGERESPONSE = 305,
-
-    GETMESSAGEIMAGEREQUEST = 306,
-
-    GETMESSAGEIMAGERESPONSE = 307,
-
-    GETMESSAGEVOICEREQUEST = 308,
-
-    GETMESSAGEVOICERESPONSE = 309,
-
-    GETMESSAGEVIDEOTHUMBREQUEST = 310,
-
-    GETMESSAGEVIDEOTHUMBRESPONSE = 311,
-
-    GETMESSAGEVIDEOREQUEST = 312,
-
-    GETMESSAGEVIDEORESPONSE = 313,
-
-    GETMESSAGEATTACHREQUEST = 314,
-
-    GETMESSAGEATTACHRESPONSE = 315,
-
-    FORWARDMESSAGEREQUEST = 316,
-
-    FORWARDMESSAGERESPONSE = 317,
-
-    GETMESSAGEATTACHTHUMBREQUEST = 318,
-
-    GETMESSAGEATTACHTHUMBRESPONSE = 319,
-
-    REVOKEMESSAGEREQUEST = 320,
-
-    REVOKEMESSAGERESPONSE = 321,
-
-    SENDCONTACTCARDMESSAGEREQUEST = 322,
-
-    SENDCONTACTCARDMESSAGERESPONSE = 323,
-
-    SENDVOICEMESSAGEREQUEST = 324,
-
-    SENDVOICEMESSAGERESPONSE = 325,
-
-    SENDVIDEOMESSAGEREQUEST = 326,
-
-    SENDVIDEOMESSAGERESPONSE = 327,
-
-    SENDFILEMESSAGEREQUEST = 328,
-
-    SENDFILEMESSAGERESPONSE = 329,
-
-    GETMESSAGEMINIPROGRAMTHUMBREQUEST = 330,
-
-    GETMESSAGEMINIPROGRAMTHUMBRESPONSE = 331,
-
-    GETENCRYPTEDFILEREQUEST = 332,
-
-    GETENCRYPTEDFILERESPONSE = 333,
-
-    SENDEMOJIMESSAGEREQUEST = 334,
-
-    SENDEMOJIMESSAGERESPONSE = 335,
-
-    SYNCCONTACTREQUEST = 400,
-
-    SYNCCONTACTRESPONSE = 401,
-
-    ACCEPTUSERREQUEST = 402,
-
-    ACCEPTUSERRESPONSE = 403,
-
-    ADDCONTACTREQUEST = 404,
-
-    ADDCONTACTRESPONSE = 405,
-
-    DELETECONTACTREQUEST = 406,
-
-    DELETECONTACTRESPONSE = 407,
-
-    GETCONTACTREQUEST = 408,
-
-    GETCONTACTRESPONSE = 409,
-
-    GETCONTACTQRCODEREQUEST = 410,
-
-    GETCONTACTQRCODERESPONSE = 411,
-
-    SEARCHCONTACTREQUEST = 412,
-
-    SEARCHCONTACTRESPONSE = 413,
-
-    UPDATESELFNICKNAMEREQUEST = 414,
-
-    UPDATESELFNICKNAMERESPONSE = 415,
-
-    UPDATESELFSIGNATUREREQUEST = 416,
-
-    UPDATESELFSIGNATURERESPONSE = 417,
-
-    ZOMBIETESTREQUEST = 418,
-
-    ZOMBIETESTRESPONSE = 419,
-
-    UPDATECONTACTREMARKREQUEST = 420,
-
-    UPDATECONTACTREMARKRESPONSE = 421,
-
-    CREATECHATROOMREQUEST = 500,
-
-    CREATECHATROOMRESPONSE = 501,
-
-    GETCHATROOMMEMBERSREQUEST = 502,
-
-    GETCHATROOMMEMBERSRESPONSE = 503,
-
-    GETCHATROOMQRCODEREQUEST = 504,
-
-    GETCHATROOMQRCODERESPONSE = 505,
-
-    GETCHATROOMMEMBERREQUEST = 506,
-
-    GETCHATROOMMEMBERRESPONSE = 507,
-
-    SETCHATROOMANNOUNCEMENTREQUEST = 508,
-
-    SETCHATROOMANNOUNCEMENTRESPONSE = 509,
-
-    ADDCHATROOMMEMBERREQUEST = 510,
-
-    ADDCHATROOMMEMBERRESPONSE = 511,
-
-    DELETECHATROOMMEMBERREQUEST = 514,
-
-    DELETECHATROOMMEMBERRESPONSE = 515,
-
-    SETCHATROOMNAMEREQUEST = 516,
-
-    SETCHATROOMNAMERESPONSE = 517,
-
-    QUITCHATROOMREQUEST = 518,
-
-    QUITCHATROOMRESPONSE = 519,
-
-    GETCHATROOMANNOUNCEMENTREQUEST = 520,
-
-    GETCHATROOMANNOUNCEMENTRESPONSE = 521,
-
-    ACCEPTCHATROOMINVITATIONREQUEST = 522,
-
-    ACCEPTCHATROOMINVITATIONRESPONSE = 523,
-
-    ADDLABELREQUEST = 600,
-
-    ADDLABELRESPONSE = 601,
-
-    REMOVELABELREQUEST = 602,
-
-    REMOVELABELRESPONSE = 603,
-
-    GETLABELLISTREQUEST = 604,
-
-    GETLABELLISTRESPONSE = 605,
-
-    SETCONTACTLABELREQUEST = 606,
-
-    SETCONTACTLABELRESPONSE = 607,
-
-    SNSSENDMOMENTREQUEST = 700,
-
-    SNSSENDMOMENTRESPONSE = 701,
-
-    SNSFORWARDMOMENTREQUEST = 702,
-
-    SNSFORWARDMOMENTRESPONSE = 703,
-
-    SNSGETUSERPAGEREQUEST = 704,
-
-    SNSGETUSERPAGERESPONSE = 705,
-
-    SNSGETTIMELINEREQUEST = 706,
-
-    SNSGETTIMELINERESPONSE = 707,
-
-    SNSGETMOMENTREQUEST = 708,
-
-    SNSGETMOMENTRESPONSE = 709,
-
-    SNSSENDCOMMENTREQUEST = 710,
-
-    SNSSENDCOMMENTRESPONSE = 711,
-
-    SNSUPLOADIMAGEREQUEST = 712,
-
-    SNSUPLOADIMAGERESPONSE = 713,
-
-    SNSLIKEMOMENTREQUEST = 714,
-
-    SNSLIKEMOMENTRESPONSE = 715,
-
-    SNSUNLIKEMOMENTREQUEST = 716,
-
-    SNSUNLIKEMOMENTRESPONSE = 717,
-
-    SNSREMOVEMOMENTCOMMENTREQUEST = 718,
-
-    SNSREMOVEMOMENTCOMMENTRESPONSE = 719,
-
-    SNSMAKEMOMENTPRIVATEREQUEST = 720,
-
-    SNSMAKEMOMENTPRIVATERESPONSE = 721,
-
-    SNSMAKEMOMENTPUBLICREQUEST = 722,
-
-    SNSMAKEMOMENTPUBLICRESPONSE = 723,
-
-    SNSREMOVEMOMENTREQUEST = 724,
-
-    SNSREMOVEMOMENTRESPONSE = 725,
-
+        WECHATREQUEST = 10,
+        WECHATRESPONSE = 11,
+        WECHATSTREAMREQUEST = 12,
+        WECHATSTREAMRESPONSE = 13,
+        WECHATSTREAMRESPONSEREPLY = 14,
+        SYSTEMEVENTREQUEST = 15,
+        SYSTEMEVENTRESPONSE = 16,
+        LONGLINKINITREQUEST = 80,
+        LONGLINKINITRESPONSE = 81,
+        LONGLINKPACKREQUEST = 82,
+        LONGLINKPACKRESPONSE = 83,
+        LONGLINKUNPACKREQUEST = 84,
+        LONGLINKUNPACKRESPONSE = 85,
+        LONGLINKHEARTBEATREQUEST = 86,
+        LONGLINKHEARTBEATRESPONSE = 87,
+        SYNCREQUEST = 100,
+        SYNCRESPONSE = 101,
+        SYNCEVENT = 102,
+        LOGINREQUEST = 200,
+        LOGINUPDATEEVENT = 201,
+        LOGINRESPONSE = 202,
+        LOGOUTREQUEST = 203,
+        LOGOUTRESPONSE = 204,
+        SENDTEXTMESSAGEREQUEST = 300,
+        SENDTEXTMESSAGERESPONSE = 301,
+        SENDIMAGEMESSAGEREQUEST = 302,
+        SENDIMAGEMESSAGERESPONSE = 303,
+        SENDAPPMESSAGEREQUEST = 304,
+        SENDAPPMESSAGERESPONSE = 305,
+        GETMESSAGEIMAGEREQUEST = 306,
+        GETMESSAGEIMAGERESPONSE = 307,
+        GETMESSAGEVOICEREQUEST = 308,
+        GETMESSAGEVOICERESPONSE = 309,
+        GETMESSAGEVIDEOTHUMBREQUEST = 310,
+        GETMESSAGEVIDEOTHUMBRESPONSE = 311,
+        GETMESSAGEVIDEOREQUEST = 312,
+        GETMESSAGEVIDEORESPONSE = 313,
+        GETMESSAGEATTACHREQUEST = 314,
+        GETMESSAGEATTACHRESPONSE = 315,
+        FORWARDMESSAGEREQUEST = 316,
+        FORWARDMESSAGERESPONSE = 317,
+        GETMESSAGEATTACHTHUMBREQUEST = 318,
+        GETMESSAGEATTACHTHUMBRESPONSE = 319,
+        REVOKEMESSAGEREQUEST = 320,
+        REVOKEMESSAGERESPONSE = 321,
+        SENDCONTACTCARDMESSAGEREQUEST = 322,
+        SENDCONTACTCARDMESSAGERESPONSE = 323,
+        SENDVOICEMESSAGEREQUEST = 324,
+        SENDVOICEMESSAGERESPONSE = 325,
+        SENDVIDEOMESSAGEREQUEST = 326,
+        SENDVIDEOMESSAGERESPONSE = 327,
+        SENDFILEMESSAGEREQUEST = 328,
+        SENDFILEMESSAGERESPONSE = 329,
+        GETMESSAGEMINIPROGRAMTHUMBREQUEST = 330,
+        GETMESSAGEMINIPROGRAMTHUMBRESPONSE = 331,
+        GETENCRYPTEDFILEREQUEST = 332,
+        GETENCRYPTEDFILERESPONSE = 333,
+        SENDEMOJIMESSAGEREQUEST = 334,
+        SENDEMOJIMESSAGERESPONSE = 335,
+        SYNCCONTACTREQUEST = 400,
+        SYNCCONTACTRESPONSE = 401,
+        ACCEPTUSERREQUEST = 402,
+        ACCEPTUSERRESPONSE = 403,
+        ADDCONTACTREQUEST = 404,
+        ADDCONTACTRESPONSE = 405,
+        DELETECONTACTREQUEST = 406,
+        DELETECONTACTRESPONSE = 407,
+        GETCONTACTREQUEST = 408,
+        GETCONTACTRESPONSE = 409,
+        GETCONTACTQRCODEREQUEST = 410,
+        GETCONTACTQRCODERESPONSE = 411,
+        SEARCHCONTACTREQUEST = 412,
+        SEARCHCONTACTRESPONSE = 413,
+        UPDATESELFNICKNAMEREQUEST = 414,
+        UPDATESELFNICKNAMERESPONSE = 415,
+        UPDATESELFSIGNATUREREQUEST = 416,
+        UPDATESELFSIGNATURERESPONSE = 417,
+        ZOMBIETESTREQUEST = 418,
+        ZOMBIETESTRESPONSE = 419,
+        UPDATECONTACTREMARKREQUEST = 420,
+        UPDATECONTACTREMARKRESPONSE = 421,
+        CREATECHATROOMREQUEST = 500,
+        CREATECHATROOMRESPONSE = 501,
+        GETCHATROOMMEMBERSREQUEST = 502,
+        GETCHATROOMMEMBERSRESPONSE = 503,
+        GETCHATROOMQRCODEREQUEST = 504,
+        GETCHATROOMQRCODERESPONSE = 505,
+        GETCHATROOMMEMBERREQUEST = 506,
+        GETCHATROOMMEMBERRESPONSE = 507,
+        SETCHATROOMANNOUNCEMENTREQUEST = 508,
+        SETCHATROOMANNOUNCEMENTRESPONSE = 509,
+        ADDCHATROOMMEMBERREQUEST = 510,
+        ADDCHATROOMMEMBERRESPONSE = 511,
+        DELETECHATROOMMEMBERREQUEST = 514,
+        DELETECHATROOMMEMBERRESPONSE = 515,
+        SETCHATROOMNAMEREQUEST = 516,
+        SETCHATROOMNAMERESPONSE = 517,
+        QUITCHATROOMREQUEST = 518,
+        QUITCHATROOMRESPONSE = 519,
+        GETCHATROOMANNOUNCEMENTREQUEST = 520,
+        GETCHATROOMANNOUNCEMENTRESPONSE = 521,
+        ACCEPTCHATROOMINVITATIONREQUEST = 522,
+        ACCEPTCHATROOMINVITATIONRESPONSE = 523,
+        ADDLABELREQUEST = 600,
+        ADDLABELRESPONSE = 601,
+        REMOVELABELREQUEST = 602,
+        REMOVELABELRESPONSE = 603,
+        GETLABELLISTREQUEST = 604,
+        GETLABELLISTRESPONSE = 605,
+        SETCONTACTLABELREQUEST = 606,
+        SETCONTACTLABELRESPONSE = 607,
+        SNSSENDMOMENTREQUEST = 700,
+        SNSSENDMOMENTRESPONSE = 701,
+        SNSFORWARDMOMENTREQUEST = 702,
+        SNSFORWARDMOMENTRESPONSE = 703,
+        SNSGETUSERPAGEREQUEST = 704,
+        SNSGETUSERPAGERESPONSE = 705,
+        SNSGETTIMELINEREQUEST = 706,
+        SNSGETTIMELINERESPONSE = 707,
+        SNSGETMOMENTREQUEST = 708,
+        SNSGETMOMENTRESPONSE = 709,
+        SNSSENDCOMMENTREQUEST = 710,
+        SNSSENDCOMMENTRESPONSE = 711,
+        SNSUPLOADIMAGEREQUEST = 712,
+        SNSUPLOADIMAGERESPONSE = 713,
+        SNSLIKEMOMENTREQUEST = 714,
+        SNSLIKEMOMENTRESPONSE = 715,
+        SNSUNLIKEMOMENTREQUEST = 716,
+        SNSUNLIKEMOMENTRESPONSE = 717,
+        SNSREMOVEMOMENTCOMMENTREQUEST = 718,
+        SNSREMOVEMOMENTCOMMENTRESPONSE = 719,
+        SNSMAKEMOMENTPRIVATEREQUEST = 720,
+        SNSMAKEMOMENTPRIVATERESPONSE = 721,
+        SNSMAKEMOMENTPUBLICREQUEST = 722,
+        SNSMAKEMOMENTPUBLICRESPONSE = 723,
+        SNSREMOVEMOMENTREQUEST = 724,
+        SNSREMOVEMOMENTRESPONSE = 725,
     }
 
 }
@@ -1299,7 +1021,6 @@ export namespace ActionMessage {
 export class InitRequest extends jspb.Message { 
     getToken(): string;
     setToken(value: string): InitRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InitRequest.AsObject;
@@ -1323,15 +1044,12 @@ export class ServerInfo extends jspb.Message {
     clearHost(): void;
     getHost(): Host | undefined;
     setHost(value?: Host): ServerInfo;
-
     getPdltoken(): string;
     setPdltoken(value: string): ServerInfo;
-
     getServerca(): Uint8Array | string;
     getServerca_asU8(): Uint8Array;
     getServerca_asB64(): string;
     setServerca(value: Uint8Array | string): ServerInfo;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ServerInfo.AsObject;
@@ -1358,7 +1076,6 @@ export class InitResponse extends jspb.Message {
     getServerinfo(): ServerInfo | undefined;
     setServerinfo(value?: ServerInfo): InitResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InitResponse.AsObject;
     static toObject(includeInstance: boolean, msg: InitResponse): InitResponse.AsObject;
@@ -1378,13 +1095,10 @@ export namespace InitResponse {
 export class WeChatLongLinkRequest extends jspb.Message { 
     getMessageid(): string;
     setMessageid(value: string): WeChatLongLinkRequest;
-
     getLonglinkid(): string;
     setLonglinkid(value: string): WeChatLongLinkRequest;
-
     getInitphase(): boolean;
     setInitphase(value: boolean): WeChatLongLinkRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatLongLinkRequest.AsObject;
@@ -1427,15 +1141,12 @@ export class WeChatShortLinkRequest extends jspb.Message {
     clearHost(): void;
     getHost(): Host | undefined;
     setHost(value?: Host): WeChatShortLinkRequest;
-
     getPath(): string;
     setPath(value: string): WeChatShortLinkRequest;
-
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatShortLinkRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatShortLinkRequest.AsObject;
@@ -1461,7 +1172,6 @@ export class WeChatShortLinkResponse extends jspb.Message {
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatShortLinkResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatShortLinkResponse.AsObject;
     static toObject(includeInstance: boolean, msg: WeChatShortLinkResponse): WeChatShortLinkResponse.AsObject;
@@ -1481,22 +1191,17 @@ export namespace WeChatShortLinkResponse {
 export class WeChatHttpRequest extends jspb.Message { 
     getUrl(): string;
     setUrl(value: string): WeChatHttpRequest;
-
     getMethod(): string;
     setMethod(value: string): WeChatHttpRequest;
 
-
     getHeadersMap(): jspb.Map<string, string>;
     clearHeadersMap(): void;
-
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatHttpRequest;
-
     getTimeout(): number;
     setTimeout(value: number): WeChatHttpRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatHttpRequest.AsObject;
@@ -1523,15 +1228,12 @@ export class WeChatHttpResponse extends jspb.Message {
     getStatuscode(): number;
     setStatuscode(value: number): WeChatHttpResponse;
 
-
     getHeadersMap(): jspb.Map<string, string>;
     clearHeadersMap(): void;
-
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatHttpResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatHttpResponse.AsObject;
@@ -1559,18 +1261,15 @@ export class WeChatRequest extends jspb.Message {
     getLonglinkrequest(): WeChatLongLinkRequest | undefined;
     setLonglinkrequest(value?: WeChatLongLinkRequest): WeChatRequest;
 
-
     hasShortlinkrequest(): boolean;
     clearShortlinkrequest(): void;
     getShortlinkrequest(): WeChatShortLinkRequest | undefined;
     setShortlinkrequest(value?: WeChatShortLinkRequest): WeChatRequest;
 
-
     hasHttprequest(): boolean;
     clearHttprequest(): void;
     getHttprequest(): WeChatHttpRequest | undefined;
     setHttprequest(value?: WeChatHttpRequest): WeChatRequest;
-
 
     getPayloadCase(): WeChatRequest.PayloadCase;
 
@@ -1593,13 +1292,9 @@ export namespace WeChatRequest {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    LONGLINKREQUEST = 10,
-
-    SHORTLINKREQUEST = 11,
-
-    HTTPREQUEST = 12,
-
+        LONGLINKREQUEST = 10,
+        SHORTLINKREQUEST = 11,
+        HTTPREQUEST = 12,
     }
 
 }
@@ -1611,18 +1306,15 @@ export class WeChatResponse extends jspb.Message {
     getLonglinkresponse(): WeChatLongLinkResponse | undefined;
     setLonglinkresponse(value?: WeChatLongLinkResponse): WeChatResponse;
 
-
     hasShortlinkresponse(): boolean;
     clearShortlinkresponse(): void;
     getShortlinkresponse(): WeChatShortLinkResponse | undefined;
     setShortlinkresponse(value?: WeChatShortLinkResponse): WeChatResponse;
 
-
     hasHttpresponse(): boolean;
     clearHttpresponse(): void;
     getHttpresponse(): WeChatHttpResponse | undefined;
     setHttpresponse(value?: WeChatHttpResponse): WeChatResponse;
-
 
     getPayloadCase(): WeChatResponse.PayloadCase;
 
@@ -1645,13 +1337,9 @@ export namespace WeChatResponse {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    LONGLINKRESPONSE = 10,
-
-    SHORTLINKRESPONSE = 11,
-
-    HTTPRESPONSE = 12,
-
+        LONGLINKRESPONSE = 10,
+        SHORTLINKRESPONSE = 11,
+        HTTPRESPONSE = 12,
     }
 
 }
@@ -1661,13 +1349,10 @@ export class WeChatLongLinkStreamRequest extends jspb.Message {
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatLongLinkStreamRequest;
-
     getLonglinkid(): string;
     setLonglinkid(value: string): WeChatLongLinkStreamRequest;
-
     getInitphase(): boolean;
     setInitphase(value: boolean): WeChatLongLinkStreamRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatLongLinkStreamRequest.AsObject;
@@ -1693,7 +1378,6 @@ export class WeChatLongLinkStreamResponse extends jspb.Message {
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatLongLinkStreamResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatLongLinkStreamResponse.AsObject;
     static toObject(includeInstance: boolean, msg: WeChatLongLinkStreamResponse): WeChatLongLinkStreamResponse.AsObject;
@@ -1715,7 +1399,6 @@ export class WeChatLongLinkStreamResponseReply extends jspb.Message {
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatLongLinkStreamResponseReply;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatLongLinkStreamResponseReply.AsObject;
@@ -1739,12 +1422,10 @@ export class WeChatSocketRequest extends jspb.Message {
     clearHost(): void;
     getHost(): Host | undefined;
     setHost(value?: Host): WeChatSocketRequest;
-
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatSocketRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatSocketRequest.AsObject;
@@ -1766,12 +1447,10 @@ export namespace WeChatSocketRequest {
 export class WeChatSocketResponse extends jspb.Message { 
     getSocketreset(): boolean;
     setSocketreset(value: boolean): WeChatSocketResponse;
-
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): WeChatSocketResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatSocketResponse.AsObject;
@@ -1810,13 +1489,10 @@ export namespace WeChatSocketResponseReply {
 export class FileUploadDataMeta extends jspb.Message { 
     getSize(): number;
     setSize(value: number): FileUploadDataMeta;
-
     getMd5(): string;
     setMd5(value: string): FileUploadDataMeta;
-
     getChecksum(): number;
     setChecksum(value: number): FileUploadDataMeta;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileUploadDataMeta.AsObject;
@@ -1839,18 +1515,14 @@ export namespace FileUploadDataMeta {
 export class FileUploadEncryptedDataMeta extends jspb.Message { 
     getSize(): number;
     setSize(value: number): FileUploadEncryptedDataMeta;
-
     getMd5(): string;
     setMd5(value: string): FileUploadEncryptedDataMeta;
-
     getChecksum(): number;
     setChecksum(value: number): FileUploadEncryptedDataMeta;
-
     getAeskey(): Uint8Array | string;
     getAeskey_asU8(): Uint8Array;
     getAeskey_asB64(): string;
     setAeskey(value: Uint8Array | string): FileUploadEncryptedDataMeta;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileUploadEncryptedDataMeta.AsObject;
@@ -1878,18 +1550,14 @@ export class FileUploadImageMeta extends jspb.Message {
     getPlaindatameta(): FileUploadDataMeta | undefined;
     setPlaindatameta(value?: FileUploadDataMeta): FileUploadImageMeta;
 
-
     hasEncrypteddatameta(): boolean;
     clearEncrypteddatameta(): void;
     getEncrypteddatameta(): FileUploadEncryptedDataMeta | undefined;
     setEncrypteddatameta(value?: FileUploadEncryptedDataMeta): FileUploadImageMeta;
-
     getWidth(): number;
     setWidth(value: number): FileUploadImageMeta;
-
     getHeight(): number;
     setHeight(value: number): FileUploadImageMeta;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileUploadImageMeta.AsObject;
@@ -1917,15 +1585,12 @@ export class FileUploadVideoMeta extends jspb.Message {
     getPlaindatameta(): FileUploadDataMeta | undefined;
     setPlaindatameta(value?: FileUploadDataMeta): FileUploadVideoMeta;
 
-
     hasEncrypteddatameta(): boolean;
     clearEncrypteddatameta(): void;
     getEncrypteddatameta(): FileUploadEncryptedDataMeta | undefined;
     setEncrypteddatameta(value?: FileUploadEncryptedDataMeta): FileUploadVideoMeta;
-
     getDuration(): number;
     setDuration(value: number): FileUploadVideoMeta;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileUploadVideoMeta.AsObject;
@@ -1952,12 +1617,10 @@ export class FileUploadImageParams extends jspb.Message {
     getImagemeta(): FileUploadImageMeta | undefined;
     setImagemeta(value?: FileUploadImageMeta): FileUploadImageParams;
 
-
     hasThumbimagemeta(): boolean;
     clearThumbimagemeta(): void;
     getThumbimagemeta(): FileUploadImageMeta | undefined;
     setThumbimagemeta(value?: FileUploadImageMeta): FileUploadImageParams;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileUploadImageParams.AsObject;
@@ -1983,12 +1646,10 @@ export class FileUploadVideoParams extends jspb.Message {
     getVideometa(): FileUploadVideoMeta | undefined;
     setVideometa(value?: FileUploadVideoMeta): FileUploadVideoParams;
 
-
     hasThumbimagemeta(): boolean;
     clearThumbimagemeta(): void;
     getThumbimagemeta(): FileUploadImageMeta | undefined;
     setThumbimagemeta(value?: FileUploadImageMeta): FileUploadVideoParams;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileUploadVideoParams.AsObject;
@@ -2014,12 +1675,10 @@ export class FileUploadFileParams extends jspb.Message {
     getPlaindatameta(): FileUploadDataMeta | undefined;
     setPlaindatameta(value?: FileUploadDataMeta): FileUploadFileParams;
 
-
     hasEncrypteddatameta(): boolean;
     clearEncrypteddatameta(): void;
     getEncrypteddatameta(): FileUploadEncryptedDataMeta | undefined;
     setEncrypteddatameta(value?: FileUploadEncryptedDataMeta): FileUploadFileParams;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileUploadFileParams.AsObject;
@@ -2047,12 +1706,10 @@ export class FileUploadPayloadFragment extends jspb.Message {
     getBinary_asB64(): string;
     setBinary(value: Uint8Array | string): FileUploadPayloadFragment;
 
-
     hasPlaceholderbinarymd5(): boolean;
     clearPlaceholderbinarymd5(): void;
     getPlaceholderbinarymd5(): string;
     setPlaceholderbinarymd5(value: string): FileUploadPayloadFragment;
-
 
     getPayloadCase(): FileUploadPayloadFragment.PayloadCase;
 
@@ -2074,11 +1731,8 @@ export namespace FileUploadPayloadFragment {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    BINARY = 1,
-
-    PLACEHOLDERBINARYMD5 = 2,
-
+        BINARY = 1,
+        PLACEHOLDERBINARYMD5 = 2,
     }
 
 }
@@ -2088,7 +1742,6 @@ export class FileUploadPayload extends jspb.Message {
     getFragmentList(): Array<FileUploadPayloadFragment>;
     setFragmentList(value: Array<FileUploadPayloadFragment>): FileUploadPayload;
     addFragment(value?: FileUploadPayloadFragment, index?: number): FileUploadPayloadFragment;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileUploadPayload.AsObject;
@@ -2113,17 +1766,14 @@ export class WeChatFileUploadRequest extends jspb.Message {
     getHost(): Host | undefined;
     setHost(value?: Host): WeChatFileUploadRequest;
 
-
     hasPayload(): boolean;
     clearPayload(): void;
     getPayload(): FileUploadPayload | undefined;
     setPayload(value?: FileUploadPayload): WeChatFileUploadRequest;
-
     clearRequireresponsefieldList(): void;
     getRequireresponsefieldList(): Array<string>;
     setRequireresponsefieldList(value: Array<string>): WeChatFileUploadRequest;
     addRequireresponsefield(value: string, index?: number): string;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatFileUploadRequest.AsObject;
@@ -2147,7 +1797,6 @@ export class WeChatFileUploadResponse extends jspb.Message {
 
     getResponseMap(): jspb.Map<string, Uint8Array | string>;
     clearResponseMap(): void;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatFileUploadResponse.AsObject;
@@ -2189,7 +1838,6 @@ export class WeChatPushSubscribeRequest extends jspb.Message {
     setPushtypeList(value: Array<LongLinkMessagePushType>): WeChatPushSubscribeRequest;
     addPushtype(value: LongLinkMessagePushType, index?: number): LongLinkMessagePushType;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatPushSubscribeRequest.AsObject;
     static toObject(includeInstance: boolean, msg: WeChatPushSubscribeRequest): WeChatPushSubscribeRequest.AsObject;
@@ -2211,7 +1859,6 @@ export class WeChatPushSubscribeResponse extends jspb.Message {
     getMessageList(): Array<LongLinkMessage>;
     setMessageList(value: Array<LongLinkMessage>): WeChatPushSubscribeResponse;
     addMessage(value?: LongLinkMessage, index?: number): LongLinkMessage;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WeChatPushSubscribeResponse.AsObject;
@@ -2250,30 +1897,25 @@ export class WeChatStreamRequest extends jspb.Message {
     getEof(): boolean;
     setEof(value: boolean): WeChatStreamRequest;
 
-
     hasLonglinkrequest(): boolean;
     clearLonglinkrequest(): void;
     getLonglinkrequest(): WeChatLongLinkStreamRequest | undefined;
     setLonglinkrequest(value?: WeChatLongLinkStreamRequest): WeChatStreamRequest;
-
 
     hasSocketrequest(): boolean;
     clearSocketrequest(): void;
     getSocketrequest(): WeChatSocketRequest | undefined;
     setSocketrequest(value?: WeChatSocketRequest): WeChatStreamRequest;
 
-
     hasPushsubscriberequest(): boolean;
     clearPushsubscriberequest(): void;
     getPushsubscriberequest(): WeChatPushSubscribeRequest | undefined;
     setPushsubscriberequest(value?: WeChatPushSubscribeRequest): WeChatStreamRequest;
 
-
     hasFileuploadrequest(): boolean;
     clearFileuploadrequest(): void;
     getFileuploadrequest(): WeChatFileUploadRequest | undefined;
     setFileuploadrequest(value?: WeChatFileUploadRequest): WeChatStreamRequest;
-
 
     getPayloadCase(): WeChatStreamRequest.PayloadCase;
 
@@ -2298,15 +1940,10 @@ export namespace WeChatStreamRequest {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    LONGLINKREQUEST = 10,
-
-    SOCKETREQUEST = 11,
-
-    PUSHSUBSCRIBEREQUEST = 12,
-
-    FILEUPLOADREQUEST = 13,
-
+        LONGLINKREQUEST = 10,
+        SOCKETREQUEST = 11,
+        PUSHSUBSCRIBEREQUEST = 12,
+        FILEUPLOADREQUEST = 13,
     }
 
 }
@@ -2315,30 +1952,25 @@ export class WeChatStreamResponse extends jspb.Message {
     getEof(): boolean;
     setEof(value: boolean): WeChatStreamResponse;
 
-
     hasLonglinkresponse(): boolean;
     clearLonglinkresponse(): void;
     getLonglinkresponse(): WeChatLongLinkStreamResponse | undefined;
     setLonglinkresponse(value?: WeChatLongLinkStreamResponse): WeChatStreamResponse;
-
 
     hasSocketresponse(): boolean;
     clearSocketresponse(): void;
     getSocketresponse(): WeChatSocketResponse | undefined;
     setSocketresponse(value?: WeChatSocketResponse): WeChatStreamResponse;
 
-
     hasPushsubscriberesponse(): boolean;
     clearPushsubscriberesponse(): void;
     getPushsubscriberesponse(): WeChatPushSubscribeResponse | undefined;
     setPushsubscriberesponse(value?: WeChatPushSubscribeResponse): WeChatStreamResponse;
 
-
     hasFileuploadresponse(): boolean;
     clearFileuploadresponse(): void;
     getFileuploadresponse(): WeChatFileUploadResponse | undefined;
     setFileuploadresponse(value?: WeChatFileUploadResponse): WeChatStreamResponse;
-
 
     getPayloadCase(): WeChatStreamResponse.PayloadCase;
 
@@ -2363,15 +1995,10 @@ export namespace WeChatStreamResponse {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    LONGLINKRESPONSE = 10,
-
-    SOCKETRESPONSE = 11,
-
-    PUSHSUBSCRIBERESPONSE = 12,
-
-    FILEUPLOADRESPONSE = 13,
-
+        LONGLINKRESPONSE = 10,
+        SOCKETRESPONSE = 11,
+        PUSHSUBSCRIBERESPONSE = 12,
+        FILEUPLOADRESPONSE = 13,
     }
 
 }
@@ -2380,30 +2007,25 @@ export class WeChatStreamResponseReply extends jspb.Message {
     getEof(): boolean;
     setEof(value: boolean): WeChatStreamResponseReply;
 
-
     hasLonglinkresponsereply(): boolean;
     clearLonglinkresponsereply(): void;
     getLonglinkresponsereply(): WeChatLongLinkStreamResponseReply | undefined;
     setLonglinkresponsereply(value?: WeChatLongLinkStreamResponseReply): WeChatStreamResponseReply;
-
 
     hasSocketresponsereply(): boolean;
     clearSocketresponsereply(): void;
     getSocketresponsereply(): WeChatSocketResponseReply | undefined;
     setSocketresponsereply(value?: WeChatSocketResponseReply): WeChatStreamResponseReply;
 
-
     hasPushsubscriberesponsereply(): boolean;
     clearPushsubscriberesponsereply(): void;
     getPushsubscriberesponsereply(): WeChatPushSubscribeResponseReply | undefined;
     setPushsubscriberesponsereply(value?: WeChatPushSubscribeResponseReply): WeChatStreamResponseReply;
 
-
     hasFileuploadresponsereply(): boolean;
     clearFileuploadresponsereply(): void;
     getFileuploadresponsereply(): WeChatFileUploadResponseReply | undefined;
     setFileuploadresponsereply(value?: WeChatFileUploadResponseReply): WeChatStreamResponseReply;
-
 
     getPayloadCase(): WeChatStreamResponseReply.PayloadCase;
 
@@ -2428,15 +2050,10 @@ export namespace WeChatStreamResponseReply {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    LONGLINKRESPONSEREPLY = 10,
-
-    SOCKETRESPONSEREPLY = 11,
-
-    PUSHSUBSCRIBERESPONSEREPLY = 12,
-
-    FILEUPLOADRESPONSEREPLY = 13,
-
+        LONGLINKRESPONSEREPLY = 10,
+        SOCKETRESPONSEREPLY = 11,
+        PUSHSUBSCRIBERESPONSEREPLY = 12,
+        FILEUPLOADRESPONSEREPLY = 13,
     }
 
 }
@@ -2444,7 +2061,6 @@ export namespace WeChatStreamResponseReply {
 export class LoginRequest extends jspb.Message { 
     getPolicy(): LoginPolicy;
     setPolicy(value: LoginPolicy): LoginRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LoginRequest.AsObject;
@@ -2483,30 +2099,25 @@ export class LoginUpdateEvent extends jspb.Message {
     getStatus(): LoginStatus;
     setStatus(value: LoginStatus): LoginUpdateEvent;
 
-
     hasLogintype(): boolean;
     clearLogintype(): void;
     getLogintype(): LoginType;
     setLogintype(value: LoginType): LoginUpdateEvent;
-
 
     hasQrcodeevent(): boolean;
     clearQrcodeevent(): void;
     getQrcodeevent(): QRCodeEvent | undefined;
     setQrcodeevent(value?: QRCodeEvent): LoginUpdateEvent;
 
-
     hasAuthinfo(): boolean;
     clearAuthinfo(): void;
     getAuthinfo(): AuthInfo | undefined;
     setAuthinfo(value?: AuthInfo): LoginUpdateEvent;
 
-
     hasSyncevent(): boolean;
     clearSyncevent(): void;
     getSyncevent(): SyncEvent | undefined;
     setSyncevent(value?: SyncEvent): LoginUpdateEvent;
-
 
     getPayloadCase(): LoginUpdateEvent.PayloadCase;
 
@@ -2531,15 +2142,10 @@ export namespace LoginUpdateEvent {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    LOGINTYPE = 2,
-
-    QRCODEEVENT = 3,
-
-    AUTHINFO = 4,
-
-    SYNCEVENT = 5,
-
+        LOGINTYPE = 2,
+        QRCODEEVENT = 3,
+        AUTHINFO = 4,
+        SYNCEVENT = 5,
     }
 
 }
@@ -2547,19 +2153,15 @@ export namespace LoginUpdateEvent {
 export class QRCodeEvent extends jspb.Message { 
     getStatus(): QRCodeStatus;
     setStatus(value: QRCodeStatus): QRCodeEvent;
-
     getImageurl(): string;
     setImageurl(value: string): QRCodeEvent;
-
     getExpireat(): number;
     setExpireat(value: number): QRCodeEvent;
-
 
     hasContact(): boolean;
     clearContact(): void;
     getContact(): Contact | undefined;
     setContact(value?: Contact): QRCodeEvent;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): QRCodeEvent.AsObject;
@@ -2586,7 +2188,6 @@ export class AuthInfo extends jspb.Message {
     clearSelfcontact(): void;
     getSelfcontact(): Contact | undefined;
     setSelfcontact(value?: Contact): AuthInfo;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AuthInfo.AsObject;
@@ -2642,7 +2243,6 @@ export class LongLinkInitRequest extends jspb.Message {
     getLonglinkid(): string;
     setLonglinkid(value: string): LongLinkInitRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LongLinkInitRequest.AsObject;
     static toObject(includeInstance: boolean, msg: LongLinkInitRequest): LongLinkInitRequest.AsObject;
@@ -2679,10 +2279,8 @@ export namespace LongLinkInitResponse {
 export class LongLinkPackRequest extends jspb.Message { 
     getLonglinkid(): string;
     setLonglinkid(value: string): LongLinkPackRequest;
-
     getMessageid(): string;
     setMessageid(value: string): LongLinkPackRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LongLinkPackRequest.AsObject;
@@ -2707,7 +2305,6 @@ export class LongLinkPackResponse extends jspb.Message {
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): LongLinkPackResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LongLinkPackResponse.AsObject;
     static toObject(includeInstance: boolean, msg: LongLinkPackResponse): LongLinkPackResponse.AsObject;
@@ -2727,12 +2324,10 @@ export namespace LongLinkPackResponse {
 export class LongLinkUnpackRequest extends jspb.Message { 
     getLonglinkid(): string;
     setLonglinkid(value: string): LongLinkUnpackRequest;
-
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): LongLinkUnpackRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LongLinkUnpackRequest.AsObject;
@@ -2757,7 +2352,6 @@ export class LongLinkUnpackResponse extends jspb.Message {
     setMessageList(value: Array<LongLinkMessage>): LongLinkUnpackResponse;
     addMessage(value?: LongLinkMessage, index?: number): LongLinkMessage;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LongLinkUnpackResponse.AsObject;
     static toObject(includeInstance: boolean, msg: LongLinkUnpackResponse): LongLinkUnpackResponse.AsObject;
@@ -2777,16 +2371,13 @@ export namespace LongLinkUnpackResponse {
 export class LongLinkMessage extends jspb.Message { 
     getType(): LongLinkMessageType;
     setType(value: LongLinkMessageType): LongLinkMessage;
-
     getMessageid(): string;
     setMessageid(value: string): LongLinkMessage;
-
 
     hasPush(): boolean;
     clearPush(): void;
     getPush(): LongLinkMessagePush | undefined;
     setPush(value?: LongLinkMessagePush): LongLinkMessage;
-
 
     getPayloadCase(): LongLinkMessage.PayloadCase;
 
@@ -2809,9 +2400,7 @@ export namespace LongLinkMessage {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    PUSH = 10,
-
+        PUSH = 10,
     }
 
 }
@@ -2819,7 +2408,6 @@ export namespace LongLinkMessage {
 export class LongLinkMessagePush extends jspb.Message { 
     getType(): LongLinkMessagePushType;
     setType(value: LongLinkMessagePushType): LongLinkMessagePush;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LongLinkMessagePush.AsObject;
@@ -2840,7 +2428,6 @@ export namespace LongLinkMessagePush {
 export class LongLinkHeartBeatRequest extends jspb.Message { 
     getLonglinkid(): string;
     setLonglinkid(value: string): LongLinkHeartBeatRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LongLinkHeartBeatRequest.AsObject;
@@ -2878,13 +2465,10 @@ export namespace LongLinkHeartBeatResponse {
 export class MessageRevokeInfo extends jspb.Message { 
     getClientmsgid(): string;
     setClientmsgid(value: string): MessageRevokeInfo;
-
     getNewclientmsgid(): string;
     setNewclientmsgid(value: string): MessageRevokeInfo;
-
     getCreatetime(): number;
     setCreatetime(value: number): MessageRevokeInfo;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): MessageRevokeInfo.AsObject;
@@ -2907,15 +2491,12 @@ export namespace MessageRevokeInfo {
 export class SendTextMessageRequest extends jspb.Message { 
     getTousername(): string;
     setTousername(value: string): SendTextMessageRequest;
-
     getContent(): string;
     setContent(value: string): SendTextMessageRequest;
-
     clearAtList(): void;
     getAtList(): Array<string>;
     setAtList(value: Array<string>): SendTextMessageRequest;
     addAt(value: string, index?: number): string;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendTextMessageRequest.AsObject;
@@ -2939,12 +2520,10 @@ export class SendTextMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendTextMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendTextMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendTextMessageResponse.AsObject;
@@ -2967,7 +2546,6 @@ export class SendImageMessageRequest extends jspb.Message {
     getTousername(): string;
     setTousername(value: string): SendImageMessageRequest;
 
-
     hasImage(): boolean;
     clearImage(): void;
     getImage(): Uint8Array | string;
@@ -2975,12 +2553,10 @@ export class SendImageMessageRequest extends jspb.Message {
     getImage_asB64(): string;
     setImage(value: Uint8Array | string): SendImageMessageRequest;
 
-
     hasImageparams(): boolean;
     clearImageparams(): void;
     getImageparams(): FileUploadImageParams | undefined;
     setImageparams(value?: FileUploadImageParams): SendImageMessageRequest;
-
 
     getPayloadCase(): SendImageMessageRequest.PayloadCase;
 
@@ -3003,11 +2579,8 @@ export namespace SendImageMessageRequest {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    IMAGE = 2,
-
-    IMAGEPARAMS = 3,
-
+        IMAGE = 2,
+        IMAGEPARAMS = 3,
     }
 
 }
@@ -3016,12 +2589,10 @@ export class SendImageMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendImageMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendImageMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendImageMessageResponse.AsObject;
@@ -3044,18 +2615,15 @@ export class SendAppMessageRequest extends jspb.Message {
     getTousername(): string;
     setTousername(value: string): SendAppMessageRequest;
 
-
     hasLink(): boolean;
     clearLink(): void;
     getLink(): AppMessageLink | undefined;
     setLink(value?: AppMessageLink): SendAppMessageRequest;
 
-
     hasMiniprogram(): boolean;
     clearMiniprogram(): void;
     getMiniprogram(): AppMessageMiniProgram | undefined;
     setMiniprogram(value?: AppMessageMiniProgram): SendAppMessageRequest;
-
 
     getPayloadCase(): SendAppMessageRequest.PayloadCase;
 
@@ -3078,11 +2646,8 @@ export namespace SendAppMessageRequest {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    LINK = 2,
-
-    MINIPROGRAM = 3,
-
+        LINK = 2,
+        MINIPROGRAM = 3,
     }
 
 }
@@ -3090,21 +2655,16 @@ export namespace SendAppMessageRequest {
 export class AppMessageLink extends jspb.Message { 
     getTitle(): string;
     setTitle(value: string): AppMessageLink;
-
     getDescription(): string;
     setDescription(value: string): AppMessageLink;
-
     getUrl(): string;
     setUrl(value: string): AppMessageLink;
-
     getThumbimage(): Uint8Array | string;
     getThumbimage_asU8(): Uint8Array;
     getThumbimage_asB64(): string;
     setThumbimage(value: Uint8Array | string): AppMessageLink;
-
     getThumburl(): string;
     setThumburl(value: string): AppMessageLink;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AppMessageLink.AsObject;
@@ -3129,28 +2689,20 @@ export namespace AppMessageLink {
 export class AppMessageMiniProgram extends jspb.Message { 
     getTitle(): string;
     setTitle(value: string): AppMessageMiniProgram;
-
     getDescription(): string;
     setDescription(value: string): AppMessageMiniProgram;
-
     getUrl(): string;
     setUrl(value: string): AppMessageMiniProgram;
-
     getMpappusername(): string;
     setMpappusername(value: string): AppMessageMiniProgram;
-
     getMpappname(): string;
     setMpappname(value: string): AppMessageMiniProgram;
-
     getMpappid(): string;
     setMpappid(value: string): AppMessageMiniProgram;
-
     getMpappiconurl(): string;
     setMpappiconurl(value: string): AppMessageMiniProgram;
-
     getMpapppath(): string;
     setMpapppath(value: string): AppMessageMiniProgram;
-
 
     hasThumbimage(): boolean;
     clearThumbimage(): void;
@@ -3159,14 +2711,12 @@ export class AppMessageMiniProgram extends jspb.Message {
     getThumbimage_asB64(): string;
     setThumbimage(value: Uint8Array | string): AppMessageMiniProgram;
 
-
     hasThumbparams(): boolean;
     clearThumbparams(): void;
     getThumbparams(): FileUploadImageParams | undefined;
     setThumbparams(value?: FileUploadImageParams): AppMessageMiniProgram;
 
-
-    getAppMessageMiniProgramThumbCase(): AppMessageMiniProgram.AppMessageMiniProgramThumbCase;
+    getAppmessageminiprogramthumbCase(): AppMessageMiniProgram.AppmessageminiprogramthumbCase;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AppMessageMiniProgram.AsObject;
@@ -3192,13 +2742,10 @@ export namespace AppMessageMiniProgram {
         thumbparams?: FileUploadImageParams.AsObject,
     }
 
-    export enum AppMessageMiniProgramThumbCase {
+    export enum AppmessageminiprogramthumbCase {
         APPMESSAGEMINIPROGRAMTHUMB_NOT_SET = 0,
-    
-    THUMBIMAGE = 9,
-
-    THUMBPARAMS = 10,
-
+        THUMBIMAGE = 9,
+        THUMBPARAMS = 10,
     }
 
 }
@@ -3207,15 +2754,12 @@ export class SendAppMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendAppMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendAppMessageResponse;
-
     getMsgcontent(): string;
     setMsgcontent(value: string): SendAppMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendAppMessageResponse.AsObject;
@@ -3238,16 +2782,12 @@ export namespace SendAppMessageResponse {
 export class AcceptUserRequest extends jspb.Message { 
     getStranger(): string;
     setStranger(value: string): AcceptUserRequest;
-
     getTicket(): string;
     setTicket(value: string): AcceptUserRequest;
-
     getUsername(): string;
     setUsername(value: string): AcceptUserRequest;
-
     getScene(): number;
     setScene(value: number): AcceptUserRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AcceptUserRequest.AsObject;
@@ -3288,22 +2828,16 @@ export namespace AcceptUserResponse {
 export class AddContactRequest extends jspb.Message { 
     getStranger(): string;
     setStranger(value: string): AddContactRequest;
-
     getTicket(): string;
     setTicket(value: string): AddContactRequest;
-
     getScene(): AddContactScene;
     setScene(value: AddContactScene): AddContactRequest;
-
     getContent(): string;
     setContent(value: string): AddContactRequest;
-
     getRoomid(): string;
     setRoomid(value: string): AddContactRequest;
-
     getContactid(): string;
     setContactid(value: string): AddContactRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddContactRequest.AsObject;
@@ -3347,7 +2881,6 @@ export class DeleteContactRequest extends jspb.Message {
     getUsername(): string;
     setUsername(value: string): DeleteContactRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): DeleteContactRequest.AsObject;
     static toObject(includeInstance: boolean, msg: DeleteContactRequest): DeleteContactRequest.AsObject;
@@ -3384,10 +2917,8 @@ export namespace DeleteContactResponse {
 export class GetContactRequest extends jspb.Message { 
     getUsername(): string;
     setUsername(value: string): GetContactRequest;
-
     getTicket(): string;
     setTicket(value: string): GetContactRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetContactRequest.AsObject;
@@ -3413,7 +2944,6 @@ export class GetContactResponse extends jspb.Message {
     getContact(): Contact | undefined;
     setContact(value?: Contact): GetContactResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetContactResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetContactResponse): GetContactResponse.AsObject;
@@ -3433,10 +2963,8 @@ export namespace GetContactResponse {
 export class GetContactQRCodeRequest extends jspb.Message { 
     getUsername(): string;
     setUsername(value: string): GetContactQRCodeRequest;
-
     getStyle(): number;
     setStyle(value: number): GetContactQRCodeRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetContactQRCodeRequest.AsObject;
@@ -3460,10 +2988,8 @@ export class GetContactQRCodeResponse extends jspb.Message {
     getQrcode_asU8(): Uint8Array;
     getQrcode_asB64(): string;
     setQrcode(value: Uint8Array | string): GetContactQRCodeResponse;
-
     getDescription(): string;
     setDescription(value: string): GetContactQRCodeResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetContactQRCodeResponse.AsObject;
@@ -3485,7 +3011,6 @@ export namespace GetContactQRCodeResponse {
 export class SearchContactRequest extends jspb.Message { 
     getUsername(): string;
     setUsername(value: string): SearchContactRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SearchContactRequest.AsObject;
@@ -3509,16 +3034,12 @@ export class SearchContactResponse extends jspb.Message {
     clearContact(): void;
     getContact(): Contact | undefined;
     setContact(value?: Contact): SearchContactResponse;
-
     getEncryptusername(): string;
     setEncryptusername(value: string): SearchContactResponse;
-
     getAntispamticket(): string;
     setAntispamticket(value: string): SearchContactResponse;
-
     getToaddscene(): AddContactScene;
     setToaddscene(value: AddContactScene): SearchContactResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SearchContactResponse.AsObject;
@@ -3542,7 +3063,6 @@ export namespace SearchContactResponse {
 export class UpdateSelfNickNameRequest extends jspb.Message { 
     getNickname(): string;
     setNickname(value: string): UpdateSelfNickNameRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UpdateSelfNickNameRequest.AsObject;
@@ -3581,7 +3101,6 @@ export class UpdateSelfSignatureRequest extends jspb.Message {
     getSignature(): string;
     setSignature(value: string): UpdateSelfSignatureRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UpdateSelfSignatureRequest.AsObject;
     static toObject(includeInstance: boolean, msg: UpdateSelfSignatureRequest): UpdateSelfSignatureRequest.AsObject;
@@ -3619,7 +3138,6 @@ export class ZombieTestRequest extends jspb.Message {
     getUsername(): string;
     setUsername(value: string): ZombieTestRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ZombieTestRequest.AsObject;
     static toObject(includeInstance: boolean, msg: ZombieTestRequest): ZombieTestRequest.AsObject;
@@ -3640,7 +3158,6 @@ export class ZombieTestResponse extends jspb.Message {
     getZombiestatues(): ZombieStatue;
     setZombiestatues(value: ZombieStatue): ZombieTestResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ZombieTestResponse.AsObject;
     static toObject(includeInstance: boolean, msg: ZombieTestResponse): ZombieTestResponse.AsObject;
@@ -3660,10 +3177,8 @@ export namespace ZombieTestResponse {
 export class UpdateContactRemarkRequest extends jspb.Message { 
     getUsername(): string;
     setUsername(value: string): UpdateContactRemarkRequest;
-
     getRemark(): string;
     setRemark(value: string): UpdateContactRemarkRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UpdateContactRemarkRequest.AsObject;
@@ -3705,7 +3220,6 @@ export class CreateChatRoomRequest extends jspb.Message {
     setUsernamesList(value: Array<string>): CreateChatRoomRequest;
     addUsernames(value: string, index?: number): string;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateChatRoomRequest.AsObject;
     static toObject(includeInstance: boolean, msg: CreateChatRoomRequest): CreateChatRoomRequest.AsObject;
@@ -3725,13 +3239,10 @@ export namespace CreateChatRoomRequest {
 export class CreateChatRoomResponse extends jspb.Message { 
     getRoomid(): string;
     setRoomid(value: string): CreateChatRoomResponse;
-
     getTopic(): string;
     setTopic(value: string): CreateChatRoomResponse;
-
     getAvatar(): string;
     setAvatar(value: string): CreateChatRoomResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateChatRoomResponse.AsObject;
@@ -3755,7 +3266,6 @@ export class GetChatRoomMembersRequest extends jspb.Message {
     getRoomid(): string;
     setRoomid(value: string): GetChatRoomMembersRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetChatRoomMembersRequest.AsObject;
     static toObject(includeInstance: boolean, msg: GetChatRoomMembersRequest): GetChatRoomMembersRequest.AsObject;
@@ -3778,7 +3288,6 @@ export class GetChatRoomMembersResponse extends jspb.Message {
     setMemberList(value: Array<ChatRoomMember>): GetChatRoomMembersResponse;
     addMember(value?: ChatRoomMember, index?: number): ChatRoomMember;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetChatRoomMembersResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetChatRoomMembersResponse): GetChatRoomMembersResponse.AsObject;
@@ -3798,19 +3307,14 @@ export namespace GetChatRoomMembersResponse {
 export class ChatRoomMember extends jspb.Message { 
     getUsername(): string;
     setUsername(value: string): ChatRoomMember;
-
     getNickname(): string;
     setNickname(value: string): ChatRoomMember;
-
     getDisplayname(): string;
     setDisplayname(value: string): ChatRoomMember;
-
     getAvatar(): string;
     setAvatar(value: string): ChatRoomMember;
-
     getInviterusername(): string;
     setInviterusername(value: string): ChatRoomMember;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ChatRoomMember.AsObject;
@@ -3836,7 +3340,6 @@ export class GetChatRoomQrCodeRequest extends jspb.Message {
     getRoomid(): string;
     setRoomid(value: string): GetChatRoomQrCodeRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetChatRoomQrCodeRequest.AsObject;
     static toObject(includeInstance: boolean, msg: GetChatRoomQrCodeRequest): GetChatRoomQrCodeRequest.AsObject;
@@ -3858,10 +3361,8 @@ export class GetChatRoomQrCodeResponse extends jspb.Message {
     getQrcode_asU8(): Uint8Array;
     getQrcode_asB64(): string;
     setQrcode(value: Uint8Array | string): GetChatRoomQrCodeResponse;
-
     getDescription(): string;
     setDescription(value: string): GetChatRoomQrCodeResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetChatRoomQrCodeResponse.AsObject;
@@ -3883,10 +3384,8 @@ export namespace GetChatRoomQrCodeResponse {
 export class GetChatRoomMemberRequest extends jspb.Message { 
     getRoomid(): string;
     setRoomid(value: string): GetChatRoomMemberRequest;
-
     getUsername(): string;
     setUsername(value: string): GetChatRoomMemberRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetChatRoomMemberRequest.AsObject;
@@ -3912,7 +3411,6 @@ export class GetChatRoomMemberResponse extends jspb.Message {
     getContact(): Contact | undefined;
     setContact(value?: Contact): GetChatRoomMemberResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetChatRoomMemberResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetChatRoomMemberResponse): GetChatRoomMemberResponse.AsObject;
@@ -3933,7 +3431,6 @@ export class GetChatRoomAnnouncementRequest extends jspb.Message {
     getRoomid(): string;
     setRoomid(value: string): GetChatRoomAnnouncementRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetChatRoomAnnouncementRequest.AsObject;
     static toObject(includeInstance: boolean, msg: GetChatRoomAnnouncementRequest): GetChatRoomAnnouncementRequest.AsObject;
@@ -3953,13 +3450,10 @@ export namespace GetChatRoomAnnouncementRequest {
 export class GetChatRoomAnnouncementResponse extends jspb.Message { 
     getAnnouncement(): string;
     setAnnouncement(value: string): GetChatRoomAnnouncementResponse;
-
     getAnnouncementeditor(): string;
     setAnnouncementeditor(value: string): GetChatRoomAnnouncementResponse;
-
     getAnnouncementpublishtime(): number;
     setAnnouncementpublishtime(value: number): GetChatRoomAnnouncementResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetChatRoomAnnouncementResponse.AsObject;
@@ -3982,10 +3476,8 @@ export namespace GetChatRoomAnnouncementResponse {
 export class SetChatRoomAnnouncementRequest extends jspb.Message { 
     getRoomid(): string;
     setRoomid(value: string): SetChatRoomAnnouncementRequest;
-
     getAnnouncement(): string;
     setAnnouncement(value: string): SetChatRoomAnnouncementRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SetChatRoomAnnouncementRequest.AsObject;
@@ -4024,10 +3516,8 @@ export namespace SetChatRoomAnnouncementResponse {
 export class AddChatRoomMemberRequest extends jspb.Message { 
     getRoomid(): string;
     setRoomid(value: string): AddChatRoomMemberRequest;
-
     getUsername(): string;
     setUsername(value: string): AddChatRoomMemberRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddChatRoomMemberRequest.AsObject;
@@ -4050,7 +3540,6 @@ export class AddChatRoomMemberResponse extends jspb.Message {
     getAddtype(): AddChatRoomMemberType;
     setAddtype(value: AddChatRoomMemberType): AddChatRoomMemberResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddChatRoomMemberResponse.AsObject;
     static toObject(includeInstance: boolean, msg: AddChatRoomMemberResponse): AddChatRoomMemberResponse.AsObject;
@@ -4070,10 +3559,8 @@ export namespace AddChatRoomMemberResponse {
 export class DeleteChatRoomMemberRequest extends jspb.Message { 
     getRoomid(): string;
     setRoomid(value: string): DeleteChatRoomMemberRequest;
-
     getUsername(): string;
     setUsername(value: string): DeleteChatRoomMemberRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): DeleteChatRoomMemberRequest.AsObject;
@@ -4112,10 +3599,8 @@ export namespace DeleteChatRoomMemberResponse {
 export class SetChatRoomNameRequest extends jspb.Message { 
     getRoomid(): string;
     setRoomid(value: string): SetChatRoomNameRequest;
-
     getName(): string;
     setName(value: string): SetChatRoomNameRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SetChatRoomNameRequest.AsObject;
@@ -4155,7 +3640,6 @@ export class QuitChatRoomRequest extends jspb.Message {
     getRoomid(): string;
     setRoomid(value: string): QuitChatRoomRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): QuitChatRoomRequest.AsObject;
     static toObject(includeInstance: boolean, msg: QuitChatRoomRequest): QuitChatRoomRequest.AsObject;
@@ -4192,10 +3676,8 @@ export namespace QuitChatRoomResponse {
 export class AcceptChatRoomInvitationRequest extends jspb.Message { 
     getInviterid(): string;
     setInviterid(value: string): AcceptChatRoomInvitationRequest;
-
     getInvitationurl(): string;
     setInvitationurl(value: string): AcceptChatRoomInvitationRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AcceptChatRoomInvitationRequest.AsObject;
@@ -4238,24 +3720,20 @@ export class SnsSendMomentRequest extends jspb.Message {
     getOptions(): SnsSendMomentOptions | undefined;
     setOptions(value?: SnsSendMomentOptions): SnsSendMomentRequest;
 
-
     hasText(): boolean;
     clearText(): void;
     getText(): SnsSendMomentText | undefined;
     setText(value?: SnsSendMomentText): SnsSendMomentRequest;
-
 
     hasImages(): boolean;
     clearImages(): void;
     getImages(): SnsSendMomentImages | undefined;
     setImages(value?: SnsSendMomentImages): SnsSendMomentRequest;
 
-
     hasUrl(): boolean;
     clearUrl(): void;
     getUrl(): SnsSendMomentUrl | undefined;
     setUrl(value?: SnsSendMomentUrl): SnsSendMomentRequest;
-
 
     getPayloadCase(): SnsSendMomentRequest.PayloadCase;
 
@@ -4279,13 +3757,9 @@ export namespace SnsSendMomentRequest {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    TEXT = 2,
-
-    IMAGES = 3,
-
-    URL = 4,
-
+        TEXT = 2,
+        IMAGES = 3,
+        URL = 4,
     }
 
 }
@@ -4293,7 +3767,6 @@ export namespace SnsSendMomentRequest {
 export class SnsSendMomentText extends jspb.Message { 
     getText(): string;
     setText(value: string): SnsSendMomentText;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendMomentText.AsObject;
@@ -4314,12 +3787,10 @@ export namespace SnsSendMomentText {
 export class SnsSendMomentImages extends jspb.Message { 
     getText(): string;
     setText(value: string): SnsSendMomentImages;
-
     clearImageurlList(): void;
     getImageurlList(): Array<SnsImageUrl>;
     setImageurlList(value: Array<SnsImageUrl>): SnsSendMomentImages;
     addImageurl(value?: SnsImageUrl, index?: number): SnsImageUrl;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendMomentImages.AsObject;
@@ -4341,19 +3812,15 @@ export namespace SnsSendMomentImages {
 export class SnsSendMomentUrl extends jspb.Message { 
     getText(): string;
     setText(value: string): SnsSendMomentUrl;
-
     getUrltitle(): string;
     setUrltitle(value: string): SnsSendMomentUrl;
-
     getUrl(): string;
     setUrl(value: string): SnsSendMomentUrl;
-
 
     hasImageurl(): boolean;
     clearImageurl(): void;
     getImageurl(): SnsImageUrl | undefined;
     setImageurl(value?: SnsImageUrl): SnsSendMomentUrl;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendMomentUrl.AsObject;
@@ -4381,7 +3848,6 @@ export class SnsSendMomentResponse extends jspb.Message {
     getMoment(): SnsMoment | undefined;
     setMoment(value?: SnsMoment): SnsSendMomentResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendMomentResponse.AsObject;
     static toObject(includeInstance: boolean, msg: SnsSendMomentResponse): SnsSendMomentResponse.AsObject;
@@ -4401,22 +3867,16 @@ export namespace SnsSendMomentResponse {
 export class SnsImageUrl extends jspb.Message { 
     getMd5(): string;
     setMd5(value: string): SnsImageUrl;
-
     getUrl(): string;
     setUrl(value: string): SnsImageUrl;
-
     getThumburl(): string;
     setThumburl(value: string): SnsImageUrl;
-
     getHeight(): number;
     setHeight(value: number): SnsImageUrl;
-
     getWidth(): number;
     setWidth(value: number): SnsImageUrl;
-
     getTotalsize(): number;
     setTotalsize(value: number): SnsImageUrl;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsImageUrl.AsObject;
@@ -4442,22 +3902,18 @@ export namespace SnsImageUrl {
 export class SnsSendMomentOptions extends jspb.Message { 
     getIsprivate(): boolean;
     setIsprivate(value: boolean): SnsSendMomentOptions;
-
     clearCanseeusernameList(): void;
     getCanseeusernameList(): Array<string>;
     setCanseeusernameList(value: Array<string>): SnsSendMomentOptions;
     addCanseeusername(value: string, index?: number): string;
-
     clearCannotseeusernameList(): void;
     getCannotseeusernameList(): Array<string>;
     setCannotseeusernameList(value: Array<string>): SnsSendMomentOptions;
     addCannotseeusername(value: string, index?: number): string;
-
     clearAtusernameList(): void;
     getAtusernameList(): Array<string>;
     setAtusernameList(value: Array<string>): SnsSendMomentOptions;
     addAtusername(value: string, index?: number): string;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendMomentOptions.AsObject;
@@ -4482,12 +3938,10 @@ export class SnsForwardMomentRequest extends jspb.Message {
     getMomentcontentxml(): string;
     setMomentcontentxml(value: string): SnsForwardMomentRequest;
 
-
     hasOptions(): boolean;
     clearOptions(): void;
     getOptions(): SnsSendMomentOptions | undefined;
     setOptions(value?: SnsSendMomentOptions): SnsForwardMomentRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsForwardMomentRequest.AsObject;
@@ -4513,7 +3967,6 @@ export class SnsForwardMomentResponse extends jspb.Message {
     getMoment(): SnsMoment | undefined;
     setMoment(value?: SnsMoment): SnsForwardMomentResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsForwardMomentResponse.AsObject;
     static toObject(includeInstance: boolean, msg: SnsForwardMomentResponse): SnsForwardMomentResponse.AsObject;
@@ -4533,10 +3986,8 @@ export namespace SnsForwardMomentResponse {
 export class SnsGetUserPageRequest extends jspb.Message { 
     getUsername(): string;
     setUsername(value: string): SnsGetUserPageRequest;
-
     getMaxid(): string;
     setMaxid(value: string): SnsGetUserPageRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsGetUserPageRequest.AsObject;
@@ -4560,10 +4011,8 @@ export class SnsGetUserPageResponse extends jspb.Message {
     getMomentList(): Array<SnsMoment>;
     setMomentList(value: Array<SnsMoment>): SnsGetUserPageResponse;
     addMoment(value?: SnsMoment, index?: number): SnsMoment;
-
     getTips(): string;
     setTips(value: string): SnsGetUserPageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsGetUserPageResponse.AsObject;
@@ -4585,19 +4034,15 @@ export namespace SnsGetUserPageResponse {
 export class SnsSendCommentRequest extends jspb.Message { 
     getMomentid(): string;
     setMomentid(value: string): SnsSendCommentRequest;
-
     getMomentownerusername(): string;
     setMomentownerusername(value: string): SnsSendCommentRequest;
-
     getCommenttext(): string;
     setCommenttext(value: string): SnsSendCommentRequest;
-
 
     hasReplyto(): boolean;
     clearReplyto(): void;
     getReplyto(): SnsSendCommentReplyTo | undefined;
     setReplyto(value?: SnsSendCommentReplyTo): SnsSendCommentRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendCommentRequest.AsObject;
@@ -4621,13 +4066,10 @@ export namespace SnsSendCommentRequest {
 export class SnsSendCommentReplyTo extends jspb.Message { 
     getCommentid(): string;
     setCommentid(value: string): SnsSendCommentReplyTo;
-
     getCommentusername(): string;
     setCommentusername(value: string): SnsSendCommentReplyTo;
-
     getCommentnickname(): string;
     setCommentnickname(value: string): SnsSendCommentReplyTo;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendCommentReplyTo.AsObject;
@@ -4654,7 +4096,6 @@ export class SnsSendCommentResponse extends jspb.Message {
     getMoment(): SnsMoment | undefined;
     setMoment(value?: SnsMoment): SnsSendCommentResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsSendCommentResponse.AsObject;
     static toObject(includeInstance: boolean, msg: SnsSendCommentResponse): SnsSendCommentResponse.AsObject;
@@ -4676,10 +4117,8 @@ export class SnsUploadImageRequest extends jspb.Message {
     getImage_asU8(): Uint8Array;
     getImage_asB64(): string;
     setImage(value: Uint8Array | string): SnsUploadImageRequest;
-
     getDescription(): string;
     setDescription(value: string): SnsUploadImageRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsUploadImageRequest.AsObject;
@@ -4702,12 +4141,10 @@ export class SnsUploadImageResponse extends jspb.Message {
     getId(): number;
     setId(value: number): SnsUploadImageResponse;
 
-
     hasUrl(): boolean;
     clearUrl(): void;
     getUrl(): SnsImageUrl | undefined;
     setUrl(value?: SnsImageUrl): SnsUploadImageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsUploadImageResponse.AsObject;
@@ -4729,7 +4166,6 @@ export namespace SnsUploadImageResponse {
 export class SnsGetTimelineRequest extends jspb.Message { 
     getMaxid(): string;
     setMaxid(value: string): SnsGetTimelineRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsGetTimelineRequest.AsObject;
@@ -4753,7 +4189,6 @@ export class SnsGetTimelineResponse extends jspb.Message {
     setMomentList(value: Array<SnsMoment>): SnsGetTimelineResponse;
     addMoment(value?: SnsMoment, index?: number): SnsMoment;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsGetTimelineResponse.AsObject;
     static toObject(includeInstance: boolean, msg: SnsGetTimelineResponse): SnsGetTimelineResponse.AsObject;
@@ -4773,7 +4208,6 @@ export namespace SnsGetTimelineResponse {
 export class SnsGetMomentRequest extends jspb.Message { 
     getMomentid(): string;
     setMomentid(value: string): SnsGetMomentRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsGetMomentRequest.AsObject;
@@ -4798,7 +4232,6 @@ export class SnsGetMomentResponse extends jspb.Message {
     getMoment(): SnsMoment | undefined;
     setMoment(value?: SnsMoment): SnsGetMomentResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsGetMomentResponse.AsObject;
     static toObject(includeInstance: boolean, msg: SnsGetMomentResponse): SnsGetMomentResponse.AsObject;
@@ -4818,10 +4251,8 @@ export namespace SnsGetMomentResponse {
 export class SnsLikeMomentRequest extends jspb.Message { 
     getMomentid(): string;
     setMomentid(value: string): SnsLikeMomentRequest;
-
     getMomentownerusername(): string;
     setMomentownerusername(value: string): SnsLikeMomentRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsLikeMomentRequest.AsObject;
@@ -4847,7 +4278,6 @@ export class SnsLikeMomentResponse extends jspb.Message {
     getMoment(): SnsMoment | undefined;
     setMoment(value?: SnsMoment): SnsLikeMomentResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsLikeMomentResponse.AsObject;
     static toObject(includeInstance: boolean, msg: SnsLikeMomentResponse): SnsLikeMomentResponse.AsObject;
@@ -4867,7 +4297,6 @@ export namespace SnsLikeMomentResponse {
 export class SnsUnlikeMomentRequest extends jspb.Message { 
     getMomentid(): string;
     setMomentid(value: string): SnsUnlikeMomentRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsUnlikeMomentRequest.AsObject;
@@ -4905,10 +4334,8 @@ export namespace SnsUnlikeMomentResponse {
 export class SnsRemoveMomentCommentRequest extends jspb.Message { 
     getMomentid(): string;
     setMomentid(value: string): SnsRemoveMomentCommentRequest;
-
     getCommentid(): string;
     setCommentid(value: string): SnsRemoveMomentCommentRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsRemoveMomentCommentRequest.AsObject;
@@ -4948,7 +4375,6 @@ export class SnsMakeMomentPrivateRequest extends jspb.Message {
     getMomentid(): string;
     setMomentid(value: string): SnsMakeMomentPrivateRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsMakeMomentPrivateRequest.AsObject;
     static toObject(includeInstance: boolean, msg: SnsMakeMomentPrivateRequest): SnsMakeMomentPrivateRequest.AsObject;
@@ -4985,7 +4411,6 @@ export namespace SnsMakeMomentPrivateResponse {
 export class SnsMakeMomentPublicRequest extends jspb.Message { 
     getMomentid(): string;
     setMomentid(value: string): SnsMakeMomentPublicRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsMakeMomentPublicRequest.AsObject;
@@ -5024,7 +4449,6 @@ export class SnsRemoveMomentRequest extends jspb.Message {
     getMomentid(): string;
     setMomentid(value: string): SnsRemoveMomentRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsRemoveMomentRequest.AsObject;
     static toObject(includeInstance: boolean, msg: SnsRemoveMomentRequest): SnsRemoveMomentRequest.AsObject;
@@ -5062,7 +4486,6 @@ export class AddLabelRequest extends jspb.Message {
     getLabel(): string;
     setLabel(value: string): AddLabelRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddLabelRequest.AsObject;
     static toObject(includeInstance: boolean, msg: AddLabelRequest): AddLabelRequest.AsObject;
@@ -5083,7 +4506,6 @@ export class AddLabelResponse extends jspb.Message {
     getLabelid(): number;
     setLabelid(value: number): AddLabelResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddLabelResponse.AsObject;
     static toObject(includeInstance: boolean, msg: AddLabelResponse): AddLabelResponse.AsObject;
@@ -5103,7 +4525,6 @@ export namespace AddLabelResponse {
 export class RemoveLabelRequest extends jspb.Message { 
     getLabelid(): number;
     setLabelid(value: number): RemoveLabelRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): RemoveLabelRequest.AsObject;
@@ -5161,7 +4582,6 @@ export class GetLabelListResponse extends jspb.Message {
     setLabelList(value: Array<Label>): GetLabelListResponse;
     addLabel(value?: Label, index?: number): Label;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetLabelListResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetLabelListResponse): GetLabelListResponse.AsObject;
@@ -5181,10 +4601,8 @@ export namespace GetLabelListResponse {
 export class Label extends jspb.Message { 
     getName(): string;
     setName(value: string): Label;
-
     getId(): number;
     setId(value: number): Label;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Label.AsObject;
@@ -5206,12 +4624,10 @@ export namespace Label {
 export class SetContactLabelRequest extends jspb.Message { 
     getUsername(): string;
     setUsername(value: string): SetContactLabelRequest;
-
     clearLabelidList(): void;
     getLabelidList(): Array<number>;
     setLabelidList(value: Array<number>): SetContactLabelRequest;
     addLabelid(value: number, index?: number): number;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SetContactLabelRequest.AsObject;
@@ -5252,12 +4668,10 @@ export class SyncEvent extends jspb.Message {
     getContactList(): Array<Contact>;
     setContactList(value: Array<Contact>): SyncEvent;
     addContact(value?: Contact, index?: number): Contact;
-
     clearMessageList(): void;
     getMessageList(): Array<Message>;
     setMessageList(value: Array<Message>): SyncEvent;
     addMessage(value?: Message, index?: number): Message;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SyncEvent.AsObject;
@@ -5279,62 +4693,44 @@ export namespace SyncEvent {
 export class Contact extends jspb.Message { 
     getUsername(): string;
     setUsername(value: string): Contact;
-
     getNickname(): string;
     setNickname(value: string): Contact;
-
     getAvatar(): string;
     setAvatar(value: string): Contact;
-
     getGender(): number;
     setGender(value: number): Contact;
-
     getSignature(): string;
     setSignature(value: string): Contact;
-
     getAlias(): string;
     setAlias(value: string): Contact;
-
     getLabel(): string;
     setLabel(value: string): Contact;
-
     getRemark(): string;
     setRemark(value: string): Contact;
-
     getCity(): string;
     setCity(value: string): Contact;
-
     getProvince(): string;
     setProvince(value: string): Contact;
-
     getCountry(): string;
     setCountry(value: string): Contact;
-
     getContactaddscene(): number;
     setContactaddscene(value: number): Contact;
-
     getStranger(): boolean;
     setStranger(value: boolean): Contact;
-
     getEncryptusername(): string;
     setEncryptusername(value: string): Contact;
-
     clearPhoneList(): void;
     getPhoneList(): Array<string>;
     setPhoneList(value: Array<string>): Contact;
     addPhone(value: string, index?: number): string;
-
     getChatroomownerusername(): string;
     setChatroomownerusername(value: string): Contact;
-
     getChatroommaxcount(): number;
     setChatroommaxcount(value: number): Contact;
-
     clearChatroommemberList(): void;
     getChatroommemberList(): Array<ChatRoomMember>;
     setChatroommemberList(value: Array<ChatRoomMember>): Contact;
     addChatroommember(value?: ChatRoomMember, index?: number): ChatRoomMember;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Contact.AsObject;
@@ -5372,35 +4768,26 @@ export namespace Contact {
 export class Message extends jspb.Message { 
     getId(): string;
     setId(value: string): Message;
-
     getType(): number;
     setType(value: number): Message;
-
     getCreatetime(): number;
     setCreatetime(value: number): Message;
-
     getFromusername(): string;
     setFromusername(value: string): Message;
-
     getTousername(): string;
     setTousername(value: string): Message;
-
     getContent(): string;
     setContent(value: string): Message;
-
     getPushcontent(): string;
     setPushcontent(value: string): Message;
-
     getBinarypayload(): Uint8Array | string;
     getBinarypayload_asU8(): Uint8Array;
     getBinarypayload_asB64(): string;
     setBinarypayload(value: Uint8Array | string): Message;
-
     clearAtList(): void;
     getAtList(): Array<string>;
     setAtList(value: Array<string>): Message;
     addAt(value: string, index?: number): string;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Message.AsObject;
@@ -5429,10 +4816,8 @@ export namespace Message {
 export class Host extends jspb.Message { 
     getHost(): string;
     setHost(value: string): Host;
-
     getPort(): number;
     setPort(value: number): Host;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Host.AsObject;
@@ -5454,37 +4839,28 @@ export namespace Host {
 export class SnsMoment extends jspb.Message { 
     getId(): string;
     setId(value: string): SnsMoment;
-
     getUsername(): string;
     setUsername(value: string): SnsMoment;
-
     getNickname(): string;
     setNickname(value: string): SnsMoment;
-
     getCreatetime(): number;
     setCreatetime(value: number): SnsMoment;
-
     getContent(): string;
     setContent(value: string): SnsMoment;
-
     getIsrichtext(): boolean;
     setIsrichtext(value: boolean): SnsMoment;
-
     clearLikeList(): void;
     getLikeList(): Array<SnsMomentComment>;
     setLikeList(value: Array<SnsMomentComment>): SnsMoment;
     addLike(value?: SnsMomentComment, index?: number): SnsMomentComment;
-
     clearCommentList(): void;
     getCommentList(): Array<SnsMomentComment>;
     setCommentList(value: Array<SnsMomentComment>): SnsMoment;
     addComment(value?: SnsMomentComment, index?: number): SnsMomentComment;
-
     clearWithList(): void;
     getWithList(): Array<SnsMomentComment>;
     setWithList(value: Array<SnsMomentComment>): SnsMoment;
     addWith(value?: SnsMomentComment, index?: number): SnsMomentComment;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsMoment.AsObject;
@@ -5513,28 +4889,20 @@ export namespace SnsMoment {
 export class SnsMomentComment extends jspb.Message { 
     getId(): string;
     setId(value: string): SnsMomentComment;
-
     getCreatetime(): number;
     setCreatetime(value: number): SnsMomentComment;
-
     getUsername(): string;
     setUsername(value: string): SnsMomentComment;
-
     getNickname(): string;
     setNickname(value: string): SnsMomentComment;
-
     getContent(): string;
     setContent(value: string): SnsMomentComment;
-
     getIsrichtext(): boolean;
     setIsrichtext(value: boolean): SnsMomentComment;
-
     getReplycommentid(): string;
     setReplycommentid(value: string): SnsMomentComment;
-
     getReplyusername(): string;
     setReplyusername(value: string): SnsMomentComment;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SnsMomentComment.AsObject;
@@ -5562,10 +4930,8 @@ export namespace SnsMomentComment {
 export class SystemKickOutEvent extends jspb.Message { 
     getErrorcode(): number;
     setErrorcode(value: number): SystemKickOutEvent;
-
     getErrormessage(): string;
     setErrormessage(value: string): SystemKickOutEvent;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SystemKickOutEvent.AsObject;
@@ -5590,10 +4956,12 @@ export class SystemLongLinkUpdateEvent extends jspb.Message {
     clearLonglinkhost(): void;
     getLonglinkhost(): Host | undefined;
     setLonglinkhost(value?: Host): SystemLongLinkUpdateEvent;
-
     getReconnectimmediately(): boolean;
     setReconnectimmediately(value: boolean): SystemLongLinkUpdateEvent;
-
+    clearLonglinkhostlistList(): void;
+    getLonglinkhostlistList(): Array<Host>;
+    setLonglinkhostlistList(value: Array<Host>): SystemLongLinkUpdateEvent;
+    addLonglinkhostlist(value?: Host, index?: number): Host;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SystemLongLinkUpdateEvent.AsObject;
@@ -5609,13 +4977,13 @@ export namespace SystemLongLinkUpdateEvent {
     export type AsObject = {
         longlinkhost?: Host.AsObject,
         reconnectimmediately: boolean,
+        longlinkhostlistList: Array<Host.AsObject>,
     }
 }
 
 export class SystemNoticeEvent extends jspb.Message { 
     getNotice(): string;
     setNotice(value: string): SystemNoticeEvent;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SystemNoticeEvent.AsObject;
@@ -5657,24 +5025,20 @@ export class SystemEventRequest extends jspb.Message {
     getKickoutevent(): SystemKickOutEvent | undefined;
     setKickoutevent(value?: SystemKickOutEvent): SystemEventRequest;
 
-
     hasLonglinkupdateevent(): boolean;
     clearLonglinkupdateevent(): void;
     getLonglinkupdateevent(): SystemLongLinkUpdateEvent | undefined;
     setLonglinkupdateevent(value?: SystemLongLinkUpdateEvent): SystemEventRequest;
-
 
     hasNoticeevent(): boolean;
     clearNoticeevent(): void;
     getNoticeevent(): SystemNoticeEvent | undefined;
     setNoticeevent(value?: SystemNoticeEvent): SystemEventRequest;
 
-
     hasClientstopevent(): boolean;
     clearClientstopevent(): void;
     getClientstopevent(): ClientStopEvent | undefined;
     setClientstopevent(value?: ClientStopEvent): SystemEventRequest;
-
 
     getPayloadCase(): SystemEventRequest.PayloadCase;
 
@@ -5698,15 +5062,10 @@ export namespace SystemEventRequest {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    KICKOUTEVENT = 1,
-
-    LONGLINKUPDATEEVENT = 2,
-
-    NOTICEEVENT = 3,
-
-    CLIENTSTOPEVENT = 4,
-
+        KICKOUTEVENT = 1,
+        LONGLINKUPDATEEVENT = 2,
+        NOTICEEVENT = 3,
+        CLIENTSTOPEVENT = 4,
     }
 
 }
@@ -5732,7 +5091,6 @@ export class SyncRequest extends jspb.Message {
     getScene(): SyncRequestScene;
     setScene(value: SyncRequestScene): SyncRequest;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SyncRequest.AsObject;
     static toObject(includeInstance: boolean, msg: SyncRequest): SyncRequest.AsObject;
@@ -5756,7 +5114,6 @@ export class SyncResponse extends jspb.Message {
     getPayload(): SyncEvent | undefined;
     setPayload(value?: SyncEvent): SyncResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SyncResponse.AsObject;
     static toObject(includeInstance: boolean, msg: SyncResponse): SyncResponse.AsObject;
@@ -5776,13 +5133,10 @@ export namespace SyncResponse {
 export class GetMessageImageRequest extends jspb.Message { 
     getImagetype(): ImageType;
     setImagetype(value: ImageType): GetMessageImageRequest;
-
     getMessagecontent(): string;
     setMessagecontent(value: string): GetMessageImageRequest;
-
     getMessagetousername(): string;
     setMessagetousername(value: string): GetMessageImageRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageImageRequest.AsObject;
@@ -5808,10 +5162,8 @@ export class GetMessageImageResponse extends jspb.Message {
     clearFiledownloadrequest(): void;
     getFiledownloadrequest(): FileDownloadRequest | undefined;
     setFiledownloadrequest(value?: FileDownloadRequest): GetMessageImageResponse;
-
     getImagetype(): ImageType;
     setImagetype(value: ImageType): GetMessageImageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageImageResponse.AsObject;
@@ -5836,17 +5188,14 @@ export class FileDownloadRequest extends jspb.Message {
     clearHost(): void;
     getHost(): Host | undefined;
     setHost(value?: Host): FileDownloadRequest;
-
     getPayload(): Uint8Array | string;
     getPayload_asU8(): Uint8Array;
     getPayload_asB64(): string;
     setPayload(value: Uint8Array | string): FileDownloadRequest;
-
     getUnpackaeskey(): Uint8Array | string;
     getUnpackaeskey_asU8(): Uint8Array;
     getUnpackaeskey_asB64(): string;
     setUnpackaeskey(value: Uint8Array | string): FileDownloadRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FileDownloadRequest.AsObject;
@@ -5903,13 +5252,10 @@ export namespace SyncContactResponse {
 export class GetMessageVoiceRequest extends jspb.Message { 
     getMessageid(): string;
     setMessageid(value: string): GetMessageVoiceRequest;
-
     getMessagecontent(): string;
     setMessagecontent(value: string): GetMessageVoiceRequest;
-
     getMessagetousername(): string;
     setMessagetousername(value: string): GetMessageVoiceRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageVoiceRequest.AsObject;
@@ -5935,7 +5281,6 @@ export class GetMessageVoiceResponse extends jspb.Message {
     getVoice_asB64(): string;
     setVoice(value: Uint8Array | string): GetMessageVoiceResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageVoiceResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetMessageVoiceResponse): GetMessageVoiceResponse.AsObject;
@@ -5955,10 +5300,8 @@ export namespace GetMessageVoiceResponse {
 export class GetMessageVideoThumbRequest extends jspb.Message { 
     getMessagecontent(): string;
     setMessagecontent(value: string): GetMessageVideoThumbRequest;
-
     getMessagetousername(): string;
     setMessagetousername(value: string): GetMessageVideoThumbRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageVideoThumbRequest.AsObject;
@@ -5984,7 +5327,6 @@ export class GetMessageVideoThumbResponse extends jspb.Message {
     getFiledownloadrequest(): FileDownloadRequest | undefined;
     setFiledownloadrequest(value?: FileDownloadRequest): GetMessageVideoThumbResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageVideoThumbResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetMessageVideoThumbResponse): GetMessageVideoThumbResponse.AsObject;
@@ -6004,10 +5346,8 @@ export namespace GetMessageVideoThumbResponse {
 export class GetMessageVideoRequest extends jspb.Message { 
     getMessagecontent(): string;
     setMessagecontent(value: string): GetMessageVideoRequest;
-
     getMessagetousername(): string;
     setMessagetousername(value: string): GetMessageVideoRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageVideoRequest.AsObject;
@@ -6033,7 +5373,6 @@ export class GetMessageVideoResponse extends jspb.Message {
     getFiledownloadrequest(): FileDownloadRequest | undefined;
     setFiledownloadrequest(value?: FileDownloadRequest): GetMessageVideoResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageVideoResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetMessageVideoResponse): GetMessageVideoResponse.AsObject;
@@ -6053,10 +5392,8 @@ export namespace GetMessageVideoResponse {
 export class GetMessageAttachRequest extends jspb.Message { 
     getMessagecontent(): string;
     setMessagecontent(value: string): GetMessageAttachRequest;
-
     getMessagetousername(): string;
     setMessagetousername(value: string): GetMessageAttachRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageAttachRequest.AsObject;
@@ -6082,7 +5419,6 @@ export class GetMessageAttachResponse extends jspb.Message {
     getFiledownloadrequest(): FileDownloadRequest | undefined;
     setFiledownloadrequest(value?: FileDownloadRequest): GetMessageAttachResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageAttachResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetMessageAttachResponse): GetMessageAttachResponse.AsObject;
@@ -6102,10 +5438,8 @@ export namespace GetMessageAttachResponse {
 export class GetMessageAttachThumbRequest extends jspb.Message { 
     getMessagecontent(): string;
     setMessagecontent(value: string): GetMessageAttachThumbRequest;
-
     getMessagetousername(): string;
     setMessagetousername(value: string): GetMessageAttachThumbRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageAttachThumbRequest.AsObject;
@@ -6131,7 +5465,6 @@ export class GetMessageAttachThumbResponse extends jspb.Message {
     getFiledownloadrequest(): FileDownloadRequest | undefined;
     setFiledownloadrequest(value?: FileDownloadRequest): GetMessageAttachThumbResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageAttachThumbResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetMessageAttachThumbResponse): GetMessageAttachThumbResponse.AsObject;
@@ -6151,16 +5484,12 @@ export namespace GetMessageAttachThumbResponse {
 export class ForwardMessageRequest extends jspb.Message { 
     getTousername(): string;
     setTousername(value: string): ForwardMessageRequest;
-
     getMessagetype(): number;
     setMessagetype(value: number): ForwardMessageRequest;
-
     getMessagecontent(): string;
     setMessagecontent(value: string): ForwardMessageRequest;
-
     getMessagetousername(): string;
     setMessagetousername(value: string): ForwardMessageRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ForwardMessageRequest.AsObject;
@@ -6185,15 +5514,12 @@ export class ForwardMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): ForwardMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): ForwardMessageResponse;
-
     getMsgcontent(): string;
     setMsgcontent(value: string): ForwardMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ForwardMessageResponse.AsObject;
@@ -6217,21 +5543,16 @@ export class RevokeMessageRequest extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): RevokeMessageRequest;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): RevokeMessageRequest;
-
     getFromusername(): string;
     setFromusername(value: string): RevokeMessageRequest;
-
     getTousername(): string;
     setTousername(value: string): RevokeMessageRequest;
-
     getRevokeseq(): number;
     setRevokeseq(value: number): RevokeMessageRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): RevokeMessageRequest.AsObject;
@@ -6274,12 +5595,10 @@ export class SendContactCardMessageRequest extends jspb.Message {
     getTousername(): string;
     setTousername(value: string): SendContactCardMessageRequest;
 
-
     hasContact(): boolean;
     clearContact(): void;
     getContact(): Contact | undefined;
     setContact(value?: Contact): SendContactCardMessageRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendContactCardMessageRequest.AsObject;
@@ -6302,12 +5621,10 @@ export class SendContactCardMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendContactCardMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendContactCardMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendContactCardMessageResponse.AsObject;
@@ -6329,15 +5646,12 @@ export namespace SendContactCardMessageResponse {
 export class SendVoiceMessageRequest extends jspb.Message { 
     getTousername(): string;
     setTousername(value: string): SendVoiceMessageRequest;
-
     getVoice(): Uint8Array | string;
     getVoice_asU8(): Uint8Array;
     getVoice_asB64(): string;
     setVoice(value: Uint8Array | string): SendVoiceMessageRequest;
-
     getVoicelength(): number;
     setVoicelength(value: number): SendVoiceMessageRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendVoiceMessageRequest.AsObject;
@@ -6361,12 +5675,10 @@ export class SendVoiceMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendVoiceMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendVoiceMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendVoiceMessageResponse.AsObject;
@@ -6389,7 +5701,6 @@ export class SendVideoMessageRequest extends jspb.Message {
     getTousername(): string;
     setTousername(value: string): SendVideoMessageRequest;
 
-
     hasVideo(): boolean;
     clearVideo(): void;
     getVideo(): Uint8Array | string;
@@ -6397,12 +5708,10 @@ export class SendVideoMessageRequest extends jspb.Message {
     getVideo_asB64(): string;
     setVideo(value: Uint8Array | string): SendVideoMessageRequest;
 
-
     hasVideoparams(): boolean;
     clearVideoparams(): void;
     getVideoparams(): FileUploadVideoParams | undefined;
     setVideoparams(value?: FileUploadVideoParams): SendVideoMessageRequest;
-
 
     getPayloadCase(): SendVideoMessageRequest.PayloadCase;
 
@@ -6425,11 +5734,8 @@ export namespace SendVideoMessageRequest {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    VIDEO = 2,
-
-    VIDEOPARAMS = 3,
-
+        VIDEO = 2,
+        VIDEOPARAMS = 3,
     }
 
 }
@@ -6438,12 +5744,10 @@ export class SendVideoMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendVideoMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendVideoMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendVideoMessageResponse.AsObject;
@@ -6465,10 +5769,8 @@ export namespace SendVideoMessageResponse {
 export class SendFileMessageRequest extends jspb.Message { 
     getTousername(): string;
     setTousername(value: string): SendFileMessageRequest;
-
     getFilename(): string;
     setFilename(value: string): SendFileMessageRequest;
-
 
     hasFile(): boolean;
     clearFile(): void;
@@ -6477,12 +5779,10 @@ export class SendFileMessageRequest extends jspb.Message {
     getFile_asB64(): string;
     setFile(value: Uint8Array | string): SendFileMessageRequest;
 
-
     hasFileparams(): boolean;
     clearFileparams(): void;
     getFileparams(): FileUploadFileParams | undefined;
     setFileparams(value?: FileUploadFileParams): SendFileMessageRequest;
-
 
     getPayloadCase(): SendFileMessageRequest.PayloadCase;
 
@@ -6506,11 +5806,8 @@ export namespace SendFileMessageRequest {
 
     export enum PayloadCase {
         PAYLOAD_NOT_SET = 0,
-    
-    FILE = 3,
-
-    FILEPARAMS = 4,
-
+        FILE = 3,
+        FILEPARAMS = 4,
     }
 
 }
@@ -6519,12 +5816,10 @@ export class SendFileMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendFileMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendFileMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendFileMessageResponse.AsObject;
@@ -6546,10 +5841,8 @@ export namespace SendFileMessageResponse {
 export class GetMessageMiniProgramThumbRequest extends jspb.Message { 
     getMessagecontent(): string;
     setMessagecontent(value: string): GetMessageMiniProgramThumbRequest;
-
     getMessagetousername(): string;
     setMessagetousername(value: string): GetMessageMiniProgramThumbRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageMiniProgramThumbRequest.AsObject;
@@ -6575,7 +5868,6 @@ export class GetMessageMiniProgramThumbResponse extends jspb.Message {
     getFiledownloadrequest(): FileDownloadRequest | undefined;
     setFiledownloadrequest(value?: FileDownloadRequest): GetMessageMiniProgramThumbResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetMessageMiniProgramThumbResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetMessageMiniProgramThumbResponse): GetMessageMiniProgramThumbResponse.AsObject;
@@ -6595,18 +5887,14 @@ export namespace GetMessageMiniProgramThumbResponse {
 export class GetEncryptedFileRequest extends jspb.Message { 
     getFileid(): string;
     setFileid(value: string): GetEncryptedFileRequest;
-
     getFilekey(): Uint8Array | string;
     getFilekey_asU8(): Uint8Array;
     getFilekey_asB64(): string;
     setFilekey(value: Uint8Array | string): GetEncryptedFileRequest;
-
     getFiletype(): EncryptedFileType;
     setFiletype(value: EncryptedFileType): GetEncryptedFileRequest;
-
     getIschatroommessage(): boolean;
     setIschatroommessage(value: boolean): GetEncryptedFileRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetEncryptedFileRequest.AsObject;
@@ -6634,7 +5922,6 @@ export class GetEncryptedFileResponse extends jspb.Message {
     getFiledownloadrequest(): FileDownloadRequest | undefined;
     setFiledownloadrequest(value?: FileDownloadRequest): GetEncryptedFileResponse;
 
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetEncryptedFileResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetEncryptedFileResponse): GetEncryptedFileResponse.AsObject;
@@ -6654,19 +5941,14 @@ export namespace GetEncryptedFileResponse {
 export class SendEmojiMessageRequest extends jspb.Message { 
     getTousername(): string;
     setTousername(value: string): SendEmojiMessageRequest;
-
     getMd5(): string;
     setMd5(value: string): SendEmojiMessageRequest;
-
     getLen(): number;
     setLen(value: number): SendEmojiMessageRequest;
-
     getType(): number;
     setType(value: number): SendEmojiMessageRequest;
-
     getGameext(): string;
     setGameext(value: string): SendEmojiMessageRequest;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendEmojiMessageRequest.AsObject;
@@ -6692,12 +5974,10 @@ export class SendEmojiMessageResponse extends jspb.Message {
     getMsgid(): string;
     setMsgid(value: string): SendEmojiMessageResponse;
 
-
     hasMessagerevokeinfo(): boolean;
     clearMessagerevokeinfo(): void;
     getMessagerevokeinfo(): MessageRevokeInfo | undefined;
     setMessagerevokeinfo(value?: MessageRevokeInfo): SendEmojiMessageResponse;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SendEmojiMessageResponse.AsObject;
