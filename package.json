@@ -1,6 +1,6 @@
 {
   "name": "padlocal-client-ts",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Padlocal ts client",
   "keywords": [
     "padlocal",
@@ -45,9 +45,11 @@
     "brolog": "^1.12.4",
     "crypto-random-string": "^3.2.0",
     "enum-values": "^1.2.1",
+    "global": "^4.4.0",
     "google-protobuf": "3.14.0",
     "jimp": "^0.16.1",
     "node-video-lib": "^2.2.0",
+    "npmrc": "^1.1.1",
     "uuid": "^8.3.0",
     "verror": "^1.10.0"
   },
