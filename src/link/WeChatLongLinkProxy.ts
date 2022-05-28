@@ -362,7 +362,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
         this._socketConnectTimeout = setTimeout(() => {
           this.logDebug(`longlink socket[${host.host}:${host.port}] connect timeout`);
 
-          HostResolver.adjustHostQuality(host, false);
+          this._adjustHostQuality(host, false);
 
           const error = new IOError("longlink socket connect timeout");
           this._onSocketError(error);
@@ -381,7 +381,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
             const endDate = new Date();
             this.logDebug(`longlink connect success, cost ${endDate.getTime() - startDate.getTime()}ms`);
 
-            HostResolver.adjustHostQuality(host, true);
+            this._adjustHostQuality(host, true);
 
             clearTimeout(this._socketConnectTimeout!);
             this._socketConnectTimeout = undefined;
@@ -488,6 +488,11 @@ export class WeChatLongLinkProxy extends EventEmitter {
 
   private logDebug(...args: any[]): void {
     log.silly(`[LongLink] [${this._id}]`, ...args);
+  }
+
+  private _adjustHostQuality(host: Host, connectSuccess: boolean) {
+    HostResolver.adjustHostQuality(host, connectSuccess);
+    this.logDebug(`adjust host quality:${JSON.stringify(host)}, connect success:${connectSuccess}, host list:${JSON.stringify(this._hostList)}`);
   }
 }
 
