@@ -23,11 +23,11 @@ import { LongLinkStreamHandler } from "./link/LongLinkStreamHandler";
 import { PushStreamHandler } from "./link/PushStreamHandler";
 import { WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { GrpcClient, GrpcOptions, IOError } from "./GrpcClient";
-import { log } from "brolog";
 import { PadLocalClientPlugin } from "./PadLocalClientPlugin";
 import { FileUploadStreamHandler, FileUploadStreamHandlerParams } from "./link/FileUploadStreamHandler";
 import { MAX_LOG_BYTES_LEN } from "./utils/ByteUtils";
 import { WeChatHttpProxy } from "./link/WeChatHttpProxy";
+import Log from "./utils/Log";
 
 export type OnMessageCallback = (actionMessage: ActionMessage) => void;
 export type OnSystemEventCallback = (systemEventRequest: SystemEventRequest) => void;
@@ -180,7 +180,7 @@ export class Request extends PadLocalClientPlugin {
     actionMessage.setHeader(actionMessageHeader);
     setPayload(actionMessage, payload);
 
-    log.silly(
+    Log.silly(
       LOGPRE,
       `[tid:${
         this.traceId
@@ -199,7 +199,7 @@ export class Request extends PadLocalClientPlugin {
 
     const payload = getPayload(serverMessage);
 
-    log.silly(
+    Log.silly(
       LOGPRE,
       `[tid:${
         this.traceId

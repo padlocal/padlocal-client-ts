@@ -7,8 +7,8 @@ import { Message as GrpcMessage } from "google-protobuf";
 import { VERSION } from "./version";
 import { GrpcClient, GrpcOptions } from "./GrpcClient";
 import { getServerInfo } from "./utils/ServerInfo";
-import { log } from "brolog";
 import {HostResolver} from "./utils/Host";
+import Log from "./utils/Log";
 
 export type PadLocalClientEvent = "kickout" | "contact" | "message";
 
@@ -54,7 +54,7 @@ export class PadLocalClient extends EventEmitter {
 
         this._processSyncResponse(syncEvent);
       } catch (e) {
-        log.error(LOGPRE, `error while syncing onpush: ${e.stack}`);
+        Log.error(LOGPRE, `error while syncing onpush: ${e.stack}`);
       }
     });
 
@@ -65,14 +65,14 @@ export class PadLocalClient extends EventEmitter {
             const syncEvent = await this.api.sync(SyncRequestScene.LONGLINK_INIT);
             this._processSyncResponse(syncEvent);
           } catch (e) {
-            log.error(LOGPRE, `error while syncing after longlink connected: ${e.stack}`);
+            Log.error(LOGPRE, `error while syncing after longlink connected: ${e.stack}`);
           }
         }
       }
     });
 
     if (!skipPrintVersion) {
-      log.info(
+      Log.info(
         `
       ============================================================
                     Welcome to padlocal-client-ts !
@@ -117,12 +117,12 @@ export class PadLocalClient extends EventEmitter {
 
         // reconnect only while longlink is not idle or ordered by server
         if (!this._longLinkProxy.isIdle() || longLinkUpdateEvent.getReconnectimmediately()) {
-          log.silly(LOGPRE, "reset long link");
+          Log.silly(LOGPRE, "reset long link");
           this.getLongLinkProxy(true).then();
         }
       } else if (systemEventRequest.getPayloadCase() === SystemEventRequest.PayloadCase.NOTICEEVENT) {
         const noticeEvent = systemEventRequest.getNoticeevent()!;
-        log.warn(LOGPRE, noticeEvent.getNotice());
+        Log.warn(LOGPRE, noticeEvent.getNotice());
       }
     };
 
@@ -169,7 +169,7 @@ export class PadLocalClient extends EventEmitter {
   }
 
   private _processSyncResponse(syncEvent: SyncEvent): void {
-    log.silly(
+    Log.silly(
       LOGPRE,
       `on push notification, contact count:${syncEvent.getContactList().length}, message count:${
         syncEvent.getMessageList().length
@@ -190,3 +190,5 @@ export interface KickOutEvent {
   readonly errorCode: number;
   readonly errorMessage: string;
 }
+
+export { Log }

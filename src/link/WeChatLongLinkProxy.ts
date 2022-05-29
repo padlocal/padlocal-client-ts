@@ -19,10 +19,12 @@ import {
 import VError from "verror";
 import { SerialExecutor } from "../utils/SerialExecutor";
 import { genUUID } from "../utils/Utils";
-import { log } from "brolog";
 import {Host, HostResolver} from "../utils/Host";
+import Log from "../utils/Log";
 
 export type WeChatLongLinkProxyEvent = "heartbeat" | "message-push" | "push" | "status";
+
+const LOGPRE = "[LongLink]";
 
 export class WeChatLongLinkProxy extends EventEmitter {
   private static readonly REQUEST_TIMEOUT = 10 * 1000;
@@ -487,7 +489,7 @@ export class WeChatLongLinkProxy extends EventEmitter {
   }
 
   private logDebug(...args: any[]): void {
-    log.silly(`[LongLink] [${this._id}]`, ...args);
+    Log.silly(LOGPRE, `[${this._id}]`, ...args);
   }
 
   private _adjustHostQuality(host: Host, connectSuccess: boolean) {

@@ -1,10 +1,10 @@
 import { prepareSignedOnClient } from "./Common";
 import { Contact, ImageType, Message } from "../src/proto/padlocal_pb";
-import { log } from "brolog";
 import { stringifyPB } from "../src/utils/Utils";
 import { Bytes, bytesToHexString, fromBytes } from "../src/utils/ByteUtils";
 import { PadLocalClient } from "../src/PadLocalClient";
 import { appMessageParser, AppMessageType } from "./message-parser/message-appmsg";
+import Log from "../src/utils/Log";
 
 enum WechatMessageType {
   Text = 1,
@@ -40,12 +40,12 @@ async function getMessagePayload(client: PadLocalClient, message: Message) {
     case WechatMessageType.Image:
       if (message.getBinarypayload()) {
         const thumbData = Buffer.from(message.getBinarypayload());
-        log.info(`message:${message.getId()} embeded thumb image len:${thumbData.length}`);
+        Log.info(`message:${message.getId()} embeded thumb image len:${thumbData.length}`);
       }
 
       let response = await client.api.getMessageImage(message.getContent(), message.getTousername(), ImageType.THUMB);
       expect(response.imageData.length).toBeGreaterThan(0);
-      log.info(
+      Log.info(
         `message:${message.getId()} get thumb image ret type:${response.imageType} data len: ${
           response.imageData.length
         }`
@@ -53,7 +53,7 @@ async function getMessagePayload(client: PadLocalClient, message: Message) {
 
       response = await client.api.getMessageImage(message.getContent(), message.getTousername(), ImageType.NORMAL);
       expect(response.imageData.length).toBeGreaterThan(0);
-      log.info(
+      Log.info(
         `message:${message.getId()} get normal image ret type:${response.imageType} data len: ${
           response.imageData.length
         }`
@@ -61,7 +61,7 @@ async function getMessagePayload(client: PadLocalClient, message: Message) {
 
       response = await client.api.getMessageImage(message.getContent(), message.getTousername(), ImageType.HD);
       expect(response.imageData.length).toBeGreaterThan(0);
-      log.info(
+      Log.info(
         `message:${message.getId()} get hd image ret type:${response.imageType} data len: ${response.imageData.length}`
       );
 
@@ -77,7 +77,7 @@ async function getMessagePayload(client: PadLocalClient, message: Message) {
 
       expect(audioData.length).toBeGreaterThan(0);
 
-      log.info(`message:${message.getId()} get voice data len:${audioData.length}`);
+      Log.info(`message:${message.getId()} get voice data len:${audioData.length}`);
 
       break;
 
@@ -86,7 +86,7 @@ async function getMessagePayload(client: PadLocalClient, message: Message) {
 
       expect(videoData.length).toBeGreaterThan(0);
 
-      log.info(`message:${message.getId()} get video data len:${videoData.length}`);
+      Log.info(`message:${message.getId()} get video data len:${videoData.length}`);
 
       break;
 
@@ -98,15 +98,15 @@ async function getMessagePayload(client: PadLocalClient, message: Message) {
 
           expect(fileData.length).toBeGreaterThan(0);
 
-          log.info(`message:${message.getId()} get file data len:${fileData.length}`);
+          Log.info(`message:${message.getId()} get file data len:${fileData.length}`);
           break;
 
         case AppMessageType.Url:
           if (appMsgPayload.thumburl) {
-            log.info(`message:${message.getId()} get thumburl:${appMsgPayload.thumburl}`);
+            Log.info(`message:${message.getId()} get thumburl:${appMsgPayload.thumburl}`);
           } else {
             const thumbData = await client.api.getMessageAttach(message.getContent(), message.getTousername());
-            log.info(`message:${message.getId()} get thumbdata len:${thumbData.length}`);
+            Log.info(`message:${message.getId()} get thumbdata len:${thumbData.length}`);
           }
           break;
       }
@@ -119,21 +119,21 @@ test(
   async () => {
     const client = await prepareSignedOnClient();
     client.on("message", async (messageList: Message[]) => {
-      log.info("on message:");
+      Log.info("on message:");
       for (const message of messageList) {
-        log.info(stringifyPB(message));
-        log.info(bytesToHexString(fromBytes(message.serializeBinary())));
+        Log.info(stringifyPB(message));
+        Log.info(bytesToHexString(fromBytes(message.serializeBinary())));
 
         await getMessagePayload(client, message);
       }
     });
 
     client.on("contact", (contactList: Contact[]) => {
-      log.info("on contact");
+      Log.info("on contact");
 
       for (const contact of contactList) {
-        log.info(stringifyPB(contact));
-        log.info(bytesToHexString(fromBytes(contact.serializeBinary())));
+        Log.info(stringifyPB(contact));
+        Log.info(bytesToHexString(fromBytes(contact.serializeBinary())));
       }
     });
 

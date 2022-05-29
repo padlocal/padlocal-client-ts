@@ -1,10 +1,10 @@
 import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
 import { bytesToHexString, joinBytes, MAX_LOG_BYTES_LEN, newBytes } from "../utils/ByteUtils";
 import http, { OutgoingHttpHeaders } from "http";
-import { log } from "brolog";
 import { IOError } from "./erros";
 import { WeChatHttpRequest, WeChatHttpResponse } from "../proto/padlocal_pb";
 import * as https from "https";
+import Log from "../utils/Log";
 
 const LOGPRE = "[HTTP]";
 
@@ -37,7 +37,7 @@ export class WeChatHttpProxy {
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      log.silly(
+      Log.silly(
         LOGPRE,
         `[tid:${this.traceId}] http #${
           this.retryStrategy.retryCount
@@ -58,7 +58,7 @@ export class WeChatHttpProxy {
   }
 
   private async _sendImpl(): Promise<WeChatHttpResponse> {
-    log.silly(LOGPRE, `[tid:${this.traceId}] http send, [${this.request.getMethod()}]${this.request.getUrl()}`);
+    Log.silly(LOGPRE, `[tid:${this.traceId}] http send, [${this.request.getMethod()}]${this.request.getUrl()}`);
 
     return new Promise((resolve, reject) => {
       let responseDataBuffer = newBytes();
@@ -93,7 +93,7 @@ export class WeChatHttpProxy {
           });
 
           res.on("end", () => {
-            log.silly(
+            Log.silly(
               LOGPRE,
               `[tid:${this.traceId}] http receive, response: ${bytesToHexString(responseDataBuffer, MAX_LOG_BYTES_LEN)}`
             );

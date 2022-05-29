@@ -3,8 +3,8 @@ import { RetryStrategy, RetryStrategyRule } from "../utils/RetryStrategy";
 import { Bytes, bytesToHexString, MAX_LOG_BYTES_LEN, subBytes } from "../utils/ByteUtils";
 import VError from "verror";
 import { SerialExecutor } from "../utils/SerialExecutor";
-import { log } from "brolog";
 import { genUUID } from "../utils/Utils";
+import Log from "../utils/Log";
 
 class SendDataBlockQueue {
   private static readonly BLOCK_MAX_SIZE = 65536;
@@ -89,7 +89,7 @@ export class SocketClient {
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      log.silly(
+      Log.silly(
         this.LOGPRE,
         `[tid:${this.traceId}] socket #${this.retryStrategy.retryCount} retry send, after delay: ${delay}ms, addr:\"${
           this.host
@@ -126,7 +126,7 @@ export class SocketClient {
 
   private async _sendImpl(sendData: Bytes): Promise<void> {
     if (this._socket) {
-      log.warn(this.LOGPRE, "can not send again while socket is working");
+      Log.warn(this.LOGPRE, "can not send again while socket is working");
       return;
     }
 
@@ -139,7 +139,7 @@ export class SocketClient {
 
       const block = dataQueue.getNextDataBlock();
 
-      log.silly(this.LOGPRE, `socket send:${bytesToHexString(block, MAX_LOG_BYTES_LEN)}`);
+      Log.silly(this.LOGPRE, `socket send:${bytesToHexString(block, MAX_LOG_BYTES_LEN)}`);
 
       socket.write(block, (err) => {
         if (err) {
@@ -163,7 +163,7 @@ export class SocketClient {
             await this._callback?.onError?.(error);
           });
 
-          log.silly(this.LOGPRE, `socket on error: ${error}, retryOnError:${retryOnError}`);
+          Log.silly(this.LOGPRE, `socket on error: ${error}, retryOnError:${retryOnError}`);
 
           this._retryOnError = retryOnError;
 
@@ -172,14 +172,14 @@ export class SocketClient {
           resolve();
         }
 
-        log.silly(this.LOGPRE, `destroy socket`);
+        Log.silly(this.LOGPRE, `destroy socket`);
 
         this._socket.destroy();
         this._socket = undefined;
       };
 
       const startDate = new Date();
-      log.silly(this.LOGPRE, `socket start connect: ${this.host}:${this.port}`);
+      Log.silly(this.LOGPRE, `socket start connect: ${this.host}:${this.port}`);
 
       const socket = new Socket();
       socket.setTimeout(SocketClient.READ_WRITE_TIMEOUT);
@@ -198,7 +198,7 @@ export class SocketClient {
           clearTimeout(connectTimeout);
 
           const endDate = new Date();
-          log.silly(this.LOGPRE, `socket connect success, cost: ${endDate.getTime() - startDate.getTime()}ms`);
+          Log.silly(this.LOGPRE, `socket connect success, cost: ${endDate.getTime() - startDate.getTime()}ms`);
 
           this._callbackExecutor.execute(async () => {
             await this._callback?.onConnect?.();
@@ -209,13 +209,13 @@ export class SocketClient {
       );
 
       socket.on("data", (data) => {
-        log.silly(this.LOGPRE, `socket recv:${bytesToHexString(data, MAX_LOG_BYTES_LEN)}`);
+        Log.silly(this.LOGPRE, `socket recv:${bytesToHexString(data, MAX_LOG_BYTES_LEN)}`);
 
         this._callbackExecutor.execute(async () => {
           try {
             const finished = await this._callback.onReceive!(data);
 
-            log.silly(this.LOGPRE, `process data, finished:${finished}`);
+            Log.silly(this.LOGPRE, `process data, finished:${finished}`);
 
             if (finished) {
               // do not execute onReceive in queue
