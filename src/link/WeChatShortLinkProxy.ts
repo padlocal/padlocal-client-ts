@@ -32,20 +32,23 @@ export class WeChatShortLinkProxy {
       }
 
       if (!this.retryStrategy.canRetry()) {
-        const message = `[tid:${this.traceId}] Fail to request short link for path:${path}, data: ${bytesToHexString(
+        const message = `[tid:${this.traceId}] Fail to request short link, url: http://${this.host}:${this.port}${path}, data: ${bytesToHexString(
           data,
           MAX_LOG_BYTES_LEN
         )}, after max retry:${this.retryStrategy.retryCount}`;
+
+        Log.error(LOGPRE, message);
+
         throw new IOError(e, message);
       }
 
       const delay = this.retryStrategy.nextRetryDelay();
 
-      Log.silly(
+      Log.warn(
         LOGPRE,
         `[tid:${this.traceId}] short link #${
           this.retryStrategy.retryCount
-        } retry request, after delay: ${delay}ms, path: ${path} data: ${bytesToHexString(data, MAX_LOG_BYTES_LEN)}`
+        } retry request, after delay: ${delay}ms, url: http://${this.host}:${this.port}${path}, data: ${bytesToHexString(data, MAX_LOG_BYTES_LEN)}`
       );
 
       return new Promise((resolve, reject) => {

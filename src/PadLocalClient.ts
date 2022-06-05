@@ -1,5 +1,5 @@
 import { Request } from "./Request";
-import { Contact, Message, SyncEvent, SyncRequestScene, SystemEventRequest } from "./proto/padlocal_pb";
+import {Contact, Message, ServerInfo, SyncEvent, SyncRequestScene, SystemEventRequest} from "./proto/padlocal_pb";
 import { Status, StatusEventPayload, WeChatLongLinkProxy } from "./link/WeChatLongLinkProxy";
 import { EventEmitter } from "events";
 import { PadLocalClientApi } from "./PadLocalClientApi";
@@ -32,7 +32,14 @@ export class PadLocalClient extends EventEmitter {
   }
 
   public static async create(token: string, skipPrintVersion: boolean = false): Promise<PadLocalClient> {
-    const serverInfo = await getServerInfo(token);
+    let serverInfo:ServerInfo;
+    try {
+      serverInfo = await getServerInfo(token);
+    }catch (e) {
+      Log.error(LOGPRE, `Fail to get server info: ${e}`);
+      throw e;
+    }
+
     return new PadLocalClient(
       `${serverInfo.getHost()!.getHost()}:${serverInfo.getHost()!.getPort()}`,
       serverInfo.getPdltoken(),

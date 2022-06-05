@@ -331,6 +331,10 @@ export class Request extends PadLocalClientPlugin {
   }
 
   private _failAllPendingRequest(status: Status, error: Error): void {
+    if (status === Status.SERVER_ERROR || status === Status.CLIENT_ERROR) {
+      Log.error(LOGPRE, `[tid:${ this.traceId}], padlocal grpc request failed: ${status}, error: ${error}`);
+    }
+
     const e = new SubRequestCancelError(this.traceId, status, error);
     for (const [, p] of this._pendingCallbacks.entries()) {
       p.reject(e);
